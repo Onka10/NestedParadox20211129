@@ -18,6 +18,6 @@ public class CreditManager : MonoBehaviour
     }
 
     public void ToTitleSecene(){
-        SceneManager.LoadScene("TitleManager");
+        SceneManager.LoadScene("TitleScene");
     }
 }
