@@ -310,7 +310,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1197586062}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: LoadToTitleScene
+        m_MethodName: ToTitleScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -605,7 +605,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1197586062}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: LoadToSelectCardScene
+        m_MethodName: ToSelectCardScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -883,7 +883,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1197586062}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: LoadToGameScene
+        m_MethodName: ToGameScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -957,7 +957,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1197586061}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24e46c622842343928f10173b48e2d90, type: 3}
+  m_Script: {fileID: 11500000, guid: ba82b10cdc958460db8486b6b6dd42b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &1197586063
@@ -1508,7 +1508,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2051050577}
         m_TargetAssemblyTypeName: GameUIManager, Assembly-CSharp
-        m_MethodName: UnPause
+        m_MethodName: Unpause
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1661,7 +1661,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2051050576}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16373ba637a8044c18dc9ce2def26434, type: 3}
+  m_Script: {fileID: 11500000, guid: a675fa93b861c4163bcd7072f238adda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pausePanel: {fileID: 1557026430}
@@ -1764,7 +1764,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1197586062}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: LoadToTitleScene
+        m_MethodName: ToTitleScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
