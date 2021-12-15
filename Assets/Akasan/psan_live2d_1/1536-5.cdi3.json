@@ -1,0 +1,139 @@
+{
+	"Version": 3,
+	"Parameters": [
+		{
+			"Id": "ParamAngleX",
+			"GroupId": "",
+			"Name": "角度 X"
+		},
+		{
+			"Id": "ParamAngleY",
+			"GroupId": "",
+			"Name": "角度 Y"
+		},
+		{
+			"Id": "ParamAngleZ",
+			"GroupId": "",
+			"Name": "角度 Z"
+		},
+		{
+			"Id": "ParamEyeLOpen",
+			"GroupId": "",
+			"Name": "左目　開閉"
+		},
+		{
+			"Id": "Param",
+			"GroupId": "",
+			"Name": "耳ぷる１"
+		},
+		{
+			"Id": "Param7",
+			"GroupId": "",
+			"Name": "あし２"
+		},
+		{
+			"Id": "Param2",
+			"GroupId": "",
+			"Name": "耳ぷる２"
+		},
+		{
+			"Id": "ParamEyeLSmile",
+			"GroupId": "",
+			"Name": "左目　笑顔"
+		},
+		{
+			"Id": "ParamEyeROpen",
+			"GroupId": "",
+			"Name": "右目　開閉"
+		},
+		{
+			"Id": "ParamEyeRSmile",
+			"GroupId": "",
+			"Name": "右目　笑顔"
+		},
+		{
+			"Id": "ParamEyeBallX",
+			"GroupId": "",
+			"Name": "目玉 X"
+		},
+		{
+			"Id": "ParamEyeBallY",
+			"GroupId": "",
+			"Name": "目玉 Y"
+		},
+		{
+			"Id": "ParamMouthForm",
+			"GroupId": "",
+			"Name": "口　変形"
+		},
+		{
+			"Id": "ParamMouthOpenY",
+			"GroupId": "",
+			"Name": "口　開閉"
+		},
+		{
+			"Id": "Param3",
+			"GroupId": "",
+			"Name": "しっぽぷる"
+		},
+		{
+			"Id": "Param4",
+			"GroupId": "",
+			"Name": "前足"
+		},
+		{
+			"Id": "Param5",
+			"GroupId": "",
+			"Name": "けつ"
+		},
+		{
+			"Id": "Param6",
+			"GroupId": "",
+			"Name": "あし"
+		},
+		{
+			"Id": "Param8",
+			"GroupId": "",
+			"Name": "パラメータ22"
+		},
+		{
+			"Id": "ParamBodyAngleX",
+			"GroupId": "",
+			"Name": "体の回転　X"
+		},
+		{
+			"Id": "ParamBodyAngleY",
+			"GroupId": "",
+			"Name": "体の回転　Y"
+		},
+		{
+			"Id": "ParamBodyAngleZ",
+			"GroupId": "",
+			"Name": "体の回転　Z"
+		},
+		{
+			"Id": "ParamBreath",
+			"GroupId": "",
+			"Name": "呼吸"
+		}
+	],
+	"ParameterGroups": [],
+	"Parts": [
+		{
+			"Id": "Part",
+			"Name": "1578.psd（対応無し）"
+		},
+		{
+			"Id": "Part2",
+			"Name": "目１"
+		},
+		{
+			"Id": "Part4",
+			"Name": "うはー"
+		},
+		{
+			"Id": "Part3",
+			"Name": "目２"
+		}
+	]
+}
