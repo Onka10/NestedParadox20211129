@@ -1,18 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
+using UniRx;
+using NestedParadox.Players;
 using UnityEngine;
 
-public class PlayerManager : MonoBehaviour
+namespace NestedParadox.Managers
 {
-    // Start is called before the first frame update
-    void Start()
+    // プレイヤーの管理
+    public sealed class PlayerManager : MonoBehaviour
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        //死亡の管理とかを行うよてい
     }
 }
