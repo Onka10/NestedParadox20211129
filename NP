@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2022-01-03T12:47:40.140Z" agent="5.0 (Windows)" etag="0m7tHXq-ns0uErPI_VOP" version="16.1.2" type="github">
+<mxfile host="app.diagrams.net" modified="2022-01-13T09:09:06.742Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Safari/605.1.15" etag="4zWcYnk48ag_2wNYtvt0" version="16.2.6" type="github">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
-    <mxGraphModel dx="1206" dy="752" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="946" dy="617" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
@@ -112,6 +112,35 @@
         </mxCell>
         <mxCell id="TlJoj2aJXdb9hvMQDjj1-12" value="エフェクト再生" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="TlJoj2aJXdb9hvMQDjj1-6" vertex="1">
           <mxGeometry y="204" width="160" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="kBDyrdohHZvysKCr3hd2-13" value="Observe (float Moving Distance)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="kBDyrdohHZvysKCr3hd2-0">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="690" y="414" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kBDyrdohHZvysKCr3hd2-0" value="Stage (背景UI)" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="610" y="488" width="160" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="kBDyrdohHZvysKCr3hd2-2" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="kBDyrdohHZvysKCr3hd2-0">
+          <mxGeometry y="26" width="160" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="kBDyrdohHZvysKCr3hd2-4" value="Camera State" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="610" y="300" width="160" height="88" as="geometry" />
+        </mxCell>
+        <mxCell id="kBDyrdohHZvysKCr3hd2-5" value="float Moving Distance&#xa;(カメラが1フレームの間に&#xa;動いた距離)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="kBDyrdohHZvysKCr3hd2-4">
+          <mxGeometry y="26" width="160" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="kBDyrdohHZvysKCr3hd2-6" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="kBDyrdohHZvysKCr3hd2-4">
+          <mxGeometry y="80" width="160" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="kBDyrdohHZvysKCr3hd2-14" value="Observe(Transform メインキャラの座標,&lt;br&gt;IReadOnlyReactiveProperty&amp;lt;int&amp;gt; メインキャラの向き)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="kBDyrdohHZvysKCr3hd2-8" target="TlJoj2aJXdb9hvMQDjj1-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kBDyrdohHZvysKCr3hd2-8" value="Camera Controller" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="270" y="310" width="160" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="kBDyrdohHZvysKCr3hd2-10" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="kBDyrdohHZvysKCr3hd2-8">
+          <mxGeometry y="26" width="160" height="8" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
