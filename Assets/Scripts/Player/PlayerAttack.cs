@@ -50,8 +50,10 @@ namespace NestedParadox.Players
                 .Subscribe(x => _playerMove.BlockMove(x))
                 .AddTo(this);
 
-            // OnAttackEndEvent();
+            OnAttackEndEvent();
         }
+
+        #region 各種購読
 
         private void SubscribeInputEvent()
         {
@@ -59,8 +61,15 @@ namespace NestedParadox.Players
             _playerinput.OnNormalAttack
                 // 接地中なら攻撃ができる
                 .Where(_ => _playerMove.IsGrounded.Value)
-                .Subscribe(_ => _playerAnimation.NormalAttack());
-                // .AddTo(this);
+                .Subscribe(_ => _playerAnimation.NormalAttack())
+                .AddTo(this);
+
+            // 強攻撃イベント
+            _playerinput.OnChargeAttack
+                // 接地中なら攻撃ができる
+                .Where(_ => _playerMove.IsGrounded.Value)
+                .Subscribe(_ => _playerAnimation.ChargeAttack())
+                .AddTo(this);
         }
 
         // アニメーションイベントを購読する
@@ -72,6 +81,36 @@ namespace NestedParadox.Players
         // 各種衝突判定を購読する
         private void SubscribeColliderEvent(){
         }
+
+        #endregion
+
+
+
+        #region 攻撃の核となるメソッド
+
+        // 攻撃モーションに合わせて当たり判定をON/OFFする
+        public void OnNormalAttackEvent()
+        {
+            _attackCollider1.enabled = true;
+            _attackPower = 1; // 弱攻撃は攻撃力1
+        }
+
+        public void OnChargeAttackEvent()
+        {
+            _attackCollider1.enabled = true;
+            _attackCollider2.enabled = true;
+            _attackPower = 2; // 強攻撃は攻撃力2
+        }
+
+        //当たり判定を消す
+        public void OnAttackEndEvent()
+        {
+            _attackCollider1.enabled = false;
+            _attackCollider2.enabled = false;
+            _attackPower = 0;
+        }
+
+        #endregion
 
     }
 }
