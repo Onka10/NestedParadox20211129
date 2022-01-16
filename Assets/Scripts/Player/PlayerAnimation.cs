@@ -13,7 +13,12 @@ namespace NestedParadox.Players{
         void Awake()
         {
             _animator = GetComponent<Animator>();
+            _rigidbody2D = GetComponent<Rigidbody2D>();
             _playerMove = GetComponent<PlayerMove>();
+        }
+
+        void Update(){
+
         }
 
         // 通常攻撃
@@ -21,6 +26,13 @@ namespace NestedParadox.Players{
         {
             // _animator.SetTrigger(HashLightAttack);
             Debug.Log("攻撃アニメーションの再生");
+        }
+
+        // ため攻撃を試みる
+        public void ChargeAttack()
+        {
+            // _animator.SetTrigger(HashStrongAttack);
+            Debug.Log("ため攻撃アニメーションの再生");
         }
     }
 }
