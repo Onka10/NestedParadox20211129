@@ -15,5 +15,12 @@ namespace NestedParadox.Players{
             _animator = GetComponent<Animator>();
             _playerMove = GetComponent<PlayerMove>();
         }
+
+        // 通常攻撃
+        public void NormalAttack()
+        {
+            // _animator.SetTrigger(HashLightAttack);
+            Debug.Log("攻撃アニメーションの再生");
+        }
     }
 }
