@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - MainCharacter
+  - FootHold1
+  - FootHold2
+  - BaseField
   layers:
   - Default
   - TransparentFX
