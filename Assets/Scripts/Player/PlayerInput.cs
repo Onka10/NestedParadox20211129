@@ -60,7 +60,7 @@ namespace NestedParadox.Players
             }).AddTo(this);
         }
 
-        void Update(){
+        void FixedUpdate(){
             // ジャンプボタン
             _jump.Value = Input.GetKeyDown("space");
 
