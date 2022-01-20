@@ -2,20 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript2 : MonoBehaviour
+public class TempCamera : MonoBehaviour
 {
-    private Collider2D coll;
+    [SerializeField] Transform target;
     // Start is called before the first frame update
     void Start()
     {
-        coll = GetComponent<Collider2D>();
+        
     }
-
-
 
     // Update is called once per frame
     void Update()
     {
-        
+        transform.position = target.position + new Vector3(0, 3, -10);
     }
 }

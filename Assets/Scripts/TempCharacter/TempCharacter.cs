@@ -29,10 +29,7 @@ public class TempCharacter : MonoBehaviour
         isLanding = true;
     }
 
-    private async UniTask MultiplyGravity()
-    {
-        
-    }
+    
 
     // Update is called once per frame
 

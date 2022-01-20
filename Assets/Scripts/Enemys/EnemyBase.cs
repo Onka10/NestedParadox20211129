@@ -2,20 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript2 : MonoBehaviour
+public abstract class EnemyBase : MonoBehaviour
 {
-    private Collider2D coll;
+    protected int hp;
+    protected int attackPower;   
+
     // Start is called before the first frame update
     void Start()
     {
-        coll = GetComponent<Collider2D>();
+        
     }
-
-
 
     // Update is called once per frame
     void Update()
     {
         
     }
+
+    public abstract void Attack();
+
+    public abstract void DamageApply(int attackPower);
 }
