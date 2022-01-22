@@ -21,6 +21,11 @@ namespace NestedParadox.Players
         private readonly ReactiveProperty<Vector3> _move = new ReactiveProperty<Vector3>();
 
 
+        //赤さん
+        public IReadOnlyReactiveProperty<int> CurrentDirection => currentDirection.Select(x => x.x < 0 ? 1 : -1).ToReactiveProperty<int>();
+        private ReactiveProperty<Vector3> currentDirection = new ReactiveProperty<Vector3>();
+
+
 
         // 長押しだと判定するまでの時間
         private static readonly float LongPressSeconds = 0.25f;
@@ -58,6 +63,8 @@ namespace NestedParadox.Players
                     _normalAttackSubject.OnNext(Unit.Default);
                 }
             }).AddTo(this);
+
+            
         }
 
         void FixedUpdate(){
