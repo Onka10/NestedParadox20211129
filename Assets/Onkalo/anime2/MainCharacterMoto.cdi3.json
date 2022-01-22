@@ -1,0 +1,167 @@
+{
+	"Version": 3,
+	"Parameters": [
+		{
+			"Id": "Param27",
+			"GroupId": "",
+			"Name": "手首回転"
+		},
+		{
+			"Id": "ParamAngleX",
+			"GroupId": "",
+			"Name": "角度 X"
+		},
+		{
+			"Id": "ParamAngleY",
+			"GroupId": "",
+			"Name": "角度 Y"
+		},
+		{
+			"Id": "ParamAngleZ",
+			"GroupId": "",
+			"Name": "角度 Z"
+		},
+		{
+			"Id": "Param25",
+			"GroupId": "",
+			"Name": "左膝回転"
+		},
+		{
+			"Id": "Param26",
+			"GroupId": "",
+			"Name": "右膝回転"
+		},
+		{
+			"Id": "Param",
+			"GroupId": "",
+			"Name": "右足上げ"
+		},
+		{
+			"Id": "Param5",
+			"GroupId": "",
+			"Name": "右足下げ"
+		},
+		{
+			"Id": "Param2",
+			"GroupId": "",
+			"Name": "左足上げ"
+		},
+		{
+			"Id": "Param6",
+			"GroupId": "",
+			"Name": "左足下げ"
+		},
+		{
+			"Id": "Param3",
+			"GroupId": "",
+			"Name": "右横移動"
+		},
+		{
+			"Id": "Param10",
+			"GroupId": "",
+			"Name": "右足前移動"
+		},
+		{
+			"Id": "Param11",
+			"GroupId": "",
+			"Name": "右足後ろ移動"
+		},
+		{
+			"Id": "Param16",
+			"GroupId": "",
+			"Name": "右足上下"
+		},
+		{
+			"Id": "Param12",
+			"GroupId": "",
+			"Name": "左足前移動"
+		},
+		{
+			"Id": "Param13",
+			"GroupId": "",
+			"Name": "左足後ろ移動"
+		},
+		{
+			"Id": "Param4",
+			"GroupId": "",
+			"Name": "左横移動"
+		},
+		{
+			"Id": "Param20",
+			"GroupId": "",
+			"Name": "上半身ひねり左"
+		},
+		{
+			"Id": "Param19",
+			"GroupId": "",
+			"Name": "腕下横移動"
+		},
+		{
+			"Id": "Param17",
+			"GroupId": "",
+			"Name": "左足上下"
+		},
+		{
+			"Id": "Param14",
+			"GroupId": "",
+			"Name": "腰シルエット"
+		},
+		{
+			"Id": "Param7",
+			"GroupId": "",
+			"Name": "ジャブ腕"
+		},
+		{
+			"Id": "Param8",
+			"GroupId": "",
+			"Name": "腕横移動"
+		},
+		{
+			"Id": "Param15",
+			"GroupId": "",
+			"Name": "上半身下"
+		},
+		{
+			"Id": "Param18",
+			"GroupId": "",
+			"Name": "腕伸ばし"
+		},
+		{
+			"Id": "Param9",
+			"GroupId": "",
+			"Name": "首振り"
+		},
+		{
+			"Id": "Param21",
+			"GroupId": "",
+			"Name": "右足首曲げ上げ"
+		},
+		{
+			"Id": "Param22",
+			"GroupId": "",
+			"Name": "左足首曲げ上げ"
+		},
+		{
+			"Id": "Param23",
+			"GroupId": "",
+			"Name": "上半身回転"
+		},
+		{
+			"Id": "Param24",
+			"GroupId": "",
+			"Name": "上半身回転2"
+		},
+		{
+			"Id": "Param28",
+			"GroupId": "",
+			"Name": "棒移動"
+		}
+	],
+	"ParameterGroups": [],
+	"Parts": [
+		{
+			"Id": "Part",
+			"Name": "elbow2.png"
+		}
+	]
+}

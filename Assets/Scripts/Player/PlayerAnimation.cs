@@ -31,14 +31,16 @@ namespace NestedParadox.Players{
             var moveX = _rigidbody2D.velocity.x;
             var moveY = _rigidbody2D.velocity.y;
 
-            // if (Mathf.Abs(moveX) > 0.05f)
-            // {
-            //     var scale = transform.localScale;
-            //     scale.x = moveX > 0 ? 1 : -1;
-            //     transform.localScale = scale;
-            // }
+            //移動時、アニメーションの反転に使う
+            if (Mathf.Abs(moveX) > 0.05f)
+            {
+                var scale = transform.localScale;
+                scale.x = moveX > 0 ? -1 : 1;
+                transform.localScale = scale;
+                //赤さんが欲している情報transformと向き
+            }
 
-            // _animator.SetFloat(HashSpeed, Mathf.Abs(moveX));
+            _animator.SetFloat(HashSpeed, Mathf.Abs(moveX));
             
             // 攻撃は1F以内に遷移できなかった場合はリセットする
             // _animator.ResetTrigger(HashNormalAttack);
