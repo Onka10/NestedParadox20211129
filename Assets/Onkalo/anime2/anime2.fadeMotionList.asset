@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 403ae2dd693bb1d4b924f6b8d206b053, type: 3}
   m_Name: anime2.fadeMotionList
   m_EditorClassIdentifier: 
-  MotionInstanceIds: 8c8fffff808fffff788fffff708fffff688fffff608ffffff08affffe88affff
+  MotionInstanceIds: 8c8fffff808fffff788fffff708fffff688fffff608ffffff08affffe88affff3ab7ffff32b7ffff
   CubismFadeMotionObjects:
   - {fileID: 11400000, guid: 8ac1c651994c7e446802ec3e9f7fe45f, type: 2}
   - {fileID: 11400000, guid: fba79d4a86cf13240be326ac8d4499ec, type: 2}
@@ -22,3 +22,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7072401e840af46429bf4ff05d0b7e39, type: 2}
   - {fileID: 11400000, guid: 8464e29569858d946825a6e083e26a15, type: 2}
   - {fileID: 11400000, guid: 171e949866d6aa545b28daf0e910ac91, type: 2}
+  - {fileID: 11400000, guid: 5beb9d973853eae4090beba501a9611c, type: 2}
+  - {fileID: 11400000, guid: d70c3cadd646b0e40a2e7d197d2887b5, type: 2}
