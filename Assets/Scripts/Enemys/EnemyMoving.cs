@@ -14,8 +14,12 @@ public class EnemyMoving : MonoBehaviour
     private int direction;
 
     [SerializeField] float rayDistance;
+    [SerializeField] float ray2AndRay3Distance;
+    [SerializeField] Vector2 ray2;
+    [SerializeField] Vector2 ray3;
     [SerializeField] Vector3 jumpingPower;
     [SerializeField] float movingSpeed;
+    [SerializeField] LayerMask targetLayer;
     private Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
@@ -27,13 +31,10 @@ public class EnemyMoving : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, rayDistance);
-        if(hit.collider == null)
-        {
-            isGrounded.Value = false;
-            return;
-        }
-        if(hit.collider.gameObject.tag == "FootHold1" || hit.collider.gameObject.tag == "FootHold2" || hit.collider.gameObject.tag == "BaseField" )
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, rayDistance, targetLayer);
+        RaycastHit2D hit2 = Physics2D.Raycast(transform.position, ray2, ray2AndRay3Distance, targetLayer);
+        RaycastHit2D hit3 = Physics2D.Raycast(transform.position, ray3, ray2AndRay3Distance, targetLayer);
+        if(hit.collider != null || hit2.collider != null || hit3.collider != null)
         {
             isGrounded.Value = true;
         }
@@ -42,6 +43,8 @@ public class EnemyMoving : MonoBehaviour
             isGrounded.Value = false;
         }
         Debug.DrawRay(transform.position, Vector2.down * rayDistance);
+        Debug.DrawRay(transform.position, ray2 * ray2AndRay3Distance);
+        Debug.DrawRay(transform.position, ray3 * ray2AndRay3Distance);
     }
 
     public void Jump(int direction)

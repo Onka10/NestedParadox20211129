@@ -21,6 +21,13 @@ namespace NestedParadox.Players
         private readonly ReactiveProperty<Vector3> _move = new ReactiveProperty<Vector3>();
 
 
+        //赤さん
+        public IReadOnlyReactiveProperty<int> CurrentDirection => currentDirection.Select(x => x.x < 0 ? 1 : -1).ToReactiveProperty<int>();
+        private ReactiveProperty<Vector3> currentDirection = new ReactiveProperty<Vector3>();
+
+        public Transform MyTransform { get { return myTransform; } }
+        private Transform myTransform;
+
 
         // 長押しだと判定するまでの時間
         private static readonly float LongPressSeconds = 0.25f;
@@ -58,15 +65,21 @@ namespace NestedParadox.Players
                     _normalAttackSubject.OnNext(Unit.Default);
                 }
             }).AddTo(this);
+
+            //赤さんのカメラ
+            myTransform = transform;
+            currentDirection.Value = myTransform.localScale;
+
         }
 
-        void Update(){
+        void FixedUpdate(){
             // ジャンプボタン
             _jump.Value = Input.GetKeyDown("space");
 
             // 移動入力をベクトルに変換して反映
             // ReactiveProperty.SetValueAndForceNotifyを使うと強制的にメッセージ発行できる
             _move.SetValueAndForceNotify(new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")));
+
         }
     }
 }

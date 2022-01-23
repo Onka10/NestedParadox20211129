@@ -74,7 +74,21 @@ namespace NestedParadox.Players
 
         // アニメーションイベントを購読する
         private void SubscribeAnimationEvent(){
+            //ObservableStateMachineTrigger を用いることでAnimationControllerのステートの遷移を取得できる
+            var animator = GetComponent<Animator>();
+            var trigger = animator.GetBehaviour<ObservableStateMachineTrigger>();
 
+            // 攻撃関係のステートマシンに入った
+            trigger
+                .OnStateMachineEnterAsObservable()
+                .Subscribe(_ => _isInAttack.Value = true)
+                .AddTo(this);
+
+            // 攻撃関係のステートマシンから出た
+            trigger
+                .OnStateMachineExitAsObservable()
+                .Subscribe(_ => _isInAttack.Value = false)
+                .AddTo(this);
         }
 
 

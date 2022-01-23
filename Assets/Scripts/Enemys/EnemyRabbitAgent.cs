@@ -45,11 +45,13 @@ public class EnemyRabbitAgent: Agent
         {
             //+x方向へ移動
             enemyMoving.Move(1);
+            AddReward(0.0005f);
         }
         else if(movingAction == 2 && enemyMoving.IsGrounded.Value)
         {
             //-x方向へ移動
             enemyMoving.Move(-1);
+            AddReward(0.0005f);
         }
         else if(movingAction == 3 && enemyMoving.IsGrounded.Value)
         {
@@ -63,21 +65,22 @@ public class EnemyRabbitAgent: Agent
         }
 
         float distance = (this.transform.position - mainChara.transform.position).magnitude;
-        if(distance <= 1.5f)
+        if(distance <= 2)
         {
             Debug.Log("報酬獲得");
-            AddReward(1);
+            AddReward(1.5f);
             EndEpisode();
         }
         if(this.transform.position.y < -3)
         {
+            AddReward(-1);
             EndEpisode();
         }
         if(mainChara.transform.position.y < -3)
         {
             EndEpisode();
         }
-        AddReward(-0.1f);
+       
     }
 
     public override void Heuristic(in ActionBuffers actionsOut)
