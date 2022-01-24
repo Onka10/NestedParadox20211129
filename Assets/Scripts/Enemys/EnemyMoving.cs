@@ -20,11 +20,13 @@ public class EnemyMoving : MonoBehaviour
     [SerializeField] Vector3 jumpingPower;
     [SerializeField] float movingSpeed;
     [SerializeField] LayerMask targetLayer;
+    [SerializeField] Animator animator;
     private Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = transform.Find("EnemyRabbit").GetComponent<Animator>();
         isGrounded.Subscribe(x => Debug.Log(x.ToString()));
     }
 
@@ -42,20 +44,20 @@ public class EnemyMoving : MonoBehaviour
         {
             isGrounded.Value = false;
         }
-        Debug.DrawRay(transform.position, Vector2.down * rayDistance);
-        Debug.DrawRay(transform.position, ray2 * ray2AndRay3Distance);
-        Debug.DrawRay(transform.position, ray3 * ray2AndRay3Distance);
     }
+
 
     public void Jump(int direction)
     {
         if(direction == 1)
         {
+            animator.SetTrigger("JumpTrigger");
             transform.localScale = new Vector3(-1, 1, 1);
             rb.AddForce(jumpingPower);
         }
         else
         {
+            animator.SetTrigger("JumpTrigger");
             transform.localScale = new Vector3(1, 1, 1);
             rb.AddForce(new Vector3(jumpingPower.x * -1, jumpingPower.y, jumpingPower.z));
         }
@@ -65,11 +67,13 @@ public class EnemyMoving : MonoBehaviour
     {
         if(direction == 1)
         {
+            animator.SetTrigger("RunTrigger");
             transform.localScale = new Vector3(-1, 1, 1);
             rb.velocity = new Vector3(movingSpeed, 0, 0);
         }
         else
         {
+            animator.SetTrigger("RunTrigger");
             transform.localScale = new Vector3(1, 1, 1);
             rb.velocity = new Vector3(-1 * movingSpeed, 0, 0);
         }
