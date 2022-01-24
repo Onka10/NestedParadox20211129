@@ -37,7 +37,12 @@ namespace NestedParadox.Players{
                 var scale = transform.localScale;
                 scale.x = moveX > 0 ? -1 : 1;
                 transform.localScale = scale;
-                //赤さんが欲している情報transformと向き
+
+                //若干傾ける
+                // Quaternion rotation;
+                // rotation = transform.rotation;
+                // rotation.z = 8f;
+                // transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, 1f * Time.deltaTime);
             }
 
             _animator.SetFloat(HashSpeed, Mathf.Abs(moveX));
