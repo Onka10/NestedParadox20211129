@@ -74,7 +74,7 @@ namespace NestedParadox.Players
 
         void FixedUpdate(){
             // ジャンプボタン
-            _jump.Value = Input.GetKeyDown("space");
+            _jump.Value = Input.GetKey("space");
 
             // 移動入力をベクトルに変換して反映
             // ReactiveProperty.SetValueAndForceNotifyを使うと強制的にメッセージ発行できる
