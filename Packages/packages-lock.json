@@ -142,7 +142,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.ml-agents": {
-      "version": "file:C:/UnityAI/com.unity.ml-agents縺ｮ繧ｳ繝偵ｚ繝ｼ",
+      "version": "file:/Users/inayoshikouya/Downloads/ml-agentsのコピー/com.unity.ml-agents",
       "depth": 0,
       "source": "local",
       "dependencies": {

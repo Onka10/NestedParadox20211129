@@ -7,14 +7,14 @@ namespace MainCamera
 {
     public class CameraState : MonoBehaviour
     {
-        private float movingDistance;
-        public float MovingDistance { get { return movingDistance; } }
+        private Vector3 movingDistance;
+        public Vector3 MovingDistance { get { return movingDistance; } }
         private Transform myTransform;
         private Vector3 previousPosition;        
         // Start is called before the first frame update
         void Start()
         {
-            movingDistance = 0;
+            movingDistance = Vector3.zero;
             myTransform = transform;
             previousPosition = new Vector3(0, 0, -10);            
         }
@@ -27,15 +27,7 @@ namespace MainCamera
 
         private void FixedUpdate()
         {
-            Vector3 movingVector = myTransform.position - previousPosition;
-            if (movingVector.x > 0)
-            {
-                movingDistance = movingVector.magnitude;
-            }
-            else
-            {
-                movingDistance = movingVector.magnitude * -1;
-            }
+            movingDistance = myTransform.position - previousPosition;
             previousPosition = myTransform.position;
         }
     }

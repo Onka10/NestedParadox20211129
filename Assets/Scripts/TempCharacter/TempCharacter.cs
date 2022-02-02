@@ -43,8 +43,7 @@ public class TempCharacter : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //移動(テスト用)
-        /*
+       
         float maxSpeed_temp = 0;
         if(Input.GetKey(KeyCode.RightArrow))
         {
@@ -63,7 +62,7 @@ public class TempCharacter : MonoBehaviour
         {
             rb.AddForce(new Vector2(0, jumpingPower), ForceMode2D.Impulse);
         }
-        */
+       
     }
 
     public void DamageApply(int damage)

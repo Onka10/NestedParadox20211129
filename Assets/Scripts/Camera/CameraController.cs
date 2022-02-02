@@ -13,11 +13,11 @@ namespace MainCamera
         private Transform myTransform;
         private IReadOnlyReactiveProperty<int> characterDirection;
 
-        private PlayerInput _playerinput;
+        private TempCharacter _playerinput;
 
         private void Start()
         {
-            _playerinput = GameObject.FindGameObjectWithTag("MainCharacter").GetComponent<PlayerInput>();
+            _playerinput = GameObject.FindGameObjectWithTag("MainCharacter").GetComponent<TempCharacter>();
             myTransform = transform;
             characterDirection = GameObject.FindGameObjectWithTag("MainCharacter").GetComponent<PlayerInput>().CurrentDirection;
             characterDirection.Subscribe(x =>
