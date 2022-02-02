@@ -33,12 +33,12 @@ namespace NestedParadox.Players
         //外部参照
         private PlayerCore _playerCore;
         private Rigidbody2D _rigidbody2D;
-        private PlayerInput _playerinput;
+        private TempCharacter _playerinput;
 
         private void Start(){
             _rigidbody2D = GetComponent<Rigidbody2D>();
             _playerCore = GetComponent<PlayerCore>();
-            _playerinput = GetComponent<PlayerInput>();
+            _playerinput = GetComponent<TempCharacter>();
         }
 
         private void FixedUpdate()

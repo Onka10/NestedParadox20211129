@@ -25,14 +25,7 @@ namespace GameStage
 
         private void FixedUpdate()
         {
-            if(cameraState.MovingDistance > 0)
-            {
-                myTransform.position -= new Vector3(cameraState.MovingDistance * movingSpeed, 0, 0);
-            }
-            else
-            {
-                myTransform.position -= new Vector3(cameraState.MovingDistance * movingSpeed, 0, 0);
-            }
+                myTransform.position -= cameraState.MovingDistance * movingSpeed;
         }        
     }
 }
