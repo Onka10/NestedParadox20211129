@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UniRx;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
@@ -10,13 +11,18 @@ public class EnemyRabbitAgent: Agent
     private TempCharacter mainChara;        
     private EnemyMoving enemyMoving;
     private EnemyRabbit enemyRabbit;    
-
+    
     // Start is called before the first frame update
     public override void Initialize()
     {
         mainChara = GameObject.FindGameObjectWithTag("MainCharacter").GetComponent<TempCharacter>();
         enemyMoving = GetComponent<EnemyMoving>();
         enemyRabbit = GetComponent<EnemyRabbit>();
+        mainChara.OnDamagedAsyncSubject.Subscribe(_ =>
+        {
+            AddReward(2);
+            EndEpisode();
+        });
     }
 
     public override void OnEpisodeBegin()
@@ -27,7 +33,7 @@ public class EnemyRabbitAgent: Agent
         }
         mainChara.transform.position = new Vector3(Random.Range(-10, 30), Random.Range(-1, 4), 0);
         mainChara.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
-        transform.position = new Vector3(Random.Range(-10, 30), Random.Range(-1, 4), 0);
+        transform.position = new Vector3(Random.Range(-10, 30), Random.Range(-1, 4), 0);        
     }
 
     /*
@@ -64,6 +70,12 @@ public class EnemyRabbitAgent: Agent
             enemyMoving.Jump(-1);
         }
 
+        if(enemyRabbit.CanAttack)
+        {
+            enemyRabbit.Attack();
+        }
+
+        /*
         float distance = (this.transform.position - mainChara.transform.position).magnitude;
         if(distance <= 2)
         {
@@ -71,6 +83,7 @@ public class EnemyRabbitAgent: Agent
             AddReward(1.5f);
             EndEpisode();
         }
+        */
         if(this.transform.position.y < -3)
         {
             AddReward(-1);
@@ -80,6 +93,7 @@ public class EnemyRabbitAgent: Agent
         {
             EndEpisode();
         }
+       
        
     }
 

@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
 using Cysharp.Threading.Tasks;
-
+using UniRx.Operators;
+using UniRx.Toolkit;
+using UniRx.Diagnostics;
+using UniRx.InternalUtil;
 
 public class TempCharacter : MonoBehaviour
 {
@@ -14,6 +17,9 @@ public class TempCharacter : MonoBehaviour
 
     private ReactiveProperty<Vector3> currentDirection = new ReactiveProperty<Vector3>();
     public IReadOnlyReactiveProperty<int> CurrentDirection => currentDirection.Select(x => x.x < 0 ? 1 : -1).ToReactiveProperty<int>();
+
+    private AsyncSubject<int> onDamagedAsyncSubject = new AsyncSubject<int>();
+    public AsyncSubject<int> OnDamagedAsyncSubject => onDamagedAsyncSubject;
 
     private Transform myTransform;
     public Transform MyTransform { get { return myTransform; } }
@@ -37,6 +43,8 @@ public class TempCharacter : MonoBehaviour
 
     private void FixedUpdate()
     {
+        //移動(テスト用)
+        /*
         float maxSpeed_temp = 0;
         if(Input.GetKey(KeyCode.RightArrow))
         {
@@ -55,6 +63,13 @@ public class TempCharacter : MonoBehaviour
         {
             rb.AddForce(new Vector2(0, jumpingPower), ForceMode2D.Impulse);
         }
+        */
+    }
+
+    public void DamageApply(int damage)
+    {
+        Debug.Log($"{damage}のダメージを受けました");
+        onDamagedAsyncSubject.OnNext(1);        
     }
 }
 

@@ -98,39 +98,37 @@ Library: lib_burst_generated
 --compilation-defines=ENABLE_TILEMAP
 --compilation-defines=ENABLE_TIMELINE
 --compilation-defines=ENABLE_LEGACY_INPUT_MANAGER
---compilation-defines=PACKAGE_PHYSICS
---compilation-defines=PACKAGE_PHYSICS2D
---compilation-defines=PACKAGE_TILEMAP
---compilation-defines=PACKAGE_ANIMATION
 --compilation-defines=CSHARP_7_OR_LATER
 --compilation-defines=CSHARP_7_3_OR_NEWER
---compilation-defines=MLA_UNITY_ANALYTICS_MODULE
---compilation-defines=MLA_UNITY_PHYSICS_MODULE
---compilation-defines=MLA_UNITY_PHYSICS2D_MODULE
 --compilation-defines=UNITASK_ASSETBUNDLE_SUPPORT
 --compilation-defines=UNITASK_PHYSICS_SUPPORT
 --compilation-defines=UNITASK_PHYSICS2D_SUPPORT
 --compilation-defines=UNITASK_PARTICLESYSTEM_SUPPORT
 --compilation-defines=UNITASK_UGUI_SUPPORT
 --compilation-defines=UNITASK_WEBREQUEST_SUPPORT
+--compilation-defines=PACKAGE_PHYSICS
+--compilation-defines=PACKAGE_PHYSICS2D
+--compilation-defines=PACKAGE_TILEMAP
+--compilation-defines=PACKAGE_ANIMATION
 --compilation-defines=ENABLE_ANIMATION_BURST
 --compilation-defines=ENABLE_SPRITESHAPE_BURST
 --compilation-defines=UNITASK_TEXTMESHPRO_SUPPORT
+--compilation-defines=MLA_UNITY_ANALYTICS_MODULE
+--compilation-defines=MLA_UNITY_PHYSICS_MODULE
+--compilation-defines=MLA_UNITY_PHYSICS2D_MODULE
 --output=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Plugins/x86_64/lib_burst_generated
---root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/UnityEngine.UI.dll
---root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Unity.ML-Agents.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Unity.Barracuda.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Unity.Mathematics.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/UniTask.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/UniRx.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Unity.Barracuda.ONNX.dll
+--root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/UnityEngine.UI.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Assembly-CSharp.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/UniTask.Linq.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Unity.Burst.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Unity.2D.Animation.Runtime.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Unity.TextMeshPro.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Unity.Timeline.dll
---root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Unity.ML-Agents.CommunicatorObjects.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Unity.2D.SpriteShape.Runtime.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Unity.2D.Animation.Triangle.Runtime.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/UniTask.DOTween.dll
@@ -141,6 +139,8 @@ Library: lib_burst_generated
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Unity.Barracuda.BurstBLAS.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Unity.InternalAPIEngineBridge.001.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/UniTask.Addressables.dll
+--root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Unity.ML-Agents.dll
+--root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Unity.ML-Agents.CommunicatorObjects.dll
 --assembly-folder=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/
 --method=Unity.Jobs.IJobParallelForExtensions+ParallelForJobStruct`1[[Unity.Barracuda.BurstCPUOps+AvgPool2DJob, Unity.Barracuda, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null]], UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::Execute(Unity.Barracuda.BurstCPUOps+AvgPool2DJob&, Unity.Barracuda, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Unity.Jobs.LowLevel.Unsafe.JobRanges&, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)--4d48964d15d607f1ad78cbbd67016fa1
 --method=Unity.Jobs.IJobParallelForExtensions+ParallelForJobStruct`1[[Unity.Barracuda.BurstCPUOps+DepthwiseConv2DJob, Unity.Barracuda, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null]], UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::Execute(Unity.Barracuda.BurstCPUOps+DepthwiseConv2DJob&, Unity.Barracuda, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Unity.Jobs.LowLevel.Unsafe.JobRanges&, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)--4c3ed5e991f09fde6891b7f39dce2794
@@ -175,15 +175,15 @@ Library: lib_burst_generated
 --method=Unity.Jobs.IJobParallelForExtensions+ParallelForJobStruct`1[[Unity.Barracuda.BurstCPUOps+ScalarBroadcastMaxJob, Unity.Barracuda, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null]], UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::Execute(Unity.Barracuda.BurstCPUOps+ScalarBroadcastMaxJob&, Unity.Barracuda, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Unity.Jobs.LowLevel.Unsafe.JobRanges&, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)--1fe0a599fa148055e39ede59d4c20f5a
 --method=Unity.Jobs.IJobParallelForExtensions+ParallelForJobStruct`1[[Unity.Barracuda.BurstCPUOps+BroadcastMaxJob, Unity.Barracuda, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null]], UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::Execute(Unity.Barracuda.BurstCPUOps+BroadcastMaxJob&, Unity.Barracuda, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Unity.Jobs.LowLevel.Unsafe.JobRanges&, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)--311b8b4fc042d0644f356ad2c556e3f7
 --method=Unity.Jobs.IJobParallelForExtensions+ParallelForJobStruct`1[[Unity.Barracuda.BurstCPUOps+ScalarBroadcastPowJob, Unity.Barracuda, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null]], UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::Execute(Unity.Barracuda.BurstCPUOps+ScalarBroadcastPowJob&, Unity.Barracuda, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Unity.Jobs.LowLevel.Unsafe.JobRanges&, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)--722237741287426b6478e480af167f28
+--method=Unity.Jobs.IJobParallelForExtensions+ParallelForJobStruct`1[[Unity.Barracuda.BurstCPUOps+ReduceSumJob, Unity.Barracuda, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null]], UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::Execute(Unity.Barracuda.BurstCPUOps+ReduceSumJob&, Unity.Barracuda, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Unity.Jobs.LowLevel.Unsafe.JobRanges&, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)--40e489689e92227d47f4944a651ebc85
+--method=Unity.Jobs.IJobParallelForExtensions+ParallelForJobStruct`1[[Unity.Barracuda.BurstCPUOps+ReduceMaxJob, Unity.Barracuda, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null]], UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::Execute(Unity.Barracuda.BurstCPUOps+ReduceMaxJob&, Unity.Barracuda, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Unity.Jobs.LowLevel.Unsafe.JobRanges&, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)--652d31f408ef75652ab5d7b717ea7209
+--method=Unity.Jobs.IJobParallelForExtensions+ParallelForJobStruct`1[[Unity.Barracuda.BurstCPUOps+TransposeJob, Unity.Barracuda, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null]], UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::Execute(Unity.Barracuda.BurstCPUOps+TransposeJob&, Unity.Barracuda, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Unity.Jobs.LowLevel.Unsafe.JobRanges&, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)--40e0ae2e4164217c746f960d05eb7d99
 --method=Unity.Jobs.IJobParallelForExtensions+ParallelForJobStruct`1[[Unity.Barracuda.BurstCPUOps+MatrixMultiplyJob, Unity.Barracuda, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null]], UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::Execute(Unity.Barracuda.BurstCPUOps+MatrixMultiplyJob&, Unity.Barracuda, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Unity.Jobs.LowLevel.Unsafe.JobRanges&, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)--25346a9be7cca7466abecb3993bd6a28
 --method=Unity.Jobs.IJobParallelForExtensions+ParallelForJobStruct`1[[Unity.Barracuda.BurstCPUOps+MatrixMultiply3x2Job, Unity.Barracuda, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null]], UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::Execute(Unity.Barracuda.BurstCPUOps+MatrixMultiply3x2Job&, Unity.Barracuda, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Unity.Jobs.LowLevel.Unsafe.JobRanges&, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)--8a5884d8c36453c5820ade371ed4c099
 --method=Unity.Jobs.IJobParallelForExtensions+ParallelForJobStruct`1[[Unity.Barracuda.BurstCPUOps+MatrixMultiply4x4Job, Unity.Barracuda, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null]], UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::Execute(Unity.Barracuda.BurstCPUOps+MatrixMultiply4x4Job&, Unity.Barracuda, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Unity.Jobs.LowLevel.Unsafe.JobRanges&, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)--b6eb248d7e4b0db49d55955cf1a9a0da
 --method=Unity.Jobs.IJobParallelForExtensions+ParallelForJobStruct`1[[Unity.Barracuda.BurstCPUOps+BroadcastPowJob, Unity.Barracuda, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null]], UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::Execute(Unity.Barracuda.BurstCPUOps+BroadcastPowJob&, Unity.Barracuda, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Unity.Jobs.LowLevel.Unsafe.JobRanges&, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)--3992c9b581c01925777de9f42590a46f
 --method=Unity.Jobs.IJobParallelForExtensions+ParallelForJobStruct`1[[Unity.Barracuda.BurstCPUOps+VectorBroadcastScaleBiasJob, Unity.Barracuda, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null]], UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::Execute(Unity.Barracuda.BurstCPUOps+VectorBroadcastScaleBiasJob&, Unity.Barracuda, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Unity.Jobs.LowLevel.Unsafe.JobRanges&, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)--98660378444023008d268b3ee043a475
 --method=Unity.Jobs.IJobParallelForExtensions+ParallelForJobStruct`1[[Unity.Barracuda.BurstCPUOps+ReduceMeanJob, Unity.Barracuda, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null]], UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::Execute(Unity.Barracuda.BurstCPUOps+ReduceMeanJob&, Unity.Barracuda, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Unity.Jobs.LowLevel.Unsafe.JobRanges&, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)--9d6ce4ca3675a708388bcce7ebdd5833
---method=Unity.Jobs.IJobParallelForExtensions+ParallelForJobStruct`1[[Unity.Barracuda.BurstCPUOps+ReduceSumJob, Unity.Barracuda, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null]], UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::Execute(Unity.Barracuda.BurstCPUOps+ReduceSumJob&, Unity.Barracuda, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Unity.Jobs.LowLevel.Unsafe.JobRanges&, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)--40e489689e92227d47f4944a651ebc85
---method=Unity.Jobs.IJobParallelForExtensions+ParallelForJobStruct`1[[Unity.Barracuda.BurstCPUOps+ReduceMaxJob, Unity.Barracuda, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null]], UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::Execute(Unity.Barracuda.BurstCPUOps+ReduceMaxJob&, Unity.Barracuda, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Unity.Jobs.LowLevel.Unsafe.JobRanges&, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)--652d31f408ef75652ab5d7b717ea7209
---method=Unity.Jobs.IJobParallelForExtensions+ParallelForJobStruct`1[[Unity.Barracuda.BurstCPUOps+TransposeJob, Unity.Barracuda, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null]], UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::Execute(Unity.Barracuda.BurstCPUOps+TransposeJob&, Unity.Barracuda, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Unity.Jobs.LowLevel.Unsafe.JobRanges&, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)--40e0ae2e4164217c746f960d05eb7d99
 --method=Unity.Jobs.IJobParallelForExtensions+ParallelForJobStruct`1[[Unity.Barracuda.BurstCPUOps+OneHotJob, Unity.Barracuda, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null]], UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::Execute(Unity.Barracuda.BurstCPUOps+OneHotJob&, Unity.Barracuda, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Unity.Jobs.LowLevel.Unsafe.JobRanges&, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)--5d2f24192895d14707019073c29a2548
 --method=Unity.Jobs.IJobExtensions+JobStruct`1[[Unity.Barracuda.BurstCPUOps+MemFreeJob, Unity.Barracuda, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null]], UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::Execute(Unity.Barracuda.BurstCPUOps+MemFreeJob&, Unity.Barracuda, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Unity.Jobs.LowLevel.Unsafe.JobRanges&, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)--15d2db294b40f4efbc8e08fb3b3d8eda
 --method=Unity.Jobs.IJobParallelForExtensions+ParallelForJobStruct`1[[Unity.Barracuda.BurstCPUOps+TileJob, Unity.Barracuda, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null]], UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::Execute(Unity.Barracuda.BurstCPUOps+TileJob&, Unity.Barracuda, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Unity.Jobs.LowLevel.Unsafe.JobRanges&, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)--f0946286d5f08ddf8d16f3acd3f0325d
@@ -287,39 +287,37 @@ Library: lib_burst_generated
 --compilation-defines=ENABLE_TILEMAP
 --compilation-defines=ENABLE_TIMELINE
 --compilation-defines=ENABLE_LEGACY_INPUT_MANAGER
---compilation-defines=PACKAGE_PHYSICS
---compilation-defines=PACKAGE_PHYSICS2D
---compilation-defines=PACKAGE_TILEMAP
---compilation-defines=PACKAGE_ANIMATION
 --compilation-defines=CSHARP_7_OR_LATER
 --compilation-defines=CSHARP_7_3_OR_NEWER
---compilation-defines=MLA_UNITY_ANALYTICS_MODULE
---compilation-defines=MLA_UNITY_PHYSICS_MODULE
---compilation-defines=MLA_UNITY_PHYSICS2D_MODULE
 --compilation-defines=UNITASK_ASSETBUNDLE_SUPPORT
 --compilation-defines=UNITASK_PHYSICS_SUPPORT
 --compilation-defines=UNITASK_PHYSICS2D_SUPPORT
 --compilation-defines=UNITASK_PARTICLESYSTEM_SUPPORT
 --compilation-defines=UNITASK_UGUI_SUPPORT
 --compilation-defines=UNITASK_WEBREQUEST_SUPPORT
+--compilation-defines=PACKAGE_PHYSICS
+--compilation-defines=PACKAGE_PHYSICS2D
+--compilation-defines=PACKAGE_TILEMAP
+--compilation-defines=PACKAGE_ANIMATION
 --compilation-defines=ENABLE_ANIMATION_BURST
 --compilation-defines=ENABLE_SPRITESHAPE_BURST
 --compilation-defines=UNITASK_TEXTMESHPRO_SUPPORT
+--compilation-defines=MLA_UNITY_ANALYTICS_MODULE
+--compilation-defines=MLA_UNITY_PHYSICS_MODULE
+--compilation-defines=MLA_UNITY_PHYSICS2D_MODULE
 --output=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Plugins/x86_64/lib_burst_generated
---root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/UnityEngine.UI.dll
---root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Unity.ML-Agents.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Unity.Barracuda.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Unity.Mathematics.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/UniTask.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/UniRx.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Unity.Barracuda.ONNX.dll
+--root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/UnityEngine.UI.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Assembly-CSharp.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/UniTask.Linq.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Unity.Burst.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Unity.2D.Animation.Runtime.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Unity.TextMeshPro.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Unity.Timeline.dll
---root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Unity.ML-Agents.CommunicatorObjects.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Unity.2D.SpriteShape.Runtime.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Unity.2D.Animation.Triangle.Runtime.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/UniTask.DOTween.dll
@@ -330,6 +328,8 @@ Library: lib_burst_generated
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Unity.Barracuda.BurstBLAS.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Unity.InternalAPIEngineBridge.001.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/UniTask.Addressables.dll
+--root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Unity.ML-Agents.dll
+--root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Unity.ML-Agents.CommunicatorObjects.dll
 --assembly-folder=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/
 --method=Unity.Jobs.IJobParallelForExtensions+ParallelForJobStruct`1[[Unity.Barracuda.BurstCPUOps+AvgPool2DJob, Unity.Barracuda, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null]], UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::Execute(Unity.Barracuda.BurstCPUOps+AvgPool2DJob&, Unity.Barracuda, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Unity.Jobs.LowLevel.Unsafe.JobRanges&, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)--4d48964d15d607f1ad78cbbd67016fa1
 --method=Unity.Jobs.IJobParallelForExtensions+ParallelForJobStruct`1[[Unity.Barracuda.BurstCPUOps+DepthwiseConv2DJob, Unity.Barracuda, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null]], UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::Execute(Unity.Barracuda.BurstCPUOps+DepthwiseConv2DJob&, Unity.Barracuda, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Unity.Jobs.LowLevel.Unsafe.JobRanges&, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)--4c3ed5e991f09fde6891b7f39dce2794
@@ -475,39 +475,37 @@ Library: lib_burst_generated
 --compilation-defines=ENABLE_TILEMAP
 --compilation-defines=ENABLE_TIMELINE
 --compilation-defines=ENABLE_LEGACY_INPUT_MANAGER
---compilation-defines=PACKAGE_PHYSICS
---compilation-defines=PACKAGE_PHYSICS2D
---compilation-defines=PACKAGE_TILEMAP
---compilation-defines=PACKAGE_ANIMATION
 --compilation-defines=CSHARP_7_OR_LATER
 --compilation-defines=CSHARP_7_3_OR_NEWER
---compilation-defines=MLA_UNITY_ANALYTICS_MODULE
---compilation-defines=MLA_UNITY_PHYSICS_MODULE
---compilation-defines=MLA_UNITY_PHYSICS2D_MODULE
 --compilation-defines=UNITASK_ASSETBUNDLE_SUPPORT
 --compilation-defines=UNITASK_PHYSICS_SUPPORT
 --compilation-defines=UNITASK_PHYSICS2D_SUPPORT
 --compilation-defines=UNITASK_PARTICLESYSTEM_SUPPORT
 --compilation-defines=UNITASK_UGUI_SUPPORT
 --compilation-defines=UNITASK_WEBREQUEST_SUPPORT
+--compilation-defines=PACKAGE_PHYSICS
+--compilation-defines=PACKAGE_PHYSICS2D
+--compilation-defines=PACKAGE_TILEMAP
+--compilation-defines=PACKAGE_ANIMATION
 --compilation-defines=ENABLE_ANIMATION_BURST
 --compilation-defines=ENABLE_SPRITESHAPE_BURST
 --compilation-defines=UNITASK_TEXTMESHPRO_SUPPORT
+--compilation-defines=MLA_UNITY_ANALYTICS_MODULE
+--compilation-defines=MLA_UNITY_PHYSICS_MODULE
+--compilation-defines=MLA_UNITY_PHYSICS2D_MODULE
 --output=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Plugins/x86_64/lib_burst_generated
---root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/UnityEngine.UI.dll
---root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Unity.ML-Agents.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Unity.Barracuda.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Unity.Mathematics.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/UniTask.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/UniRx.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Unity.Barracuda.ONNX.dll
+--root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/UnityEngine.UI.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Assembly-CSharp.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/UniTask.Linq.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Unity.Burst.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Unity.2D.Animation.Runtime.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Unity.TextMeshPro.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Unity.Timeline.dll
---root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Unity.ML-Agents.CommunicatorObjects.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Unity.2D.SpriteShape.Runtime.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Unity.2D.Animation.Triangle.Runtime.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/UniTask.DOTween.dll
@@ -518,6 +516,8 @@ Library: lib_burst_generated
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Unity.Barracuda.BurstBLAS.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Unity.InternalAPIEngineBridge.001.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/UniTask.Addressables.dll
+--root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Unity.ML-Agents.dll
+--root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Unity.ML-Agents.CommunicatorObjects.dll
 --assembly-folder=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/
 --method=Unity.Jobs.IJobParallelForExtensions+ParallelForJobStruct`1[[Unity.Barracuda.BurstCPUOps+ReluJob, Unity.Barracuda, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null]], UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::Execute(Unity.Barracuda.BurstCPUOps+ReluJob&, Unity.Barracuda, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Unity.Jobs.LowLevel.Unsafe.JobRanges&, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)--49989b543378da9ffc720fa88cca8b3e
 --method=Unity.Jobs.IJobParallelForExtensions+ParallelForJobStruct`1[[Unity.Barracuda.BurstCPUOps+Relu6Job, Unity.Barracuda, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null]], UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::Execute(Unity.Barracuda.BurstCPUOps+Relu6Job&, Unity.Barracuda, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Unity.Jobs.LowLevel.Unsafe.JobRanges&, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)--b6dbb07b26d2e7afce5241a834ec5bbb
@@ -654,39 +654,37 @@ Library: lib_burst_generated
 --compilation-defines=ENABLE_TILEMAP
 --compilation-defines=ENABLE_TIMELINE
 --compilation-defines=ENABLE_LEGACY_INPUT_MANAGER
---compilation-defines=PACKAGE_PHYSICS
---compilation-defines=PACKAGE_PHYSICS2D
---compilation-defines=PACKAGE_TILEMAP
---compilation-defines=PACKAGE_ANIMATION
 --compilation-defines=CSHARP_7_OR_LATER
 --compilation-defines=CSHARP_7_3_OR_NEWER
---compilation-defines=MLA_UNITY_ANALYTICS_MODULE
---compilation-defines=MLA_UNITY_PHYSICS_MODULE
---compilation-defines=MLA_UNITY_PHYSICS2D_MODULE
 --compilation-defines=UNITASK_ASSETBUNDLE_SUPPORT
 --compilation-defines=UNITASK_PHYSICS_SUPPORT
 --compilation-defines=UNITASK_PHYSICS2D_SUPPORT
 --compilation-defines=UNITASK_PARTICLESYSTEM_SUPPORT
 --compilation-defines=UNITASK_UGUI_SUPPORT
 --compilation-defines=UNITASK_WEBREQUEST_SUPPORT
+--compilation-defines=PACKAGE_PHYSICS
+--compilation-defines=PACKAGE_PHYSICS2D
+--compilation-defines=PACKAGE_TILEMAP
+--compilation-defines=PACKAGE_ANIMATION
 --compilation-defines=ENABLE_ANIMATION_BURST
 --compilation-defines=ENABLE_SPRITESHAPE_BURST
 --compilation-defines=UNITASK_TEXTMESHPRO_SUPPORT
+--compilation-defines=MLA_UNITY_ANALYTICS_MODULE
+--compilation-defines=MLA_UNITY_PHYSICS_MODULE
+--compilation-defines=MLA_UNITY_PHYSICS2D_MODULE
 --output=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Plugins/x86_64/lib_burst_generated
---root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/UnityEngine.UI.dll
---root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Unity.ML-Agents.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Unity.Barracuda.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Unity.Mathematics.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/UniTask.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/UniRx.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Unity.Barracuda.ONNX.dll
+--root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/UnityEngine.UI.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Assembly-CSharp.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/UniTask.Linq.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Unity.Burst.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Unity.2D.Animation.Runtime.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Unity.TextMeshPro.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Unity.Timeline.dll
---root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Unity.ML-Agents.CommunicatorObjects.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Unity.2D.SpriteShape.Runtime.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Unity.2D.Animation.Triangle.Runtime.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/UniTask.DOTween.dll
@@ -697,6 +695,8 @@ Library: lib_burst_generated
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Unity.Barracuda.BurstBLAS.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Unity.InternalAPIEngineBridge.001.dll
 --root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/UniTask.Addressables.dll
+--root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Unity.ML-Agents.dll
+--root-assembly=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/Unity.ML-Agents.CommunicatorObjects.dll
 --assembly-folder=/Users/inayoshikouya/Downloads/NestedParadox20211129/Temp/StagingArea/Data/Managed/
 --method=Unity.Jobs.IJobParallelForExtensions+ParallelForJobStruct`1[[Unity.Barracuda.BurstCPUOps+ReluJob, Unity.Barracuda, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null]], UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::Execute(Unity.Barracuda.BurstCPUOps+ReluJob&, Unity.Barracuda, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Unity.Jobs.LowLevel.Unsafe.JobRanges&, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)--49989b543378da9ffc720fa88cca8b3e
 --method=Unity.Jobs.IJobParallelForExtensions+ParallelForJobStruct`1[[Unity.Barracuda.BurstCPUOps+Relu6Job, Unity.Barracuda, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null]], UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::Execute(Unity.Barracuda.BurstCPUOps+Relu6Job&, Unity.Barracuda, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Unity.Jobs.LowLevel.Unsafe.JobRanges&, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)--b6dbb07b26d2e7afce5241a834ec5bbb
