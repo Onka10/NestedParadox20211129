@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace NestedParadox.Players
 {
-    public class PlayerInput : MonoBehaviour
+    public class TempCharacter : MonoBehaviour
     {
         //購読される変数
         public IObservable<Unit> OnNormalAttack => _normalAttackSubject;

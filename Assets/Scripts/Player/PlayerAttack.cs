@@ -14,7 +14,7 @@ namespace NestedParadox.Players
 
 
         //外部参照
-        private PlayerInput _playerinput;
+        private TempCharacter _playerinput;
         private PlayerAnimation _playerAnimation;
         private PlayerMove _playerMove;
 
@@ -31,7 +31,7 @@ namespace NestedParadox.Players
         {
             _isInAttack.AddTo(this);
 
-            _playerinput = GetComponent<PlayerInput>();
+            _playerinput = GetComponent<TempCharacter>();
             _playerAnimation = GetComponent<PlayerAnimation>();
             _playerMove = GetComponent<PlayerMove>();
 
