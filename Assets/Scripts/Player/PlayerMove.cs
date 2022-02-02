@@ -15,20 +15,19 @@ namespace NestedParadox.Players
         [SerializeField] private float _dashSpeed = 3;
         // ジャンプ速度
         [SerializeField] private float _jumpSpeed = 5.5f;
+        // Raycast時のプレイヤの高さを補正する。最終的な画質に合わせる
+        [SerializeField] private float _characterHeightOffset = 3f;
         // 接地判定に利用するレイヤ設定
         [SerializeField] LayerMask _groundMask;
-        // Raycast時のプレイヤの高さを補正する。
-        // 最終的な画質に合わせる
-        [SerializeField] private float _characterHeightOffset = 3f;
 
-        //行動不能
-        private bool _isMoveBlock;
+
         //地面の判定に使うレイ。接地の結果を受け取る
         private readonly RaycastHit2D[] _raycastHitResults = new RaycastHit2D[1];
         //地面の判定
         private readonly ReactiveProperty<bool> _isGrounded = new BoolReactiveProperty();
-
         private bool _isJumpReserved;
+        //行動不能
+        [SerializeField]private bool _isMoveBlock;
 
 
         //外部参照
@@ -63,9 +62,9 @@ namespace NestedParadox.Players
             }
 
             // ジャンプ
-            if (_playerinput.IsJump.Value && _isGrounded.Value)
+            if (_playerinput.IsJump.Value && _isGrounded.Value && !_isMoveBlock)
             {
-                Debug.Log("Jump");
+                // Debug.Log("Jump");
                 vel += Vector3.up * _jumpSpeed;
                 _isJumpReserved = false;
             }
@@ -116,6 +115,7 @@ namespace NestedParadox.Players
         }
 
         // 移動不可フラグ
+        //本来はよそのスクリプトで使う予定だった
         public void BlockMove(bool isBlock)
         {
             _isMoveBlock = isBlock;

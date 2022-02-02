@@ -12,6 +12,8 @@ namespace NestedParadox.Players
         public IObservable<Unit> OnChargeAttack => _chargeAttackSubject;
         public IReadOnlyReactiveProperty<bool> IsJump => _jump;
         public IReadOnlyReactiveProperty<Vector3> MoveDirection => _move;
+        public IReadOnlyReactiveProperty<string> OnPlayCard => _playcardsubject;
+        
 
 
         // イベント発行に利用するSubjectやReactiveProperty
@@ -19,12 +21,12 @@ namespace NestedParadox.Players
         private readonly Subject<Unit> _chargeAttackSubject = new Subject<Unit>();
         private readonly ReactiveProperty<bool> _jump = new ReactiveProperty<bool>(false);
         private readonly ReactiveProperty<Vector3> _move = new ReactiveProperty<Vector3>();
+        private readonly ReactiveProperty<string> _playcardsubject = new ReactiveProperty<string>("");
 
 
-        //赤さん
+        //赤さんのカメラ
         public IReadOnlyReactiveProperty<int> CurrentDirection => currentDirection.Select(x => x.x < 0 ? 1 : -1).ToReactiveProperty<int>();
         private ReactiveProperty<Vector3> currentDirection = new ReactiveProperty<Vector3>();
-
         public Transform MyTransform { get { return myTransform; } }
         private Transform myTransform;
 
@@ -40,6 +42,7 @@ namespace NestedParadox.Players
             _chargeAttackSubject.AddTo(this);
             _jump.AddTo(this);
             _move.AddTo(this);
+            _playcardsubject.AddTo(this);
 
             //updateをobservableにする
             this.UpdateAsObservable()
@@ -74,12 +77,16 @@ namespace NestedParadox.Players
 
         void FixedUpdate(){
             // ジャンプボタン
-            _jump.Value = Input.GetKeyDown("space");
+            _jump.Value = Input.GetKey("space");
 
             // 移動入力をベクトルに変換して反映
             // ReactiveProperty.SetValueAndForceNotifyを使うと強制的にメッセージ発行できる
             _move.SetValueAndForceNotify(new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")));
 
+            //召喚の処理。多分UniTaskに置き換える
+            if(Input.GetKey(KeyCode.P)){
+                _playcardsubject.Value = "しょうかん";
+            }
         }
     }
 }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UniRx;
 using UniRx.Triggers;
 // using UniRxSampleGame.Damages;
@@ -10,6 +8,7 @@ namespace NestedParadox.Players
     // プレイヤの攻撃処理の管理コンポーネント
     public class PlayerAttack : MonoBehaviour
     {
+
         // 現在の攻撃力
         [SerializeField] private int _attackPower = 1;
 
@@ -47,6 +46,7 @@ namespace NestedParadox.Players
 
             // 攻撃中は移動不可フラグを立てる
             _isInAttack
+                .Where(x => true)
                 .Subscribe(x => _playerMove.BlockMove(x))
                 .AddTo(this);
 
@@ -74,21 +74,40 @@ namespace NestedParadox.Players
 
         // アニメーションイベントを購読する
         private void SubscribeAnimationEvent(){
-            //ObservableStateMachineTrigger を用いることでAnimationControllerのステートの遷移を取得できる
+            // ObservableStateMachineTrigger を用いることでAnimationControllerのステートの遷移を取得できるが
+            // 今回はAnimationは普通に実装してるので""使えません""
             var animator = GetComponent<Animator>();
             var trigger = animator.GetBehaviour<ObservableStateMachineTrigger>();
 
             // 攻撃関係のステートマシンに入った
             trigger
-                .OnStateMachineEnterAsObservable()
-                .Subscribe(_ => _isInAttack.Value = true)
-                .AddTo(this);
+                // .OnStateMachineEnterAsObservable()
+                .OnStateUpdateAsObservable()
+                .Subscribe(onStateInfo =>
+                {
+                     AnimatorStateInfo info = onStateInfo.StateInfo;
+                    if (info.IsName("Attack.NormalAttackAnimation")||info.IsName("Attack.AccumulationAttackAnimation"))
+                    {
+                        _isInAttack.Value = true;
+                    }
+                }).AddTo(this);
+                // .Subscribe(_ => _isInAttack.Value = true)
+                // .AddTo(this);
 
             // 攻撃関係のステートマシンから出た
             trigger
-                .OnStateMachineExitAsObservable()
-                .Subscribe(_ => _isInAttack.Value = false)
-                .AddTo(this);
+                // .OnStateMachineExitAsObservable()
+                .OnStateExitAsObservable()
+                .Subscribe(onStateInfo =>
+                {
+                     AnimatorStateInfo info = onStateInfo.StateInfo;
+                    if (info.IsName("Attack.NormalAttackAnimation")||info.IsName("Attack.AccumulationAttackAnimation"))
+                    {
+                        _isInAttack.Value = false;
+                    }
+                }).AddTo(this);
+                // .Subscribe(_ => _isInAttack.Value = false)
+                // .AddTo(this);
         }
 
 

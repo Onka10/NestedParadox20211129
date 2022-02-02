@@ -37,7 +37,6 @@ namespace NestedParadox.Players{
                 var scale = transform.localScale;
                 scale.x = moveX > 0 ? -1 : 1;
                 transform.localScale = scale;
-                //赤さんが欲している情報transformと向き
             }
 
             _animator.SetFloat(HashSpeed, Mathf.Abs(moveX));
