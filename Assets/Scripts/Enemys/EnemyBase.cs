@@ -6,6 +6,7 @@ using Cysharp.Threading.Tasks;
 public abstract class EnemyBase : MonoBehaviour
 {
     protected int hp;
+    public int Hp { get { return hp; } }
     protected int attackPower;
 
     // Start is called before the first frame update
@@ -22,5 +23,5 @@ public abstract class EnemyBase : MonoBehaviour
 
     public abstract void Attack();
 
-    public abstract void DamageApply(int damage);
+    public abstract void Damaged(int damage);
 }

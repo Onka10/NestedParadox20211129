@@ -5,7 +5,7 @@ using Cysharp.Threading.Tasks;
 using UniRx;
 using UniRx.Triggers;
 
-public class EnemyRabbit : EnemyBase
+public class EnemyRabbit : EnemyBase, IApplyDamage
 {
     
     private readonly ReactiveProperty<float> attackTime = new ReactiveProperty<float>();
@@ -66,7 +66,7 @@ public class EnemyRabbit : EnemyBase
         attackCollider.enabled = false;
     }
 
-    public override void DamageApply(int damage)
+    public override void Damaged(int damage)
     {
         
     }
