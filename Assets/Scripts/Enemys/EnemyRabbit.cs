@@ -68,7 +68,7 @@ public class EnemyRabbit : EnemyBase, IApplyDamage
 
     public override void Damaged(int damage)
     {
-        
+        Debug.Log("敵にダメージを与えました");
     }
 
     public void Jump()

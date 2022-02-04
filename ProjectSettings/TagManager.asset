@@ -9,6 +9,7 @@ TagManager:
   - FootHold2
   - BaseField
   - EnemyRabbit
+  - Enemy
   layers:
   - Default
   - TransparentFX
