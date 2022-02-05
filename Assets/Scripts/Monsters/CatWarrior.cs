@@ -20,27 +20,28 @@ namespace NestedParadox.Monsters
         private TempCharacter player;
         [SerializeField] Vector3 distanceOffset;
         [SerializeField] float attackSpeed;
+        [SerializeField] float attackRecoilPower;
         // Start is called before the first frame update
         void Start()
         {
+            Vector3 distanceOffset_temp = new Vector3(distanceOffset.x,distanceOffset.y, distanceOffset.z);
+            Vector3 localScale_temp = new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z);
             player = GameObject.FindGameObjectWithTag("MainCharacter").GetComponent<TempCharacter>();
             state = CatWarriorState.Idle;
-            attackColl = GetComponent<Collider2D>();
-            attackColl.OnTriggerEnter2DAsObservable()
-                      .Subscribe(other =>
-                      {                          
-                          state = CatWarriorState.Idle;
-                          EnemyBase enemy;
-                          other.TryGetComponent<EnemyBase>(out enemy);
-                          if (enemy != null)
-                          {
-                              Instantiate(attackEffect, enemy.transform.position, Quaternion.identity);
-                              enemy.Damaged(attackValue);                                                            
-                          }                          
-                      });
-            player.CurrentDirection.Subscribe(_ =>
+            attackTime = 0;            
+            attackColl.OnTriggerEnter2DAsObservable().Subscribe(other => OnAttacked(other));                      
+            player.CurrentDirection.Subscribe(x =>
             {
-                distanceOffset = new Vector3(distanceOffset.x * -1, distanceOffset.y, distanceOffset.z);
+                if(x == 1)
+                {
+                    distanceOffset = new Vector3(distanceOffset_temp.x, distanceOffset_temp.y, distanceOffset_temp.z);
+                    transform.localScale = new Vector3(localScale_temp.x * -1, localScale_temp.y, localScale_temp.z);
+                }
+                else if(x == -1)
+                {
+                    distanceOffset = new Vector3(distanceOffset_temp.x * -1, distanceOffset_temp.y, distanceOffset_temp.z);
+                    transform.localScale = new Vector3(localScale_temp.x , localScale_temp.y, localScale_temp.z);
+                }
             });
         }
 
@@ -85,9 +86,24 @@ namespace NestedParadox.Monsters
             state = CatWarriorState.Idle;
         }
 
+        private async void OnAttacked(Collider2D other)
+        {
+            Debug.Log("HIT");
+            EnemyBase enemy;
+            other.TryGetComponent<EnemyBase>(out enemy);
+            if (enemy != null)
+            {
+                Instantiate(attackEffect, enemy.transform.position, Quaternion.Euler(-50, -90, 90));
+                enemy.Damaged(attackValue);
+            }
+            rb.AddForce(new Vector3(0, attackRecoilPower, 0));
+            await UniTask.Delay(500, cancellationToken: this.GetCancellationTokenOnDestroy());
+            state = CatWarriorState.Idle;
+        }
+
         public override void Damaged(int damage)
         {
-
+            hp -= damage;
         }
     }
 
