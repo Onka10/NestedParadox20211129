@@ -39,15 +39,16 @@ namespace NestedParadox.Monsters
 
         private void Shot()
         {
-            int[] randomAngles = {Random.Range(0, 91), Random.Range(0, 91)};           
+            int[] randomAngles = {Random.Range(0, 91), Random.Range(0, 91), Random.Range(0, 91)};           
             foreach(int randomAngle in randomAngles)
             {     
-                Vector3 shotVector = new Vector3(shotPower * Mathf.Cos(randomAngle), shotPower * Mathf.Sin(randomAngle), 0);
+                Vector3 shotVector = new Vector3(shotPower * Mathf.Cos(Mathf.PI*randomAngle/180.0f), shotPower * Mathf.Sin(Mathf.PI * randomAngle / 180.0f), 0);
                 GameObject bullet_clone = Instantiate(bulletPrefab, transform.position + shotPosition, Quaternion.identity);
                 bullet_clone.GetComponent<Rigidbody2D>().AddForce(shotVector);
                 bullet_clone.GetComponent<Collider2D>().OnTriggerEnter2DAsObservable()
+                                                       .Where(other => !other.CompareTag("MainCharacter") && !other.CompareTag("Monster") && !other.CompareTag("Bullet") && !other.CompareTag("FootHold2"))
                                                        .Subscribe(other =>
-                                                       {
+                                                       {                                                            
                                                             GameObject explosion_clone = Instantiate(explosionPrefab, bullet_clone.transform.position, Quaternion.identity);
                                                             explosion_clone.GetComponent<Collider2D>().OnTriggerEnter2DAsObservable()
                                                                                                       .Subscribe(other =>
@@ -59,7 +60,8 @@ namespace NestedParadox.Monsters
                                                                                                               enemy.Damaged(attackValue);
                                                                                                           }
                                                                                                       })
-                                                                                                      .AddTo(explosion_clone);                                                             
+                                                                                                      .AddTo(explosion_clone);
+                                                            Destroy(bullet_clone);
                                                        })
                                                        .AddTo(bullet_clone);
             }            
@@ -67,10 +69,10 @@ namespace NestedParadox.Monsters
 
         private async void Attack()
         {
-            animator.SetTrigger("AttackTrigger");
-            await UniTask.WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).length > 1.18f);
-            Shot();
             attackTime = 0;
+            animator.SetTrigger("AttackTrigger");
+            await UniTask.Delay(1180);
+            Shot();            
         }
     }
 }
