@@ -691,6 +691,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1568128049}
   - component: {fileID: 1568128050}
+  - component: {fileID: 1568128051}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -724,6 +725,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10c94f19592bf3143a663dbed2564259, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1568128051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1568128048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc8b4fb929b87094abeb7ef1e563fc10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hand: 000000000000000000000000
+  NOWHAND: 0
 --- !u!1 &1576074720
 GameObject:
   m_ObjectHideFlags: 0
@@ -946,6 +961,10 @@ PrefabInstance:
       propertyPath: _characterHeightOffset
       value: 1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 3610347261463236515, guid: 442452e6d5968944db11d893f9c70ff3, type: 3}
+      propertyPath: _cardmanager
+      value: 
+      objectReference: {fileID: 1568128051}
     - target: {fileID: 3940244972384970384, guid: 442452e6d5968944db11d893f9c70ff3, type: 3}
       propertyPath: m_Controller
       value: 

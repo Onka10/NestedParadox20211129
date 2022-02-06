@@ -1,7 +1,11 @@
 using System;
+using System.Threading;
 using UniRx;
 using UniRx.Triggers; // UpdateAsObservable()の呼び出しに必要
 using UnityEngine;
+using Cysharp.Threading.Tasks;
+
+
 
 namespace NestedParadox.Players
 {
@@ -12,7 +16,9 @@ namespace NestedParadox.Players
         public IObservable<Unit> OnChargeAttack => _chargeAttackSubject;
         public IReadOnlyReactiveProperty<bool> IsJump => _jump;
         public IReadOnlyReactiveProperty<Vector3> MoveDirection => _move;
-        public IReadOnlyReactiveProperty<string> OnPlayCard => _playcardsubject;
+        public IReadOnlyReactiveProperty<bool> OnPlayCard => _playcardsubject;
+        public IReadOnlyReactiveProperty<bool> OnDrawCard => _drawcardsubject;
+        public IReadOnlyReactiveProperty<float> OnChangeHand => _changehandsubject;
         
 
 
@@ -21,7 +27,9 @@ namespace NestedParadox.Players
         private readonly Subject<Unit> _chargeAttackSubject = new Subject<Unit>();
         private readonly ReactiveProperty<bool> _jump = new ReactiveProperty<bool>(false);
         private readonly ReactiveProperty<Vector3> _move = new ReactiveProperty<Vector3>();
-        private readonly ReactiveProperty<string> _playcardsubject = new ReactiveProperty<string>("");
+        private readonly ReactiveProperty<bool> _playcardsubject = new ReactiveProperty<bool>(false);
+        private readonly ReactiveProperty<bool> _drawcardsubject = new ReactiveProperty<bool>(false);
+        private readonly ReactiveProperty<float> _changehandsubject = new ReactiveProperty<float>();
 
 
         //赤さんのカメラ
@@ -43,6 +51,11 @@ namespace NestedParadox.Players
             _jump.AddTo(this);
             _move.AddTo(this);
             _playcardsubject.AddTo(this);
+
+            // // CancellationToken生成
+            // var token = this.GetCancellationTokenOnDestroy();
+            //  // ループ起動
+            // LogicLoopAsync(token).Forget();
 
             //updateをobservableにする
             this.UpdateAsObservable()
@@ -75,18 +88,38 @@ namespace NestedParadox.Players
 
         }
 
+        // private async UniTaskVoid LogicLoopAsync(CancellationToken ct)
+        // {
+        //     // Destroyされるまで無限ループ
+        //     while (!ct.IsCancellationRequested)
+        //     {
+        //         // 移動入力をベクトルに変換して反映
+        //         //ReactiveProperty.SetValueAndForceNotifyを使うと強制的にメッセージ発行できる
+        //         _move.SetValueAndForceNotify(new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")));
+
+        //         if(Input.GetKey("space")){
+        //             _jump.Value = true;
+        //             await UniTask.Delay(TimeSpan.FromSeconds(1), cancellationToken: ct);
+        //         }
+        //     }
+        // }
+
         void FixedUpdate(){
             // ジャンプボタン
             _jump.Value = Input.GetKey("space");
 
+            //召喚の処理
+            _playcardsubject.Value = Input.GetMouseButton(1);
+            
+            //ドローの処理
+            _drawcardsubject.Value = Input.GetKey(KeyCode.R);
+
+            //手札切り替え
+            _changehandsubject.Value = Input.mouseScrollDelta.y;
+
             // 移動入力をベクトルに変換して反映
             // ReactiveProperty.SetValueAndForceNotifyを使うと強制的にメッセージ発行できる
             _move.SetValueAndForceNotify(new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")));
-
-            //召喚の処理。多分UniTaskに置き換える
-            if(Input.GetKey(KeyCode.P)){
-                _playcardsubject.Value = "しょうかん";
-            }
         }
     }
 }
