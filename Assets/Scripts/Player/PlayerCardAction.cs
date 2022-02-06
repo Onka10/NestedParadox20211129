@@ -7,13 +7,13 @@ namespace NestedParadox.Players
     public class PlayerCardAction : MonoBehaviour
     {
         private NestedParadox.Cards.CardManager _cardmanager;
-        private TempCharacter _playerinput;
+        private PlayerInput _playerinput;
 
 
 
         void Start()
         {
-            _playerinput = GetComponent<TempCharacter>();
+            _playerinput = GetComponent<PlayerInput>();
             _cardmanager = GetComponent<NestedParadox.Cards.CardManager>();
 
             _playerinput.OnPlayCard.Subscribe(OnPlayCard => Debug.Log(OnPlayCard));

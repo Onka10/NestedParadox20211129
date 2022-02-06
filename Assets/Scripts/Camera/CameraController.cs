@@ -13,13 +13,13 @@ namespace MainCamera
         private Transform myTransform;
         private IReadOnlyReactiveProperty<int> characterDirection;
 
-        private NestedParadox.Players.TempCharacter _playerinput;
+        private NestedParadox.Players.PlayerInput _playerinput;
 
         private void Start()
         {
-            _playerinput = GameObject.FindGameObjectWithTag("MainCharacter").GetComponent <NestedParadox.Players.TempCharacter>();
+            _playerinput = GameObject.FindGameObjectWithTag("MainCharacter").GetComponent <NestedParadox.Players.PlayerInput>();
             myTransform = transform;
-            characterDirection = GameObject.FindGameObjectWithTag("MainCharacter").GetComponent<NestedParadox.Players.TempCharacter>().CurrentDirection;
+            characterDirection = GameObject.FindGameObjectWithTag("MainCharacter").GetComponent<NestedParadox.Players.PlayerInput>().CurrentDirection;
             characterDirection.Subscribe(x =>
             {
                 distanceOffset = new Vector3(distanceOffset.x * -1, distanceOffset.y, distanceOffset.z);
