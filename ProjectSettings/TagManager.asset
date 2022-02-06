@@ -10,6 +10,8 @@ TagManager:
   - BaseField
   - EnemyRabbit
   - Enemy
+  - Monster
+  - Bullet
   layers:
   - Default
   - TransparentFX
