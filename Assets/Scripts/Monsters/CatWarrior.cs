@@ -29,7 +29,7 @@ namespace NestedParadox.Monsters
             player = GameObject.FindGameObjectWithTag("MainCharacter").GetComponent<TempCharacter>();
             state = CatWarriorState.Idle;
             attackTime = 0;            
-            attackColl.OnTriggerEnter2DAsObservable().Subscribe(other => OnAttacked(other));                      
+            attackColl.OnTriggerEnter2DAsObservable().Subscribe(other => OnHit(other));                      
             player.CurrentDirection.Subscribe(x =>
             {
                 if(x == 1)
@@ -86,7 +86,7 @@ namespace NestedParadox.Monsters
             state = CatWarriorState.Idle;
         }
 
-        private async void OnAttacked(Collider2D other)
+        private async void OnHit(Collider2D other)
         {            
             EnemyBase enemy;
             other.TryGetComponent<EnemyBase>(out enemy);
