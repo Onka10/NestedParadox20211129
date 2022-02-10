@@ -20,22 +20,39 @@ namespace NestedParadox.Monsters
         [SerializeField] float movingPower;
         [SerializeField] float attackStopDistance;
 
+        private bool canAttack;
         private float attackTime;
         private TempCharacter player;
         private DustDevilState state;
         // Start is called before the first frame update
         void Start()
         {
+            canAttack = true;
             attackTime = 0;
             state = DustDevilState.Idle;
             player = GameObject.FindGameObjectWithTag("MainCharacter").GetComponent<TempCharacter>();
             attackColl.OnTriggerEnter2DAsObservable().Subscribe(other => OnAttackHit(other)).AddTo(this);
+            Vector3 localScale_temp = new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z);
+            Vector3 distanceOffset_temp = new Vector3(distanceOffset.x, distanceOffset.y, distanceOffset.z);
+            player.CurrentDirection.Subscribe(x =>
+            {
+                if(x == 1)
+                {
+                   // transform.localScale = new Vector3(localScale_temp.x*-1, localScale_temp.y, localScale_temp.z);
+                    distanceOffset = new Vector3(distanceOffset_temp.x, distanceOffset.y, distanceOffset.z);
+                }
+                else if(x == -1)
+                {
+                    //transform.localScale = new Vector3(localScale_temp.x, localScale_temp.y, localScale_temp.z);
+                    distanceOffset = new Vector3(-1, distanceOffset.y, distanceOffset.z);
+                }
+            });
         }
 
         void Update()
-        {
-            attackTime += Time.deltaTime;
-            if(attackTime > attackSpan)
+        {            
+            attackTime += Time.deltaTime;                      
+            if(attackTime > attackSpan && canAttack)
             {
                 attackTime = 0;
                 Attack();
@@ -75,6 +92,7 @@ namespace NestedParadox.Monsters
             }            
             sprite.enabled = false;
             animator.SetTrigger("NoneTrigger");
+            canAttack = false;
 
             //攻撃中
             while(movingTime < 4)
@@ -83,17 +101,18 @@ namespace NestedParadox.Monsters
                 rb.AddForce((targetPosition - transform.position).normalized * movingPower);
                 await UniTask.Yield();
             }
-            
-            rb.velocity = Vector3.zero;
+
             state = DustDevilState.Idle;
+            rb.velocity = Vector3.zero;            
             attackColl.enabled = false;                       
             await UniTask.WaitUntil(() => (transform.position - (player.transform.position - distanceOffset)).magnitude < 0.7f);
             for(int i=0; i<4; i++)
             {
                 Destroy(moveEffect_clones[i]);
-            }
+            }            
             sprite.enabled = true;
             animator.SetTrigger("IdleTrigger");
+            canAttack = true;
         }
 
         private void OnAttackHit(Collider2D other)
