@@ -17,8 +17,7 @@ namespace NestedParadox.Monsters
         [SerializeField] GameObject attackEffect;
         private float attackTime;
         public CatWarriorState state;
-        private TempCharacter player;
-        [SerializeField] Vector3 distanceOffset;
+        private TempCharacter player;        
         [SerializeField] float attackSpeed;
         [SerializeField] float attackRecoilPower;
         // Start is called before the first frame update
@@ -29,7 +28,7 @@ namespace NestedParadox.Monsters
             player = GameObject.FindGameObjectWithTag("MainCharacter").GetComponent<TempCharacter>();
             state = CatWarriorState.Idle;
             attackTime = 0;            
-            attackColl.OnTriggerEnter2DAsObservable().Subscribe(other => OnHit(other));                      
+            attackColl.OnTriggerEnter2DAsObservable().Where(other => !other.CompareTag("Monster")).Subscribe(other => OnHit(other)).AddTo(this);                      
             player.CurrentDirection.Subscribe(x =>
             {
                 if(x == 1)
@@ -42,7 +41,7 @@ namespace NestedParadox.Monsters
                     distanceOffset = new Vector3(distanceOffset_temp.x * -1, distanceOffset_temp.y, distanceOffset_temp.z);
                     transform.localScale = new Vector3(localScale_temp.x , localScale_temp.y, localScale_temp.z);
                 }
-            });
+            }).AddTo(this);
         }
 
         // Update is called once per frame
@@ -60,9 +59,9 @@ namespace NestedParadox.Monsters
         {
             if (state == CatWarriorState.Idle)//待機中
             {
-                transform.position = new Vector3(Mathf.Lerp(transform.position.x, player.transform.position.x - distanceOffset.x, 0.05f),
-                                                 Mathf.Lerp(transform.position.y, player.transform.position.y - distanceOffset.y, 0.05f),
-                                                 Mathf.Lerp(transform.position.z, player.transform.position.z - distanceOffset.z, 0.05f));
+                transform.position = new Vector3(Mathf.Lerp(transform.position.x, player.transform.position.x - distanceOffset.x, 0.1f),
+                                                 Mathf.Lerp(transform.position.y, player.transform.position.y - distanceOffset.y, 0.1f),
+                                                 Mathf.Lerp(transform.position.z, player.transform.position.z - distanceOffset.z, 0.1f));
             }
             else if (state == CatWarriorState.Attack)//攻撃中
             {

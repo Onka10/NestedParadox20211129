@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using NestedParadox.Monsters;
 
 public class GardKun : MonsterBase
 {
@@ -55,7 +56,7 @@ public class GardKun : MonsterBase
         }
     }
 
-    public override void GetHit()
+    /*public override void GetHit()
     {
         animator.SetTrigger("GetHitTrigger");
         hp -= 1;
@@ -64,6 +65,7 @@ public class GardKun : MonsterBase
             Invoke("Destroy",1);
         }
     }
+    */
 
     public void Destroy()
     {

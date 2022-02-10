@@ -34,6 +34,11 @@ namespace NestedParadox.Monsters
             }
         }
 
+        public void Add(GuardKun guardKun)
+        {
+            guardKuns.Add(guardKun);
+        }
+
         public void Summon()
         {
             GameObject guardKun_clone = Instantiate(guardKunPrefab);

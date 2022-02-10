@@ -12,8 +12,7 @@ namespace NestedParadox.Monsters
         [SerializeField] GameObject guardEffect;
         [SerializeField] Rigidbody2D rb;
         [SerializeField] float movingSpeed;
-        [SerializeField] Vector3 guardPosition;
-        [SerializeField] Vector3 distanceOffset;
+        [SerializeField] Vector3 guardPosition;        
         [SerializeField] Collider2D guardColl;
         private TempCharacter player;
         private GuardKunState state;
@@ -70,7 +69,13 @@ namespace NestedParadox.Monsters
             await UniTask.Delay(1000);
             state = GuardKunState.Idle;            
         }
-        
+
+        public override void SetPositionAndInitialize(Vector3 distanceOffset)
+        {
+            base.SetPositionAndInitialize(distanceOffset);
+            GameObject.Find("GuardKunManager").GetComponent<GuardKunManager>().Add(this);
+        }
+
     }
 
     public enum GuardKunState

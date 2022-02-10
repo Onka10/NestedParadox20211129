@@ -711,11 +711,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 10
   attackValue: 1
+  isNormalPosition: 0
   guardEffect: {fileID: 1029517676193648697, guid: 147818ca52453174b86b37589e017f29, type: 3}
   rb: {fileID: 8517312897854025946}
   movingSpeed: 10
   guardPosition: {x: 0.5, y: 0.5, z: 0}
-  distanceOffset: {x: 1, y: -2, z: 0}
   guardColl: {fileID: 0}
 --- !u!50 &8517312897854025946
 Rigidbody2D:

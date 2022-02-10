@@ -36,7 +36,7 @@ public class EnemyAttack : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Monster" || collision.gameObject.tag == "GardKun")
         {
-            collision.gameObject.GetComponent<MonsterBase>().GetHit();
+          //  collision.gameObject.GetComponent<MonsterBase>().GetHit();
         }
     }
 }
