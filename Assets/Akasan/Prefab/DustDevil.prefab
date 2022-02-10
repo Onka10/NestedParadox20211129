@@ -48,16 +48,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 20
   attackValue: 1
+  isUniquePosition: 1
   animator: {fileID: 5068512105895456660}
   rb: {fileID: 5068512105697022426}
   sprite: {fileID: 5068512105895456661}
-  distanceOffset: {x: 4.5, y: -2, z: 0}
   attackSpan: 10
   attackColl: {fileID: 5068512105828698521}
   attackEffect: {fileID: 5323050339518943880, guid: 2892606ff989fc041a6d52152f681c4e, type: 3}
   moveEffect: {fileID: 4493688774277088152, guid: 0ec15b1a478b4f549b6823e3befa449f, type: 3}
   movingPower: 200
   attackStopDistance: 10
+  uniqueDistanceOffset: {x: 4.5, y: -2, z: 0}
 --- !u!50 &5068512105697022426
 Rigidbody2D:
   serializedVersion: 4
@@ -91,7 +92,7 @@ GameObject:
   - component: {fileID: 5068512105828698521}
   m_Layer: 0
   m_Name: AttackColl
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

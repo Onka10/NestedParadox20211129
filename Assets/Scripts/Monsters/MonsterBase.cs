@@ -8,7 +8,11 @@ namespace NestedParadox.Monsters
     {
         [SerializeField] protected int hp;
         [SerializeField] protected int attackValue;
+        [SerializeField] protected bool isUniquePosition;
+        protected Vector3 distanceOffset;
+        public bool IsUniquePosition => isUniquePosition;
         public int Hp { get { return hp; } }
+        
         // Start is called before the first frame update
         void Start()
         {
@@ -24,6 +28,11 @@ namespace NestedParadox.Monsters
         public virtual void Damaged(int damage)
         {
 
+        }
+
+        public virtual void SetPositionAndInitialize(Vector3 distanceOffset)
+        {
+            this.distanceOffset = distanceOffset;
         }
     }
 

@@ -16,10 +16,32 @@ namespace NestedParadox.Monsters
         [SerializeField] Vector3 shotPosition;
         [SerializeField] float attackSpan;
         private float attackTime;
+        private TempCharacter player;
+        private SniperKState state;
         // Start is called before the first frame update
         void Start()
         {
-            attackTime = 0;            
+            player = GameObject.FindGameObjectWithTag("MainCharacter").GetComponent<TempCharacter>();
+            attackTime = 0;
+            state = SniperKState.Idle;
+            Vector3 distanceOffset_temp = new Vector3(distanceOffset.x, distanceOffset.y, distanceOffset.z);
+            Vector3 localScale_temp = new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z);
+            Vector3 shotPosition_temp = new Vector3(shotPosition.x, shotPosition.y, shotPosition.z);
+            player.CurrentDirection.Subscribe(x =>
+            {
+                if (x == 1)
+                {
+                    distanceOffset = new Vector3(distanceOffset_temp.x, distanceOffset_temp.y, distanceOffset_temp.z);
+                    shotPosition = new Vector3(shotPosition_temp.x, shotPosition_temp.y, shotPosition_temp.z);
+                    transform.localScale = new Vector3(localScale_temp.x, localScale_temp.y, localScale_temp.z);
+                }
+                else if (x == -1)
+                {
+                    distanceOffset = new Vector3(distanceOffset_temp.x * -1, distanceOffset_temp.y, distanceOffset_temp.z);
+                    shotPosition = new Vector3(shotPosition_temp.x*-1, shotPosition_temp.y, shotPosition_temp.z);
+                    transform.localScale = new Vector3(localScale_temp.x*-1, localScale_temp.y, localScale_temp.z);
+                }
+            }).AddTo(this);
         }
 
         // Update is called once per frame
@@ -29,6 +51,20 @@ namespace NestedParadox.Monsters
             if(attackTime > attackSpan)
             {
                 Attack();
+            }
+        }
+
+        void FixedUpdate()
+        {
+            if (state == SniperKState.Idle)//待機中
+            {
+                transform.position = new Vector3(Mathf.Lerp(transform.position.x, player.transform.position.x - distanceOffset.x, 0.1f),
+                                                 Mathf.Lerp(transform.position.y, player.transform.position.y - distanceOffset.y, 0.1f),
+                                                 Mathf.Lerp(transform.position.z, player.transform.position.z - distanceOffset.z, 0.1f));
+            }
+            else if (state == SniperKState.Attack)//攻撃中
+            {
+
             }
         }
 
@@ -42,7 +78,11 @@ namespace NestedParadox.Monsters
             int[] randomAngles = {Random.Range(0, 91), Random.Range(0, 91), Random.Range(0, 91)};           
             foreach(int randomAngle in randomAngles)
             {     
-                Vector3 shotVector = new Vector3(shotPower * Mathf.Cos(Mathf.PI*randomAngle/180.0f), shotPower * Mathf.Sin(Mathf.PI * randomAngle / 180.0f), 0);
+                Vector3 shotVector =  new Vector3(shotPower * Mathf.Cos(Mathf.PI*randomAngle/180.0f), shotPower * Mathf.Sin(Mathf.PI * randomAngle / 180.0f), 0) ;
+                if(transform.localScale.x < 0)
+                {
+                    shotVector = new Vector3(shotVector.x * -1, shotVector.y, shotVector.z);
+                }
                 GameObject bullet_clone = Instantiate(bulletPrefab, transform.position + shotPosition, Quaternion.identity);
                 bullet_clone.GetComponent<Rigidbody2D>().AddForce(shotVector);
                 bullet_clone.GetComponent<Collider2D>().OnTriggerEnter2DAsObservable()
@@ -69,10 +109,18 @@ namespace NestedParadox.Monsters
 
         private async void Attack()
         {
+            state = SniperKState.Attack;
             attackTime = 0;
             animator.SetTrigger("AttackTrigger");
             await UniTask.Delay(1180);
-            Shot();            
+            Shot();
+            state = SniperKState.Idle;
         }
+    }
+
+    public enum SniperKState
+    {
+        Idle,
+        Attack
     }
 }
