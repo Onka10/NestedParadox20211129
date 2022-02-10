@@ -1,0 +1,10 @@
+{
+	"Version": 3,
+	"FileReferences": {
+		"Moc": "ガードくん.moc3",
+		"Textures": [
+			"ガードくん.1024/texture_00.png"
+		],
+		"DisplayInfo": "ガードくん.cdi3.json"
+	}
+}

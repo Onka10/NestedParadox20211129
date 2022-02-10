@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
 using Cysharp.Threading.Tasks;
+using NestedParadox.Monsters;
 using UniRx.Operators;
 using UniRx.Toolkit;
 using UniRx.Diagnostics;
 using UniRx.InternalUtil;
 
-public class TempCharacter : MonoBehaviour
+public class TempCharacter : MonoBehaviour, IApplyDamage
 {
     private Rigidbody2D rb;
     [SerializeField] float maxSpeed;
@@ -25,10 +26,15 @@ public class TempCharacter : MonoBehaviour
     public Transform MyTransform { get { return myTransform; } }
 
     private bool isLanding;
+    private GuardKunManager guardKunManager;
+
+    private int hp;
+    public int Hp => hp;
 
     // Start is called before the first frame update
     void Start()
     {
+        guardKunManager = GameObject.Find("GuardKunManager").GetComponent<GuardKunManager>();
         rb = GetComponent<Rigidbody2D>();
         myTransform = transform;
         currentDirection.Value = myTransform.localScale;
@@ -65,10 +71,19 @@ public class TempCharacter : MonoBehaviour
        
     }
 
-    public void DamageApply(int damage)
+
+    public void Damaged(int damage)
     {
-        Debug.Log($"{damage}のダメージを受けました");
-        onDamagedAsyncSubject.OnNext(1);        
+        
+        if(guardKunManager.IsActive)
+        {            
+            guardKunManager.Guard(ref damage);
+            hp -= damage;
+            Debug.Log($"{damage}のダメージを受けました。(ガード成功)");
+            return;
+        }
+        hp -= damage;
+        Debug.Log($"{damage}のダメージを受けました。");
     }
 }
 
