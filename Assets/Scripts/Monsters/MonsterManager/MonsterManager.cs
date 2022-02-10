@@ -40,10 +40,7 @@ namespace NestedParadox.Monsters
             MonsterBase monster;
             Instantiate(monsterPrefabList[(int)cardID]).TryGetComponent<MonsterBase>(out monster);
             monsterList.Add(monster);
-            if(!monster.IsUniquePosition)
-            {
-                monster.SetPositionAndInitialize(monsterRow.GetNextPosition());
-            }
+            monster.SetPositionAndInitialize(monsterRow.GetNextPosition());            
         }
     }
 }
