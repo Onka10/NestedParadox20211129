@@ -16,26 +16,22 @@ public class EnemyRabbitAgent : Agent
 
     // Start is called before the first frame update
     public override void Initialize()
-    {
+    {        
         mainChara = GameObject.FindGameObjectWithTag("MainCharacter").GetComponent<TempCharacter>();
-        enemyMoving = GetComponent<EnemyMoving>();
-        enemyRabbit = GetComponent<EnemyRabbit>();
-        attackColl.OnTriggerEnter2DAsObservable().Where(other => CompareTag("MainCharacter")).Subscribe(_ =>
+        /*
+        attackColl.OnTriggerEnter2DAsObservable().Where(other => other.CompareTag("MainCharacter")).Subscribe(_ =>
         {
             AddReward(2);
             EndEpisode();
         }).AddTo(this);
+        */
     }
 
     public override void OnEpisodeBegin()
-    {
-        if (this.transform.localPosition.y < -3)
-        {
-            this.transform.position = new Vector3(-10, -1, 0);
-        }
+    {        
         mainChara.transform.position = new Vector3(Random.Range(-10, 30), Random.Range(-1, 4), 0);
         mainChara.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
-        transform.position = new Vector3(Random.Range(-10, 30), Random.Range(-1, 4), 0);
+        enemyMoving.transform.position = new Vector3(Random.Range(-10, 30), Random.Range(-1, 4), 0);
     }
 
     /*
@@ -83,10 +79,18 @@ public class EnemyRabbitAgent : Agent
             EndEpisode();
         }
         */
-        if (this.transform.position.y < -3)
-        {  
-            EndEpisode();
+        if((enemyMoving.transform.position - mainChara.transform.position).magnitude < 2)
+        {
+            AddReward(0.0002f);
         }
+
+        
+        if (enemyMoving.transform.position.y < -3)
+        {
+            enemyMoving.transform.position = new Vector3(Random.Range(-10, 30), Random.Range(-1, 4), 0);
+           // EndEpisode();
+        }
+        
         if (mainChara.transform.position.y < -3)
         {
             mainChara.transform.position = new Vector3(Random.Range(-10, 30), Random.Range(-1, 4), 0);
