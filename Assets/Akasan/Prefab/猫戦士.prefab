@@ -143,7 +143,7 @@ MonoBehaviour:
   attackSpan: 5
   rb: {fileID: 880401945095471002}
   teleportationEffect: {fileID: 2494717272435998108, guid: d11fc06955600b2469519851962957fc, type: 3}
-  attackEffect: {fileID: 4246272345606135402, guid: 347aaee08f84eda47844a7beb456a068, type: 3}
+  attackEffect: {fileID: 8269521408861659270, guid: a0ecbd535ac084dec90efe3c6cf95044, type: 3}
   state: 0
   attackSpeed: -10
   attackRecoilPower: 520

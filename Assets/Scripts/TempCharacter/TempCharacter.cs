@@ -83,6 +83,7 @@ public class TempCharacter : MonoBehaviour, IApplyDamage
             return;
         }
         hp -= damage;
+        onDamagedAsyncSubject.OnNext(0);
         Debug.Log($"{damage}のダメージを受けました。");
     }
 }

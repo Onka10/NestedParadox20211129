@@ -11,13 +11,15 @@ public class EnemyRabbit : EnemyBase, IApplyDamage
     private readonly ReactiveProperty<float> attackTime = new ReactiveProperty<float>();    
     private bool canAttack;
     private TempCharacter tempCharacter;
-    public bool CanAttack { get { return canAttack; } }
+    public bool CanAttack { get { return canAttack; } }    
     [SerializeField] float attackSpan;
     [SerializeField] Collider2D attackCollider;
     [SerializeField] Collider2D bodyColl;
     [SerializeField] Animator animator;
+    [SerializeField] EnemyMoving enemyMoving;
+    public bool IsAttacking => animator.GetCurrentAnimatorStateInfo(0).IsName("RabbitAttack");
 
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,22 +53,24 @@ public class EnemyRabbit : EnemyBase, IApplyDamage
 
     public override async void Attack()
     {
+        Debug.Log("攻撃開始");
         state.Value = EnemyState.Attack;
         attackTime.Value = 0;
         if(transform.position.x > tempCharacter.transform.position.x)
         {
-            transform.localScale = new Vector3(1.5f, 1.5f, 1);
+            enemyMoving.transform.localScale = new Vector3(1, 1, 1);
         }
         else
         {
-            transform.localScale = new Vector3(-1.5f, 1.5f, 1);
+            enemyMoving.transform.localScale = new Vector3(-1, 1, 1);
         }        
         animator.SetTrigger("AttackTrigger");
-        await UniTask.Delay(1300);
+        await UniTask.Delay(866);
         attackCollider.enabled = true;
         await UniTask.Delay(100);
         attackCollider.enabled = false;
-        await UniTask.WaitUntil(() => !animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"), cancellationToken: this.GetCancellationTokenOnDestroy());        
+        await UniTask.WaitUntil(() => !animator.GetCurrentAnimatorStateInfo(0).IsName("RabbitAttack"), cancellationToken: this.GetCancellationTokenOnDestroy());
+        transform.localPosition = Vector3.zero;
         state.Value = EnemyState.Idle;
     }
 

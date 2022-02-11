@@ -11,7 +11,7 @@ public class MonsterRow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        lastPosition = new Vector3();
+        lastPosition = Vector3.zero;
     }
 
     // Update is called once per frame
@@ -23,7 +23,7 @@ public class MonsterRow : MonoBehaviour
     //最後尾の位置を更新してその位置を返す
     public Vector3 GetNextPosition()
     {
-        if(lastPosition == null)
+        if(lastPosition == Vector3.zero)
         {
             lastPosition = firstPosition;
             return lastPosition;
