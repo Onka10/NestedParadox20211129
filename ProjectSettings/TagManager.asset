@@ -12,6 +12,7 @@ TagManager:
   - Enemy
   - Monster
   - Bullet
+  - AreaLimit
   layers:
   - Default
   - TransparentFX

@@ -1,4 +1,5 @@
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
@@ -13,88 +14,99 @@ public class EnemyRabbitAgent : Agent
     [SerializeField] EnemyMoving enemyMoving;
     [SerializeField] EnemyRabbit enemyRabbit;
     [SerializeField] Collider2D attackColl;
+    private float maxStepTimeCount;
+    private List<Vector2> fieldPositions;
 
     // Start is called before the first frame update
     public override void Initialize()
-    {        
+    {
         mainChara = GameObject.FindGameObjectWithTag("MainCharacter").GetComponent<TempCharacter>();
         /*
-        attackColl.OnTriggerEnter2DAsObservable().Where(other => other.CompareTag("MainCharacter")).Subscribe(_ =>
-        {
-            AddReward(2);
-            EndEpisode();
-        }).AddTo(this);
-        */
+        mainChara.transform.position = new Vector3(UnityEngine.Random.Range(-10, 30), UnityEngine.Random.Range(-1, 4), 0);
+        mainChara.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+        */      
     }
 
     public override void OnEpisodeBegin()
-    {        
-        mainChara.transform.position = new Vector3(Random.Range(-10, 30), Random.Range(-1, 4), 0);
-        mainChara.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
-        enemyMoving.transform.position = new Vector3(Random.Range(-10, 30), Random.Range(-1, 4), 0);
+    {
+        //enemyMoving.transform.position = new Vector3(UnityEngine.Random.Range(-10, 30), UnityEngine.Random.Range(-1, 4), 0);
     }
 
-    /*
+
     public override void CollectObservations(VectorSensor sensor)
     {
-        sensor.AddObservation(mainChara.transform.position);
+        sensor.AddObservation(enemyMoving.IsGrounded);        
     }
-    */
+
 
     public override void OnActionReceived(ActionBuffers actions)
     {
+        /*
+        maxStepTimeCount += Time.deltaTime;
+        if (maxStepTimeCount > 60)
+        {
+            maxStepTimeCount = 0;
+            mainChara.transform.position = new Vector3(UnityEngine.Random.Range(-10, 30), UnityEngine.Random.Range(-1, 4), 0);
+            mainChara.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+        }
+        */
+
+        float distanceToTarget = (enemyMoving.transform.position - mainChara.transform.position).magnitude;
+        if (distanceToTarget < 2 && enemyMoving.CanMove && !enemyRabbit.IsAttacking)
+        {
+            enemyRabbit.Attack();
+            return;
+        }
 
         int movingAction = actions.DiscreteActions[0];
-        if (movingAction == 1 && enemyMoving.IsGrounded.Value && !enemyRabbit.IsAttacking)
+        if (movingAction == 1 && enemyMoving.CanMove && !enemyRabbit.IsAttacking)
         {
             //+x?????
-            enemyMoving.Move(1);            
+            enemyMoving.Move(1);
         }
-        else if (movingAction == 2 && enemyMoving.IsGrounded.Value && !enemyRabbit.IsAttacking)
+        else if (movingAction == 2 && enemyMoving.CanMove && !enemyRabbit.IsAttacking)
         {
             //-x?????
-            enemyMoving.Move(-1);            
+            enemyMoving.Move(-1);
         }
-        else if (movingAction == 3 && enemyMoving.IsGrounded.Value && !enemyRabbit.IsAttacking)
+        else if (movingAction == 3 && enemyMoving.CanMove && !enemyRabbit.IsAttacking)
         {
             //+x???????
             enemyMoving.Jump(1);
         }
-        else if (movingAction == 4 && enemyMoving.IsGrounded.Value && !enemyRabbit.IsAttacking)
+        else if (movingAction == 4 && enemyMoving.CanMove && !enemyRabbit.IsAttacking)
         {
             //-x???????
             enemyMoving.Jump(-1);
         }
-        else if (movingAction == 5 && enemyMoving.IsGrounded.Value && enemyRabbit.CanAttack)
+
+        if(enemyMoving.transform.position.y < -3)
         {
-            enemyRabbit.Attack();
+            enemyMoving.OnFell();
+        }
+
+        
+        //AddReward(-0.0003f);
+
+        float distance = (enemyMoving.transform.position - mainChara.transform.position).magnitude;
+        if (distance <= 2 && enemyMoving.IsGrounded)
+        {
+            //AddReward(2);
+            //EndEpisode();
+        }
+
+        if (enemyMoving.transform.position.y < -3)
+        {
+            //AddReward(-0.5f);
+            //EndEpisode();
         }
 
         /*
-        float distance = (this.transform.position - mainChara.transform.position).magnitude;
-        if(distance <= 2)
-        {
-            Debug.Log("????");
-            AddReward(1.5f);
-            EndEpisode();
-        }
-        */
-        if((enemyMoving.transform.position - mainChara.transform.position).magnitude < 2)
-        {
-            AddReward(0.0002f);
-        }
-
-        
-        if (enemyMoving.transform.position.y < -3)
-        {
-            enemyMoving.transform.position = new Vector3(Random.Range(-10, 30), Random.Range(-1, 4), 0);
-           // EndEpisode();
-        }
-        
         if (mainChara.transform.position.y < -3)
         {
-            mainChara.transform.position = new Vector3(Random.Range(-10, 30), Random.Range(-1, 4), 0);
+            mainChara.transform.position = new Vector3(UnityEngine.Random.Range(-10, 30), UnityEngine.Random.Range(-1, 4), 0);
         }
+        */
 
 
     }

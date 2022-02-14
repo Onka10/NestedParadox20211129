@@ -6,11 +6,13 @@ using Cysharp.Threading.Tasks;
 
 public class EnemyMoving : MonoBehaviour
 {
-    private readonly ReactiveProperty<bool> isGrounded = new ReactiveProperty<bool>(true);
-    public IReadOnlyReactiveProperty<bool> IsGrounded => isGrounded;
+    private bool isGrounded;
+    public bool IsGrounded => isGrounded;
 
-    private readonly ReactiveProperty<bool> isJumping = new ReactiveProperty<bool>(false);
-    public IReadOnlyReactiveProperty<bool> IsJumping => isJumping;
+    private bool isFalling;
+    public bool IsFalling => isFalling;
+
+    public bool CanMove { get; private set; }
 
     private int direction;
 
@@ -23,10 +25,15 @@ public class EnemyMoving : MonoBehaviour
     [SerializeField] LayerMask targetLayer;
     [SerializeField] Animator animator;
     [SerializeField] Rigidbody2D rb;
+    [SerializeField] GameObject enemyUI;
+    [SerializeField] Collider2D bodyColl;
+    [SerializeField] GameObject respawnEffect;
     // Start is called before the first frame update
     void Start()
     {
-
+        isGrounded = false;
+        isFalling = false;
+        CanMove = false;
     }
 
     // Update is called once per frame
@@ -37,11 +44,21 @@ public class EnemyMoving : MonoBehaviour
         RaycastHit2D hit3 = Physics2D.Raycast(transform.position, ray3, ray2AndRay3Distance, targetLayer);        
         if (hit.collider != null || hit2.collider != null || hit3.collider != null)
         {
-            isGrounded.Value = true;            
+            isGrounded = true;            
         }
         else
         {
-            isGrounded.Value = false;           
+            isGrounded = false;           
+        }
+
+        //????????????????
+        if(isGrounded && !isFalling)
+        {
+            CanMove = true;
+        }
+        else
+        {
+            CanMove = false;
         }
     }
 
@@ -60,7 +77,7 @@ public class EnemyMoving : MonoBehaviour
         }
     }
 
-    public  void Move(int direction)
+    public void Move(int direction)
     {
         if(direction == 1)
         {            
@@ -72,6 +89,45 @@ public class EnemyMoving : MonoBehaviour
             transform.localScale = new Vector3(1, 1, 1);            
             rb.velocity = new Vector3(-1 * movingSpeed, 0, 0);
         }
+    }
+
+    public async void OnFell() //??????????
+    {
+        transform.position = new Vector3(transform.position.x, -2.9f, 0);
+        isFalling = true;
+        enemyUI.transform.localScale = new Vector3(0, 0, 0);
+        rb.isKinematic = true;        
+        rb.velocity = Vector3.zero;
+        bodyColl.enabled = false;
+        GameObject respawnEffect_clone = Instantiate(respawnEffect, transform.position, Quaternion.identity);
+        respawnEffect_clone.transform.SetParent(transform);
+        await UniTask.Delay(1000);
+        GameObject[] baseFields = GameObject.FindGameObjectsWithTag("BaseField");
+        float distance = 10000;
+        Vector3 nearestPlace = new Vector3();
+        foreach(GameObject baseField in baseFields)
+        {
+            float distance_temp = (transform.position - baseField.transform.position).magnitude;
+            if(distance_temp < distance)
+            {
+                distance = distance_temp;
+                nearestPlace = baseField.transform.position;
+            }
+        }
+        Vector3 respawnPosition = new Vector3(nearestPlace.x, nearestPlace.y + 5, nearestPlace.z);        
+        while((transform.position - respawnPosition).magnitude > 0.1f)
+        {
+            transform.position = new Vector3(Mathf.Lerp(transform.position.x, respawnPosition.x, 0.1f),
+                                             Mathf.Lerp(transform.position.y, respawnPosition.y, 0.1f),
+                                             Mathf.Lerp(transform.position.z, respawnPosition.z, 0.1f));
+            await UniTask.Yield(PlayerLoopTiming.FixedUpdate);                                            
+        }        
+        isFalling = false;
+        enemyUI.transform.localScale = new Vector3(1.5f, 1.5f, 1);
+        rb.isKinematic = false;
+        rb.velocity = Vector3.zero;
+        bodyColl.enabled = true;
+        Destroy(respawnEffect_clone);
     }
 
 }
