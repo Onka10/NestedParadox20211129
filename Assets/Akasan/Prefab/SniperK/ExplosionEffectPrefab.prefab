@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3319210477603214955}
   m_Layer: 0
   m_Name: ExplosionEffectPrefab
-  m_TagString: Bullet
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4865,7 +4865,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fe0764f1720946b7840e7a0b4aa3e41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyTime: 2
+  destroyTime: 0.7
 --- !u!58 &3319210477603214955
 CircleCollider2D:
   m_ObjectHideFlags: 0

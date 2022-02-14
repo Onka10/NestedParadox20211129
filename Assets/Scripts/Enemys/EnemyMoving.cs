@@ -51,7 +51,7 @@ public class EnemyMoving : MonoBehaviour
             isGrounded = false;           
         }
 
-        //????????????????
+        //動けるかのゲッターを設定
         if(isGrounded && !isFalling)
         {
             CanMove = true;
@@ -91,7 +91,7 @@ public class EnemyMoving : MonoBehaviour
         }
     }
 
-    public async void OnFell() //??????????
+    public async void OnFell() //万が一落ちた時の処理
     {
         transform.position = new Vector3(transform.position.x, -2.9f, 0);
         isFalling = true;

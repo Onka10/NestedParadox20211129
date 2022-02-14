@@ -24,7 +24,7 @@ public class EnemyRabbitAgent : Agent
         /*
         mainChara.transform.position = new Vector3(UnityEngine.Random.Range(-10, 30), UnityEngine.Random.Range(-1, 4), 0);
         mainChara.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
-        */      
+        */
     }
 
     public override void OnEpisodeBegin()
@@ -35,7 +35,7 @@ public class EnemyRabbitAgent : Agent
 
     public override void CollectObservations(VectorSensor sensor)
     {
-        sensor.AddObservation(enemyMoving.IsGrounded);        
+        sensor.AddObservation(enemyMoving.IsGrounded);
     }
 
 
@@ -52,40 +52,40 @@ public class EnemyRabbitAgent : Agent
         */
 
         float distanceToTarget = (enemyMoving.transform.position - mainChara.transform.position).magnitude;
-        if (distanceToTarget < 2 && enemyMoving.CanMove && !enemyRabbit.IsAttacking)
+        if (distanceToTarget < 2 && enemyMoving.CanMove && enemyRabbit.CanAttack && !enemyRabbit.IsAttacking && !enemyRabbit.IsGetHitting)
         {
             enemyRabbit.Attack();
             return;
         }
 
         int movingAction = actions.DiscreteActions[0];
-        if (movingAction == 1 && enemyMoving.CanMove && !enemyRabbit.IsAttacking)
+        if (movingAction == 1 && enemyMoving.CanMove && !enemyRabbit.IsAttacking && !enemyRabbit.IsGetHitting)
         {
             //+x?????
             enemyMoving.Move(1);
         }
-        else if (movingAction == 2 && enemyMoving.CanMove && !enemyRabbit.IsAttacking)
+        else if (movingAction == 2 && enemyMoving.CanMove && !enemyRabbit.IsAttacking && !enemyRabbit.IsGetHitting)
         {
             //-x?????
             enemyMoving.Move(-1);
         }
-        else if (movingAction == 3 && enemyMoving.CanMove && !enemyRabbit.IsAttacking)
+        else if (movingAction == 3 && enemyMoving.CanMove && !enemyRabbit.IsAttacking && !enemyRabbit.IsGetHitting)
         {
             //+x???????
             enemyMoving.Jump(1);
         }
-        else if (movingAction == 4 && enemyMoving.CanMove && !enemyRabbit.IsAttacking)
+        else if (movingAction == 4 && enemyMoving.CanMove && !enemyRabbit.IsAttacking && !enemyRabbit.IsGetHitting)
         {
             //-x???????
             enemyMoving.Jump(-1);
         }
 
-        if(enemyMoving.transform.position.y < -3)
+        if (enemyMoving.transform.position.y < -3)
         {
             enemyMoving.OnFell();
         }
 
-        
+
         //AddReward(-0.0003f);
 
         float distance = (enemyMoving.transform.position - mainChara.transform.position).magnitude;
