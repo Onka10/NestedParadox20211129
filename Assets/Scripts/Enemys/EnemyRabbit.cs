@@ -77,15 +77,16 @@ public class EnemyRabbit : EnemyBase, IApplyDamage
         attackCollider.enabled = true;
         await UniTask.Delay(100);
         attackCollider.enabled = false;
-        await UniTask.WaitUntil(() => !animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"), cancellationToken: this.GetCancellationTokenOnDestroy());
-        transform.localPosition = Vector3.zero;
+        await UniTask.WaitUntil(() => !animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"), cancellationToken: this.GetCancellationTokenOnDestroy());       
         state.Value = EnemyState.Idle;
     }
 
     public override async void Damaged(int damage)
     {
-        Debug.Log("敵にダメージを与えました");
-        animator.SetTrigger("GetHitTrigger");
+        if(!IsAttacking)
+        {
+            animator.SetTrigger("GetHitTrigger");
+        }        
         hp -= damage;
         HP_debugg = hp;//テスト
         if (hp <= 0)

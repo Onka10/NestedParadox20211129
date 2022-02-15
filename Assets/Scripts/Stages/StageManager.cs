@@ -2,13 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Stages
+namespace NestedParadox.Stages
 {
     public class StageManager : MonoBehaviour
     {
-        [SerializeField] GameObject baseFieldPrefab;
-        [SerializeField] GameObject footHold1Prefab;
-        [SerializeField] GameObject footHold2Prefab;
+        [SerializeField] GameObject[] stage;
+
 
         void Start()
         {            
@@ -20,9 +19,16 @@ namespace Stages
 
         }
 
+        public void Construct()
+        {
+            RandomGenerateStage();            
+        }
+
         public void RandomGenerateStage()
         {
-
+            int random = Random.Range(9, stage.Length);
+            Instantiate(stage[random]);
         }
+
     }
 }

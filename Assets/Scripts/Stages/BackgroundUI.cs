@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
 
-namespace GameStage
+namespace NestedParadox.Stages
 {
-    public class Stage : MonoBehaviour
+    public class BackgroundUI : MonoBehaviour
     {
         MainCamera.CameraState cameraState;
         [SerializeField] float movingSpeed;

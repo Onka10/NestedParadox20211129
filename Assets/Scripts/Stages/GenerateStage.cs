@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Stages
+namespace NestedParadox
 {
     public class GenerateStage : MonoBehaviour
     {
