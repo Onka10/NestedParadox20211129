@@ -12,14 +12,16 @@ namespace NestedParadox.Monsters
         [SerializeField] Collider2D attackColl;
         [SerializeField] Animator animator;
         [SerializeField] float attackSpan;
-        [SerializeField] Rigidbody2D rb;
-        [SerializeField] GameObject teleportationEffect;
-        [SerializeField] GameObject attackEffect;
+        [SerializeField] Rigidbody2D rb;        
         private float attackTime;
         public CatWarriorState state;
         private TempCharacter player;        
         [SerializeField] float attackSpeed;
         [SerializeField] float attackRecoilPower;
+
+        //エフェクト
+        [SerializeField] GameObject teleportationEffect;
+        [SerializeField] GameObject attackEffect;
         // Start is called before the first frame update
         void Start()
         {
