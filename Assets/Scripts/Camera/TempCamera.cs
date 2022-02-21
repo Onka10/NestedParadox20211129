@@ -28,10 +28,28 @@ namespace MainCamera
 
         private void FixedUpdate()
         {
-            myTransform.position = new Vector3(Mathf.Lerp(myTransform.position.x, _playerinput.MyTransform.position.x - distanceOffset.x, 0.05f),
-                                             Mathf.Lerp(myTransform.position.y, _playerinput.MyTransform.position.y - distanceOffset.y, 0.05f),
+            if(myTransform.position.x < 6.4f)
+            {
+                myTransform.position = new Vector3(6.4f, 1.51f, -10);
+            }
+            else if(myTransform.position.x > 32)
+            {
+                myTransform.position = new Vector3(32, 1.51f, -10);
+            }
+            else if(myTransform.position.x == 6.4f || myTransform.position.x == 32)
+            {
+                myTransform.position = new Vector3(Mathf.Lerp(myTransform.position.x, _playerinput.MyTransform.position.x - distanceOffset.x, 0.0001f),
+                                             1.51f,
                                              Mathf.Lerp(myTransform.position.z, _playerinput.MyTransform.position.z - distanceOffset.z, 0.05f)
                                              );
+            }
+            else
+            {
+                myTransform.position = new Vector3(Mathf.Lerp(myTransform.position.x, _playerinput.MyTransform.position.x - distanceOffset.x, 0.05f),
+                                             1.51f,
+                                             Mathf.Lerp(myTransform.position.z, _playerinput.MyTransform.position.z - distanceOffset.z, 0.05f)
+                                             );
+            }            
         }
     }
 

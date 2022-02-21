@@ -14,7 +14,7 @@ public class TempCharacter : MonoBehaviour, IApplyDamage
     private Rigidbody2D rb;
     [SerializeField] float maxSpeed;
     [SerializeField] float movingPower;
-    [SerializeField] float jumpingPower;
+    [SerializeField] float jumpingSpeed;
 
     private ReactiveProperty<Vector3> currentDirection = new ReactiveProperty<Vector3>();
     public IReadOnlyReactiveProperty<int> CurrentDirection => currentDirection.Select(x => x.x < 0 ? 1 : -1).ToReactiveProperty<int>();
@@ -31,6 +31,8 @@ public class TempCharacter : MonoBehaviour, IApplyDamage
     private int hp;
     public int Hp => hp;
 
+    private bool canJump;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,7 +46,17 @@ public class TempCharacter : MonoBehaviour, IApplyDamage
     
 
     // Update is called once per frame
-
+    void Update()
+    {
+        if(rb.velocity.y == 0)
+        {
+            canJump = true;
+        }
+        else
+        {
+            canJump = false;
+        }
+    }
     
 
     private void FixedUpdate()
@@ -64,9 +76,9 @@ public class TempCharacter : MonoBehaviour, IApplyDamage
             maxSpeed_temp = -1*maxSpeed;
         }
         rb.AddForce(new Vector3(movingPower * (maxSpeed_temp - rb.velocity.x), 0, 0));
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.UpArrow) && canJump)
         {
-            rb.AddForce(new Vector2(0, jumpingPower), ForceMode2D.Impulse);
+            rb.velocity = new Vector3(0, jumpingSpeed, 0);
         }
        
     }

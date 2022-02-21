@@ -8,7 +8,8 @@ namespace NestedParadox.Stages
     public class BackgroundUI : MonoBehaviour
     {
         MainCamera.CameraState cameraState;
-        [SerializeField] float movingSpeed;
+        [SerializeField] float x_movingSpeed;
+        [SerializeField] float y_movingSpeed;
         private Transform myTransform;
         // Start is called before the first frame update
         void Start()
@@ -25,7 +26,8 @@ namespace NestedParadox.Stages
 
         private void FixedUpdate()
         {
-                myTransform.position -= cameraState.MovingDistance * movingSpeed;
+            myTransform.position -= new Vector3(cameraState.MovingDistance.x * x_movingSpeed,0,0);
+            myTransform.position -= new Vector3(0, cameraState.MovingDistance.y * y_movingSpeed, 0);
         }        
     }
 }

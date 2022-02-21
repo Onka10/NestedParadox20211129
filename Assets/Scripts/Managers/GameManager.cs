@@ -2,22 +2,36 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using NestedParadox.Stages;
+using UniRx;
+using UniRx.Triggers;
 
 namespace NestedParadox.Managers
 {
     public class GameManager : MonoBehaviour
     {
-        //[SerializeField] StageManager stageManager;
+        [SerializeField] StageManager stageManager;
+        [SerializeField] TempCharacter player;
+        [SerializeField] GameObject stageEnd;
         // Start is called before the first frame update
         void Start()
         {
-            //stageManager.Construct();
+            stageManager.Construct();
+            stageEnd.OnTriggerEnter2DAsObservable().Where(other => other.CompareTag("MainCharacter"))
+                    .Subscribe(_ => OnReachStageEnd())
+                    .AddTo(this);
         }
 
         // Update is called once per frame
         void Update()
         {
 
+        }
+
+        private void OnReachStageEnd()
+        {
+            stageManager.DeleteCurrentStage();
+            stageManager.RandomGenerateStage();
+            player.transform.position = new Vector3(0, 0, 0);
         }
 
         public void LoadToTitleScene()

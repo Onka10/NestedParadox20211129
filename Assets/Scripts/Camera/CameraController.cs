@@ -28,10 +28,21 @@ namespace MainCamera
 
         private void FixedUpdate()
         {
-            myTransform.position = new Vector3(Mathf.Lerp(myTransform.position.x, _playerinput.MyTransform.position.x - distanceOffset.x, 0.05f),
-                                             Mathf.Lerp(myTransform.position.y, _playerinput.MyTransform.position.y - distanceOffset.y, 0.05f),
-                                             Mathf.Lerp(myTransform.position.z, _playerinput.MyTransform.position.z - distanceOffset.z, 0.05f)
-                                             );
+            //プレイヤーがステージの端にいる時
+            if(myTransform.position.x < 6.4f)
+            {
+                myTransform.position = new Vector3(6.4f, 1.5f, -10);
+            }
+            else if(myTransform.position.x > 31)
+            {
+                myTransform.position = new Vector3(31, 1.5f, -10);
+            }
+            else
+            {
+                myTransform.position += new Vector3(Mathf.Lerp(myTransform.position.x, _playerinput.MyTransform.position.x - distanceOffset.x, 0.05f), 0, 0) - myTransform.position;
+
+                myTransform.position += new Vector3(0, Mathf.Lerp(myTransform.position.y, _playerinput.MyTransform.position.y - distanceOffset.y, 0.0001f), 0) - myTransform.position;
+            }            
         }
     }
 
