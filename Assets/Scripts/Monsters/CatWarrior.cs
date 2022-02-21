@@ -79,11 +79,13 @@ namespace NestedParadox.Monsters
             transform.position = targetPosition;           
             Instantiate(teleportationEffect, targetPosition, Quaternion.identity);
             attackColl.enabled = true;
+            animator.SetTrigger("AttackTrigger");
             state = CatWarriorState.Attack;
             rb.velocity = new Vector3(0, attackSpeed, 0);
             await UniTask.WaitUntil(() => state == CatWarriorState.Idle, cancellationToken: this.GetCancellationTokenOnDestroy());
             rb.velocity = Vector3.zero;
             attackColl.enabled = false;
+            animator.SetTrigger("IdleTrigger");
             state = CatWarriorState.Idle;
         }
 

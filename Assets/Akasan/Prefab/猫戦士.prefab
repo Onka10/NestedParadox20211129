@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 880401945095471012}
   - component: {fileID: 880401945095471002}
   - component: {fileID: 880401945095471003}
+  - component: {fileID: 5856451892058723899}
   m_Layer: 0
   m_Name: "\u732B\u6226\u58EB"
   m_TagString: Untagged
@@ -142,11 +143,30 @@ MonoBehaviour:
   animator: {fileID: 0}
   attackSpan: 5
   rb: {fileID: 880401945095471002}
-  teleportationEffect: {fileID: 2494717272435998108, guid: d11fc06955600b2469519851962957fc, type: 3}
-  attackEffect: {fileID: 8269521408861659270, guid: a0ecbd535ac084dec90efe3c6cf95044, type: 3}
   state: 0
   attackSpeed: -10
   attackRecoilPower: 520
+  teleportationEffect: {fileID: 2494717272435998108, guid: d11fc06955600b2469519851962957fc, type: 3}
+  attackEffect: {fileID: 8269521408861659270, guid: a0ecbd535ac084dec90efe3c6cf95044, type: 3}
+--- !u!95 &5856451892058723899
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 880401945095471000}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 40c5dc6a6728f41d08e28ce5776694e4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &880401946127736961
 GameObject:
   m_ObjectHideFlags: 0
