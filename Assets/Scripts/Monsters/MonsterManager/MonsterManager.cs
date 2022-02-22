@@ -13,6 +13,7 @@ namespace NestedParadox.Monsters
     {
         [SerializeField] Button button; //テスト用
         private int number;
+        [SerializeField] TempCharacter player;
         [SerializeField] List<GameObject> monsterPrefabList;
         [SerializeField] MonsterRow monsterRow;
         private List<MonsterBase> monsterList;         

@@ -13,7 +13,7 @@ namespace NestedParadox.Monsters
         [SerializeField] Animator animator;
         [SerializeField] float attackSpan;
         [SerializeField] Rigidbody2D rb;        
-        private float attackTime;
+        private float attackTime;        
         public CatWarriorState state;
         private TempCharacter player;        
         [SerializeField] float attackSpeed;
@@ -25,6 +25,7 @@ namespace NestedParadox.Monsters
         // Start is called before the first frame update
         void Start()
         {
+            attackPower = 1;
             Vector3 distanceOffset_temp = new Vector3(distanceOffset.x,distanceOffset.y, distanceOffset.z);
             Vector3 localScale_temp = new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z);
             player = GameObject.FindGameObjectWithTag("MainCharacter").GetComponent<TempCharacter>();
@@ -44,6 +45,8 @@ namespace NestedParadox.Monsters
                     transform.localScale = new Vector3(localScale_temp.x , localScale_temp.y, localScale_temp.z);
                 }
             }).AddTo(this);
+            //プレイヤーのhpによってステータスが変わる。
+            player.Hp_test.Subscribe(x => ChangeAttackPower(x)).AddTo(this);
         }
 
         // Update is called once per frame
@@ -96,7 +99,7 @@ namespace NestedParadox.Monsters
             if (enemy != null)
             {
                 Instantiate(attackEffect, enemy.transform.position, Quaternion.Euler(-50, -90, 90));
-                enemy.Damaged(attackValue);
+                enemy.Damaged(attackPower);
             }
             rb.AddForce(new Vector3(0, attackRecoilPower, 0));
             await UniTask.Delay(500, cancellationToken: this.GetCancellationTokenOnDestroy());
@@ -107,6 +110,16 @@ namespace NestedParadox.Monsters
         {
             hp -= damage;
         }
+
+        private void ChangeAttackPower(int playerHp)
+        {
+            attackPower = (101 - playerHp) / 10;
+            if(attackPower == 0)
+            {
+                attackPower = 1;
+            }
+            Debug.Log($"猫戦士の攻撃力が{attackPower}になりました(hp={playerHp}");
+        }        
     }
 
     public enum CatWarriorState

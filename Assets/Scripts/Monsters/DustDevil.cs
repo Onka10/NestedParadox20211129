@@ -121,7 +121,7 @@ namespace NestedParadox.Monsters
             other.TryGetComponent<EnemyBase>(out enemy);
             if(enemy != null)
             {
-                enemy.Damaged(attackValue);
+                enemy.Damaged(attackPower);
                 Instantiate(attackEffect, transform.position, Quaternion.identity);
             }            
         }

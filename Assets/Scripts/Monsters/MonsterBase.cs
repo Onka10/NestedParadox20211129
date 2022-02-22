@@ -7,7 +7,7 @@ namespace NestedParadox.Monsters
     public abstract class MonsterBase : MonoBehaviour
     {
         [SerializeField] protected int hp;
-        [SerializeField] protected int attackValue;
+        [SerializeField] protected int attackPower;
         [SerializeField] protected bool isUniquePosition;
         protected Vector3 distanceOffset;
         public bool IsUniquePosition => isUniquePosition;

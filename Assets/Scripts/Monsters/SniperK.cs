@@ -97,7 +97,7 @@ namespace NestedParadox.Monsters
                                                                                                           other.TryGetComponent<EnemyBase>(out enemy);
                                                                                                           if (enemy != null)
                                                                                                           {
-                                                                                                              enemy.Damaged(attackValue);
+                                                                                                              enemy.Damaged(attackPower);
                                                                                                           }
                                                                                                       })
                                                                                                       .AddTo(explosion_clone);
@@ -112,7 +112,7 @@ namespace NestedParadox.Monsters
             state = SniperKState.Attack;
             attackTime = 0;
             animator.SetTrigger("AttackTrigger");
-            await UniTask.Delay(1180);
+            await UniTask.Delay(1180, cancellationToken: this.GetCancellationTokenOnDestroy());
             Shot();
             state = SniperKState.Idle;
         }
