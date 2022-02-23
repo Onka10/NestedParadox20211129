@@ -11,6 +11,16 @@ namespace NestedParadox.Players
         // public IReadOnlyReactiveProperty<bool> IsDead => _isDead;
         // private readonly ReactiveProperty<bool> _isDead = new ReactiveProperty<bool>();
 
+        //プレイヤーのHP
+        public IReadOnlyReactiveProperty<int> PlayerHP => _playerhp;
+        private readonly ReactiveProperty<int> _playerhp = new ReactiveProperty<int>();
+
+        void Start(){
+            //仮でプレイヤーのHPを100としてます。
+            _playerhp.Value = 100;
+        }
+
+
         // 無敵か
     //     private bool _isInvincible;
 

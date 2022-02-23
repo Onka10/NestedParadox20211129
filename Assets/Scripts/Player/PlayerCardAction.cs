@@ -16,9 +16,9 @@ namespace NestedParadox.Players
             // _cardmanager = GetComponent<NestedParadox.Cards.CardManager>();
 
             _playerinput.OnPlayCard
-                // .Subscribe(_=> Debug.Log("召喚"))
-                .Subscribe(_=> _cardmanager.Play())
-                .AddTo(this);
+            // .Subscribe(_=> Debug.Log("召喚"))
+            .Subscribe(_=> _cardmanager.Play())
+            .AddTo(this);
 
             _playerinput.OnDrawCard
             // .Subscribe(_=> Debug.Log("ドロー"))
