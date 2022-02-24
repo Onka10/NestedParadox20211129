@@ -89,7 +89,7 @@ public class TempCharacter : MonoBehaviour, IApplyDamage
 
     public void DamagedTest()
     {
-        hp_test.Value -= 1;
+        hp_test.Value -= 10;
     }
 
 
