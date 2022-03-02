@@ -3,7 +3,7 @@ using System.Threading;
 using UniRx;
 using UniRx.Triggers; // UpdateAsObservable()の呼び出しに必要
 using UnityEngine;
-using Cysharp.Threading.Tasks;
+using UnityEngine.InputSystem;
 
 
 
@@ -16,10 +16,10 @@ namespace NestedParadox.Players
         public IObservable<Unit> OnChargeAttack => _chargeAttackSubject;
         public IReadOnlyReactiveProperty<bool> IsJump => _jump;
         public IReadOnlyReactiveProperty<Vector3> MoveDirection => _move;
-        public IReadOnlyReactiveProperty<bool> OnPlayCard => _playcardsubject;
-        public IReadOnlyReactiveProperty<bool> OnDrawCard => _drawcardsubject;
-        public IReadOnlyReactiveProperty<float> OnChangeHand => _changehandsubject;
-        
+        public IObservable<Unit> OnPlayCard => _playcardsubject;
+        public IObservable<Unit> OnDrawCard => _drawcardsubject;
+        public IObservable<Unit> OnChangeHandR => _changehandRsubject;
+        public IObservable<Unit> OnChangeHandL => _changehandLsubject;
 
 
         // イベント発行に利用するSubjectやReactiveProperty
@@ -27,9 +27,10 @@ namespace NestedParadox.Players
         private readonly Subject<Unit> _chargeAttackSubject = new Subject<Unit>();
         private readonly ReactiveProperty<bool> _jump = new ReactiveProperty<bool>(false);
         private readonly ReactiveProperty<Vector3> _move = new ReactiveProperty<Vector3>();
-        private readonly ReactiveProperty<bool> _playcardsubject = new ReactiveProperty<bool>(false);
-        private readonly ReactiveProperty<bool> _drawcardsubject = new ReactiveProperty<bool>(false);
-        private readonly ReactiveProperty<float> _changehandsubject = new ReactiveProperty<float>();
+        private readonly Subject<Unit> _playcardsubject = new Subject<Unit>();
+        private readonly Subject<Unit> _drawcardsubject = new Subject<Unit>();
+        private readonly Subject<Unit> _changehandRsubject = new Subject<Unit>();
+        private readonly Subject<Unit> _changehandLsubject = new Subject<Unit>();         
 
 
         //赤さんのカメラ
@@ -38,12 +39,6 @@ namespace NestedParadox.Players
         public Transform MyTransform { get { return myTransform; } }
         private Transform myTransform;
 
-
-        // 長押しだと判定するまでの時間
-        private static readonly float LongPressSeconds = 0.25f;
-
-
-
         private void Start(){
             //AddToでOnDestroy時にDispose()されるように登録する
             _normalAttackSubject.AddTo(this);
@@ -51,75 +46,60 @@ namespace NestedParadox.Players
             _jump.AddTo(this);
             _move.AddTo(this);
             _playcardsubject.AddTo(this);
-
-            // // CancellationToken生成
-            // var token = this.GetCancellationTokenOnDestroy();
-            //  // ループ起動
-            // LogicLoopAsync(token).Forget();
-
-            //updateをobservableにする
-            this.UpdateAsObservable()
-            // Attackボタンの状態を取得 
-            .Select(_ => Input.GetMouseButton(0))
-            // 値が変動した場合のみ通過
-            .DistinctUntilChanged()
-            // 最後に状態が変動してからの経過時間を付与
-            .TimeInterval()
-            .Skip(1)
-            .Subscribe(t =>
-            {
-                // 攻撃ボタンを押した瞬間のイベントは無視
-                if (t.Value) return;
-
-                // 攻撃ボタンを押してから離すまでの時間で判定
-                if (t.Interval.TotalSeconds >= LongPressSeconds)
-                {
-                    _chargeAttackSubject.OnNext(Unit.Default);
-                }
-                else
-                {
-                    _normalAttackSubject.OnNext(Unit.Default);
-                }
-            }).AddTo(this);
+            _drawcardsubject.AddTo(this);
+            _changehandRsubject.AddTo(this);
+            _changehandLsubject.AddTo(this);
 
             //赤さんのカメラ
             myTransform = transform;
             currentDirection.Value = myTransform.localScale;
+            currentDirection.AddTo(this);
 
         }
 
-        // private async UniTaskVoid LogicLoopAsync(CancellationToken ct)
-        // {
-        //     // Destroyされるまで無限ループ
-        //     while (!ct.IsCancellationRequested)
-        //     {
-        //         // 移動入力をベクトルに変換して反映
-        //         //ReactiveProperty.SetValueAndForceNotifyを使うと強制的にメッセージ発行できる
-        //         _move.SetValueAndForceNotify(new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")));
-
-        //         if(Input.GetKey("space")){
-        //             _jump.Value = true;
-        //             await UniTask.Delay(TimeSpan.FromSeconds(1), cancellationToken: ct);
-        //         }
-        //     }
-        // }
-
         void FixedUpdate(){
-            // ジャンプボタン
-            _jump.Value = Input.GetKey("space");
-
-            //召喚の処理
-            _playcardsubject.Value = Input.GetMouseButton(1);
-            
-            //ドローの処理
-            _drawcardsubject.Value = Input.GetKey(KeyCode.R);
-
-            //手札切り替え
-            _changehandsubject.Value = Input.mouseScrollDelta.y;
-
             // 移動入力をベクトルに変換して反映
             // ReactiveProperty.SetValueAndForceNotifyを使うと強制的にメッセージ発行できる
             _move.SetValueAndForceNotify(new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")));
+        }
+
+        public void OnAttack(InputAction.CallbackContext context){
+            if (context.phase == InputActionPhase.Performed){//タメ攻撃
+                _chargeAttackSubject.OnNext(Unit.Default);
+            }else if(context.phase == InputActionPhase.Canceled){//通常攻撃
+                _normalAttackSubject.OnNext(Unit.Default);
+            }
+        }
+        public void CardRight(InputAction.CallbackContext context){           
+            if(context.phase == InputActionPhase.Performed){
+                _changehandRsubject.OnNext(Unit.Default);
+            }
+        }
+
+        public void CardLeft(InputAction.CallbackContext context){
+            if(context.phase == InputActionPhase.Performed){
+                _changehandLsubject.OnNext(Unit.Default);
+            }
+        }
+
+        public void OnJump(InputAction.CallbackContext context){
+            if (context.phase == InputActionPhase.Performed){
+                _jump.Value = true;
+            }else if(context.phase == InputActionPhase.Canceled){
+                _jump.Value = false;
+            }
+        }
+
+        public void OnPlay(InputAction.CallbackContext context){
+            if(context.phase == InputActionPhase.Started){
+                _playcardsubject.OnNext(Unit.Default);
+            }
+        }
+
+        public void OnDraw(InputAction.CallbackContext context){
+            if(context.phase == InputActionPhase.Started){
+                _drawcardsubject.OnNext(Unit.Default);
+            }
         }
     }
 }

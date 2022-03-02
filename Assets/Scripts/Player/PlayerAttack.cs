@@ -119,7 +119,7 @@ namespace NestedParadox.Players
 
 
 
-        #region 攻撃の核となるメソッド
+        #region 攻撃のメソッド
 
         // 攻撃モーションに合わせて当たり判定をON/OFFする
         public void OnNormalAttackEvent()

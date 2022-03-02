@@ -50,14 +50,14 @@ namespace NestedParadox.Players{
         public void NormalAttack()
         {
             _animator.SetTrigger(HashNormalAttack);
-            Debug.Log("攻撃アニメーションの再生");
+            // Debug.Log("攻撃アニメーションの再生");
         }
 
         // ため攻撃を試みる
         public void ChargeAttack()
         {
             _animator.SetTrigger(HashChargeAttack);
-            Debug.Log("ため攻撃アニメーションの再生");
+            // Debug.Log("ため攻撃アニメーションの再生");
         }
     }
 }

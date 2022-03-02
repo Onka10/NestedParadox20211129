@@ -65,6 +65,7 @@ namespace NestedParadox.Players
             if (_playerinput.IsJump.Value && _isGrounded.Value && !_isMoveBlock)
             {
                 // Debug.Log("Jump");
+                // Debug.LogError("ジャンプテスト");
                 vel += Vector3.up * _jumpSpeed;
                 _isJumpReserved = false;
             }
