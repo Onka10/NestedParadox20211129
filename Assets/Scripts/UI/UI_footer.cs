@@ -23,7 +23,12 @@ public class UI_footer : MonoBehaviour
         .AddTo(this);
 
         _cardmaganeger.Hand
-        .ObserveRemove()
+        .ObserveAdd()//ドロー
+        .Subscribe(_ => UpdateHand())
+        .AddTo(this);
+
+        _cardmaganeger.Hand
+        .ObserveRemove()//召喚
         .Subscribe(_ => UpdateHand())
         .AddTo(this);
 

@@ -55,6 +55,7 @@ namespace NestedParadox.Cards
         public void Draw(){
             if(_hand.Count !=3)//手札が満タンではない時に可能
             {
+                Debug.Log("ドロー");
                 //ドロー出来るかの確認
                 if(_deck.Count==0)  DeckReload();
 
@@ -93,17 +94,20 @@ namespace NestedParadox.Cards
         private void Rotatehand(int x){//引数は1か-1にしてね。手札のローテーションメソッド
             if(_nowhand.Value == 0 && x<0){
                 _nowhand.Value = _hand.Count-1;//手札の最大枚数になる
-                // Debug.Log("1ima"+_nowhand.Value+x);
+                Debug.Log("case1:now"+_nowhand.Value);
             }else if(_nowhand.Value == _hand.Count-1 && x>0){
                 _nowhand.Value=0;
-                // Debug.Log("2ima"+_nowhand.Value);
+                Debug.Log("case2:now"+_nowhand.Value);
             }else if(_hand.Count==0){
                 _nowhand.Value=0;
-                // Debug.Log("手札無し"+_nowhand.Value);
+                Debug.Log("手札無し"+_nowhand.Value);
             }else{
                 _nowhand.Value+=x;
-                // Debug.Log("3ima"+_nowhand.Value+x);
+                Debug.Log("case3:now"+_nowhand.Value);
             }
+            
+            //クランプ
+            _nowhand.Value = Mathf.Clamp(_nowhand.Value, 0, 2);
         }
 
         private void DeckReload(){//山札が無ければ墓地を補充する
