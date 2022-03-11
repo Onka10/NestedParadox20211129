@@ -2,6 +2,7 @@ using UniRx;
 using UniRx.Triggers;
 // using UniRxSampleGame.Damages;
 using UnityEngine;
+using System;
 
 namespace NestedParadox.Players
 {
@@ -29,8 +30,6 @@ namespace NestedParadox.Players
 
         private void Start()
         {
-            _isInAttack.AddTo(this);
-
             _playerinput = GetComponent<PlayerInput>();
             _playerAnimation = GetComponent<PlayerAnimation>();
             _playerMove = GetComponent<PlayerMove>();
@@ -57,10 +56,13 @@ namespace NestedParadox.Players
 
         private void SubscribeInputEvent()
         {
+            //一応連打防止の対応したけど、タメ攻撃と通常で分けれて無いし、今後攻撃が増えると通用しなくなる
+
             // 弱攻撃イベント
             _playerinput.OnNormalAttack
                 // 接地中なら攻撃ができる
                 .Where(_ => _playerMove.IsGrounded.Value)
+                .ThrottleFirst(TimeSpan.FromSeconds(.6))//連打防止。通常攻撃は.4秒
                 .Subscribe(_ => _playerAnimation.NormalAttack())
                 .AddTo(this);
 
@@ -68,6 +70,7 @@ namespace NestedParadox.Players
             _playerinput.OnChargeAttack
                 // 接地中なら攻撃ができる
                 .Where(_ => _playerMove.IsGrounded.Value)
+                .ThrottleFirst(TimeSpan.FromSeconds(1))//連打防止。タメ攻撃はあ1秒
                 .Subscribe(_ => _playerAnimation.ChargeAttack())
                 .AddTo(this);
         }
@@ -119,7 +122,7 @@ namespace NestedParadox.Players
 
 
 
-        #region 攻撃の核となるメソッド
+        #region 攻撃のメソッド
 
         // 攻撃モーションに合わせて当たり判定をON/OFFする
         public void OnNormalAttackEvent()
