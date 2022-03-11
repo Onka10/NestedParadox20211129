@@ -19,7 +19,7 @@
                     "id": "d4c28656-9add-4b9a-aba1-33d79dca9165",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Press"
                 },
                 {
                     "name": "Fire",
@@ -262,7 +262,7 @@
                     "name": "",
                     "id": "1e0e4236-4cff-44a7-89ae-8341c723cac6",
                     "path": "<Keyboard>/space",
-                    "interactions": "Press",
+                    "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Jump",
@@ -273,7 +273,7 @@
                     "name": "",
                     "id": "d607b61d-8377-4279-97a0-4cc28456fb7b",
                     "path": "<DualShockGamepad>/buttonSouth",
-                    "interactions": "Press",
+                    "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Jump",

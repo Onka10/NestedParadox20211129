@@ -83,7 +83,7 @@ namespace NestedParadox.Players
         }
 
         public void OnJump(InputAction.CallbackContext context){
-            if (context.phase == InputActionPhase.Performed){
+            if (context.phase == InputActionPhase.Started){
                 _jump.Value = true;
             }else if(context.phase == InputActionPhase.Canceled){
                 _jump.Value = false;

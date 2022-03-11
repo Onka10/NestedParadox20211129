@@ -20,11 +20,13 @@ namespace NestedParadox.Cards
         public IReadOnlyReactiveProperty<int> NowHand => _nowhand;
 
         //private
-        private readonly ReactiveCollection<int> _deck = new ReactiveCollection<int>{0,1,2,3,4,5,6,7,8,9};//初期化済み
+        private readonly ReactiveCollection<int> _deck = new ReactiveCollection<int>{0,1,1,1,2,3,3,4,5,6};//初期化済み
         private Queue<int> graveyard= new Queue <int>();
         private readonly ReactiveCollection<int> _hand = new ReactiveCollection<int>{0,0,0};
         private readonly ReactiveProperty<int> _graveyardcount = new ReactiveProperty<int>(0);
         private readonly IntReactiveProperty _nowhand = new IntReactiveProperty(0);
+
+        public bool kari=false;//テスト
 
         void Start(){
             _deck.AddTo(this);
@@ -73,17 +75,23 @@ namespace NestedParadox.Cards
             if(_hand.Count >= 1)//手札が1枚以上の時
             {
                 //TO DO処理を試みる
+                if(CardCheck()){
+                    //墓地へ捨てる
+                    graveyard.Enqueue(_hand[_nowhand.Value]);
+                    //UI更新
+                    _graveyardcount.Value = graveyard.Count;
+
+                    //手札を消す
+                    _hand.RemoveAt(_nowhand.Value);
+                    if(_hand.Count!=0 && _nowhand.Value!=0)   Rotatehand(-1);//手札が残っている&&手札の選択が最初じゃない
+                }
                 Debug.Log("召喚");
-
-                //墓地へ捨てる
-                graveyard.Enqueue(_hand[_nowhand.Value]);
-                //UI更新
-                _graveyardcount.Value = graveyard.Count;
-
-                //手札を消す
-                _hand.RemoveAt(_nowhand.Value);
-                if(_hand.Count!=0 && _nowhand.Value!=0)   Rotatehand(-1);//手札が残っている&&手札の選択が最初じゃない
             }
+        }
+
+        public bool CardCheck(){
+            //Unitaskで待つ？
+            return true;
         }
 
         public void publicRotateHand(int h){
@@ -94,16 +102,16 @@ namespace NestedParadox.Cards
         private void Rotatehand(int x){//引数は1か-1にしてね。手札のローテーションメソッド
             if(_nowhand.Value == 0 && x<0){
                 _nowhand.Value = _hand.Count-1;//手札の最大枚数になる
-                Debug.Log("case1:now"+_nowhand.Value);
+                // Debug.Log("case1:now"+_nowhand.Value);
             }else if(_nowhand.Value == _hand.Count-1 && x>0){
                 _nowhand.Value=0;
-                Debug.Log("case2:now"+_nowhand.Value);
+                // Debug.Log("case2:now"+_nowhand.Value);
             }else if(_hand.Count==0){
                 _nowhand.Value=0;
-                Debug.Log("手札無し"+_nowhand.Value);
+                // Debug.Log("手札無し"+_nowhand.Value);
             }else{
                 _nowhand.Value+=x;
-                Debug.Log("case3:now"+_nowhand.Value);
+                // Debug.Log("case3:now"+_nowhand.Value);
             }
             
             //クランプ

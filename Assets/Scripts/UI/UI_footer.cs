@@ -6,12 +6,17 @@ using UnityEngine.UI;
 
 public class UI_footer : MonoBehaviour
 {
+    //暫定的なクラスのため、カード準備画面やカード種類の増加に合わせて拡張や作り直しになります
+
     [SerializeField] NestedParadox.Cards.CardManager _cardmaganeger;
 
     [SerializeField] Text decktext;
     [SerializeField] Text graveyardtext;
     public List<GameObject> UI_handselect = new List<GameObject>(3);
     public List<GameObject> UI_hand = new List<GameObject>(3);
+
+    public Sprite[] CardsIconImages = new Sprite[7]; 
+    Sprite cardicon;
 
 
     void Start(){
@@ -44,6 +49,9 @@ public class UI_footer : MonoBehaviour
     private void Init(){
         //Listの購読がSubscribeをしても初回に動作してくれない事への暫定的対応
         decktext.text = 7.ToString();
+
+        //手札の初期化
+        UpdateHand();
     }
 
     private void UpdateDeckCount(int x){
@@ -60,9 +68,19 @@ public class UI_footer : MonoBehaviour
     }
 
     private void UpdateHand(){
-        //一度消す。将来的にはアニメーションの処理が入る
+        //一度消す。将来的にはアニメーションの処理が入る？
         for(int a=0;a<3;a++)  UI_hand[a].SetActive(false);
-        //手札枚数分だけつける
-        for(int z=0;z<_cardmaganeger.Hand.Count;z++)    UI_hand[z].SetActive(true);
+        
+        for(int z=0;z<_cardmaganeger.Hand.Count;z++){
+            UI_hand[z].SetActive(true);
+            CardCheck(z);
+            UI_hand[z].transform.GetChild(1).gameObject.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = cardicon;
+        }
+    }
+
+    private void CardCheck(int num){
+        //手札numに対して適切なカードアイコンを設定します
+        int id = _cardmaganeger.Hand[num];
+        cardicon = CardsIconImages[id];
     }
 }

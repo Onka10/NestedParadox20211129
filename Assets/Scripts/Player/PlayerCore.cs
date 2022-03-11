@@ -5,22 +5,30 @@ using UnityEngine;
 namespace NestedParadox.Players
 {
     // プレイヤーの本体を表すコンポーネント
-    public sealed class PlayerCore : MonoBehaviour
+    public sealed class PlayerCore : MonoBehaviour,IApplyDamage
     {
         // // 死んでいるか
         // public IReadOnlyReactiveProperty<bool> IsDead => _isDead;
         // private readonly ReactiveProperty<bool> _isDead = new ReactiveProperty<bool>();
 
         //プレイヤーのHP
-        public IReadOnlyReactiveProperty<int> PlayerHP => _playerhp;
+        //細かい仕様は決まってない
+        public IReadOnlyReactiveProperty<int> Hp => _playerhp;
         private readonly ReactiveProperty<int> _playerhp = new ReactiveProperty<int>();
+        //プレイヤーの攻撃力
+        //細かい仕様は決まってない
+        public IReadOnlyReactiveProperty<int> PlayerAttackPower => _playerATK;
+        [SerializeField] private readonly IntReactiveProperty _playerATK = new IntReactiveProperty(1);
 
         //ドロエナジー
         //細かい仕様が決まってません。
         //とりあえず、最大値を10として、10で召喚可能。10になるまで貯める必要がある。という仕様にしてます。
         public IReadOnlyReactiveProperty<int> PlayerDrawEnergy => _playerdrawenergy;
         private readonly ReactiveProperty<int> _playerdrawenergy = new ReactiveProperty<int>();
-        
+
+        //外部参照
+        [SerializeField] PlayerBuff _playerbuff;
+
 
         void Start(){
             //仮でプレイヤーのHPを100としてます。
@@ -30,11 +38,14 @@ namespace NestedParadox.Players
 
         public void Damaged(int Damage)
         {
-            //攻撃処理。ここの内容はボスであったり、雑魚などその種類によって変わる
-            //例
+            Damage = _playerbuff.Buff(Damage);
             _playerhp.Value -=Damage;
         }
 
+        //毒や効果によるHP減少などの定数ダメージ
+        public void DirectDamaged(int Damage){
+            _playerhp.Value -=Damage;
+        }
 
         // 無敵か
     //     private bool _isInvincible;

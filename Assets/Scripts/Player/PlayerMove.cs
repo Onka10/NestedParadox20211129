@@ -39,6 +39,8 @@ namespace NestedParadox.Players
             _rigidbody2D = GetComponent<Rigidbody2D>();
             _playerCore = GetComponent<PlayerCore>();
             _playerinput = GetComponent<PlayerInput>();
+
+            _isGrounded.AddTo(this);
         }
 
         private void FixedUpdate()
