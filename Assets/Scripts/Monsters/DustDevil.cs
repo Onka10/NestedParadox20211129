@@ -74,6 +74,11 @@ namespace NestedParadox.Monsters
             }
         }
 
+        private void OnSummoned()
+        {
+
+        }
+
         //ランダムに敵を見つけて連続攻撃
         private async void Attack()
         {

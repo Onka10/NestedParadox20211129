@@ -1,3 +1,5 @@
+using UniRx;
+
 interface IApplyDamage
 {
     //ダメージを受けるオブジェクトの場合、必ずIApplyDamageを実装する必要があります

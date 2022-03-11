@@ -92,10 +92,8 @@ namespace NestedParadox.Monsters
                         GameObject explosion_clone = Instantiate(explosionPrefab, bullet_clone.transform.position, Quaternion.identity);
                         explosion_clone.GetComponent<Collider2D>().OnTriggerEnter2DAsObservable()
                             .Subscribe(other =>
-                            {
-                                EnemyBase enemy;
-                                other.TryGetComponent<EnemyBase>(out enemy);
-                                if (enemy != null)
+                            {                                                
+                                if (other.TryGetComponent<EnemyBase>(out EnemyBase enemy))
                                 {
                                     enemy.Damaged(attackPower);
                                 }

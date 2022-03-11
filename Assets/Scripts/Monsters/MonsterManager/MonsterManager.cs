@@ -18,7 +18,7 @@ namespace NestedParadox.Monsters
         [SerializeField] List<GameObject> monsterPrefabList;
         [SerializeField] MonsterRow monsterRow;
         [SerializeField] GameObject[] monstersSprite;//召喚時に表示する偽sprite
-        [SerializeField] Vector3 summonPosition;//召喚する位置
+                                                     //
         private List<MonsterBase> monsterList;         
         public int MonsterCount => monsterList.Count;
 
@@ -59,15 +59,18 @@ namespace NestedParadox.Monsters
 
         public async void Summon(CardID cardID)
         {
-            MonsterBase monster;
-            MonsterSprite monsterSprite_clone = Instantiate(monstersSprite[(int)cardID]).GetComponent<MonsterSprite>();            
-            Vector3 currentSummonPosition = player.transform.position + summonPosition;
-            monsterSprite_clone.transform.position = currentSummonPosition;            
+            //モンスターの召喚アニメーションの表示
+            MonsterSprite monsterSprite_clone = Instantiate(monstersSprite[(int)cardID]).GetComponent<MonsterSprite>();
+            Vector3 currentSummonPosition = monsterSprite_clone.SetSummonPosition(player.transform.position, player.CurrentDirection.Value); //召喚位置をset        
             await monsterSprite_clone.SummonAnimation();//召喚完了するまで待つ
+
+
+            //本体の召喚
+            MonsterBase monster;
             Instantiate(monsterPrefabList[(int)cardID]).TryGetComponent<MonsterBase>(out monster);
             monster.transform.position = currentSummonPosition;
             monsterList.Add(monster);
             monster.SetPositionAndInitialize(monsterRow.GetNextPosition());            
-        }
+        }       
     }
 }

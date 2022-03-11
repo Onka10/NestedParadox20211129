@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3600909353169797950}
   - component: {fileID: 8575252255821487201}
   m_Layer: 0
-  m_Name: "\u732B\u6226\u58EB 1"
+  m_Name: CatWarriorSprite
   m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -115,10 +115,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2215ac938c853437e9593388679a196b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  summonEffect: {fileID: 6004028072603866432, guid: 7680c0a39368ee34fba9a2754c39b6f9, type: 3}
+  summonEffect: {fileID: 6865685810505421468, guid: 64f8a0618c926414097a43fb1b9e36d4, type: 3}
   summonRedEffect: {fileID: 585549164108272053, guid: d12c097b4bace451c843ad487bc9186b, type: 3}
   animator: {fileID: 3600909353169797950}
   summonEffectScale: {x: 0.3, y: 0.3, z: 0.3}
-  summonEffectPosition: {x: 0, y: 0.4, z: 0}
+  summonEffectPosition: {x: -0.3, y: -0.7, z: 0}
   summonRedEffectScale: {x: 0.4, y: 0.4, z: 0.4}
+  summonPosition: {x: 2, y: -0.3, z: -2}
   IsSummonCompleted: 0
