@@ -6,28 +6,32 @@ namespace NestedParadox.Players
 {
     public class PlayerCardAction : MonoBehaviour
     {
-        // private NestedParadox.Cards.CardManager _cardmanager;
         [SerializeField]NestedParadox.Cards.CardManager _cardmanager;
         private PlayerInput _playerinput;
+        private PlayerCore _playercore;
 
         void Start()
         {
             _playerinput = GetComponent<PlayerInput>();
-            // _cardmanager = GetComponent<NestedParadox.Cards.CardManager>();
+            _playercore = GetComponent<PlayerCore>();
 
             _playerinput.OnPlayCard
-                // .Subscribe(_=> Debug.Log("召喚"))
-                .Subscribe(_=> _cardmanager.Play())
-                .AddTo(this);
+            .Subscribe(_=> _cardmanager.Play())
+            .AddTo(this);
 
             _playerinput.OnDrawCard
-            // .Subscribe(_=> Debug.Log("ドロー"))
+            .Where(_ => _playercore.PlayerDrawEnergy.Value ==10)//ドロエナジーの確認
             .Subscribe(_=> _cardmanager.Draw())
             .AddTo(this);
 
-            _playerinput.OnChangeHand
-            // .Subscribe(t=> Debug.Log("ホイール"+t))
-            .Subscribe(t=> _cardmanager.ChangeHand(t))
+            _playerinput.OnChangeHandR
+            .Where(_ => _cardmanager.Hand.Count != 0)//手札があるときのみ実行
+            .Subscribe(_=> _cardmanager.publicRotateHand(1))
+            .AddTo(this);
+
+            _playerinput.OnChangeHandL
+            .Where(_ => _cardmanager.Hand.Count != 0)//手札があるときのみ実行
+            .Subscribe(_=> _cardmanager.publicRotateHand(-1))
             .AddTo(this);
         }
     }
