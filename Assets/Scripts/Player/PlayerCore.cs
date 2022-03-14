@@ -5,26 +5,27 @@ using UnityEngine;
 namespace NestedParadox.Players
 {
     // プレイヤーの本体を表すコンポーネント
-    public sealed class PlayerCore : MonoBehaviour,IApplyDamage
+    public sealed class PlayerCore : MonoBehaviour
     {
         // // 死んでいるか
-        // public IReadOnlyReactiveProperty<bool> IsDead => _isDead;
-        // private readonly ReactiveProperty<bool> _isDead = new ReactiveProperty<bool>();
+        public IReadOnlyReactiveProperty<bool> IsDead => _isDead;
+        private readonly ReactiveProperty<bool> _isDead = new ReactiveProperty<bool>();
 
         //プレイヤーのHP
         //細かい仕様は決まってない
-        public IReadOnlyReactiveProperty<int> Hp => _playerhp;
-        private readonly ReactiveProperty<int> _playerhp = new ReactiveProperty<int>();
+        public IReadOnlyReactiveProperty<int> Hp => _playerHP;
+        private readonly ReactiveProperty<int> _playerHP = new ReactiveProperty<int>();
         //プレイヤーの攻撃力
         //細かい仕様は決まってない
         public IReadOnlyReactiveProperty<int> PlayerAttackPower => _playerATK;
         [SerializeField] private readonly IntReactiveProperty _playerATK = new IntReactiveProperty(1);
 
+
         //ドロエナジー
         //細かい仕様が決まってません。
         //とりあえず、最大値を10として、10で召喚可能。10になるまで貯める必要がある。という仕様にしてます。
-        public IReadOnlyReactiveProperty<int> PlayerDrawEnergy => _playerdrawenergy;
-        private readonly ReactiveProperty<int> _playerdrawenergy = new ReactiveProperty<int>();
+        public IReadOnlyReactiveProperty<int> PlayerDrawEnergy => _drawenergy;
+        private readonly ReactiveProperty<int> _drawenergy = new ReactiveProperty<int>();
 
         //外部参照
         [SerializeField] PlayerBuff _playerbuff;
@@ -32,19 +33,37 @@ namespace NestedParadox.Players
 
         void Start(){
             //仮でプレイヤーのHPを100としてます。
-            _playerhp.Value = 100;
-            _playerdrawenergy.Value =10;
+            _playerHP.Value = 100;
+            _playerHP.AddTo(this);
+
+            _playerATK.AddTo(this);
+            _drawenergy.Value =10;
+            _drawenergy.AddTo(this);
+
         }
 
         public void Damaged(int Damage)
         {
-            Damage = _playerbuff.Buff(Damage);
-            _playerhp.Value -=Damage;
+            Damage = _playerbuff.Guard(Damage);
+            _playerHP.Value -=Damage;
         }
 
         //毒や効果によるHP減少などの定数ダメージ
         public void DirectDamaged(int Damage){
-            _playerhp.Value -=Damage;
+            _playerHP.Value -=Damage;
+        }
+
+        //攻撃力の変更
+        public void ChangeAttackPower(int a){
+            _playerATK.Value = a;
+        }
+
+        public void AddDrawEnergy(){
+            _drawenergy.Value += 1;
+        }
+
+        public void InitDrawEnergy(){
+            _drawenergy.Value = 0;
         }
 
         // 無敵か
