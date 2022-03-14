@@ -31,11 +31,15 @@ public class TempCharacter : MonoBehaviour, IApplyDamage
     private int hp;
     public int Hp => hp;
 
+    private ReactiveProperty<int> hp_test = new ReactiveProperty<int>();
+    public IReadOnlyReactiveProperty<int> Hp_test => hp_test;
+
     private bool canJump;
 
     // Start is called before the first frame update
     void Start()
     {
+        hp_test.Value = 100;
         guardKunManager = GameObject.Find("GuardKunManager").GetComponent<GuardKunManager>();
         rb = GetComponent<Rigidbody2D>();
         myTransform = transform;
@@ -81,6 +85,11 @@ public class TempCharacter : MonoBehaviour, IApplyDamage
             rb.velocity = new Vector3(0, jumpingSpeed, 0);
         }
        
+    }
+
+    public void DamagedTest()
+    {
+        hp_test.Value -= 10;
     }
 
 
