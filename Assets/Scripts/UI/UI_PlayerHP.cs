@@ -16,7 +16,7 @@ public class UI_PlayerHP : MonoBehaviour
         HPSlider = GetComponent<Slider>();
         HPSlider.maxValue = 100;
 
-        _playercore.PlayerHP
+        _playercore.Hp
         .Subscribe(x=>UPdatePlayerHPUI(x))
         .AddTo(this);
     }

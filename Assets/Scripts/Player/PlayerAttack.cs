@@ -10,14 +10,11 @@ namespace NestedParadox.Players
     public class PlayerAttack : MonoBehaviour
     {
 
-        // 現在の攻撃力
-        [SerializeField] private int _attackPower = 1;
-
-
         //外部参照
         private PlayerInput _playerinput;
         private PlayerAnimation _playerAnimation;
         private PlayerMove _playerMove;
+        private PlayerCore _playercore;
 
         //購読用に用意する
         private readonly ReactiveProperty<bool> _isInAttack = new ReactiveProperty<bool>(false);
@@ -33,6 +30,7 @@ namespace NestedParadox.Players
             _playerinput = GetComponent<PlayerInput>();
             _playerAnimation = GetComponent<PlayerAnimation>();
             _playerMove = GetComponent<PlayerMove>();
+            _playercore = GetComponent<PlayerCore>();
 
             // 操作イベントの購読
             SubscribeInputEvent();
@@ -51,8 +49,6 @@ namespace NestedParadox.Players
 
             OnAttackEndEvent();
         }
-
-        #region 各種購読
 
         private void SubscribeInputEvent()
         {
@@ -114,8 +110,27 @@ namespace NestedParadox.Players
         }
 
 
+        #region 攻撃判定用コライダの衝突判定購読
+
         // 各種衝突判定を購読する
-        private void SubscribeColliderEvent(){
+        private void SubscribeColliderEvent()
+        {
+            // OnTriggerEnter2DAsObservableをコンポーネントに対して呼び出すと、
+            // そのコンポーネントの付与されたGameObjectに自動的に
+            // 衝突検知用のコンポーネントがAddComponentされる
+            _attackCollider1.OnTriggerEnter2DAsObservable()
+                .Merge(_attackCollider2.OnTriggerEnter2DAsObservable())
+                .Subscribe(x =>
+                {
+                    // 武器に当たった相手がダメージを与えられる相手であるか
+                    if (!x.TryGetComponent<IApplyDamage>(out IApplyDamage attack)) return;
+                    // 相手にダメージを与える
+
+                    //todo:Playercoreから攻撃力。playerbuffからバフを受け取ってdamageクラスに入れる
+                    
+                    // attack.Damaged( Damageクラスを渡す);
+
+                }).AddTo(this);
         }
 
         #endregion
@@ -128,14 +143,13 @@ namespace NestedParadox.Players
         public void OnNormalAttackEvent()
         {
             _attackCollider1.enabled = true;
-            _attackPower = 1; // 弱攻撃は攻撃力1
+            _playercore.ChangeAttackPower(1);
         }
 
         public void OnChargeAttackEvent()
         {
-            _attackCollider1.enabled = true;
             _attackCollider2.enabled = true;
-            _attackPower = 2; // 強攻撃は攻撃力2
+            _playercore.ChangeAttackPower(2);
         }
 
         //当たり判定を消す
@@ -143,10 +157,9 @@ namespace NestedParadox.Players
         {
             _attackCollider1.enabled = false;
             _attackCollider2.enabled = false;
-            _attackPower = 0;
+            _playercore.ChangeAttackPower(0);
         }
 
         #endregion
-
     }
 }

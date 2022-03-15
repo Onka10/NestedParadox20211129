@@ -8,7 +8,7 @@ public class damage : MonoBehaviour
     {
         [SerializeField]PlayerCore pc;
         public void ddamge(){
-            pc.Damaged(10);
+            pc.DirectDamaged(10);
         }
     }
 }

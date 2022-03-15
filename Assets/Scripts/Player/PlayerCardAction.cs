@@ -6,12 +6,17 @@ namespace NestedParadox.Players
 {
     public class PlayerCardAction : MonoBehaviour
     {
-        [SerializeField]NestedParadox.Cards.CardManager _cardmanager;
+        // [SerializeField]NestedParadox.Cards.CardManager _cardmanager;
         private PlayerInput _playerinput;
         private PlayerCore _playercore;
+        NestedParadox.Cards.CardManager _cardmanager;
 
         void Start()
         {
+            //カードマネージャのキャッシュ
+            _cardmanager = NestedParadox.Cards.CardManager.I;
+
+
             _playerinput = GetComponent<PlayerInput>();
             _playercore = GetComponent<PlayerCore>();
 

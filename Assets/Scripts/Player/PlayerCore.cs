@@ -28,10 +28,13 @@ namespace NestedParadox.Players
         private readonly ReactiveProperty<int> _drawenergy = new ReactiveProperty<int>();
 
         //外部参照
-        [SerializeField] PlayerBuff _playerbuff;
+        PlayerBuff _playerbuff;
 
 
         void Start(){
+            //キャッシュ
+            _playerbuff = PlayerBuff.I;
+
             //仮でプレイヤーのHPを100としてます。
             _playerHP.Value = 100;
             _playerHP.AddTo(this);
