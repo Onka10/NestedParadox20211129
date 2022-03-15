@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5608285476180449405}
-  - component: {fileID: 6530273692377778113}
+  - component: {fileID: 5608285476180449406}
   m_Layer: 0
   m_Name: GuardKunManager
   m_TagString: Untagged
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6530273692377778113
+--- !u!114 &5608285476180449406
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,4 +44,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageReductionRate: 0
-  guardKunPrefab: {fileID: 4042247962044257341, guid: 8bfca58cf405249c4b92d8343db6da82, type: 3}
+  guardKunPrefab: {fileID: 3345767467096454074, guid: cfd8d0a1118624e83b645f97add81f80, type: 3}

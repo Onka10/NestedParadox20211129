@@ -17,13 +17,13 @@ namespace NestedParadox.Monsters
         [SerializeField] float attackSpan;
         private float attackTime;
         private TempCharacter player;
-        private MonsterState state;
+        private SniperKState state;
         // Start is called before the first frame update
         void Start()
         {
             player = GameObject.FindGameObjectWithTag("MainCharacter").GetComponent<TempCharacter>();
             attackTime = 0;
-            state = MonsterState.Idle;
+            state = SniperKState.Idle;
             Vector3 distanceOffset_temp = new Vector3(distanceOffset.x, distanceOffset.y, distanceOffset.z);
             Vector3 localScale_temp = new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z);
             Vector3 shotPosition_temp = new Vector3(shotPosition.x, shotPosition.y, shotPosition.z);
@@ -56,13 +56,13 @@ namespace NestedParadox.Monsters
 
         void FixedUpdate()
         {
-            if (state == MonsterState.Idle)//待機中
+            if (state == SniperKState.Idle)//待機中
             {
                 transform.position = new Vector3(Mathf.Lerp(transform.position.x, player.transform.position.x - distanceOffset.x, 0.1f),
                                                  Mathf.Lerp(transform.position.y, player.transform.position.y - distanceOffset.y, 0.1f),
                                                  Mathf.Lerp(transform.position.z, player.transform.position.z - distanceOffset.z, 0.1f));
             }
-            else if (state == MonsterState.Attack)//攻撃中
+            else if (state == SniperKState.Attack)//攻撃中
             {
 
             }
@@ -86,33 +86,41 @@ namespace NestedParadox.Monsters
                 GameObject bullet_clone = Instantiate(bulletPrefab, transform.position + shotPosition, Quaternion.identity);
                 bullet_clone.GetComponent<Rigidbody2D>().AddForce(shotVector);
                 bullet_clone.GetComponent<Collider2D>().OnTriggerEnter2DAsObservable()
-                    .Where(other => !other.CompareTag("MainCharacter") && !other.CompareTag("Monster") && !other.CompareTag("Bullet") && !other.CompareTag("FootHold2"))
-                    .Subscribe(other =>
-                    {                                                            
-                        GameObject explosion_clone = Instantiate(explosionPrefab, bullet_clone.transform.position, Quaternion.identity);
-                        explosion_clone.GetComponent<Collider2D>().OnTriggerEnter2DAsObservable()
-                            .Subscribe(other =>
-                            {                                                
-                                if (other.TryGetComponent<EnemyBase>(out EnemyBase enemy))
-                                {
-                                    enemy.Damaged(attackPower);
-                                }
-                            })
-                            .AddTo(explosion_clone);
-                        Destroy(bullet_clone);
-                    })
-                    .AddTo(bullet_clone);
+                                                       .Where(other => !other.CompareTag("MainCharacter") && !other.CompareTag("Monster") && !other.CompareTag("Bullet") && !other.CompareTag("FootHold2"))
+                                                       .Subscribe(other =>
+                                                       {                                                            
+                                                            GameObject explosion_clone = Instantiate(explosionPrefab, bullet_clone.transform.position, Quaternion.identity);
+                                                            explosion_clone.GetComponent<Collider2D>().OnTriggerEnter2DAsObservable()
+                                                                                                      .Subscribe(other =>
+                                                                                                      {
+                                                                                                          EnemyBase enemy;
+                                                                                                          other.TryGetComponent<EnemyBase>(out enemy);
+                                                                                                          if (enemy != null)
+                                                                                                          {
+                                                                                                              enemy.Damaged(attackValue);
+                                                                                                          }
+                                                                                                      })
+                                                                                                      .AddTo(explosion_clone);
+                                                            Destroy(bullet_clone);
+                                                       })
+                                                       .AddTo(bullet_clone);
             }            
         }
 
         private async void Attack()
         {
-            state = MonsterState.Attack;
+            state = SniperKState.Attack;
             attackTime = 0;
             animator.SetTrigger("AttackTrigger");
-            await UniTask.Delay(1180, cancellationToken: this.GetCancellationTokenOnDestroy());
+            await UniTask.Delay(1180);
             Shot();
-            state = MonsterState.Idle;
+            state = SniperKState.Idle;
         }
-    }    
+    }
+
+    public enum SniperKState
+    {
+        Idle,
+        Attack
+    }
 }

@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 3252078700116416076}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.9515503, y: 4.4993095, z: -4.725035}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6908789350309662056}
   m_Father: {fileID: 0}
@@ -45,9 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 10
-  attackPower: 0
+  attackValue: 1
   isUniquePosition: 0
-  summonWaitTime: 0
   animator: {fileID: 6908789350309662058}
   bulletPrefab: {fileID: 2120685219595472825, guid: bddcebaaa704c43b2bab37ccc6332c0a, type: 3}
   explosionPrefab: {fileID: 4866448439965539690, guid: a9482787e6a6348e2b9d98580ee84d25, type: 3}

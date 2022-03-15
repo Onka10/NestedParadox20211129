@@ -23,13 +23,13 @@ namespace NestedParadox.Monsters
         private bool canAttack;
         private float attackTime;
         private TempCharacter player;
-        private MonsterState state;
+        private DustDevilState state;
         // Start is called before the first frame update
         void Start()
         {
             canAttack = true;
             attackTime = 0;
-            state = MonsterState.Idle;
+            state = DustDevilState.Idle;
             player = GameObject.FindGameObjectWithTag("MainCharacter").GetComponent<TempCharacter>();
             attackColl.OnTriggerEnter2DAsObservable().Subscribe(other => OnAttackHit(other)).AddTo(this);
             Vector3 localScale_temp = new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z);
@@ -62,28 +62,23 @@ namespace NestedParadox.Monsters
         // Update is called once per frame
         void FixedUpdate()
         {
-            if (state == MonsterState.Idle)//待機中
+            if (state == DustDevilState.Idle)//待機中
             {
                 transform.position = new Vector3(Mathf.Lerp(transform.position.x, player.transform.position.x - uniqueDistanceOffset.x, 0.1f),
                                                  Mathf.Lerp(transform.position.y, player.transform.position.y - uniqueDistanceOffset.y, 0.1f),
                                                  Mathf.Lerp(transform.position.z, player.transform.position.z - uniqueDistanceOffset.z, 0.1f));
             }
-            else if (state == MonsterState.Attack)//攻撃中
+            else if (state == DustDevilState.Attack)//攻撃中
             {
 
             }
-        }
-
-        private void OnSummoned()
-        {
-
         }
 
         //ランダムに敵を見つけて連続攻撃
         private async void Attack()
         {
             Debug.Log("Attack開始");
-            state = MonsterState.Attack;
+            state = DustDevilState.Attack;
             attackColl.enabled = true;
             GameObject[] targets = GameObject.FindGameObjectsWithTag("Enemy");
             int random = Random.Range(0, targets.Length);
@@ -107,7 +102,7 @@ namespace NestedParadox.Monsters
                 await UniTask.Yield();
             }
 
-            state = MonsterState.Idle;
+            state = DustDevilState.Idle;
             rb.velocity = Vector3.zero;            
             attackColl.enabled = false;                       
             await UniTask.WaitUntil(() => (transform.position - (player.transform.position - uniqueDistanceOffset)).magnitude < 0.7f);
@@ -126,12 +121,18 @@ namespace NestedParadox.Monsters
             other.TryGetComponent<EnemyBase>(out enemy);
             if(enemy != null)
             {
-                enemy.Damaged(attackPower);
+                enemy.Damaged(attackValue);
                 Instantiate(attackEffect, transform.position, Quaternion.identity);
             }            
         }
 
 
-    }    
+    }
+
+    public enum DustDevilState
+    {
+        Idle,
+        Attack
+    }
 }
 

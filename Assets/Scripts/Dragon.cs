@@ -43,7 +43,6 @@ public class Dragon : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
         attackTime += Time.deltaTime;
         if(attackTime > attackSpan)
         {

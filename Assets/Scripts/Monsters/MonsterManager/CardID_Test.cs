@@ -6,10 +6,10 @@ namespace NestedParadox.Monsters
 {
     public enum CardID
     {
-        DustDevil = 0,
-        GuardKun = 1,
-        SniperK = 2,
-        CatWarrior = 3,
+        DustDevil,
+        GuardKun,
+        SniperK,
+        CatWarrior,
     }
 
 }
