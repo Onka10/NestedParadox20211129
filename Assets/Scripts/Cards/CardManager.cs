@@ -30,7 +30,7 @@ namespace NestedParadox.Cards
 
         void Start(){
             //キャッシュ
-            _cardpresenter = CardPresenter
+            _cardpresenter = CardPresenter.I;
 
             _deck.AddTo(this);
             _hand.AddTo(this);
