@@ -8,5 +8,5 @@ interface IApplyDamage
     IReadOnlyReactiveProperty<int> Hp{get;}
 
     //引数のDamageは攻撃時に攻撃側が与えてください
-    void Damaged(Damage Damage);
+    void Damaged(int Damage);
 }
