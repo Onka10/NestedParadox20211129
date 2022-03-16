@@ -10,7 +10,7 @@ namespace NestedParadox.Cards
     //複数選択有効
     [CanEditMultipleObjects]
 
-    public class CardManager : MonoBehaviour
+    public class CardManager : Singleton<CardManager>
     {
         //購読される変数
         public IReactiveCollection<int> Deck => _deck;
@@ -26,20 +26,24 @@ namespace NestedParadox.Cards
         private readonly ReactiveProperty<int> _graveyardcount = new ReactiveProperty<int>(0);
         private readonly IntReactiveProperty _nowhand = new IntReactiveProperty(0);
 
-        public bool kari=false;//テスト
+        CardPresenter _cardpresenter;
 
         void Start(){
+            //キャッシュ
+            _cardpresenter = CardPresenter.I;
+
             _deck.AddTo(this);
             _hand.AddTo(this);
             _graveyardcount.AddTo(this);
             _nowhand.AddTo(this);
             _nowhand.AddTo(this);
 
-            Init();
+            InitDeck();
         }
 
-        private void Init(){
-            //デッキシャッフル
+        private void InitDeck(){
+            //ToDoデッキシャッフル
+
             for (int i = _deck.Count - 1; i > 0; i--){
                 var j = UnityEngine.Random.Range(0, i+1); // ランダムで要素番号を１つ選ぶ（ランダム要素）
                 var temp = _deck[i]; // 一番最後の要素を仮確保（temp）にいれる
@@ -75,7 +79,10 @@ namespace NestedParadox.Cards
             if(_hand.Count >= 1)//手札が1枚以上の時
             {
                 //TO DO処理を試みる
-                if(CardCheck()){
+                if(_cardpresenter.Check(_hand[_nowhand.Value])){
+                    //効果実行
+                    _cardpresenter.Execute(_hand[_nowhand.Value]);
+
                     //墓地へ捨てる
                     graveyard.Enqueue(_hand[_nowhand.Value]);
                     //UI更新
@@ -85,13 +92,7 @@ namespace NestedParadox.Cards
                     _hand.RemoveAt(_nowhand.Value);
                     if(_hand.Count!=0 && _nowhand.Value!=0)   Rotatehand(-1);//手札が残っている&&手札の選択が最初じゃない
                 }
-                Debug.Log("召喚");
             }
-        }
-
-        public bool CardCheck(){
-            //Unitaskで待つ？
-            return true;
         }
 
         public void publicRotateHand(int h){
@@ -131,77 +132,77 @@ namespace NestedParadox.Cards
         }
 
 
-        #if UNITY_EDITOR
-        // デバッグ確認用
-        [CustomEditor(typeof(CardManager), true)]
-        public class CollectionPreview : Editor
-        {
-            int additem = 0;
+    //     #if UNITY_EDITOR
+    //     // デバッグ確認用
+    //     [CustomEditor(typeof(CardManager), true)]
+    //     public class CollectionPreview : Editor
+    //     {
+    //         int additem = 0;
 
-            public override void OnInspectorGUI()
-            {
-                // 親クラスを参照
-                CardManager _drc = (CardManager)target;
-                ReactiveCollection<int> _iCol = _drc._deck;
+    //         public override void OnInspectorGUI()
+    //         {
+    //             // 親クラスを参照
+    //             CardManager _drc = (CardManager)target;
+    //             ReactiveCollection<int> _iCol = _drc._deck;
 
-                int _count = _iCol.Count;
-                if( _count == 0)
-                {
-                    EditorGUILayout.HelpBox("No exist items or No runtime.", MessageType.None);
-                    return;
-                }
+    //             int _count = _iCol.Count;
+    //             if( _count == 0)
+    //             {
+    //                 EditorGUILayout.HelpBox("No exist items or No runtime.", MessageType.None);
+    //                 return;
+    //             }
 
-                //リストの表示
-                for( int i = 0; i < _count; i++)
-                {
-                    EditorGUILayout.BeginHorizontal();
-                    _iCol[i] = EditorGUILayout.IntField("Deck number" + i.ToString(), (_iCol[i]));
-                    if( GUILayout.Button("Delete"))
-                    {
-                        _iCol.RemoveAt(i);
-                        EditorGUILayout.EndHorizontal();
-                        return;
-                    }
-                    EditorGUILayout.EndHorizontal();
-                }
+    //             //リストの表示
+    //             for( int i = 0; i < _count; i++)
+    //             {
+    //                 EditorGUILayout.BeginHorizontal();
+    //                 _iCol[i] = EditorGUILayout.IntField("Deck number" + i.ToString(), (_iCol[i]));
+    //                 if( GUILayout.Button("Delete"))
+    //                 {
+    //                     _iCol.RemoveAt(i);
+    //                     EditorGUILayout.EndHorizontal();
+    //                     return;
+    //                 }
+    //                 EditorGUILayout.EndHorizontal();
+    //             }
 
-                //ここから自作
-                // nowhandを表示
-                //private IntReactiveProperty _nowhand = new IntReactiveProperty(0); 原文
-                IntReactiveProperty nowhand = _drc._nowhand;
-                int n = nowhand.Value;
+    //             //ここから自作
+    //             // nowhandを表示
+    //             //private IntReactiveProperty _nowhand = new IntReactiveProperty(0); 原文
+    //             IntReactiveProperty nowhand = _drc._nowhand;
+    //             int n = nowhand.Value;
 
-                EditorGUILayout.BeginHorizontal();
-                EditorGUILayout.IntField("nowhand",n);
-                EditorGUILayout.EndHorizontal();
+    //             EditorGUILayout.BeginHorizontal();
+    //             EditorGUILayout.IntField("nowhand",n);
+    //             EditorGUILayout.EndHorizontal();
 
 
-                //Handの表示
-                // 親クラスを参照
-                ReactiveCollection<int> _ihand = _drc._hand;
+    //             //Handの表示
+    //             // 親クラスを参照
+    //             ReactiveCollection<int> _ihand = _drc._hand;
 
-                int _handcount = _ihand.Count;
-                if( _handcount == 0)
-                {
-                    EditorGUILayout.HelpBox("No exist items or No runtime.", MessageType.None);
-                    return;
-                }
-                for( int i = 0; i < _handcount; i++)
-                {
-                    EditorGUILayout.BeginHorizontal();
-                    _ihand[i] = EditorGUILayout.IntField("Hand number" + i.ToString(), (_ihand[i]));
-                    if( GUILayout.Button("Delete"))
-                    {
-                        _ihand.RemoveAt(i);
-                        EditorGUILayout.EndHorizontal();
-                        return;
-                    }
-                    EditorGUILayout.EndHorizontal();
-                }
-            }
+    //             int _handcount = _ihand.Count;
+    //             if( _handcount == 0)
+    //             {
+    //                 EditorGUILayout.HelpBox("No exist items or No runtime.", MessageType.None);
+    //                 return;
+    //             }
+    //             for( int i = 0; i < _handcount; i++)
+    //             {
+    //                 EditorGUILayout.BeginHorizontal();
+    //                 _ihand[i] = EditorGUILayout.IntField("Hand number" + i.ToString(), (_ihand[i]));
+    //                 if( GUILayout.Button("Delete"))
+    //                 {
+    //                     _ihand.RemoveAt(i);
+    //                     EditorGUILayout.EndHorizontal();
+    //                     return;
+    //                 }
+    //                 EditorGUILayout.EndHorizontal();
+    //             }
+    //         }
 
-        }
-    #endif
+    //     }
+    // #endif
 
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 namespace NestedParadox.Players
 {
     // プレイヤーの本体を表すコンポーネント
-    public sealed class PlayerCore : MonoBehaviour,IApplyDamage
+    public sealed class PlayerCore : MonoBehaviour
     {
         // // 死んでいるか
         // public IReadOnlyReactiveProperty<bool> IsDead => _isDead;
@@ -27,10 +27,13 @@ namespace NestedParadox.Players
         private readonly ReactiveProperty<int> _playerdrawenergy = new ReactiveProperty<int>();
 
         //外部参照
-        [SerializeField] PlayerBuff _playerbuff;
+        PlayerBuff _playerbuff;
 
 
         void Start(){
+            //キャッシュ
+            _playerbuff = PlayerBuff.I;
+
             //仮でプレイヤーのHPを100としてます。
             _playerhp.Value = 100;
             _playerdrawenergy.Value =10;
@@ -38,7 +41,7 @@ namespace NestedParadox.Players
 
         public void Damaged(int Damage)
         {
-            Damage = _playerbuff.Buff(Damage);
+            Damage = _playerbuff.Guard(Damage);
             _playerhp.Value -=Damage;
         }
 

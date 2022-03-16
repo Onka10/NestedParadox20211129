@@ -1,20 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using NestedParadox.Monsters;
 
-public class CardPresenter : MonoBehaviour
+public class CardPresenter : Singleton<CardPresenter>
 {
-    [SerializeField] NestedParadox.Cards.CardManager c;
     public List<GameObject> CardList = new List<GameObject>();
+    [SerializeField] MonsterManager monsterManager;
 
 
     public bool Check(int id){
-        return CardList[id].GetComponent<IMagic>().CheckCondition();
-        //モンスターの確認もここでやるとおもう
         //現状、Check & Doになってしまってる
+        return CardList[id].GetComponent<ICard>().CheckTrigger();
     }
 
-    // public void Execute(int id){
-    //     CardList[id].GetComponent<IMagic>().ExecutionMagic();
-    // }
+    public void Execute(int id){//オンカロの担当は魔法のみ
+        var Magic = CardList[id].GetComponent<IMagic>();
+
+        if(Magic != null)   Magic.Execution();
+        else{
+            //モンスターなら召喚
+            // monsterManager.Summon(id);
+            Debug.Log("モンスター召喚");
+        }
+    }
 }

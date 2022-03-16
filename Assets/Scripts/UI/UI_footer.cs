@@ -8,7 +8,7 @@ public class UI_footer : MonoBehaviour
 {
     //暫定的なクラスのため、カード準備画面やカード種類の増加に合わせて拡張や作り直しになります
 
-    [SerializeField] NestedParadox.Cards.CardManager _cardmaganeger;
+    // [SerializeField] NestedParadox.Cards.CardManager _cardmaganeger;
 
     [SerializeField] Text decktext;
     [SerializeField] Text graveyardtext;
@@ -18,8 +18,13 @@ public class UI_footer : MonoBehaviour
     public Sprite[] CardsIconImages = new Sprite[7]; 
     Sprite cardicon;
 
+    NestedParadox.Cards.CardManager _cardmaganeger;
+
 
     void Start(){
+        //カードマネージャのキャッシュ
+        _cardmaganeger = NestedParadox.Cards.CardManager.I;
+
         Init();
 
         _cardmaganeger.Deck
