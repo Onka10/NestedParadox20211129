@@ -134,6 +134,13 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
+    "com.unity.inputsystem": {
+      "version": "1.0.2",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
     "com.unity.mathematics": {
       "version": "1.2.1",
       "depth": 3,
@@ -142,7 +149,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.ml-agents": {
-      "version": "file:/Users/inayoshikouya/Downloads/ml-agentsのコピー/com.unity.ml-agents",
+      "version": "file:C:/MLAgents/com.unity.ml-agents",
       "depth": 0,
       "source": "local",
       "dependencies": {
