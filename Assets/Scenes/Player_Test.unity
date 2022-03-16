@@ -392,6 +392,7 @@ GameObject:
   - component: {fileID: 96060971}
   - component: {fileID: 96060975}
   - component: {fileID: 96060974}
+  - component: {fileID: 96060976}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -489,6 +490,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanceOffset: {x: 0, y: -2, z: 1.5}
+--- !u!114 &96060976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 96060970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
 --- !u!1 &193661769
 GameObject:
   m_ObjectHideFlags: 0
@@ -1567,6 +1600,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9adb236b9f9df3d4485ec9df4e9657b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _monstermanager: {fileID: 0}
+  _playerbuff: {fileID: 0}
 --- !u!4 &686973148
 Transform:
   m_ObjectHideFlags: 0
@@ -2329,7 +2364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b6880def8f75f24e9f045c4e735695a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  guardkunmanager: {fileID: 0}
+  _guardkunmanager: {fileID: 0}
 --- !u!1 &1568128048
 GameObject:
   m_ObjectHideFlags: 0
@@ -2388,7 +2423,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc8b4fb929b87094abeb7ef1e563fc10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  kari: 0
 --- !u!114 &1568128052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2401,11 +2435,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e70ef0001b64515449138f482b5e0b2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  c: {fileID: 1568128051}
   CardList:
   - {fileID: 287867240}
   - {fileID: 53620186}
   - {fileID: 686973146}
+  monsterManager: {fileID: 0}
 --- !u!1 &1576074720
 GameObject:
   m_ObjectHideFlags: 0
@@ -3412,7 +3446,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39ec2b14de8b90146a25c75b64b36376, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cardmaganeger: {fileID: 1568128051}
   decktext: {fileID: 465158020}
   graveyardtext: {fileID: 544043623}
   UI_handselect:
@@ -3651,7 +3684,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000061035, y: 0}
+  m_AnchoredPosition: {x: 71.82, y: -37.94}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1887208352

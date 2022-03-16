@@ -50,6 +50,10 @@ namespace NestedParadox.Players
             _playerhp.Value -=Damage;
         }
 
+        public void ChangeAttackPower(int atk){
+            _playerATK.Value = atk;
+        }
+
         // 無敵か
     //     private bool _isInvincible;
 
