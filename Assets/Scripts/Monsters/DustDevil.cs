@@ -74,9 +74,9 @@ namespace NestedParadox.Monsters
             }
         }
 
-        private void OnSummoned()
+        public void SetAttackPower(int attackPower)
         {
-
+            this.attackPower = attackPower;
         }
 
         //ランダムに敵を見つけて連続攻撃

@@ -4,6 +4,7 @@ using UnityEngine;
 using Cysharp.Threading.Tasks;
 using UniRx;
 using UniRx.Triggers;
+using NestedParadox.Players;
 
 namespace NestedParadox.Monsters
 {
@@ -14,17 +15,16 @@ namespace NestedParadox.Monsters
         [SerializeField] float movingSpeed;
         [SerializeField] Vector3 guardPosition;        
         [SerializeField] Collider2D guardColl;
-        private TempCharacter player;
-        private MonsterState state;
+        private PlayerMove playerMove;        
 
         // Start is called before the first frame update
         void Start()
         {
             state = MonsterState.Idle;
-            player = GameObject.FindGameObjectWithTag("MainCharacter").GetComponent<TempCharacter>();
+            playerMove = PlayerMove.I;
             Vector3 localScale_temp = new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z);
             Vector3 distanceOffset_temp = new Vector3(distanceOffset.x, distanceOffset.y, distanceOffset.z);
-            player.CurrentDirection.Subscribe(x =>
+            playerMove.CurrentDirection.Subscribe(x =>
             {
                 if(x == 1)
                 {
@@ -44,9 +44,9 @@ namespace NestedParadox.Monsters
         {
             if (state == MonsterState.Idle)//待機中
             {
-                transform.position = new Vector3(Mathf.Lerp(transform.position.x, player.transform.position.x - distanceOffset.x, 0.1f),
-                                                 Mathf.Lerp(transform.position.y, player.transform.position.y - distanceOffset.y, 0.1f),
-                                                 Mathf.Lerp(transform.position.z, player.transform.position.z - distanceOffset.z, 0.1f));
+                transform.position = new Vector3(Mathf.Lerp(transform.position.x, playerMove.transform.position.x - distanceOffset.x, 0.1f),
+                                                 Mathf.Lerp(transform.position.y, playerMove.transform.position.y - distanceOffset.y, 0.1f),
+                                                 Mathf.Lerp(transform.position.z, playerMove.transform.position.z - distanceOffset.z, 0.1f));
             }
             else if (state == MonsterState.Guard)//ガード中
             {
@@ -57,7 +57,7 @@ namespace NestedParadox.Monsters
         public async void Guard()
         {
             state = MonsterState.Guard;
-            transform.position = player.transform.position;
+            transform.position = playerMove.transform.position;
             hp -= 1;            
             GameObject guardEffect_clone = Instantiate(guardEffect, transform.position, Quaternion.identity);
             if(transform.localScale.x < 0)
