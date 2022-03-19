@@ -1,4 +1,5 @@
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using NestedParadox.Monsters;
@@ -6,8 +7,6 @@ using NestedParadox.Monsters;
 public class CardPresenter : Singleton<CardPresenter>
 {
     public List<GameObject> CardList = new List<GameObject>();
-    [SerializeField] MonsterManager monsterManager;
-
 
     public bool Check(int id){
         //現状、Check & Doになってしまってる
@@ -18,10 +17,7 @@ public class CardPresenter : Singleton<CardPresenter>
         var Magic = CardList[id].GetComponent<IMagic>();
 
         if(Magic != null)   Magic.Execution();
-        else{
-            //モンスターなら召喚
-            // monsterManager.Summon(id);
-            Debug.Log("モンスター召喚");
-        }
+        else    MonsterManager.I.Summon((CardID)Enum.ToObject(typeof(CardID), id));
+
     }
 }

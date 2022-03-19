@@ -59,7 +59,7 @@ namespace NestedParadox.Players
                 // 接地中なら攻撃ができる
                 .Where(_ => _playerMove.IsGrounded.Value)
                 .ThrottleFirst(TimeSpan.FromSeconds(.6))//連打防止。通常攻撃は.4秒
-                .Subscribe(_ => _playerAnimation.NormalAttack())
+                .Subscribe(_ => NAttack())
                 .AddTo(this);
 
             // 強攻撃イベント
@@ -67,8 +67,19 @@ namespace NestedParadox.Players
                 // 接地中なら攻撃ができる
                 .Where(_ => _playerMove.IsGrounded.Value)
                 .ThrottleFirst(TimeSpan.FromSeconds(1))//連打防止。タメ攻撃はあ1秒
-                .Subscribe(_ => _playerAnimation.ChargeAttack())
+                .Subscribe(_ => CAttack())
                 .AddTo(this);
+        }
+
+        //本来は攻撃が当たったときにドローエナジーを増やして欲しいけど、今はこれで我慢
+        private void NAttack(){
+            _playerAnimation.NormalAttack();
+            _playercore.AddDrawEnergy(1);
+        }
+
+        private void CAttack(){
+            _playerAnimation.ChargeAttack();
+            _playercore.AddDrawEnergy(2);
         }
 
         // アニメーションイベントを購読する

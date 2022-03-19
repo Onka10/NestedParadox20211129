@@ -11,7 +11,7 @@ using NestedParadox.Players;
 
 namespace NestedParadox.Monsters
 {
-    public class MonsterManager : MonoBehaviour
+    public class MonsterManager : Singleton<MonsterManager>
     {
         [SerializeField] Button[] button; //テスト用
         [SerializeField] EventSystem eventSystem; //テスト用

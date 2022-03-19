@@ -27,7 +27,7 @@
                     "id": "09aa9d22-9e20-4ab1-9ba8-0333b3a0aaac",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "SlowTap"
                 },
                 {
                     "name": "Play",
@@ -207,7 +207,7 @@
                     "name": "",
                     "id": "143bb1cd-cc10-4eca-a2f0-a3664166fe91",
                     "path": "<DualShockGamepad>/buttonWest",
-                    "interactions": "SlowTap",
+                    "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
                     "action": "Fire",
@@ -218,7 +218,7 @@
                     "name": "",
                     "id": "05f6913d-c316-48b2-a6bb-e225f14c7960",
                     "path": "<Mouse>/leftButton",
-                    "interactions": "SlowTap",
+                    "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "Fire",

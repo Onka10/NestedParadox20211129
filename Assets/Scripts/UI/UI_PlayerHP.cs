@@ -8,7 +8,6 @@ using UniRx;
 public class UI_PlayerHP : MonoBehaviour
 {
     private Slider HPSlider;
-    [SerializeField] PlayerCore _playercore;
 
     // Start is called before the first frame update
     void Start()
@@ -16,7 +15,7 @@ public class UI_PlayerHP : MonoBehaviour
         HPSlider = GetComponent<Slider>();
         HPSlider.maxValue = 100;
 
-        _playercore.Hp
+        PlayerCore.I.Hp
         .Subscribe(x=>UPdatePlayerHPUI(x))
         .AddTo(this);
     }
