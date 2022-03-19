@@ -5,7 +5,7 @@ using UnityEngine;
 namespace NestedParadox.Players
 {
     // プレイヤーの本体を表すコンポーネント
-    public sealed class PlayerCore : MonoBehaviour
+    public sealed class PlayerCore : Singleton<PlayerCore>
     {
         // // 死んでいるか
         // public IReadOnlyReactiveProperty<bool> IsDead => _isDead;

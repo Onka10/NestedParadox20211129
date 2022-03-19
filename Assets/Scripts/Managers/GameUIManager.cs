@@ -12,6 +12,7 @@ public class GameUIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         player = GameObject.FindGameObjectWithTag("MainCharacter").GetComponent<TempCharacter>();
         player.Hp_test.Subscribe(x => hpText.text = $"体力: {x}").AddTo(this);
     }

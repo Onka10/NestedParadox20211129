@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace NestedParadox.Monsters
 {
-    public class GuardKunManager : MonoBehaviour
+    public class GuardKunManager : Singleton<GuardKunManager>
     {
         private bool isActive;
         public bool IsActive => isActive;

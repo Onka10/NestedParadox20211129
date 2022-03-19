@@ -78,6 +78,7 @@ GameObject:
   - component: {fileID: 5695078908484181314}
   - component: {fileID: 7585763047946589129}
   - component: {fileID: 523752906355150105}
+  - component: {fileID: 4959935340524356951}
   m_Layer: 0
   m_Name: MainCharacter
   m_TagString: MainCharacter
@@ -258,7 +259,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07a6bdd995821044aa517f01f3c144f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _attackPower: 1
   _attackCollider1: {fileID: 9157635245861242031}
   _attackCollider2: {fileID: 7814540243780590086}
 --- !u!114 &3610347261463236515
@@ -328,6 +328,19 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   _isMoveBlock: 0
+--- !u!114 &4959935340524356951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3940244972384970385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b6880def8f75f24e9f045c4e735695a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guardkunmanager: {fileID: 0}
 --- !u!1 &8166128699369107097
 GameObject:
   m_ObjectHideFlags: 0
