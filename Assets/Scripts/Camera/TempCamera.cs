@@ -23,11 +23,11 @@ namespace MainCamera
             Vector3 distanceOffset_temp = new Vector3(distanceOffset.x, distanceOffset.y, distanceOffset.z);
             characterDirection.Subscribe(x =>
             {
-                if(x == 1)
+                if(x == -1)
                 {
                     distanceOffset = new Vector3(distanceOffset_temp.x, distanceOffset_temp.y, distanceOffset_temp.z);
                 }
-                else if(x == -1)
+                else if(x == 1)
                 {
                     distanceOffset = new Vector3(distanceOffset_temp.x * -1, distanceOffset_temp.y, distanceOffset_temp.z);
                 }

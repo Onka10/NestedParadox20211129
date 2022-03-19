@@ -31,7 +31,7 @@ namespace NestedParadox.Players
 
 
         //赤さんのカメラ
-        public IReadOnlyReactiveProperty<int> CurrentDirection => currentDirection.Select(x => x.x < 0 ? 1 : -1).ToReactiveProperty<int>();
+        public IReadOnlyReactiveProperty<int> CurrentDirection => currentDirection.Select(x => x.x > 0 ? 1 : -1).ToReactiveProperty<int>();
         private ReactiveProperty<Vector3> currentDirection = new ReactiveProperty<Vector3>();
         public Transform MyTransform { get { return myTransform; } }
         private Transform myTransform;

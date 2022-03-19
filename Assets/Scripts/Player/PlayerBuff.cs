@@ -12,11 +12,11 @@ namespace NestedParadox.Players{
         private readonly ReactiveProperty<int> _enhancedATK = new ReactiveProperty<int>();
 
         //外部参照
-        [SerializeField] GuardKunManager _guardkunmanager;
+        GuardKunManager _guardkunmanager;
 
         void Start()
         {
-            
+            _guardkunmanager=GuardKunManager.I;
         }
 
         public int Guard(int damage){
