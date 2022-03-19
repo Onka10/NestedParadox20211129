@@ -74,7 +74,7 @@ namespace NestedParadox.Players
         //本来は攻撃が当たったときにドローエナジーを増やして欲しいけど、今はこれで我慢
         private void NAttack(){
             _playerAnimation.NormalAttack();
-            _playercore.AddDrawEnergy(1);
+            _playercore.AddDrawEnergy(10);
         }
 
         private void CAttack(){

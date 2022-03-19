@@ -96,7 +96,7 @@ public class TempCharacter : MonoBehaviour, IApplyDamage
     public void Damaged(int damage)
     {
         
-        if(guardKunManager.IsActive)
+        if((GuardKunManager.I.Count > 0))
         {            
             guardKunManager.Guard(ref damage);
             hp -= damage;
