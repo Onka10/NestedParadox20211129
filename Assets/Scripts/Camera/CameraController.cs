@@ -13,13 +13,13 @@ namespace MainCamera
         private Transform myTransform;
         private IReadOnlyReactiveProperty<int> characterDirection;
 
-        private NestedParadox.Players.PlayerInput _playerinput;
+        private NestedParadox.Players.PlayerMove _playermove;
 
         private void Start()
         {
-            _playerinput = GameObject.FindGameObjectWithTag("MainCharacter").GetComponent <NestedParadox.Players.PlayerInput>();
+            _playermove = GameObject.FindGameObjectWithTag("MainCharacter").GetComponent <NestedParadox.Players.PlayerMove>();
             myTransform = transform;
-            characterDirection = GameObject.FindGameObjectWithTag("MainCharacter").GetComponent<NestedParadox.Players.PlayerInput>().CurrentDirection;
+            characterDirection = GameObject.FindGameObjectWithTag("MainCharacter").GetComponent<NestedParadox.Players.PlayerMove>().CurrentDirection;
             characterDirection.Subscribe(x =>
             {
                 distanceOffset = new Vector3(distanceOffset.x * -1, distanceOffset.y, distanceOffset.z);
@@ -39,9 +39,9 @@ namespace MainCamera
             }
             else
             {
-                myTransform.position += new Vector3(Mathf.Lerp(myTransform.position.x, _playerinput.MyTransform.position.x - distanceOffset.x, 0.05f), 0, 0) - myTransform.position;
+                myTransform.position += new Vector3(Mathf.Lerp(myTransform.position.x, _playermove.MyTransform.position.x - distanceOffset.x, 0.05f), 0, 0) - myTransform.position;
 
-                myTransform.position += new Vector3(0, Mathf.Lerp(myTransform.position.y, _playerinput.MyTransform.position.y - distanceOffset.y, 0.0001f), 0) - myTransform.position;
+                myTransform.position += new Vector3(0, Mathf.Lerp(myTransform.position.y, _playermove.MyTransform.position.y - distanceOffset.y, 0.0001f), 0) - myTransform.position;
             }            
         }
     }

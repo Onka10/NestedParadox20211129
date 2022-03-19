@@ -33,11 +33,6 @@ namespace NestedParadox.Players
         private readonly Subject<Unit> _changehandLsubject = new Subject<Unit>();         
 
 
-        //赤さんのカメラ
-        public IReadOnlyReactiveProperty<int> CurrentDirection => currentDirection.Select(x => x.x < 0 ? 1 : -1).ToReactiveProperty<int>();
-        private ReactiveProperty<Vector3> currentDirection = new ReactiveProperty<Vector3>();
-        public Transform MyTransform { get { return myTransform; } }
-        private Transform myTransform;
 
         private void Start(){
             //AddToでOnDestroy時にDispose()されるように登録する
@@ -49,12 +44,6 @@ namespace NestedParadox.Players
             _drawcardsubject.AddTo(this);
             _changehandRsubject.AddTo(this);
             _changehandLsubject.AddTo(this);
-
-            //赤さんのカメラ
-            myTransform = transform;
-            currentDirection.Value = myTransform.localScale;
-            currentDirection.AddTo(this);
-
         }
 
         void FixedUpdate(){
