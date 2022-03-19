@@ -13,13 +13,13 @@ namespace MainCamera
         private Transform myTransform;
         private IReadOnlyReactiveProperty<int> characterDirection;
 
-        private PlayerInput _playerinput;
+        private PlayerMove _playermove;
 
         private void Start()
         {
-            _playerinput = GameObject.FindGameObjectWithTag("MainCharacter").GetComponent<PlayerInput>();
+            _playermove = GameObject.FindGameObjectWithTag("MainCharacter").GetComponent<PlayerMove>();
             myTransform = transform;
-            characterDirection = GameObject.FindGameObjectWithTag("MainCharacter").GetComponent<PlayerInput>().CurrentDirection;
+            characterDirection = GameObject.FindGameObjectWithTag("MainCharacter").GetComponent<PlayerMove>().CurrentDirection;
             characterDirection.Subscribe(x =>
             {
                 distanceOffset = new Vector3(distanceOffset.x * -1, distanceOffset.y, distanceOffset.z);
@@ -38,16 +38,16 @@ namespace MainCamera
             }
             else if(myTransform.position.x == 6.4f || myTransform.position.x == 32)
             {
-                myTransform.position = new Vector3(Mathf.Lerp(myTransform.position.x, _playerinput.MyTransform.position.x - distanceOffset.x, 0.0001f),
+                myTransform.position = new Vector3(Mathf.Lerp(myTransform.position.x, _playermove.MyTransform.position.x - distanceOffset.x, 0.0001f),
                                              1.51f,
-                                             Mathf.Lerp(myTransform.position.z, _playerinput.MyTransform.position.z - distanceOffset.z, 0.05f)
+                                             Mathf.Lerp(myTransform.position.z, _playermove.MyTransform.position.z - distanceOffset.z, 0.05f)
                                              );
             }
             else
             {
-                myTransform.position = new Vector3(Mathf.Lerp(myTransform.position.x, _playerinput.MyTransform.position.x - distanceOffset.x, 0.05f),
+                myTransform.position = new Vector3(Mathf.Lerp(myTransform.position.x, _playermove.MyTransform.position.x - distanceOffset.x, 0.05f),
                                              1.51f,
-                                             Mathf.Lerp(myTransform.position.z, _playerinput.MyTransform.position.z - distanceOffset.z, 0.05f)
+                                             Mathf.Lerp(myTransform.position.z, _playermove.MyTransform.position.z - distanceOffset.z, 0.05f)
                                              );
             }            
         }
