@@ -8,18 +8,17 @@ using UniRx;
 public class UI_DrawEnergy : MonoBehaviour
 {
     private Slider DrawEnegrySlider;
-    [SerializeField] PlayerCore _playercore;
     void Start()
     {
         DrawEnegrySlider = GetComponent<Slider>();
-        DrawEnegrySlider.maxValue = 1;
+        DrawEnegrySlider.maxValue = 10;
 
-        // _playercore.PlayerHP
-        // .Subscribe(x=>UpdateDrawEnergyUI(x))
-        // .AddTo(this);
+        PlayerCore.I.PlayerDrawEnergy
+        .Subscribe(x=>UpdateDrawEnergyUI(x))
+        .AddTo(this);
     }
 
-    // private void UpdateDrawEnergyUI(int x){
-    //     DrawEnegrySlider.value = x;
-    // }
+    private void UpdateDrawEnergyUI(int x){
+        DrawEnegrySlider.value = x;
+    }
 }

@@ -12,6 +12,7 @@ public class UI_footer : MonoBehaviour
 
     [SerializeField] Text decktext;
     [SerializeField] Text graveyardtext;
+    
     public List<GameObject> UI_handselect = new List<GameObject>(3);
     public List<GameObject> UI_hand = new List<GameObject>(3);
 
@@ -24,8 +25,6 @@ public class UI_footer : MonoBehaviour
     void Start(){
         //カードマネージャのキャッシュ
         _cardmaganeger = NestedParadox.Cards.CardManager.I;
-
-        Init();
 
         _cardmaganeger.Deck
         .ObserveCountChanged()
@@ -49,6 +48,8 @@ public class UI_footer : MonoBehaviour
         _cardmaganeger.NowHand
         .Subscribe(x => UpdateSelecthand(x))
         .AddTo(this);
+
+        Init();
     }
 
     private void Init(){
@@ -78,12 +79,12 @@ public class UI_footer : MonoBehaviour
         
         for(int z=0;z<_cardmaganeger.Hand.Count;z++){
             UI_hand[z].SetActive(true);
-            CardCheck(z);
+            SetCardIcon(z);
             UI_hand[z].transform.GetChild(1).gameObject.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = cardicon;
         }
     }
 
-    private void CardCheck(int num){
+    private void SetCardIcon(int num){
         //手札numに対して適切なカードアイコンを設定します
         int id = _cardmaganeger.Hand[num];
         cardicon = CardsIconImages[id];

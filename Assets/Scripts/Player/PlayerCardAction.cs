@@ -15,8 +15,6 @@ namespace NestedParadox.Players
         {
             //カードマネージャのキャッシュ
             _cardmanager = NestedParadox.Cards.CardManager.I;
-
-
             _playerinput = GetComponent<PlayerInput>();
             _playercore = GetComponent<PlayerCore>();
 
@@ -26,7 +24,7 @@ namespace NestedParadox.Players
 
             _playerinput.OnDrawCard
             .Where(_ => _playercore.PlayerDrawEnergy.Value ==10)//ドロエナジーの確認
-            .Subscribe(_=> _cardmanager.Draw())
+            .Subscribe(_=> CardActionDraw())
             .AddTo(this);
 
             _playerinput.OnChangeHandR
@@ -38,6 +36,12 @@ namespace NestedParadox.Players
             .Where(_ => _cardmanager.Hand.Count != 0)//手札があるときのみ実行
             .Subscribe(_=> _cardmanager.publicRotateHand(-1))
             .AddTo(this);
+        }
+
+        private void CardActionDraw(){
+            _cardmanager.Draw();
+            _playercore.ResetDrawEnergy();
+
         }
     }
 }

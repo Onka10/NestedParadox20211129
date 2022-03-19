@@ -12,17 +12,15 @@ namespace NestedParadox.Players
         // private readonly ReactiveProperty<bool> _isDead = new ReactiveProperty<bool>();
 
         //プレイヤーのHP
-        //細かい仕様は決まってない
         public IReadOnlyReactiveProperty<int> Hp => _playerhp;
         private readonly ReactiveProperty<int> _playerhp = new ReactiveProperty<int>();
+
         //プレイヤーの攻撃力
-        //細かい仕様は決まってない
         public IReadOnlyReactiveProperty<int> PlayerAttackPower => _playerATK;
         [SerializeField] private readonly IntReactiveProperty _playerATK = new IntReactiveProperty(1);
 
-        //ドロエナジー
-        //細かい仕様が決まってません。
-        //とりあえず、最大値を10として、10で召喚可能。10になるまで貯める必要がある。という仕様にしてます。
+
+        //ドローエナジー
         public IReadOnlyReactiveProperty<int> PlayerDrawEnergy => _playerdrawenergy;
         private readonly ReactiveProperty<int> _playerdrawenergy = new ReactiveProperty<int>();
 
@@ -52,6 +50,14 @@ namespace NestedParadox.Players
 
         public void ChangeAttackPower(int atk){
             _playerATK.Value = atk;
+        }
+
+        public void AddDrawEnergy(int d){
+            _playerdrawenergy.Value += d;
+        }
+
+        public void ResetDrawEnergy(){
+            _playerdrawenergy.Value=0;
         }
 
         // 無敵か
