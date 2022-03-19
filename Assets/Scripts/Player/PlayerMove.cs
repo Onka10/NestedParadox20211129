@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace NestedParadox.Players
 {
-    public class PlayerMove : MonoBehaviour
+    public class PlayerMove : Singleton<PlayerMove>
     {
         // 接地状態
         public IReadOnlyReactiveProperty<bool> IsGrounded => _isGrounded;
@@ -116,7 +116,7 @@ namespace NestedParadox.Players
             }
             else
             {
-                currentDirection.Value = Vector3.zero;
+                //currentDirection.Value = Vector3.zero;
                 return Vector3.zero;
             }
         }
