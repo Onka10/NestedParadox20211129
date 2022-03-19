@@ -68,7 +68,7 @@ GameObject:
   - component: {fileID: 254504800521427470}
   - component: {fileID: 254504800521427469}
   - component: {fileID: 254504800521427471}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: BaseField (1)
   m_TagString: BaseField
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 254504800747337598}
   - component: {fileID: 254504800747337597}
   - component: {fileID: 254504800747337599}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: BaseField (10)
   m_TagString: BaseField
   m_Icon: {fileID: 0}
@@ -286,7 +286,7 @@ GameObject:
   - component: {fileID: 254504800806784484}
   - component: {fileID: 254504800806784483}
   - component: {fileID: 254504800806784485}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: FootHold1 (1)
   m_TagString: FootHold1
   m_Icon: {fileID: 0}
@@ -395,7 +395,7 @@ GameObject:
   - component: {fileID: 254504801066619039}
   - component: {fileID: 254504801066619038}
   - component: {fileID: 254504801066619024}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: FootHold1
   m_TagString: FootHold1
   m_Icon: {fileID: 0}
@@ -504,7 +504,7 @@ GameObject:
   - component: {fileID: 254504801256332506}
   - component: {fileID: 254504801256332505}
   - component: {fileID: 254504801256332507}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: BaseField (5)
   m_TagString: BaseField
   m_Icon: {fileID: 0}
@@ -613,7 +613,7 @@ GameObject:
   - component: {fileID: 254504801326280685}
   - component: {fileID: 254504801326280684}
   - component: {fileID: 254504801326280686}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: BaseField (6)
   m_TagString: BaseField
   m_Icon: {fileID: 0}
@@ -722,7 +722,7 @@ GameObject:
   - component: {fileID: 254504801359843755}
   - component: {fileID: 254504801359843754}
   - component: {fileID: 254504801359843756}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: FootHold1 (2)
   m_TagString: FootHold1
   m_Icon: {fileID: 0}
@@ -831,7 +831,7 @@ GameObject:
   - component: {fileID: 254504801490723820}
   - component: {fileID: 254504801490723819}
   - component: {fileID: 254504801490723821}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: BaseField (13)
   m_TagString: BaseField
   m_Icon: {fileID: 0}
@@ -941,7 +941,7 @@ GameObject:
   - component: {fileID: 254504801584213178}
   - component: {fileID: 254504801584213176}
   - component: {fileID: 254504801584213177}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: FootHold2 (1)
   m_TagString: FootHold2
   m_Icon: {fileID: 0}
@@ -1070,7 +1070,7 @@ GameObject:
   - component: {fileID: 254504801609331333}
   - component: {fileID: 254504801609331331}
   - component: {fileID: 254504801609331332}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: FootHold2 (2)
   m_TagString: FootHold2
   m_Icon: {fileID: 0}
@@ -1198,7 +1198,7 @@ GameObject:
   - component: {fileID: 254504801742323708}
   - component: {fileID: 254504801742323707}
   - component: {fileID: 254504801742323709}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: BaseField (7)
   m_TagString: BaseField
   m_Icon: {fileID: 0}
@@ -1364,7 +1364,7 @@ GameObject:
   - component: {fileID: 254504802080769311}
   - component: {fileID: 254504802080769310}
   - component: {fileID: 254504802080769296}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: BaseField (11)
   m_TagString: BaseField
   m_Icon: {fileID: 0}
@@ -1473,7 +1473,7 @@ GameObject:
   - component: {fileID: 254504802217919447}
   - component: {fileID: 254504802217919446}
   - component: {fileID: 254504802217919272}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: BaseField (3)
   m_TagString: BaseField
   m_Icon: {fileID: 0}
@@ -1582,7 +1582,7 @@ GameObject:
   - component: {fileID: 254504802407027467}
   - component: {fileID: 254504802407027466}
   - component: {fileID: 254504802407027468}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: BaseField (14)
   m_TagString: BaseField
   m_Icon: {fileID: 0}
@@ -1692,7 +1692,7 @@ GameObject:
   - component: {fileID: 254504802417545754}
   - component: {fileID: 254504802417545757}
   - component: {fileID: 254504802417545756}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: FootHold2
   m_TagString: FootHold2
   m_Icon: {fileID: 0}
@@ -1820,7 +1820,7 @@ GameObject:
   - component: {fileID: 254504802467643182}
   - component: {fileID: 254504802467643181}
   - component: {fileID: 254504802467643183}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: BaseField (4)
   m_TagString: BaseField
   m_Icon: {fileID: 0}
@@ -1929,7 +1929,7 @@ GameObject:
   - component: {fileID: 254504802578070069}
   - component: {fileID: 254504802578070068}
   - component: {fileID: 254504802578070070}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: BaseField (8)
   m_TagString: BaseField
   m_Icon: {fileID: 0}

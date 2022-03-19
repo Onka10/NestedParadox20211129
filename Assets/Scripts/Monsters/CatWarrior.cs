@@ -97,8 +97,7 @@ namespace NestedParadox.Monsters
         }
 
         private async void OnHit(Collider2D other)
-        {
-            Debug.Log("猫戦士の攻撃がヒットしました");
+        {            
             EnemyBase enemy;
             other.TryGetComponent<EnemyBase>(out enemy);
             if (enemy != null)

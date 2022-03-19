@@ -140,7 +140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &56600188
 RectTransform:
   m_ObjectHideFlags: 0
@@ -561,7 +561,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &160445092
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1562,7 +1562,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &430474379
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1892,7 +1892,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 913e5e17c5fa4463587659a4d667724c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceOffset: {x: -1, y: -2.4, z: 10}
+  distanceOffset: {x: 1, y: -2.4, z: 10}
 --- !u!114 &486071572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1943,7 +1943,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &586681906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3069,7 +3069,7 @@ MonoBehaviour:
   - {fileID: 4042247962044257341, guid: 8bfca58cf405249c4b92d8343db6da82, type: 3}
   - {fileID: 3252078700116416076, guid: 4a9ffc6534b044277a31a678677aaf6f, type: 3}
   - {fileID: 880401945095471000, guid: 33042165a7412431f9a069a1a7d0473e, type: 3}
-  monsterRow: {fileID: 0}
+  monsterRow: {fileID: 1197586068}
   monstersSprite:
   - {fileID: 5068512105697022425, guid: 454ee113f7fda4af6a085d249dcf6355, type: 3}
   - {fileID: 2881271940313631352, guid: 21dd0405251d74bdcb63381cf7e3127e, type: 3}
@@ -3840,7 +3840,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1367771620
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4325,6 +4325,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 139785582, guid: 442452e6d5968944db11d893f9c70ff3, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 523752906355150105, guid: 442452e6d5968944db11d893f9c70ff3, type: 3}
       propertyPath: _groundMask.m_Bits
       value: 64
@@ -4340,6 +4344,10 @@ PrefabInstance:
     - target: {fileID: 3940244972384970385, guid: 442452e6d5968944db11d893f9c70ff3, type: 3}
       propertyPath: m_Name
       value: MainCharacter
+      objectReference: {fileID: 0}
+    - target: {fileID: 3940244972384970385, guid: 442452e6d5968944db11d893f9c70ff3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3940244972384970386, guid: 442452e6d5968944db11d893f9c70ff3, type: 3}
       propertyPath: m_RootOrder
@@ -4797,7 +4805,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1691151773
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4918,7 +4926,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1803557187
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5184,7 +5192,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1898094935
 RectTransform:
   m_ObjectHideFlags: 0
