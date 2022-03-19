@@ -63,16 +63,16 @@ namespace NestedParadox.Monsters
         {
             //モンスターの召喚アニメーションの表示
             MonsterSprite monsterSprite_clone = Instantiate(monstersSprite[(int)cardID]).GetComponent<MonsterSprite>();
-            Vector3 currentSummonPosition = monsterSprite_clone.SetSummonPosition(playerMove.transform.position, playerMove.CurrentDirection.Value);//player.CurrentDirection.Value); //召喚位置をset        
-            await monsterSprite_clone.SummonAnimation();//召喚完了するまで待つ
-
-
-            //本体の召喚
-            MonsterBase monster;
-            Instantiate(monsterPrefabList[(int)cardID]).TryGetComponent<MonsterBase>(out monster);
-            monster.transform.position = currentSummonPosition;
-            monsterList.Add(monster);
-            monster.SetPositionAndInitialize(monsterRow.GetNextPosition());            
+            Vector3 currentSummonPosition = monsterSprite_clone.SetSummonPosition(playerMove.transform.position, playerMove.CurrentDirection.Value); //召喚位置をset                    
+            await monsterSprite_clone.SummonAnimation();//召喚完了するまで待つ            
+            //　本体の召喚をspriteに任せるか迷い中
+            if (Instantiate(monsterPrefabList[(int)cardID]).TryGetComponent<MonsterBase>(out MonsterBase monster))
+            {
+                monster.transform.position = currentSummonPosition;
+                monsterList.Add(monster);
+                monster.SetPositionAndInitialize(monsterRow.GetNextPosition());
+            }
+            
         }       
     }
 }

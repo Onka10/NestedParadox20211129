@@ -5,7 +5,7 @@ using Cysharp.Threading.Tasks;
 
 namespace NestedParadox.Monsters
 {
-    public class MonsterSprite : MonoBehaviour
+    public class MonsterSprite : Singleton<MonsterSprite>
     {
         [SerializeField] protected GameObject summonEffect;
         [SerializeField] protected GameObject summonRedEffect;
@@ -14,6 +14,7 @@ namespace NestedParadox.Monsters
         [SerializeField] protected Vector3 summonEffectPosition;
         [SerializeField] protected Vector3 summonRedEffectScale;
         [SerializeField] protected Vector3 summonPosition;
+        [SerializeField] protected MonsterBase monster;
 
 
         public bool IsSummonCompleted;//召喚が完了したらMonsterManagerへ通知
@@ -48,7 +49,7 @@ namespace NestedParadox.Monsters
             await UniTask.WaitUntil(() => !animator.GetCurrentAnimatorStateInfo(0).IsName("Summon"));
             Destroy(summonEffect_clone);
             Destroy(summonRedEffect_clone);
-            Destroy(this.gameObject);
+            Destroy(this.gameObject);            
         }
 
 

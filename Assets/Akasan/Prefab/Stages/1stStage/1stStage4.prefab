@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5493307192727496909}
   - component: {fileID: 9093149737563664886}
   - component: {fileID: 1649716390300173986}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: BaseField (12)
   m_TagString: BaseField
   m_Icon: {fileID: 0}
@@ -30,7 +30,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8374047991976704182}
-  m_RootOrder: 23
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &9093149737563664886
 SpriteRenderer:
@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 4124348113758440305}
   - component: {fileID: 7175168382464012498}
   - component: {fileID: 808265466949663519}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: BaseField (13)
   m_TagString: BaseField
   m_Icon: {fileID: 0}
@@ -139,7 +139,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8374047991976704182}
-  m_RootOrder: 24
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7175168382464012498
 SpriteRenderer:
@@ -229,7 +229,7 @@ GameObject:
   - component: {fileID: 2081554488788429092}
   - component: {fileID: 4329955191176646396}
   - component: {fileID: 2734067986021459496}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: BaseField (15)
   m_TagString: BaseField
   m_Icon: {fileID: 0}
@@ -248,7 +248,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8374047991976704182}
-  m_RootOrder: 25
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4329955191176646396
 SpriteRenderer:
@@ -338,7 +338,7 @@ GameObject:
   - component: {fileID: 3789059839489634742}
   - component: {fileID: 979532119818301967}
   - component: {fileID: 8606093064396022002}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: BaseField (4)
   m_TagString: BaseField
   m_Icon: {fileID: 0}
@@ -357,7 +357,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8374047991976704182}
-  m_RootOrder: 20
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &979532119818301967
 SpriteRenderer:
@@ -447,7 +447,7 @@ GameObject:
   - component: {fileID: 3053048923846930867}
   - component: {fileID: 3053048923846930864}
   - component: {fileID: 3053048923846930866}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: BaseField (10)
   m_TagString: BaseField
   m_Icon: {fileID: 0}
@@ -574,7 +574,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8374047991976704182}
-  m_RootOrder: 8
+  m_RootOrder: 31
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &3053048924089278432
 BoxCollider2D:
@@ -613,7 +613,7 @@ GameObject:
   - component: {fileID: 3053048924141247683}
   - component: {fileID: 3053048924141247680}
   - component: {fileID: 3053048924141247682}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: BaseField (1)
   m_TagString: BaseField
   m_Icon: {fileID: 0}
@@ -722,7 +722,7 @@ GameObject:
   - component: {fileID: 3053048924343769623}
   - component: {fileID: 3053048924343769620}
   - component: {fileID: 3053048924343769622}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: BaseField (5)
   m_TagString: BaseField
   m_Icon: {fileID: 0}
@@ -831,7 +831,7 @@ GameObject:
   - component: {fileID: 3053048924409096480}
   - component: {fileID: 3053048924409096481}
   - component: {fileID: 3053048924409096483}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: BaseField (6)
   m_TagString: BaseField
   m_Icon: {fileID: 0}
@@ -958,7 +958,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8374047991976704182}
-  m_RootOrder: 7
+  m_RootOrder: 30
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &3053048924747789636
 BoxCollider2D:
@@ -997,7 +997,7 @@ GameObject:
   - component: {fileID: 3053048925371907320}
   - component: {fileID: 3053048925371907321}
   - component: {fileID: 3053048925371907323}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: BaseField (8)
   m_TagString: BaseField
   m_Icon: {fileID: 0}
@@ -1106,7 +1106,7 @@ GameObject:
   - component: {fileID: 3053048925477918150}
   - component: {fileID: 3053048925477918151}
   - component: {fileID: 3053048925477918145}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: BaseField (14)
   m_TagString: BaseField
   m_Icon: {fileID: 0}
@@ -1215,7 +1215,7 @@ GameObject:
   - component: {fileID: 3053048925531489562}
   - component: {fileID: 3053048925531489563}
   - component: {fileID: 3053048925531489765}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: BaseField (3)
   m_TagString: BaseField
   m_Icon: {fileID: 0}
@@ -1324,7 +1324,7 @@ GameObject:
   - component: {fileID: 7758733514842474066}
   - component: {fileID: 5127702471325665441}
   - component: {fileID: 6136586805793675693}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: BaseField (9)
   m_TagString: BaseField
   m_Icon: {fileID: 0}
@@ -1343,7 +1343,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8374047991976704182}
-  m_RootOrder: 21
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5127702471325665441
 SpriteRenderer:
@@ -1433,7 +1433,7 @@ GameObject:
   - component: {fileID: 2410007727953792777}
   - component: {fileID: 4014962285793882781}
   - component: {fileID: 661182157862032995}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: BaseField (18)
   m_TagString: BaseField
   m_Icon: {fileID: 0}
@@ -1452,7 +1452,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8374047991976704182}
-  m_RootOrder: 28
+  m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4014962285793882781
 SpriteRenderer:
@@ -1542,7 +1542,7 @@ GameObject:
   - component: {fileID: 8937581667535522121}
   - component: {fileID: 6600474208316718126}
   - component: {fileID: 7566150372396191846}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: BaseField (17)
   m_TagString: BaseField
   m_Icon: {fileID: 0}
@@ -1561,7 +1561,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8374047991976704182}
-  m_RootOrder: 27
+  m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6600474208316718126
 SpriteRenderer:
@@ -1654,7 +1654,7 @@ GameObject:
   - component: {fileID: 7411259340671074800}
   - component: {fileID: 3769022805779932285}
   - component: {fileID: 2514644030240088439}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: FootHold2
   m_TagString: FootHold2
   m_Icon: {fileID: 0}
@@ -1673,7 +1673,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 8374047991976704182}
-  m_RootOrder: 30
+  m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7605401497267196073
 SpriteRenderer:
@@ -1819,7 +1819,7 @@ GameObject:
   - component: {fileID: 7629888301141288255}
   - component: {fileID: 3075987832414233199}
   - component: {fileID: 2027592544304449768}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: BaseField (11)
   m_TagString: BaseField
   m_Icon: {fileID: 0}
@@ -1838,7 +1838,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8374047991976704182}
-  m_RootOrder: 22
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3075987832414233199
 SpriteRenderer:
@@ -1928,7 +1928,7 @@ GameObject:
   - component: {fileID: 2152672458676641634}
   - component: {fileID: 3406261627208403429}
   - component: {fileID: 7813108137907546062}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: FootHold1
   m_TagString: FootHold1
   m_Icon: {fileID: 0}
@@ -1947,7 +1947,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.29999998, z: 1}
   m_Children: []
   m_Father: {fileID: 8374047991976704182}
-  m_RootOrder: 29
+  m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.01}
 --- !u!212 &3406261627208403429
 SpriteRenderer:
@@ -2037,7 +2037,7 @@ GameObject:
   - component: {fileID: 781342993923351854}
   - component: {fileID: 4384059959086725537}
   - component: {fileID: 2713600062405358284}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: BaseField (7)
   m_TagString: BaseField
   m_Icon: {fileID: 0}
@@ -2056,7 +2056,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8374047991976704182}
-  m_RootOrder: 19
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4384059959086725537
 SpriteRenderer:
@@ -2169,8 +2169,6 @@ Transform:
   - {fileID: 3053048925371907320}
   - {fileID: 3053048923846930867}
   - {fileID: 3053048925477918150}
-  - {fileID: 3053048924747789639}
-  - {fileID: 3053048924089278435}
   - {fileID: 8994270652018243789}
   - {fileID: 8994270653464840801}
   - {fileID: 8994270652558258270}
@@ -2194,6 +2192,8 @@ Transform:
   - {fileID: 2152672458676641634}
   - {fileID: 6551403915834857222}
   - {fileID: 3214082912265752878}
+  - {fileID: 3053048924747789639}
+  - {fileID: 3053048924089278435}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2211,7 +2211,7 @@ GameObject:
   - component: {fileID: 7751096417089103507}
   - component: {fileID: 3852296496523637187}
   - component: {fileID: 1760959548051218806}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: FootHold2 (1)
   m_TagString: FootHold2
   m_Icon: {fileID: 0}
@@ -2230,7 +2230,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 8374047991976704182}
-  m_RootOrder: 31
+  m_RootOrder: 29
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7017001031886158436
 SpriteRenderer:
@@ -2376,7 +2376,7 @@ GameObject:
   - component: {fileID: 1902113174017546811}
   - component: {fileID: 3705062502216430100}
   - component: {fileID: 1987798615707097255}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: BaseField (16)
   m_TagString: BaseField
   m_Icon: {fileID: 0}
@@ -2395,7 +2395,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8374047991976704182}
-  m_RootOrder: 26
+  m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3705062502216430100
 SpriteRenderer:
@@ -2485,7 +2485,7 @@ GameObject:
   - component: {fileID: 8994270651686809486}
   - component: {fileID: 8994270651686809480}
   - component: {fileID: 8994270651686809481}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: BaseField (12)
   m_TagString: BaseField
   m_Icon: {fileID: 0}
@@ -2504,7 +2504,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8374047991976704182}
-  m_RootOrder: 13
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8994270651686809480
 SpriteRenderer:
@@ -2594,7 +2594,7 @@ GameObject:
   - component: {fileID: 8994270652018243789}
   - component: {fileID: 8994270652018243791}
   - component: {fileID: 8994270652018243788}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: BaseField (7)
   m_TagString: BaseField
   m_Icon: {fileID: 0}
@@ -2613,7 +2613,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8374047991976704182}
-  m_RootOrder: 9
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8994270652018243791
 SpriteRenderer:
@@ -2703,7 +2703,7 @@ GameObject:
   - component: {fileID: 8994270652390140144}
   - component: {fileID: 8994270652390140146}
   - component: {fileID: 8994270652390140147}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: BaseField (17)
   m_TagString: BaseField
   m_Icon: {fileID: 0}
@@ -2722,7 +2722,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8374047991976704182}
-  m_RootOrder: 17
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8994270652390140146
 SpriteRenderer:
@@ -2812,7 +2812,7 @@ GameObject:
   - component: {fileID: 8994270652406480564}
   - component: {fileID: 8994270652406480566}
   - component: {fileID: 8994270652406480567}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: BaseField (13)
   m_TagString: BaseField
   m_Icon: {fileID: 0}
@@ -2831,7 +2831,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8374047991976704182}
-  m_RootOrder: 14
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8994270652406480566
 SpriteRenderer:
@@ -2921,7 +2921,7 @@ GameObject:
   - component: {fileID: 8994270652558258270}
   - component: {fileID: 8994270652558258264}
   - component: {fileID: 8994270652558258265}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: BaseField (9)
   m_TagString: BaseField
   m_Icon: {fileID: 0}
@@ -2940,7 +2940,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8374047991976704182}
-  m_RootOrder: 11
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8994270652558258264
 SpriteRenderer:
@@ -3030,7 +3030,7 @@ GameObject:
   - component: {fileID: 8994270652865610485}
   - component: {fileID: 8994270652865610487}
   - component: {fileID: 8994270652865610484}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: BaseField (18)
   m_TagString: BaseField
   m_Icon: {fileID: 0}
@@ -3049,7 +3049,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8374047991976704182}
-  m_RootOrder: 18
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8994270652865610487
 SpriteRenderer:
@@ -3139,7 +3139,7 @@ GameObject:
   - component: {fileID: 8994270652907070619}
   - component: {fileID: 8994270652907070613}
   - component: {fileID: 8994270652907070618}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: BaseField (16)
   m_TagString: BaseField
   m_Icon: {fileID: 0}
@@ -3158,7 +3158,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8374047991976704182}
-  m_RootOrder: 16
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8994270652907070613
 SpriteRenderer:
@@ -3248,7 +3248,7 @@ GameObject:
   - component: {fileID: 8994270652917022114}
   - component: {fileID: 8994270652917022108}
   - component: {fileID: 8994270652917022109}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: BaseField (11)
   m_TagString: BaseField
   m_Icon: {fileID: 0}
@@ -3267,7 +3267,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8374047991976704182}
-  m_RootOrder: 12
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8994270652917022108
 SpriteRenderer:
@@ -3357,7 +3357,7 @@ GameObject:
   - component: {fileID: 8994270653279435687}
   - component: {fileID: 8994270653279435681}
   - component: {fileID: 8994270653279435686}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: BaseField (15)
   m_TagString: BaseField
   m_Icon: {fileID: 0}
@@ -3376,7 +3376,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8374047991976704182}
-  m_RootOrder: 15
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8994270653279435681
 SpriteRenderer:
@@ -3466,7 +3466,7 @@ GameObject:
   - component: {fileID: 8994270653464840801}
   - component: {fileID: 8994270653464840803}
   - component: {fileID: 8994270653464840800}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: BaseField (4)
   m_TagString: BaseField
   m_Icon: {fileID: 0}
@@ -3485,7 +3485,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8374047991976704182}
-  m_RootOrder: 10
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8994270653464840803
 SpriteRenderer:

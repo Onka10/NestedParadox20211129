@@ -27,11 +27,14 @@ namespace NestedParadox.Monsters
         // Start is called before the first frame update
         void Start()
         {
+            DustDevilSprite dustDevilSprite = (DustDevilSprite)DustDevilSprite.I;
+            SetAttackPower(dustDevilSprite.DestroyedMonstersCount);
+            Destroy(dustDevilSprite);
             canAttack = true;
             attackTime = 0;
             state = MonsterState.Idle;
             player = GameObject.FindGameObjectWithTag("MainCharacter").GetComponent<TempCharacter>();
-            attackColl.OnTriggerEnter2DAsObservable().Subscribe(other => OnAttackHit(other)).AddTo(this);
+            attackColl.OnTriggerEnter2DAsObservable().Subscribe(other => OnAttackHit(other)).AddTo(this);            
             Vector3 localScale_temp = new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z);
             Vector3 distanceOffset_temp = new Vector3(uniqueDistanceOffset.x, uniqueDistanceOffset.y, uniqueDistanceOffset.z);
             player.CurrentDirection.Subscribe(x =>
@@ -74,9 +77,10 @@ namespace NestedParadox.Monsters
             }
         }
 
-        public void SetAttackPower(int attackPower)
+        public void SetAttackPower(int monsterCount)
         {
-            this.attackPower = attackPower;
+            this.attackPower = monsterCount;
+            Debug.Log($"攻撃力が{attackPower}になりました");
         }
 
         //ランダムに敵を見つけて連続攻撃
