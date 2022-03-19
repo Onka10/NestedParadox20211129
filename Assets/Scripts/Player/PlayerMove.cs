@@ -30,6 +30,13 @@ namespace NestedParadox.Players
         [SerializeField]private bool _isMoveBlock;
 
 
+        //赤さんのカメラ
+        public IReadOnlyReactiveProperty<int> CurrentDirection => currentDirection.Select(x => x.x < 0 ? 1 : -1).ToReactiveProperty<int>();
+        private ReactiveProperty<Vector3> currentDirection = new ReactiveProperty<Vector3>();
+        public Transform MyTransform { get { return myTransform; } }
+        private Transform myTransform;
+
+
         //外部参照
         private PlayerCore _playerCore;
         private Rigidbody2D _rigidbody2D;
@@ -41,6 +48,13 @@ namespace NestedParadox.Players
             _playerinput = GetComponent<PlayerInput>();
 
             _isGrounded.AddTo(this);
+
+
+            //赤さんのカメラ
+            myTransform = transform;
+
+            currentDirection.Value = myTransform.localScale;
+            currentDirection.AddTo(this);
         }
 
         private void FixedUpdate()
@@ -81,6 +95,8 @@ namespace NestedParadox.Players
             // if(_isGrounded.Value){
             //     Debug.Log("地面");
             // }
+
+            myTransform = transform;
         }
 
         // 操作イベントの値から移動量を決定する
@@ -90,14 +106,17 @@ namespace NestedParadox.Players
             if (x > 0.1f)
             {
                 //ここで向き変更の通知をカメラに送る
+                currentDirection.Value = Vector3.right;
                 return Vector3.right;
             }
             else if (x < -0.1f)
             {
+                currentDirection.Value = -Vector3.right;
                 return -Vector3.right;
             }
             else
             {
+                currentDirection.Value = Vector3.zero;
                 return Vector3.zero;
             }
         }
