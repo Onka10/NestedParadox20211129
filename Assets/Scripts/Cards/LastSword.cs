@@ -8,20 +8,25 @@ namespace NestedParadox.Cards
 {
     public class LastSword : MonoBehaviour,ICard,IMagic
     {//最後の剣
-
-        [SerializeField] MonsterManager _monstermanager;
-        [SerializeField] PlayerBuff _playerbuff;
         public bool CheckTrigger(){
-            //多分無し
             return true;
         }
 
         public void Execution(){
-            // var atk = _monstermanager.MonsterCount.Value
+            var atk = MonsterManager.I.MonsterCount;
             //todo 必要に応じて倍率をかける。今はそのまま
-            // _playerbuff.EnhanceATK(atk);
-
+            PlayerBuff.I.EnhanceATK(atk);
             Debug.Log("最後の剣！！！");
+
+            StartCoroutine("Delay");
+
+            PlayerBuff.I.EnhanceATK(0);
+        }
+
+        IEnumerator Delay()
+        {
+            //30秒待つ
+            yield return new WaitForSeconds(30);
         }
     }
 }
