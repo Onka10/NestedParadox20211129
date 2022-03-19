@@ -10,16 +10,21 @@ namespace NestedParadox.Monsters
 {
     public class GuardKun : MonsterBase, IApplyDamage
     {
+        private GuardKunManager guardKunManager;
         [SerializeField] GameObject guardEffect;
         [SerializeField] Rigidbody2D rb;
         [SerializeField] float movingSpeed;
         [SerializeField] Vector3 guardPosition;        
         [SerializeField] Collider2D guardColl;
-        private PlayerMove playerMove;        
+        private PlayerMove playerMove;
+        
 
         // Start is called before the first frame update
         void Start()
         {
+            guardKunManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GuardKunManager>();
+            //マネージャーに自身を追加
+            guardKunManager.Add(this);
             state = MonsterState.Idle;
             playerMove = PlayerMove.I;
             Vector3 localScale_temp = new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z);

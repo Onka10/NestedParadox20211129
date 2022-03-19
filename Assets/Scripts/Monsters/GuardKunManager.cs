@@ -6,8 +6,8 @@ namespace NestedParadox.Monsters
 {
     public class GuardKunManager : Singleton<GuardKunManager>
     {
-        private bool isActive;
-        public bool IsActive => isActive;
+        private int count;
+        public int Count => count;
         private List<GuardKun> guardKuns;
 
         [SerializeField] int damageReductionRate;
@@ -16,7 +16,7 @@ namespace NestedParadox.Monsters
         void Start()
         {
             guardKuns = new List<GuardKun>();
-            isActive = false;
+            count = 0;
             //Summon();              
         }
 
@@ -24,14 +24,7 @@ namespace NestedParadox.Monsters
         void Update()
         {
             guardKuns.RemoveAll(a => a == null);
-            if (guardKuns.Count != 0)
-            {
-                isActive = true;
-            }
-            else
-            {
-                isActive = false;
-            }
+            count = guardKuns.Count;
         }
 
         public void Add(GuardKun guardKun)
