@@ -20,9 +20,17 @@ namespace MainCamera
             _playermove = GameObject.FindGameObjectWithTag("MainCharacter").GetComponent<PlayerMove>();
             myTransform = transform;
             characterDirection = GameObject.FindGameObjectWithTag("MainCharacter").GetComponent<PlayerMove>().CurrentDirection;
+            Vector3 distanceOffset_temp = new Vector3(distanceOffset.x, distanceOffset.y, distanceOffset.z);
             characterDirection.Subscribe(x =>
             {
-                distanceOffset = new Vector3(distanceOffset.x * -1, distanceOffset.y, distanceOffset.z);
+                if(x == 1)
+                {
+                    distanceOffset = new Vector3(distanceOffset_temp.x, distanceOffset_temp.y, distanceOffset_temp.z);
+                }
+                else if(x == -1)
+                {
+                    distanceOffset = new Vector3(distanceOffset_temp.x * -1, distanceOffset_temp.y, distanceOffset_temp.z);
+                }
             });
         }
 
