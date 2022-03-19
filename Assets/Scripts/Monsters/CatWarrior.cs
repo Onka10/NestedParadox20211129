@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using NestedParadox.Players;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
 using UniRx;
@@ -15,7 +16,7 @@ namespace NestedParadox.Monsters
         [SerializeField] float attackSpan;
         [SerializeField] Rigidbody2D rb;
         private float attackTime;        
-        private TempCharacter player;
+        private PlayerCore player;
         [SerializeField] float attackSpeed;
         [SerializeField] float attackRecoilSpeed;
 
@@ -31,7 +32,7 @@ namespace NestedParadox.Monsters
             attackPower = 1;
             Vector3 distanceOffset_temp = new Vector3(distanceOffset.x, distanceOffset.y, distanceOffset.z);
             Vector3 localScale_temp = new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z);
-            player = GameObject.FindGameObjectWithTag("MainCharacter").GetComponent<TempCharacter>();
+            player = GameObject.FindGameObjectWithTag("MainCharacter").GetComponent<PlayerCore>();
             state = MonsterState.Idle;
             attackTime = 0;
             attackColl.OnTriggerEnter2DAsObservable().Where(other => !other.CompareTag("Monster")).Subscribe(other => OnHit(other)).AddTo(this);
@@ -49,7 +50,7 @@ namespace NestedParadox.Monsters
                 }
             }).AddTo(this);
             //プレイヤーのhpによってステータスが変わる。
-            player.Hp_test.Subscribe(x => ChangeAttackPower(x)).AddTo(this);
+            player.Hp.Subscribe(x => ChangeAttackPower(x)).AddTo(this);
         }
 
         // Update is called once per frame
