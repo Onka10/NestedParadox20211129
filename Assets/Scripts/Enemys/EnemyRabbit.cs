@@ -4,13 +4,14 @@ using UnityEngine;
 using Cysharp.Threading.Tasks;
 using UniRx;
 using UniRx.Triggers;
+using NestedParadox.Players;
 
 public class EnemyRabbit : EnemyBase, IApplyDamage
 {
 
     private readonly ReactiveProperty<float> attackTime = new ReactiveProperty<float>();
     private bool canAttack;
-    private TempCharacter tempCharacter;
+    private PlayerMove pyerMove;
     public bool CanAttack { get { return canAttack; } }
     [SerializeField] float attackSpan;
     [SerializeField] Collider2D attackCollider;
@@ -31,13 +32,13 @@ public class EnemyRabbit : EnemyBase, IApplyDamage
         attackPower = 1;
         attackTime.Value = 0;
         state.Value = EnemyState.Idle;
-        tempCharacter = GameObject.FindGameObjectWithTag("MainCharacter").GetComponent<TempCharacter>();
+        pyerMove = GameObject.FindGameObjectWithTag("MainCharacter").GetComponent<PlayerMove>();
         //攻撃用のコライダーに衝突した時、プレイヤーにダメージを与える。
         attackCollider.OnTriggerEnter2DAsObservable()
                       .Where(collision => collision.gameObject.CompareTag("MainCharacter"))
                       .Subscribe(collision =>
                       {
-                          collision.gameObject.GetComponent<TempCharacter>().Damaged(attackPower);
+                          collision.gameObject.GetComponent<PlayerCore>().Damaged(attackPower);
                       })
                       .AddTo(this);
         //攻撃のクールタイムが終わったら、CanAttackをtrueにする。
@@ -60,7 +61,7 @@ public class EnemyRabbit : EnemyBase, IApplyDamage
         Debug.Log("攻撃開始");
         state.Value = EnemyState.Attack;
         attackTime.Value = 0;
-        if (transform.position.x > tempCharacter.transform.position.x)
+        if (transform.position.x > pyerMove.transform.position.x)
         {
             enemyMoving.transform.localScale = new Vector3(1, 1, 1);
         }
