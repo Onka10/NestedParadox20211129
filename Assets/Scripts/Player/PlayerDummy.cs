@@ -9,10 +9,17 @@ namespace NestedParadox.Players{
     {
         [SerializeField] PlayerInput _playerinput;
 
+        [SerializeField] GameObject Prefab;
+
         void Start(){
             _playerinput.OnDebug
-            .Subscribe(_ => PlayerEffectManager.I.EffectPlay(1))
+            .Subscribe(_ => Test())
             .AddTo(this);
+        }
+
+        private void Test(){
+            Prefab.SetActive(true);
+            Prefab.GetComponent<ParticleSystem>().Play();
         }
 
         //メモゾーン
