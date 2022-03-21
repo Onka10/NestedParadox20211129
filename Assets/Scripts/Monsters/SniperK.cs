@@ -68,9 +68,9 @@ namespace NestedParadox.Monsters
             }
         }
 
-        public override void Damaged(int damage)
+        public override void Damaged(Damage damage)
         {
-            hp -= damage;
+            hp_r.Value -= damage.DamageValue;
         }
 
         private void Shot()
@@ -95,7 +95,7 @@ namespace NestedParadox.Monsters
                             {                                                
                                 if (other.TryGetComponent<EnemyBase>(out EnemyBase enemy))
                                 {
-                                    enemy.Damaged(attackPower);
+                                    enemy.Damaged(new DamageToPlayer(attackPower,0));
                                 }
                             })
                             .AddTo(explosion_clone);

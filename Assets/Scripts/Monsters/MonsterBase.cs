@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
+using UniRx;
+
 
 namespace NestedParadox.Monsters
 {
@@ -14,12 +16,13 @@ namespace NestedParadox.Monsters
         protected Vector3 distanceOffset;
         protected MonsterState state;
         public bool IsUniquePosition => isUniquePosition;
-        public int Hp { get { return hp; } }
+        protected ReactiveProperty<int> hp_r = new ReactiveProperty<int>();
+        public IReadOnlyReactiveProperty<int> Hp => hp_r;
         
         // Start is called before the first frame update
         void Start()
         {
-
+            hp_r.Value = hp;
         }
 
         void Update()
@@ -33,11 +36,10 @@ namespace NestedParadox.Monsters
 
         }
 
-        public virtual void Damaged(int damage)
+        public virtual void Damaged(Damage damage)
         {
-            
-        }
-        
+
+        }        
 
         public virtual void SetPositionAndInitialize(Vector3 distanceOffset)
         {            

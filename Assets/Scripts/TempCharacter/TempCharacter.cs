@@ -29,12 +29,15 @@ public class TempCharacter : MonoBehaviour, IApplyDamage
     private GuardKunManager guardKunManager;
 
     private int hp;
-    public int Hp => hp;
+   
 
     private ReactiveProperty<int> hp_test = new ReactiveProperty<int>();
     public IReadOnlyReactiveProperty<int> Hp_test => hp_test;
 
     private bool canJump;
+
+    protected ReactiveProperty<int> hp_r = new ReactiveProperty<int>();
+    public IReadOnlyReactiveProperty<int> Hp => hp_r;
 
     // Start is called before the first frame update
     void Start()
@@ -92,6 +95,11 @@ public class TempCharacter : MonoBehaviour, IApplyDamage
         hp_test.Value -= 10;
     }
 
+    public void Damaged(Damage damage)
+    {
+
+    }
+
 
     public void Damaged(int damage)
     {
@@ -108,5 +116,6 @@ public class TempCharacter : MonoBehaviour, IApplyDamage
         Debug.Log($"{damage}のダメージを受けました。");
     }
 }
+
 
 

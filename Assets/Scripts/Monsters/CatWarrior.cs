@@ -29,7 +29,7 @@ namespace NestedParadox.Monsters
         [SerializeField] SpriteRenderer spriteRenderer;
         // Start is called before the first frame update
         void Start()
-        {
+        {           
             attackPower = 1;
             Vector3 distanceOffset_temp = new Vector3(distanceOffset.x, distanceOffset.y, distanceOffset.z);
             Vector3 localScale_temp = new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z);
@@ -101,18 +101,18 @@ namespace NestedParadox.Monsters
             EnemyBase enemy;
             other.TryGetComponent<EnemyBase>(out enemy);
             if (enemy != null)
-            {
+            {                
                 Instantiate(attackEffect, enemy.transform.position, Quaternion.Euler(-50, -90, 90));
-                enemy.Damaged(attackPower);
+                enemy.Damaged(new DamageToPlayer(attackPower, 0));
             }
             rb.velocity = (new Vector3(0, attackRecoilSpeed, 0));
             await UniTask.Delay(500, cancellationToken: this.GetCancellationTokenOnDestroy());
             state = MonsterState.Idle;
         }
 
-        public override void Damaged(int damage)
+        public override void Damaged(Damage damage)
         {
-            hp -= damage;
+            hp_r.Value -= damage.DamageValue;
         }
 
         private void ChangeAttackPower(int playerHp)

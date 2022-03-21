@@ -63,7 +63,7 @@ namespace NestedParadox.Monsters
         {
             state = MonsterState.Guard;
             transform.position = playerMove.transform.position;
-            hp -= 1;            
+            hp_r.Value -= 1;            
             GameObject guardEffect_clone = Instantiate(guardEffect, transform.position, Quaternion.identity);
             if(transform.localScale.x < 0)
             {

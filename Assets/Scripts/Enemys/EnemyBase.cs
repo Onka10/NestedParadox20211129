@@ -7,7 +7,8 @@ using Cysharp.Threading.Tasks;
 public abstract class EnemyBase : MonoBehaviour
 {
     protected int hp;
-    public int Hp { get { return hp; } }
+    protected ReactiveProperty<int> hp_r = new ReactiveProperty<int>();
+    public IReadOnlyReactiveProperty<int> Hp => hp_r;
     protected int attackPower;
     protected ReactiveProperty<EnemyState> state = new ReactiveProperty<EnemyState>();
     public IReadOnlyReactiveProperty<EnemyState> State => state;
@@ -29,7 +30,7 @@ public abstract class EnemyBase : MonoBehaviour
         
     }
 
-    public abstract void Damaged(int damage);
+    public abstract void Damaged(Damage damage);
 }
 
 public enum EnemyState
