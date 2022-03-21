@@ -16,6 +16,7 @@ namespace NestedParadox.Cards
             var atk = MonsterManager.I.MonsterCount;
             //todo 必要に応じて倍率をかける。今はそのまま
             PlayerBuff.I.EnhanceATK(atk);
+            PlayerEffectManager.I.EffectPlay(4);
             Debug.Log("最後の剣！！！");
 
             StartCoroutine("Delay");

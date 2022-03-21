@@ -47,7 +47,10 @@ namespace NestedParadox.Players
             _playerCore = GetComponent<PlayerCore>();
             _playerinput = GetComponent<PlayerInput>();
 
-            _isGrounded.AddTo(this);
+            _isGrounded
+            // .Where(x => false)
+            // .Subscribe(_ => PlayerEffectManager.I.EffectStop())
+            .AddTo(this);
 
 
             //赤さんのカメラ
@@ -75,6 +78,8 @@ namespace NestedParadox.Players
             {
                 // Debug.Log("移動");
                 vel = moveVector * _dashSpeed;
+                if(IsGrounded.Value)    PlayerEffectManager.I.EffectPlay(3);
+                else PlayerEffectManager.I.EffectStop(3);
             }
 
             // ジャンプ
@@ -117,7 +122,9 @@ namespace NestedParadox.Players
             else
             {
                 //currentDirection.Value = Vector3.zero;
+                PlayerEffectManager.I.EffectStop(3);
                 return Vector3.zero;
+
             }
         }
 
