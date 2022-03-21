@@ -149,7 +149,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.ml-agents": {
-      "version": "file:C:/com.unity.ml-agents/com.unity.ml-agents縺ｮ繧ｳ繝偵ｚ繝ｼ",
+      "version": "file:C:/com.unity.ml-agents/com.unity.ml-agents",
       "depth": 0,
       "source": "local",
       "dependencies": {
