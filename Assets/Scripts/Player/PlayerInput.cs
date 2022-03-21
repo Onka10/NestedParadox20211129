@@ -20,6 +20,7 @@ namespace NestedParadox.Players
         public IObservable<Unit> OnDrawCard => _drawcardsubject;
         public IObservable<Unit> OnChangeHandR => _changehandRsubject;
         public IObservable<Unit> OnChangeHandL => _changehandLsubject;
+        public IObservable<Unit> OnDebug => _debug;
 
 
         // イベント発行に利用するSubjectやReactiveProperty
@@ -30,7 +31,8 @@ namespace NestedParadox.Players
         private readonly Subject<Unit> _playcardsubject = new Subject<Unit>();
         private readonly Subject<Unit> _drawcardsubject = new Subject<Unit>();
         private readonly Subject<Unit> _changehandRsubject = new Subject<Unit>();
-        private readonly Subject<Unit> _changehandLsubject = new Subject<Unit>();         
+        private readonly Subject<Unit> _changehandLsubject = new Subject<Unit>();
+        private readonly Subject<Unit> _debug = new Subject<Unit>();          
 
 
 
@@ -88,6 +90,12 @@ namespace NestedParadox.Players
         public void OnDraw(InputAction.CallbackContext context){
             if(context.phase == InputActionPhase.Started){
                 _drawcardsubject.OnNext(Unit.Default);
+            }
+        }
+
+        public void OnDebugAction(InputAction.CallbackContext context){
+            if(context.phase == InputActionPhase.Started){
+                _debug.OnNext(Unit.Default);
             }
         }
     }

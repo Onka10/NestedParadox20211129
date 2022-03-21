@@ -20,6 +20,7 @@ namespace NestedParadox.Players{
 
         public void EnhanceATK(int atk){
             _enhancedATK.Value = atk;
+            Debug.Log("エンハンス");
         }
     }
 }

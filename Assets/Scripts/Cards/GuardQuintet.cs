@@ -14,7 +14,7 @@ namespace NestedParadox.Cards
             //ガードくんの数が5になるまで召喚を行う。ガードくんのidは1
 
             // while(GuardKunManager.I.Count < 6){
-                // MonsterManager.I.Summon((CardID)Enum.ToObject(typeof(CardID), 1));
+                MonsterManager.I.Summon((CardID)Enum.ToObject(typeof(CardID), 1));
                 // MonsterManager.I.Summon((CardID)Enum.ToObject(typeof(CardID), 1));
                 // MonsterManager.I.Summon((CardID)Enum.ToObject(typeof(CardID), 1));
                 // MonsterManager.I.Summon((CardID)Enum.ToObject(typeof(CardID), 1));
