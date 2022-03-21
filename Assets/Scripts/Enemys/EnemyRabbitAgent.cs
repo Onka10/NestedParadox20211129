@@ -7,10 +7,11 @@ using UniRx.Triggers;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
+using NestedParadox.Players;
 
 public class EnemyRabbitAgent : Agent
 {
-    private TempCharacter mainChara;
+    private PlayerMove mainChara;
     [SerializeField] EnemyMoving enemyMoving;
     [SerializeField] EnemyRabbit enemyRabbit;
     [SerializeField] Collider2D attackColl;
@@ -20,7 +21,7 @@ public class EnemyRabbitAgent : Agent
     // Start is called before the first frame update
     public override void Initialize()
     {
-        mainChara = GameObject.FindGameObjectWithTag("MainCharacter").GetComponent<TempCharacter>();
+        mainChara = GameObject.FindGameObjectWithTag("MainCharacter").GetComponent<PlayerMove>();
         /*
         mainChara.transform.position = new Vector3(UnityEngine.Random.Range(-10, 30), UnityEngine.Random.Range(-1, 4), 0);
         mainChara.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
