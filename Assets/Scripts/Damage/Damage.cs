@@ -11,4 +11,5 @@ public abstract class Damage
     //ノックバック量
     [SerializeField] protected int knockBackValue;
     public int KnockBackValue => knockBackValue;
+
 }

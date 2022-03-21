@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace NestedParadox.Damage
+/*namespace NestedParadox.Damage
 {
     // //ダメージを受ける事が出来るクラスの場合、必ずIApplyDamageを実装する必要があります
     // public class SampleDamageCharacter : MonoBehaviour,IApplyDamage
@@ -34,3 +34,4 @@ namespace NestedParadox.Damage
     //     }
     // }
 }
+*/

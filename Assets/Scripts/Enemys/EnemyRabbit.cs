@@ -82,13 +82,13 @@ public class EnemyRabbit : EnemyBase, IApplyDamage
         state.Value = EnemyState.Idle;
     }
 
-    public override async void Damaged(int damage)
+    public override async void Damaged(Damage damage)
     {
         if(!IsAttacking)
         {
             animator.SetTrigger("GetHitTrigger");
         }        
-        hp -= damage;
+        hp_r.Value -= damage.DamageValue;
         HP_debugg = hp;//テスト
         if (hp <= 0)
         {

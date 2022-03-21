@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class DamageToPlayer : Damage
 {
-
+    
+    public DamageToPlayer(int damageValue, int knockBackValue)
+    {
+        this.damageValue = damageValue;
+        this.knockBackValue = knockBackValue;
+    }
+    
     //ダメージ量の変更
     public void SetDamageValue(int damageValue)
     {
