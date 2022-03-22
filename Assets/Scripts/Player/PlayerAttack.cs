@@ -23,6 +23,8 @@ namespace NestedParadox.Players
         [SerializeField] private Collider2D _attackCollider1;
         [SerializeField] private Collider2D _attackCollider2;
 
+        private int nockback=0;
+
 
 
         private void Start()
@@ -126,12 +128,14 @@ namespace NestedParadox.Players
         public void OnNormalAttackEvent()
         {
             _attackCollider1.enabled = true;
+            nockback = 1;
             _playercore.ChangeAttackPower(1);
         }
 
         public void OnChargeAttackEvent()
         {
             _attackCollider2.enabled = true;
+            nockback = 2;
             _playercore.ChangeAttackPower(2);
         }
 
@@ -140,6 +144,7 @@ namespace NestedParadox.Players
         {
             _attackCollider1.enabled = false;
             _attackCollider2.enabled = false;
+            nockback = 0;
             _playercore.ChangeAttackPower(0);
         }
         #endregion
@@ -159,11 +164,12 @@ namespace NestedParadox.Players
                 {
                     // 武器に当たった相手がダメージを与えられる相手であるか
                     if (!x.TryGetComponent<IApplyDamage>(out IApplyDamage attack)) return;
-                    // 相手にダメージを与える
 
-                    //todo:Playercoreから攻撃力。playerbuffからバフを受け取ってdamageクラスに入れる
+                    //攻撃の実数値を入力
+                    int AttackActualValue;
+                    AttackActualValue = PlayerCore.I.PlayerAttackPower.Value + PlayerBuff.I.EnhancedATK.Value;
                     
-                    attack.Damaged(new  DamageToEnemy(1, 0));
+                    attack.Damaged(new  DamageToEnemy(AttackActualValue, nockback));
 
                 }).AddTo(this);
         }
