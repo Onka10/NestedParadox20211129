@@ -47,9 +47,10 @@ namespace NestedParadox.Players
                 .Subscribe(x => _playerMove.BlockMove(x))
                 .AddTo(this);
 
-            OnAttackEndEvent();
+            // OnAttackEndEvent();
         }
 
+        #region 操作イベントの購読
         private void SubscribeInputEvent()
         {
             //一応連打防止の対応したけど、タメ攻撃と通常で分けれて無いし、今後攻撃が増えると通用しなくなる
@@ -74,15 +75,18 @@ namespace NestedParadox.Players
         //本来は攻撃が当たったときにドローエナジーを増やして欲しいけど、今はこれで我慢
         private void NAttack(){
             _playerAnimation.NormalAttack();
+            OnNormalAttackEvent();
             _playercore.AddDrawEnergy(10);
         }
 
         private void CAttack(){
             _playerAnimation.ChargeAttack();
+            OnChargeAttackEvent();
             _playercore.AddDrawEnergy(2);
         }
+        #endregion 
 
-        // アニメーションイベントを購読する
+        # region アニメーションイベントを購読する
         private void SubscribeAnimationEvent(){
             // ObservableStateMachineTrigger を用いることでAnimationControllerのステートの遷移を取得できるが
             // 今回はAnimationは普通に実装してるので""使えません""
@@ -91,34 +95,54 @@ namespace NestedParadox.Players
 
             // 攻撃関係のステートマシンに入った
             trigger
-                // .OnStateMachineEnterAsObservable()
                 .OnStateUpdateAsObservable()
                 .Subscribe(onStateInfo =>
                 {
-                     AnimatorStateInfo info = onStateInfo.StateInfo;
+                    AnimatorStateInfo info = onStateInfo.StateInfo;
                     if (info.IsName("Attack.NormalAttackAnimation")||info.IsName("Attack.AccumulationAttackAnimation"))
                     {
                         _isInAttack.Value = true;
                     }
                 }).AddTo(this);
-                // .Subscribe(_ => _isInAttack.Value = true)
-                // .AddTo(this);
 
             // 攻撃関係のステートマシンから出た
             trigger
-                // .OnStateMachineExitAsObservable()
                 .OnStateExitAsObservable()
                 .Subscribe(onStateInfo =>
                 {
-                     AnimatorStateInfo info = onStateInfo.StateInfo;
+                    AnimatorStateInfo info = onStateInfo.StateInfo;
                     if (info.IsName("Attack.NormalAttackAnimation")||info.IsName("Attack.AccumulationAttackAnimation"))
                     {
                         _isInAttack.Value = false;
+                        OnAttackEndEvent();
                     }
                 }).AddTo(this);
-                // .Subscribe(_ => _isInAttack.Value = false)
-                // .AddTo(this);
         }
+        #endregion
+        
+
+        #region 攻撃のメソッド
+        // 攻撃モーションに合わせて当たり判定をON/OFFする
+        public void OnNormalAttackEvent()
+        {
+            _attackCollider1.enabled = true;
+            _playercore.ChangeAttackPower(1);
+        }
+
+        public void OnChargeAttackEvent()
+        {
+            _attackCollider2.enabled = true;
+            _playercore.ChangeAttackPower(2);
+        }
+
+        //当たり判定を消す
+        public void OnAttackEndEvent()
+        {
+            _attackCollider1.enabled = false;
+            _attackCollider2.enabled = false;
+            _playercore.ChangeAttackPower(0);
+        }
+        #endregion
 
 
         #region 攻撃判定用コライダの衝突判定購読
@@ -139,36 +163,9 @@ namespace NestedParadox.Players
 
                     //todo:Playercoreから攻撃力。playerbuffからバフを受け取ってdamageクラスに入れる
                     
-                    // attack.Damaged( Damageクラスを渡す);
+                    attack.Damaged(new  DamageToEnemy(1, 0));
 
                 }).AddTo(this);
-        }
-
-        #endregion
-
-
-
-        #region 攻撃のメソッド
-
-        // 攻撃モーションに合わせて当たり判定をON/OFFする
-        public void OnNormalAttackEvent()
-        {
-            _attackCollider1.enabled = true;
-            _playercore.ChangeAttackPower(1);
-        }
-
-        public void OnChargeAttackEvent()
-        {
-            _attackCollider2.enabled = true;
-            _playercore.ChangeAttackPower(2);
-        }
-
-        //当たり判定を消す
-        public void OnAttackEndEvent()
-        {
-            _attackCollider1.enabled = false;
-            _attackCollider2.enabled = false;
-            _playercore.ChangeAttackPower(0);
         }
 
         #endregion

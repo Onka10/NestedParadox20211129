@@ -5,7 +5,7 @@ using UnityEngine;
 namespace NestedParadox.Players
 {
     // プレイヤーの本体を表すコンポーネント
-    public sealed class PlayerCore : Singleton<PlayerCore>
+    public sealed class PlayerCore : Singleton<PlayerCore>,IApplyDamage
     {
         // // 死んでいるか
         // public IReadOnlyReactiveProperty<bool> IsDead => _isDead;
@@ -37,10 +37,11 @@ namespace NestedParadox.Players
             _playerdrawenergy.Value =10;
         }
 
-        public void Damaged(int Damage)
+        public void Damaged(Damage _damage)
         {
-            Damage = _playerbuff.Guard(Damage);
-            _playerhp.Value -=Damage;
+            int dame;
+            dame = _playerbuff.Guard( _damage.DamageValue);
+            _playerhp.Value -=dame;
         }
 
         //毒や効果によるHP減少などの定数ダメージ
