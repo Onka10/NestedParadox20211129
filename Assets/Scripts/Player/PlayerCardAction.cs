@@ -41,7 +41,6 @@ namespace NestedParadox.Players
         private void CardActionDraw(){
             _cardmanager.Draw();
             _playercore.ResetDrawEnergy();
-
         }
     }
 }
