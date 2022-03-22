@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5068512105697022404}
-  - component: {fileID: 4841737871495842813}
+  - component: {fileID: -6107259274120188537}
   m_Layer: 0
   m_Name: DustDevilSprite
-  m_TagString: Untagged
+  m_TagString: DustDevilSprite
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4841737871495842813
+--- !u!114 &-6107259274120188537
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,7 +41,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5068512105697022425}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2215ac938c853437e9593388679a196b, type: 3}
+  m_Script: {fileID: 11500000, guid: 5be5cb025de854ec3b9e527283e6b608, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   summonEffect: {fileID: 6004028072603866432, guid: 7680c0a39368ee34fba9a2754c39b6f9, type: 3}
@@ -53,6 +53,8 @@ MonoBehaviour:
   summonPosition: {x: 4, y: 2, z: 0}
   monster: {fileID: 0}
   IsSummonCompleted: 0
+  gatheringSpeed: 1
+  dustDevilRedEffect: {fileID: 585549164108272053, guid: db2525e888bdb48caad929a632cb16b0, type: 3}
 --- !u!1 &5068512105895456683
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,7 +10,7 @@ namespace NestedParadox.Monsters
     {
         private int destroyedMonsterCount;
         public int DestroyedMonstersCount => destroyedMonsterCount;
-        [SerializeField] float gatheringPower;        
+        [SerializeField] float gatheringSpeed;        
 
         //エフェクト群
         [SerializeField] GameObject dustDevilRedEffect;
@@ -46,14 +46,18 @@ namespace NestedParadox.Monsters
                 Destroy(monster);
             }
 
-            while(!IsMonsterGathered(monstersPosition))
+            while(!IsMonsterGathered(redEffects))
             {
                 foreach (GameObject redEffect in redEffects)
                 {
-                    Vector3 movingDirection = (transform.position - redEffect.transform.position).normalized;
-                    redEffect.GetComponent<Rigidbody2D>().AddForce(movingDirection * gatheringPower);
+                    Vector3 movingDirection = (transform.position - redEffect.transform.position);
+                    redEffect.GetComponent<Rigidbody2D>().velocity = (movingDirection * gatheringSpeed);
                 }
-                await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken: this.GetCancellationTokenOnDestroy());
+                await UniTask.Yield(PlayerLoopTiming.FixedUpdate, cancellationToken: this.GetCancellationTokenOnDestroy());
+            }
+            foreach (GameObject redEffect in redEffects)
+            {
+                Destroy(redEffect);
             }
         }
 
@@ -71,11 +75,11 @@ namespace NestedParadox.Monsters
             Destroy(summonRedEffect_clone);           
         }
 
-        private bool IsMonsterGathered(Vector3[] monstersPosition)
+        private bool IsMonsterGathered(List<GameObject> redEffects)
         {
-            foreach(Vector3 monsterPosition in monstersPosition)
+            foreach(GameObject redEffect in redEffects)
             {
-                float distance = (transform.position - monsterPosition).magnitude;
+                float distance = (transform.position - redEffect.transform.position).magnitude;
                 if(distance > 0.1f)
                 {
                     return false;

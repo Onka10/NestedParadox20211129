@@ -4,6 +4,7 @@ using UnityEngine;
 using Cysharp.Threading.Tasks;
 using UniRx;
 using UniRx.Triggers;
+using NestedParadox.Players;
 
 namespace NestedParadox.Monsters
 {
@@ -18,36 +19,37 @@ namespace NestedParadox.Monsters
         [SerializeField] GameObject moveEffect;
         [SerializeField] float movingPower;
         [SerializeField] float attackStopDistance;
-        [SerializeField] Vector3 uniqueDistanceOffset;
+        
 
         private bool canAttack;
         private float attackTime;
-        private TempCharacter player;
+        private PlayerMove player;
         private MonsterState state;
         // Start is called before the first frame update
         void Start()
         {
-            DustDevilSprite dustDevilSprite = (DustDevilSprite)DustDevilSprite.I;
+            DustDevilSprite dustDevilSprite = GameObject.FindGameObjectWithTag("DustDevilSprite").GetComponent<DustDevilSprite>();
             SetAttackPower(dustDevilSprite.DestroyedMonstersCount);
-            Destroy(dustDevilSprite);
+            Destroy(dustDevilSprite.gameObject);
             canAttack = true;
             attackTime = 0;
             state = MonsterState.Idle;
-            player = GameObject.FindGameObjectWithTag("MainCharacter").GetComponent<TempCharacter>();
+            player = PlayerMove.I;
             attackColl.OnTriggerEnter2DAsObservable().Subscribe(other => OnAttackHit(other)).AddTo(this);            
             Vector3 localScale_temp = new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z);
-            Vector3 distanceOffset_temp = new Vector3(uniqueDistanceOffset.x, uniqueDistanceOffset.y, uniqueDistanceOffset.z);
+            distanceOffset += new Vector3(0, -2, 0);
+            Vector3 distanceOffset_temp = new Vector3(distanceOffset.x, distanceOffset.y, distanceOffset.z);
             player.CurrentDirection.Subscribe(x =>
             {
                 if(x == 1)
                 {
                    // transform.localScale = new Vector3(localScale_temp.x*-1, localScale_temp.y, localScale_temp.z);
-                    uniqueDistanceOffset = new Vector3(distanceOffset_temp.x, distanceOffset_temp.y, distanceOffset_temp.z);
+                    distanceOffset = new Vector3(distanceOffset_temp.x, distanceOffset_temp.y, distanceOffset_temp.z);
                 }
                 else if(x == -1)
                 {
                     //transform.localScale = new Vector3(localScale_temp.x, localScale_temp.y, localScale_temp.z);
-                    uniqueDistanceOffset = new Vector3(-1, distanceOffset_temp.y, distanceOffset_temp.z);
+                    distanceOffset = new Vector3(-1, distanceOffset_temp.y, distanceOffset_temp.z);
                 }
             });
         }
@@ -67,9 +69,9 @@ namespace NestedParadox.Monsters
         {
             if (state == MonsterState.Idle)//待機中
             {
-                transform.position = new Vector3(Mathf.Lerp(transform.position.x, player.transform.position.x - uniqueDistanceOffset.x, 0.1f),
-                                                 Mathf.Lerp(transform.position.y, player.transform.position.y - uniqueDistanceOffset.y, 0.1f),
-                                                 Mathf.Lerp(transform.position.z, player.transform.position.z - uniqueDistanceOffset.z, 0.1f));
+                transform.position = new Vector3(Mathf.Lerp(transform.position.x, player.transform.position.x - distanceOffset.x, 0.1f),
+                                                 Mathf.Lerp(transform.position.y, player.transform.position.y - distanceOffset.y, 0.1f),
+                                                 Mathf.Lerp(transform.position.z, player.transform.position.z - distanceOffset.z, 0.1f));
             }
             else if (state == MonsterState.Attack)//攻撃中
             {
@@ -114,7 +116,7 @@ namespace NestedParadox.Monsters
             state = MonsterState.Idle;
             rb.velocity = Vector3.zero;            
             attackColl.enabled = false;                       
-            await UniTask.WaitUntil(() => (transform.position - (player.transform.position - uniqueDistanceOffset)).magnitude < 0.7f);
+            await UniTask.WaitUntil(() => (transform.position - (player.transform.position - distanceOffset)).magnitude < 0.7f);
             for(int i=0; i<4; i++)
             {
                 Destroy(moveEffect_clones[i]);
