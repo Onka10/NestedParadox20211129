@@ -1157,13 +1157,17 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 782356079}
+    - target: {fileID: 869240937329872899, guid: f09d5fa20848840d9a10f48c4c61ed63, type: 3}
+      propertyPath: targetLayer.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
     - target: {fileID: 869240937329872901, guid: f09d5fa20848840d9a10f48c4c61ed63, type: 3}
       propertyPath: m_Name
       value: EnemyRabbit
       objectReference: {fileID: 0}
     - target: {fileID: 869240937329872901, guid: f09d5fa20848840d9a10f48c4c61ed63, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 869240937507368996, guid: f09d5fa20848840d9a10f48c4c61ed63, type: 3}
       propertyPath: m_RootOrder
@@ -3017,7 +3021,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1605598547
 Transform:
   m_ObjectHideFlags: 0
@@ -4100,6 +4104,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4384166999359181824, guid: 28b33da983773ad4bac7edf92b016e5d, type: 3}
       propertyPath: m_Name
+      value: GameManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 4384166999359181824, guid: 28b33da983773ad4bac7edf92b016e5d, type: 3}
+      propertyPath: m_TagString
       value: GameManager
       objectReference: {fileID: 0}
     - target: {fileID: 4384166999359181826, guid: 28b33da983773ad4bac7edf92b016e5d, type: 3}
