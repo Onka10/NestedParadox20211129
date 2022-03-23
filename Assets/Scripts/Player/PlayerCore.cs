@@ -1,5 +1,6 @@
 using UniRx;
 using UniRx.Triggers;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace NestedParadox.Players
@@ -8,8 +9,11 @@ namespace NestedParadox.Players
     public sealed class PlayerCore : Singleton<PlayerCore>,IApplyDamage
     {
         // // 死んでいるか
-        // public IReadOnlyReactiveProperty<bool> IsDead => _isDead;
-        // private readonly ReactiveProperty<bool> _isDead = new ReactiveProperty<bool>();
+        public IReadOnlyReactiveProperty<bool> IsDead => _isDead;
+        private readonly ReactiveProperty<bool> _isDead = new ReactiveProperty<bool>();
+
+        // 無敵状態
+        private bool _isInvincible;
 
         //プレイヤーのHP
         public IReadOnlyReactiveProperty<int> Hp => _playerhp;
@@ -22,19 +26,28 @@ namespace NestedParadox.Players
 
         //ドローエナジー
         public IReadOnlyReactiveProperty<int> PlayerDrawEnergy => _playerdrawenergy;
-        private readonly ReactiveProperty<int> _playerdrawenergy = new ReactiveProperty<int>();
+        private readonly ReactiveProperty<int> _playerdrawenergy = new ReactiveProperty<int>(0);
 
         //外部参照
-        PlayerBuff _playerbuff;
+        private PlayerBuff _playerbuff;
+        private PlayerAnimation _playeraniamtion;
+        [SerializeField] private CapsuleCollider2D _hitCollider;
+
+        [SerializeField]private int MAXDraweEnergy=10;
 
 
         void Start(){
             //キャッシュ
-            _playerbuff = PlayerBuff.I;
+            _playerbuff = GetComponent<PlayerBuff>();
+            _playeraniamtion = GetComponent<PlayerAnimation>();
 
-            //仮でプレイヤーのHPを100としてます。
-            _playerhp.Value = 100;
-            _playerdrawenergy.Value =10;
+            _playerhp.Value = 2;
+
+            //死んだら死ぬ変数をtrueに
+            _playerhp
+            .Where(x => x < 0)
+            .Subscribe(_ => _isDead.Value = true)
+            .AddTo(this);
         }
 
         public void Damaged(Damage _damage)
@@ -42,6 +55,15 @@ namespace NestedParadox.Players
             int dame;
             dame = _playerbuff.Guard( _damage.DamageValue);
             _playerhp.Value -=dame;
+
+            _playeraniamtion.Damaged();
+            Invincible(1000).Forget();
+        }
+
+        public async UniTask Invincible(int delay){
+            _hitCollider.enabled = false;
+            await UniTask.Delay(delay);
+            _hitCollider.enabled = true;
         }
 
         //毒や効果によるHP減少などの定数ダメージ
@@ -54,7 +76,8 @@ namespace NestedParadox.Players
         }
 
         public void AddDrawEnergy(int d){
-            _playerdrawenergy.Value += d;
+            // _playerdrawenergy.Value += d;
+            _playerdrawenergy.Value = Mathf.Clamp(_playerdrawenergy.Value += d, 0, MAXDraweEnergy);
         }
 
         public void ResetDrawEnergy(){

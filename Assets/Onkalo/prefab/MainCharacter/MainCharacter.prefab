@@ -216,6 +216,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 2d33bbaa-af64-406f-88dc-d098a5fec75a
     m_ActionName: Player/DebugAction[/Keyboard/g,/DualShock4GamepadHID/dpad/up]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5695078908484181314}
+        m_TargetAssemblyTypeName: NestedParadox.Players.PlayerInput, Assembly-CSharp
+        m_MethodName: Delete
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: bf474550-623f-43e0-ad42-bab7a1fbacc4
+    m_ActionName: Player/CardDelete[/Keyboard/f,/DualShock4GamepadHID/dpad/down]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -272,7 +288,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3140266419631370278
 Transform:
   m_ObjectHideFlags: 0
@@ -294,10 +310,10 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2809606574725599418}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.9329225, y: 0.008404732}
@@ -324,8 +340,8 @@ GameObject:
   - component: {fileID: 3940244972384970386}
   - component: {fileID: 3940244972384970387}
   - component: {fileID: 3940244972384970384}
-  - component: {fileID: 7318644029411914060}
   - component: {fileID: 42225485264615252}
+  - component: {fileID: 8545737382713495661}
   - component: {fileID: 326914846033663390}
   - component: {fileID: 3862696649141903123}
   - component: {fileID: 4651605267146698866}
@@ -431,22 +447,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!70 &7318644029411914060
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3940244972384970385}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: 5801de89fd88da343b9cc9e9a2e84e66, type: 2}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.015359029, y: -0.03958881}
-  m_Size: {x: 1.0292015, y: 2.8238409}
-  m_Direction: 0
 --- !u!61 &42225485264615252
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -460,7 +460,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.03958893, y: -0.1010589}
+  m_Offset: {x: 0.03958893, y: -0.045059323}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -471,8 +471,24 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.99143803, y: 2.6074471}
+  m_Size: {x: 0.99143803, y: 2.7194464}
   m_EdgeRadius: 0
+--- !u!70 &8545737382713495661
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3940244972384970385}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 5801de89fd88da343b9cc9e9a2e84e66, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.059399396, y: -0.042894244}
+  m_Size: {x: 0.685895, y: 2.6764405}
+  m_Direction: 0
 --- !u!50 &326914846033663390
 Rigidbody2D:
   serializedVersion: 4
@@ -544,6 +560,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f55fb7ea0dceb7945bc023b9a35a8f41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _hitCollider: {fileID: 8545737382713495661}
 --- !u!114 &5695078908484181314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -633,7 +650,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3757602553887465279
 Transform:
   m_ObjectHideFlags: 0
@@ -655,10 +672,10 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8166128699369107097}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.9581367, y: -0.025214195}
