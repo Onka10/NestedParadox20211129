@@ -16,12 +16,12 @@ namespace NestedParadox.Players
         public IObservable<Unit> OnNormalAttack => _normalAttackSubject;
         public IObservable<Unit> OnChargeAttack => _chargeAttackSubject;
         public IReadOnlyReactiveProperty<bool> IsJump => _jump;
-        // public IObservable<Unit> IsJump => _jump;
         public IReadOnlyReactiveProperty<Vector3> MoveDirection => _move;
         public IObservable<Unit> OnPlayCard => _playcardsubject;
         public IObservable<Unit> OnDrawCard => _drawcardsubject;
         public IObservable<Unit> OnChangeHandR => _changehandRsubject;
         public IObservable<Unit> OnChangeHandL => _changehandLsubject;
+        public IObservable<Unit> OnCardDelete => _delete;
         public IObservable<Unit> OnDebug => _debug;
 
 
@@ -29,13 +29,13 @@ namespace NestedParadox.Players
         private readonly Subject<Unit> _normalAttackSubject = new Subject<Unit>();
         private readonly Subject<Unit> _chargeAttackSubject = new Subject<Unit>();
         private readonly ReactiveProperty<bool> _jump = new ReactiveProperty<bool>(false);
-        // private readonly Subject<Unit> _jump = new Subject<Unit>();
         private readonly ReactiveProperty<Vector3> _move = new ReactiveProperty<Vector3>();
         private readonly Subject<Unit> _playcardsubject = new Subject<Unit>();
         private readonly Subject<Unit> _drawcardsubject = new Subject<Unit>();
         private readonly Subject<Unit> _changehandRsubject = new Subject<Unit>();
         private readonly Subject<Unit> _changehandLsubject = new Subject<Unit>();
         private readonly Subject<Unit> _debug = new Subject<Unit>();          
+        private readonly Subject<Unit> _delete = new Subject<Unit>();     
 
 
 
@@ -77,11 +77,6 @@ namespace NestedParadox.Players
         }
 
         public void OnJump(InputAction.CallbackContext context){
-            // if (context.phase == InputActionPhase.Started){
-            //     _jump.Value = true;
-            // }else if(context.phase == InputActionPhase.Canceled){
-            //     _jump.Value = false;
-            // }
             if (context.phase == InputActionPhase.Started){
                 Tofalse().Forget();
                 _jump.Value = true;
@@ -102,6 +97,12 @@ namespace NestedParadox.Players
         public void OnDraw(InputAction.CallbackContext context){
             if(context.phase == InputActionPhase.Started){
                 _drawcardsubject.OnNext(Unit.Default);
+            }
+        }
+
+        public void Delete(InputAction.CallbackContext context){
+            if(context.phase == InputActionPhase.Started){
+                _delete.OnNext(Unit.Default);
             }
         }
 

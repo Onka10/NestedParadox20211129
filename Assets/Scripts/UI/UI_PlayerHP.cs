@@ -13,7 +13,7 @@ public class UI_PlayerHP : MonoBehaviour
     void Start()
     {
         HPSlider = GetComponent<Slider>();
-        HPSlider.maxValue = 100;
+        HPSlider.maxValue = PlayerCore.I.Hp.Value;
 
         PlayerCore.I.Hp
         .Subscribe(x=>UPdatePlayerHPUI(x))

@@ -11,7 +11,7 @@ public class UI_DrawEnergy : MonoBehaviour
     void Start()
     {
         DrawEnegrySlider = GetComponent<Slider>();
-        DrawEnegrySlider.maxValue = 10;
+        DrawEnegrySlider.maxValue = PlayerCore.I.PlayerDrawEnergy.Value;
 
         PlayerCore.I.PlayerDrawEnergy
         .Subscribe(x=>UpdateDrawEnergyUI(x))
