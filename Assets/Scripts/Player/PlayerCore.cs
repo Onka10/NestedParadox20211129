@@ -6,7 +6,7 @@ using UnityEngine;
 namespace NestedParadox.Players
 {
     // プレイヤーの本体を表すコンポーネント
-    public sealed class PlayerCore : Singleton<PlayerCore>,IApplyDamage
+    public sealed class PlayerCore : Singleton<PlayerCore>,IApplyDamage,IFallingIsRespown
     {
         // // 死んでいるか
         public IReadOnlyReactiveProperty<bool> IsDead => _isDead;
@@ -17,7 +17,7 @@ namespace NestedParadox.Players
 
         //プレイヤーのHP
         public IReadOnlyReactiveProperty<int> Hp => _playerhp;
-        private readonly ReactiveProperty<int> _playerhp = new ReactiveProperty<int>();
+        private readonly ReactiveProperty<int> _playerhp = new ReactiveProperty<int>(2);
 
         //プレイヤーの攻撃力
         public IReadOnlyReactiveProperty<int> PlayerAttackPower => _playerATK;
@@ -41,8 +41,6 @@ namespace NestedParadox.Players
             _playerbuff = GetComponent<PlayerBuff>();
             _playeraniamtion = GetComponent<PlayerAnimation>();
 
-            _playerhp.Value = 2;
-
             //死んだら死ぬ変数をtrueに
             _playerhp
             .Where(x => x < 0)
@@ -57,6 +55,7 @@ namespace NestedParadox.Players
             _playerhp.Value -=dame;
 
             _playeraniamtion.Damaged();
+            //しばらく無敵に
             Invincible(1000).Forget();
         }
 
@@ -82,6 +81,11 @@ namespace NestedParadox.Players
 
         public void ResetDrawEnergy(){
             _playerdrawenergy.Value=0;
+        }
+
+        public void Respown(){
+            //復活処理とダメージ処理を書く
+            Debug.Log("落下！");
         }
 
         // 無敵か
