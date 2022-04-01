@@ -74,12 +74,5 @@ namespace NestedParadox.Monsters
             await UniTask.Delay(1000);
             state = MonsterState.Idle;            
         }
-
-        public override void SetPositionAndInitialize(Vector3 distanceOffset)
-        {
-            base.SetPositionAndInitialize(distanceOffset);
-            GameObject.Find("GuardKunManager").GetComponent<GuardKunManager>().Add(this);
-        }
-
     }   
 }

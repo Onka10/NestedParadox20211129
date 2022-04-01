@@ -12,7 +12,7 @@ namespace NestedParadox.Managers
         [SerializeField] StageManager stageManager;
         [SerializeField] TempCharacter player;
         [SerializeField] GameObject stageEnd;
-        // Start is called before the first frame update
+
         void Start()
         {
             stageManager.Construct();

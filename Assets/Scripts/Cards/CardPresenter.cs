@@ -17,7 +17,10 @@ public class CardPresenter : Singleton<CardPresenter>
         var Magic = CardList[id].GetComponent<IMagic>();
 
         if(Magic != null)   Magic.Execution();
-        else    MonsterManager.I.Summon((CardID)Enum.ToObject(typeof(CardID), id));
+        else    PlayerSummon(id);
+    }
 
+    public void PlayerSummon(int id){
+        if(MonsterManager.I.CanSummon)  MonsterManager.I.Summon((CardID)Enum.ToObject(typeof(CardID), id));
     }
 }

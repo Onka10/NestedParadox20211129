@@ -42,8 +42,7 @@ namespace NestedParadox.Cards
         }
 
         private void InitDeck(){
-            //ToDoデッキシャッフル
-
+            //シャッフル
             for (int i = _deck.Count - 1; i > 0; i--){
                 var j = UnityEngine.Random.Range(0, i+1); // ランダムで要素番号を１つ選ぶ（ランダム要素）
                 var temp = _deck[i]; // 一番最後の要素を仮確保（temp）にいれる
@@ -82,17 +81,20 @@ namespace NestedParadox.Cards
                 if(_cardpresenter.Check(_hand[_nowhand.Value])){
                     //効果実行
                     _cardpresenter.Execute(_hand[_nowhand.Value]);
-
-                    //墓地へ捨てる
-                    graveyard.Enqueue(_hand[_nowhand.Value]);
-                    //UI更新
-                    _graveyardcount.Value = graveyard.Count;
-
-                    //手札を消す
-                    _hand.RemoveAt(_nowhand.Value);
-                    if(_hand.Count!=0 && _nowhand.Value!=0)   Rotatehand(-1);//手札が残っている&&手札の選択が最初じゃない
+                    Trash();
                 }
             }
+        }
+
+        private void Trash(){//今の手札を捨てる
+            //墓地へ捨てる
+            graveyard.Enqueue(_hand[_nowhand.Value]);
+            //UI更新
+            _graveyardcount.Value = graveyard.Count;
+
+            //手札を消す
+            _hand.RemoveAt(_nowhand.Value);
+            if(_hand.Count!=0 && _nowhand.Value!=0)   Rotatehand(-1);//手札が残っている&&手札の選択が最初じゃないなら、nowhand移動
         }
 
         public void publicRotateHand(int h){
@@ -119,7 +121,7 @@ namespace NestedParadox.Cards
             _nowhand.Value = Mathf.Clamp(_nowhand.Value, 0, 2);
         }
 
-        private void DeckReload(){//山札が無ければ墓地を補充する
+        private void DeckReload(){//墓地を補充する
             //コピー
             int[] array = graveyard.ToArray();
             //消す
@@ -129,6 +131,12 @@ namespace NestedParadox.Cards
                 _deck.Add(array[i]);
             }
             //TO DO山札をシャッフルする必要があるかも
+        }
+
+        public void DeleteAllCard(){
+            Trash();
+            Trash();
+            Trash();
         }
 
 

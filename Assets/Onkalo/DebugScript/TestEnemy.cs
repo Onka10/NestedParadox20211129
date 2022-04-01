@@ -29,7 +29,7 @@ public class TestEnemy : MonoBehaviour,IApplyDamage
         {
             //自分の攻撃力を引数として渡す
             //攻撃側は相手が何であろうと攻撃する事だけを考えれば良い
-            attack.Damaged(new DamageToPlayer(10,0));
+            attack.Damaged(new DamageToPlayer(1,0));
         } 
     }
 }
