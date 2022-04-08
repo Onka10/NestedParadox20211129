@@ -4,6 +4,7 @@ using UnityEngine;
 using UniRx;
 using UniRx.Triggers;
 using Cysharp.Threading.Tasks;
+using NestedParadox.Players;
 
 namespace NestedParadox.Monsters
 {
@@ -16,18 +17,18 @@ namespace NestedParadox.Monsters
         [SerializeField] Vector3 shotPosition;
         [SerializeField] float attackSpan;
         private float attackTime;
-        private TempCharacter player;
-        private MonsterState state;
+        private PlayerMove playerMove;
+        
         // Start is called before the first frame update
         void Start()
         {
-            player = GameObject.FindGameObjectWithTag("MainCharacter").GetComponent<TempCharacter>();
+            playerMove = PlayerMove.I;
             attackTime = 0;
             state = MonsterState.Idle;
             Vector3 distanceOffset_temp = new Vector3(distanceOffset.x, distanceOffset.y, distanceOffset.z);
             Vector3 localScale_temp = new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z);
             Vector3 shotPosition_temp = new Vector3(shotPosition.x, shotPosition.y, shotPosition.z);
-            player.CurrentDirection.Subscribe(x =>
+            playerMove.CurrentDirection.Subscribe(x =>
             {
                 if (x == 1)
                 {
@@ -58,9 +59,9 @@ namespace NestedParadox.Monsters
         {
             if (state == MonsterState.Idle)//待機中
             {
-                transform.position = new Vector3(Mathf.Lerp(transform.position.x, player.transform.position.x - distanceOffset.x, 0.1f),
-                                                 Mathf.Lerp(transform.position.y, player.transform.position.y - distanceOffset.y, 0.1f),
-                                                 Mathf.Lerp(transform.position.z, player.transform.position.z - distanceOffset.z, 0.1f));
+                transform.position = new Vector3(Mathf.Lerp(transform.position.x, playerMove.transform.position.x - distanceOffset.x, 0.1f),
+                                                 Mathf.Lerp(transform.position.y, playerMove.transform.position.y - distanceOffset.y, 0.1f),
+                                                 Mathf.Lerp(transform.position.z, playerMove.transform.position.z - distanceOffset.z, 0.1f));
             }
             else if (state == MonsterState.Attack)//攻撃中
             {
