@@ -123,7 +123,7 @@ namespace NestedParadox.Monsters
                         monsterList_temp.Add(monster);
                     }                    
                     monster.SetPositionAndInitialize(monsterRow.GetNextPosition(monsterList_temp));
-                    await UniTask.Delay(200, cancellationToken: this.GetCancellationTokenOnDestroy());
+                    await UniTask.Delay(1000, cancellationToken: this.GetCancellationTokenOnDestroy());
                 }
             }
             guardKun.SetActive();
