@@ -5,7 +5,8 @@ using UniRx.Triggers; // UpdateAsObservable()の呼び出しに必要
 using UnityEngine;
 using Cysharp.Threading.Tasks;
 using UnityEngine.InputSystem;
-
+using System.Collections;
+using System.Collections.Generic;
 
 
 namespace NestedParadox.Players
@@ -78,15 +79,19 @@ namespace NestedParadox.Players
 
         public void OnJump(InputAction.CallbackContext context){
             if (context.phase == InputActionPhase.Started){
-                Tofalse().Forget();
                 _jump.Value = true;
+                // Tofalse(context);
+                // await UniTask.Delay(1000);
             }
+            // }else if(context.phase == InputActionPhase.Canceled){
+            //     _jump.Value=false;
+            // }
         }
 
-        async UniTask Tofalse(){
-            await UniTask.Delay(1000);
-            _jump.Value = false;
-        }
+        // async UniTaskVoid Tofalse(InputAction.CallbackContext context){
+        //     await UniTask.WaitUntil(() => context.phase == InputActionPhase.Canceled);
+        //     _jump.Value=false;
+        // }
 
         public void OnPlay(InputAction.CallbackContext context){
             if(context.phase == InputActionPhase.Started){

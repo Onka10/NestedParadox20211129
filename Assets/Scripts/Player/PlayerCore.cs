@@ -31,6 +31,7 @@ namespace NestedParadox.Players
         //外部参照
         private PlayerBuff _playerbuff;
         private PlayerAnimation _playeraniamtion;
+        private PlayerMove _playermove;
         [SerializeField] private CapsuleCollider2D _hitCollider;
 
         [SerializeField]private int MAXDraweEnergy=10;
@@ -40,6 +41,7 @@ namespace NestedParadox.Players
             //キャッシュ
             _playerbuff = GetComponent<PlayerBuff>();
             _playeraniamtion = GetComponent<PlayerAnimation>();
+            _playermove = GetComponent<PlayerMove>();
 
             //死んだら死ぬ変数をtrueに
             _playerhp
@@ -55,11 +57,19 @@ namespace NestedParadox.Players
             _playerhp.Value -=dame;
 
             _playeraniamtion.Damaged();
+            //しばらく動けなくする
+            DamagedLock(200).Forget();
             //しばらく無敵に
             Invincible(1000).Forget();
         }
 
         public async UniTask Invincible(int delay){
+            _playermove.BlockMove(true);
+            await UniTask.Delay(delay);
+            _playermove.BlockMove(false);
+        }
+
+        private async UniTask DamagedLock(int delay){
             _hitCollider.enabled = false;
             await UniTask.Delay(delay);
             _hitCollider.enabled = true;
