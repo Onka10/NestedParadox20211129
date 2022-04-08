@@ -1,5 +1,6 @@
 using UniRx;
 using UnityEngine;
+using System;
 
 namespace NestedParadox.Players
 {
@@ -41,6 +42,8 @@ namespace NestedParadox.Players
         private PlayerCore _playerCore;
         private Rigidbody2D _rigidbody2D;
         private PlayerInput _playerinput;
+
+        private bool jumong;
 
         private void Start(){
             _rigidbody2D = GetComponent<Rigidbody2D>();
@@ -85,8 +88,6 @@ namespace NestedParadox.Players
             // ジャンプ
             if (_playerinput.IsJump.Value && _isGrounded.Value && !_isMoveBlock)
             {
-                // Debug.Log("Jump");
-                // Debug.LogError("ジャンプテスト");
                 vel += Vector3.up * _jumpSpeed;
                 _isJumpReserved = false;
             }

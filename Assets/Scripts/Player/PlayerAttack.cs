@@ -1,6 +1,6 @@
 using UniRx;
 using UniRx.Triggers;
-// using UniRxSampleGame.Damages;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using System;
 
@@ -16,12 +16,14 @@ namespace NestedParadox.Players
         private PlayerMove _playerMove;
         private PlayerCore _playercore;
 
-        //購読用に用意する
-        private readonly ReactiveProperty<bool> _isInAttack = new ReactiveProperty<bool>(false);
-
         // ヒエラルキー上で子要素として存在する攻撃判定用コライダ
         [SerializeField] private Collider2D _attackCollider1;
         [SerializeField] private Collider2D _attackCollider2;
+
+        private int nockback=0;
+
+        private Animator animator;
+        private AnimatorStateInfo stateInfo;
 
 
 
@@ -32,24 +34,18 @@ namespace NestedParadox.Players
             _playerMove = GetComponent<PlayerMove>();
             _playercore = GetComponent<PlayerCore>();
 
+            animator = GetComponent<Animator>();
+
             // 操作イベントの購読
             SubscribeInputEvent();
-
-            // アニメーションイベントの購読
-            SubscribeAnimationEvent();
 
             // 衝突イベントの購読
             SubscribeColliderEvent();
 
-            // 攻撃中は移動不可フラグを立てる
-            _isInAttack
-                .Where(x => true)
-                .Subscribe(x => _playerMove.BlockMove(x))
-                .AddTo(this);
-
-            OnAttackEndEvent();
+            // OnAttackEndEvent();
         }
 
+        #region 操作イベントの購読
         private void SubscribeInputEvent()
         {
             //一応連打防止の対応したけど、タメ攻撃と通常で分けれて無いし、今後攻撃が増えると通用しなくなる
@@ -59,7 +55,7 @@ namespace NestedParadox.Players
                 // 接地中なら攻撃ができる
                 .Where(_ => _playerMove.IsGrounded.Value)
                 .ThrottleFirst(TimeSpan.FromSeconds(.6))//連打防止。通常攻撃は.4秒
-                .Subscribe(_ => NAttack())
+                .Subscribe(_ => NAttack().Forget())
                 .AddTo(this);
 
             // 強攻撃イベント
@@ -67,62 +63,61 @@ namespace NestedParadox.Players
                 // 接地中なら攻撃ができる
                 .Where(_ => _playerMove.IsGrounded.Value)
                 .ThrottleFirst(TimeSpan.FromSeconds(1))//連打防止。タメ攻撃はあ1秒
-                .Subscribe(_ => CAttack())
+                .Subscribe(_ => CAttack().Forget())
                 .AddTo(this);
         }
 
         //本来は攻撃が当たったときにドローエナジーを増やして欲しいけど、今はこれで我慢
-        private void NAttack(){
+        private async UniTask NAttack(){
+            //アニメーションの再生
             _playerAnimation.NormalAttack();
+            //コライダーをON
+            _attackCollider1.enabled = true;
+            //移動不可を設定
+            _playerMove.BlockMove(true);
+            //ステータスまわりを変更
+            nockback = 1;
+            _playercore.ChangeAttackPower(1);
             _playercore.AddDrawEnergy(10);
+            
+            await UniTask.DelayFrame(1);
+            await UniTask.WaitWhile(() => _playerAnimation.IsAttack.Value);
+            OnAttackEndEvent();
         }
 
-        private void CAttack(){
+        private async UniTask CAttack(){
+            //アニメーションの再生
             _playerAnimation.ChargeAttack();
+            //コライダーをONに
+            _attackCollider2.enabled = true;
+            //移動不可を設定
+            _playerMove.BlockMove(true);
+            //ステータスまわりを変更
+            nockback = 2;
+            _playercore.ChangeAttackPower(2);
             _playercore.AddDrawEnergy(2);
+
+            await UniTask.DelayFrame(1);
+            await UniTask.WaitWhile(() => _playerAnimation.IsAttack.Value);
+            OnAttackEndEvent();
         }
+        #endregion 
 
-        // アニメーションイベントを購読する
-        private void SubscribeAnimationEvent(){
-            // ObservableStateMachineTrigger を用いることでAnimationControllerのステートの遷移を取得できるが
-            // 今回はAnimationは普通に実装してるので""使えません""
-            var animator = GetComponent<Animator>();
-            var trigger = animator.GetBehaviour<ObservableStateMachineTrigger>();
-
-            // 攻撃関係のステートマシンに入った
-            trigger
-                // .OnStateMachineEnterAsObservable()
-                .OnStateUpdateAsObservable()
-                .Subscribe(onStateInfo =>
-                {
-                     AnimatorStateInfo info = onStateInfo.StateInfo;
-                    if (info.IsName("Attack.NormalAttackAnimation")||info.IsName("Attack.AccumulationAttackAnimation"))
-                    {
-                        _isInAttack.Value = true;
-                    }
-                }).AddTo(this);
-                // .Subscribe(_ => _isInAttack.Value = true)
-                // .AddTo(this);
-
-            // 攻撃関係のステートマシンから出た
-            trigger
-                // .OnStateMachineExitAsObservable()
-                .OnStateExitAsObservable()
-                .Subscribe(onStateInfo =>
-                {
-                     AnimatorStateInfo info = onStateInfo.StateInfo;
-                    if (info.IsName("Attack.NormalAttackAnimation")||info.IsName("Attack.AccumulationAttackAnimation"))
-                    {
-                        _isInAttack.Value = false;
-                    }
-                }).AddTo(this);
-                // .Subscribe(_ => _isInAttack.Value = false)
-                // .AddTo(this);
+        #region 攻撃のメソッド
+        //色々消す
+        public void OnAttackEndEvent()
+        {
+            _attackCollider1.enabled = false;
+            _attackCollider2.enabled = false;
+            nockback = 0;
+            _playercore.ChangeAttackPower(0);
+            //移動不可を解除
+            _playerMove.BlockMove(false);
         }
+        #endregion
 
 
         #region 攻撃判定用コライダの衝突判定購読
-
         // 各種衝突判定を購読する
         private void SubscribeColliderEvent()
         {
@@ -135,42 +130,30 @@ namespace NestedParadox.Players
                 {
                     // 武器に当たった相手がダメージを与えられる相手であるか
                     if (!x.TryGetComponent<IApplyDamage>(out IApplyDamage attack)) return;
-                    // 相手にダメージを与える
 
-                    //todo:Playercoreから攻撃力。playerbuffからバフを受け取ってdamageクラスに入れる
+                    //攻撃の実数値を入力
+                    int AttackActualValue;
+                    AttackActualValue = PlayerCore.I.PlayerAttackPower.Value + PlayerBuff.I.EnhancedATK.Value;
                     
-                    // attack.Damaged( Damageクラスを渡す);
+                    attack.Damaged(new  DamageToEnemy(AttackActualValue, nockback));
 
                 }).AddTo(this);
+
+            _attackCollider2.OnTriggerEnter2DAsObservable()
+                .Merge(_attackCollider2.OnTriggerEnter2DAsObservable())
+                .Subscribe(x =>
+                {
+                    // 武器に当たった相手がダメージを与えられる相手であるか
+                    if (!x.TryGetComponent<IApplyDamage>(out IApplyDamage attack)) return;
+
+                    //攻撃の実数値を入力
+                    int AttackActualValue;
+                    AttackActualValue = PlayerCore.I.PlayerAttackPower.Value + PlayerBuff.I.EnhancedATK.Value;
+                    
+                    attack.Damaged(new  DamageToEnemy(AttackActualValue, nockback));
+
+            }).AddTo(this);
         }
-
-        #endregion
-
-
-
-        #region 攻撃のメソッド
-
-        // 攻撃モーションに合わせて当たり判定をON/OFFする
-        public void OnNormalAttackEvent()
-        {
-            _attackCollider1.enabled = true;
-            _playercore.ChangeAttackPower(1);
-        }
-
-        public void OnChargeAttackEvent()
-        {
-            _attackCollider2.enabled = true;
-            _playercore.ChangeAttackPower(2);
-        }
-
-        //当たり判定を消す
-        public void OnAttackEndEvent()
-        {
-            _attackCollider1.enabled = false;
-            _attackCollider2.enabled = false;
-            _playercore.ChangeAttackPower(0);
-        }
-
         #endregion
     }
 }

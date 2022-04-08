@@ -3,6 +3,7 @@ using System.Threading;
 using UniRx;
 using UniRx.Triggers; // UpdateAsObservable()の呼び出しに必要
 using UnityEngine;
+using Cysharp.Threading.Tasks;
 using UnityEngine.InputSystem;
 
 
@@ -20,6 +21,7 @@ namespace NestedParadox.Players
         public IObservable<Unit> OnDrawCard => _drawcardsubject;
         public IObservable<Unit> OnChangeHandR => _changehandRsubject;
         public IObservable<Unit> OnChangeHandL => _changehandLsubject;
+        public IObservable<Unit> OnCardDelete => _delete;
         public IObservable<Unit> OnDebug => _debug;
 
 
@@ -33,6 +35,7 @@ namespace NestedParadox.Players
         private readonly Subject<Unit> _changehandRsubject = new Subject<Unit>();
         private readonly Subject<Unit> _changehandLsubject = new Subject<Unit>();
         private readonly Subject<Unit> _debug = new Subject<Unit>();          
+        private readonly Subject<Unit> _delete = new Subject<Unit>();     
 
 
 
@@ -75,10 +78,14 @@ namespace NestedParadox.Players
 
         public void OnJump(InputAction.CallbackContext context){
             if (context.phase == InputActionPhase.Started){
+                Tofalse().Forget();
                 _jump.Value = true;
-            }else if(context.phase == InputActionPhase.Canceled){
-                _jump.Value = false;
             }
+        }
+
+        async UniTask Tofalse(){
+            await UniTask.Delay(1000);
+            _jump.Value = false;
         }
 
         public void OnPlay(InputAction.CallbackContext context){
@@ -90,6 +97,12 @@ namespace NestedParadox.Players
         public void OnDraw(InputAction.CallbackContext context){
             if(context.phase == InputActionPhase.Started){
                 _drawcardsubject.OnNext(Unit.Default);
+            }
+        }
+
+        public void Delete(InputAction.CallbackContext context){
+            if(context.phase == InputActionPhase.Started){
+                _delete.OnNext(Unit.Default);
             }
         }
 

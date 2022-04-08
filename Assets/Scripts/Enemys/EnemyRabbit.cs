@@ -38,7 +38,7 @@ public class EnemyRabbit : EnemyBase, IApplyDamage
                       .Where(collision => collision.gameObject.CompareTag("MainCharacter"))
                       .Subscribe(collision =>
                       {
-                          collision.gameObject.GetComponent<PlayerCore>().Damaged(attackPower);
+                        // collision.gameObject.GetComponent<PlayerCore>().Damaged(attackPower);
                       })
                       .AddTo(this);
         //攻撃のクールタイムが終わったら、CanAttackをtrueにする。
