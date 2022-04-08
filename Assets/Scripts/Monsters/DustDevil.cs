@@ -23,8 +23,7 @@ namespace NestedParadox.Monsters
 
         private bool canAttack;
         private float attackTime;
-        private PlayerMove player;
-        private MonsterState state;
+        private PlayerMove player;        
         // Start is called before the first frame update
         void Start()
         {

@@ -44,5 +44,13 @@ namespace NestedParadox.Monsters
             int random = Random.Range(0, guardKuns.Count);
             guardKuns[random].Guard();
         }
+
+        public GuardKun SelectQuintetSummonGuardKun()
+        {
+            int random = Random.Range(0, guardKuns.Count);
+            GuardKun selectedGuardKun = guardKuns[random];
+            guardKuns.RemoveAt(random);
+            return selectedGuardKun;
+        }
     }
 }

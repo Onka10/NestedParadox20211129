@@ -1,34 +1,47 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
-public class MonsterRow : MonoBehaviour
+namespace NestedParadox.Monsters
 {
-    [SerializeField] Vector3 firstPosition;
-    [SerializeField] float positionInterval;
-    private Vector3 lastPosition; 
-
-    // Start is called before the first frame update
-    void Start()
+    public class MonsterRow : MonoBehaviour
     {
-        lastPosition = Vector3.zero;
-    }
+        [SerializeField] Vector3 firstPosition;
+        [SerializeField] float positionInterval;
+        private Vector3 lastPosition;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    //最後尾の位置を更新してその位置を返す
-    public Vector3 GetNextPosition()
-    {
-        if(lastPosition == Vector3.zero)
+        // Start is called before the first frame update
+        void Start()
         {
-            lastPosition = firstPosition;
+            lastPosition = Vector3.zero;
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+
+        }
+
+        //最後尾の位置を更新してその位置を返す
+        public Vector3 GetNextPosition(List<MonsterBase> monsters)
+        {
+            //最初にモンスターを追加する時
+            if (lastPosition == Vector3.zero)
+            {
+                lastPosition = firstPosition;
+                return lastPosition;
+            }
+            //モンスターの列に空きがある時
+            else if(monsters.Any(x => x==null))
+            {
+                Debug.Log("モンスター列に空きがあります");
+                int nullIndex = monsters.IndexOf(null);
+                return firstPosition + new Vector3(positionInterval, 0, 0) * nullIndex;
+            }
+            lastPosition += new Vector3(positionInterval, 0, 0);
             return lastPosition;
         }
-        lastPosition += new Vector3(positionInterval,0,0);
-        return lastPosition;
     }
 }
+
