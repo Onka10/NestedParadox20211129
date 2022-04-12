@@ -30,8 +30,8 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    //ループの再生
-    public void PlayLoopBGM(BGMSoundData.BGM bgm)
+    //BGMの再生
+    public void PlayBGM(BGMSoundData.BGM bgm)
     {
         BGMSoundData data = bgmSoundDatas.Find(data => data.bgm == bgm);
         bgmAudioSource.clip = data.audioClip;
@@ -84,16 +84,16 @@ public class SESoundData
 {
     public enum SE
     {
-        Click_Decide,
-        Click_Choice,
-        Click_Cancel,
-        GuardKun,
-        SacrificeWall,
-        SpeedUp,
-        Heal,
-        OffenceUp,
-        LastSword,
-        Summon,
+        Click_Decide,//決定クリック
+        Click_Choice,//選択
+        Click_Cancel,//キャンセル
+        GuardKun,//ガードくん
+        SacrificeWall,//サクリファイスウォール
+        SpeedUp,//スピードアップ
+        Heal,//回復
+        OffenceUp,//攻撃力アップ
+        LastSword,//最期の剣
+        Summon,//召喚SE
 
     }
 
