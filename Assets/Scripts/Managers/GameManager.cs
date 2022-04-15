@@ -15,9 +15,6 @@ namespace NestedParadox.Managers
 
         void Start()
         {
-            //マネージャの初期化
-            //UIの初期化
-
             stageManager.Construct();
             stageEnd.OnTriggerEnter2DAsObservable().Where(other => other.CompareTag("MainCharacter"))
                     .Subscribe(_ => OnReachStageEnd())

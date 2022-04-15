@@ -10,7 +10,7 @@ public class UI_PlayerHP : MonoBehaviour
     private Slider HPSlider;
 
     // Start is called before the first frame update
-    public void Init()
+    void Start()
     {
         HPSlider = GetComponent<Slider>();
         HPSlider.maxValue = PlayerCore.I.Hp.Value;

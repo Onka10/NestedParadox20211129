@@ -15,8 +15,7 @@ namespace NestedParadox.Players
         //購読される変数
         public IObservable<Unit> OnNormalAttack => _normalAttackSubject;
         public IObservable<Unit> OnChargeAttack => _chargeAttackSubject;
-        // public IReadOnlyReactiveProperty<bool> IsJump => _jump;
-        public IReadOnlyReactiveProperty<bool> IsJumpButtonDown => _jump;
+        public IReadOnlyReactiveProperty<bool> IsJump => _jump;
         public IReadOnlyReactiveProperty<Vector3> MoveDirection => _move;
         public IObservable<Unit> OnPlayCard => _playcardsubject;
         public IObservable<Unit> OnDrawCard => _drawcardsubject;
@@ -79,10 +78,14 @@ namespace NestedParadox.Players
 
         public void OnJump(InputAction.CallbackContext context){
             if (context.phase == InputActionPhase.Started){
+                Tofalse().Forget();
                 _jump.Value = true;
-            }else if(context.phase == InputActionPhase.Canceled){
-                _jump.Value = false;
             }
+        }
+
+        async UniTask Tofalse(){
+            await UniTask.Delay(1000);
+            _jump.Value = false;
         }
 
         public void OnPlay(InputAction.CallbackContext context){

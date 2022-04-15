@@ -8,7 +8,7 @@ using UniRx;
 public class UI_DrawEnergy : MonoBehaviour
 {
     private Slider DrawEnegrySlider;
-    public void Init()
+    void Start()
     {
         DrawEnegrySlider = GetComponent<Slider>();
         DrawEnegrySlider.maxValue = PlayerCore.I.PlayerDrawEnergy.Value;

@@ -3031,7 +3031,6 @@ MonoBehaviour:
   - {fileID: 1691151774}
   - {fileID: 1367771621}
   eventSystem: {fileID: 994084506}
-  guardKunManager: {fileID: 0}
   monsterPrefabList:
   - {fileID: 5068512105697022425, guid: 941c1e57682f84a498de64c971508fe7, type: 3}
   - {fileID: 4042247962044257341, guid: 8bfca58cf405249c4b92d8343db6da82, type: 3}
@@ -3043,8 +3042,6 @@ MonoBehaviour:
   - {fileID: 2881271940313631352, guid: 21dd0405251d74bdcb63381cf7e3127e, type: 3}
   - {fileID: 3252078700116416076, guid: c68e6ab380d9a49eeb76c5c4771cc817, type: 3}
   - {fileID: 880401945095471000, guid: 6237d5b5a4d80487aaee0b23573c51d8, type: 3}
-  monsterList: []
-  monsterList_temp: []
 --- !u!114 &1197586070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4306,6 +4303,10 @@ PrefabInstance:
     - target: {fileID: 326914846033663390, guid: 442452e6d5968944db11d893f9c70ff3, type: 3}
       propertyPath: m_GravityScale
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 523752906355150105, guid: 442452e6d5968944db11d893f9c70ff3, type: 3}
+      propertyPath: _jumpSpeed
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2809606574725599418, guid: 442452e6d5968944db11d893f9c70ff3, type: 3}
       propertyPath: m_IsActive

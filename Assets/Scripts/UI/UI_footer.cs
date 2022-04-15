@@ -22,7 +22,7 @@ public class UI_footer : MonoBehaviour
     NestedParadox.Cards.CardManager _cardmaganeger;
 
 
-    public void Init(){
+    void Start(){
         //カードマネージャのキャッシュ
         _cardmaganeger = NestedParadox.Cards.CardManager.I;
 
@@ -49,13 +49,16 @@ public class UI_footer : MonoBehaviour
         .Subscribe(x => UpdateSelecthand(x))
         .AddTo(this);
 
+        Init();
+    }
+
+    private void Init(){
         //Listの購読がSubscribeをしても初回に動作してくれない事への暫定的対応
         decktext.text = 7.ToString();
 
         //手札の初期化
         UpdateHand();
     }
-
 
     private void UpdateDeckCount(int x){
         decktext.text = x.ToString();
