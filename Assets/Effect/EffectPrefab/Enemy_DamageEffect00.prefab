@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2285249821272162174}
   - component: {fileID: 4846010969291341146}
   m_Layer: 0
-  m_Name: Player_HitEffect00
+  m_Name: Enemy_DamageEffect00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4818,7 +4818,7 @@ GameObject:
   - component: {fileID: 5667477051925293672}
   - component: {fileID: 5604324708250930817}
   m_Layer: 0
-  m_Name: Player_HitEffect01
+  m_Name: Enemy_DamageEffect01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
