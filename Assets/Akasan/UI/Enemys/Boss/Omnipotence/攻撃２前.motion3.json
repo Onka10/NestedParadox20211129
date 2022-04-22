@@ -1,0 +1,256 @@
+{
+	"Version": 3,
+	"Meta": {
+		"Duration": 3.33,
+		"Fps": 30.0,
+		"Loop": true,
+		"AreBeziersRestricted": true,
+		"CurveCount": 12,
+		"TotalSegmentCount": 32,
+		"TotalPointCount": 68,
+		"UserDataCount": 0,
+		"TotalUserDataSize": 0
+	},
+	"Curves": [
+		{
+			"Target": "Parameter",
+			"Id": "Artmesh6",
+			"Segments": [
+				0,
+				0,
+				1,
+				0.233,
+				0,
+				0.467,
+				-10,
+				0.7,
+				-10,
+				0,
+				3.333,
+				-10
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "Artmesh5",
+			"Segments": [
+				0,
+				0,
+				1,
+				0.233,
+				0,
+				0.467,
+				-10,
+				0.7,
+				-10,
+				0,
+				3.333,
+				-10
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "Artmesh12",
+			"Segments": [
+				0,
+				0,
+				1,
+				0.233,
+				0,
+				0.467,
+				-10,
+				0.7,
+				-10,
+				0,
+				3.333,
+				-10
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "Artmesh3",
+			"Segments": [
+				0,
+				0,
+				0,
+				3.333,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "Artmesh10",
+			"Segments": [
+				0,
+				0,
+				1,
+				0.278,
+				0,
+				0.556,
+				10,
+				0.833,
+				10,
+				1,
+				0.9,
+				10,
+				0.967,
+				10,
+				1.033,
+				10,
+				0,
+				3.333,
+				10
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "Artmesh8",
+			"Segments": [
+				0,
+				0,
+				1,
+				0.278,
+				0,
+				0.556,
+				10,
+				0.833,
+				10,
+				0,
+				3.333,
+				10
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "Artmesh9",
+			"Segments": [
+				0,
+				0,
+				0,
+				0.933,
+				0,
+				1,
+				0.978,
+				0,
+				1.022,
+				-1.824,
+				1.067,
+				-4,
+				1,
+				1.156,
+				-8.352,
+				1.244,
+				-10,
+				1.333,
+				-10,
+				1,
+				1.989,
+				-10,
+				2.644,
+				10,
+				3.3,
+				10,
+				0,
+				3.333,
+				10
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "Artmesh11",
+			"Segments": [
+				0,
+				0,
+				0,
+				0.933,
+				0,
+				1,
+				0.978,
+				0,
+				1.022,
+				0,
+				1.067,
+				0,
+				1,
+				1.156,
+				0,
+				1.244,
+				-10,
+				1.333,
+				-10,
+				1,
+				1.989,
+				-10,
+				2.644,
+				10,
+				3.3,
+				10,
+				0,
+				3.333,
+				10
+			]
+		},
+		{
+			"Target": "PartOpacity",
+			"Id": "Part2",
+			"Segments": [
+				0,
+				0,
+				0,
+				3.33,
+				0
+			]
+		},
+		{
+			"Target": "PartOpacity",
+			"Id": "Part",
+			"Segments": [
+				0,
+				1,
+				2,
+				0.93,
+				1,
+				0,
+				3.33,
+				1
+			]
+		},
+		{
+			"Target": "PartOpacity",
+			"Id": "Part3",
+			"Segments": [
+				0,
+				1,
+				2,
+				0.93,
+				0.5,
+				2,
+				1.03,
+				0,
+				0,
+				3.33,
+				0
+			]
+		},
+		{
+			"Target": "PartOpacity",
+			"Id": "Part4",
+			"Segments": [
+				0,
+				0,
+				2,
+				0.93,
+				0.5,
+				2,
+				0.97,
+				0.8,
+				2,
+				1.03,
+				1,
+				0,
+				3.33,
+				1
+			]
+		}
+	]
+}
