@@ -15,10 +15,11 @@ namespace NestedParadox.Managers
 
         void Start()
         {
-            stageManager.Construct();
-            stageEnd.OnTriggerEnter2DAsObservable().Where(other => other.CompareTag("MainCharacter"))
+            //stageManager.Construct();
+            /*stageEnd.OnTriggerEnter2DAsObservable().Where(other => other.CompareTag("MainCharacter"))
                     .Subscribe(_ => OnReachStageEnd())
                     .AddTo(this);
+            */
         }
 
         // Update is called once per frame

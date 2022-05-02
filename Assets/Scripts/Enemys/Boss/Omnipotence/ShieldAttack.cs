@@ -7,47 +7,89 @@ using UniRx.Triggers;
 
 public class ShieldAttack : BossCommand
 {
-    //ƒV[ƒ‹ƒh
+    //?V?[???h
     [SerializeField] GameObject omniShield;
+    [SerializeField] GameObject shield_back;
+    [SerializeField] GameObject[] originalShield;
     Rigidbody2D shieldRb;
-    Collider2D shieldColl;
-    [SerializeField] Animator animator;
+    [SerializeField] Collider2D shieldColl;
+    [SerializeField] Animator animator;    
 
-    //ƒV[ƒ‹ƒh‚ª‰º‚É—Ž‰º‚µ‚½Žž‚Ìƒtƒ‰ƒO
+    //?V?[???h???????????????????t???O
     private bool isGrounded;
 
-    //UŒ‚ƒpƒ‰ƒ[ƒ^
+    //?U???p?????[?^
     [SerializeField] Vector3 upForce;
     [SerializeField] Vector3 downForce;
     [SerializeField] int downTime;
+    [SerializeField] float returnLerpRate;
 
-    private Transform playerPos;
+    private Transform playerPos;    
 
     private void Start()
     {
         playerPos = GameObject.FindGameObjectWithTag("MainCharacter").transform;
         isGrounded = false;
-        shieldColl.OnCollisionEnter2DAsObservable().Subscribe(_ =>
+        shieldColl.OnTriggerEnter2DAsObservable().Subscribe(_ =>
         {
             isGrounded = true;
-        });
+        });        
     }
 
     public override async UniTask Execute()
     {
         await base.Execute();
+        omniShield.SetActive(true);
+        foreach (GameObject shield in originalShield)
+        {
+            shield.SetActive(false);
+        }
+        shield_back.transform.position = new Vector3(0, 0, 1);
+        Rigidbody2D shieldRb = omniShield.GetComponent<Rigidbody2D>();
+        animator.SetTrigger("ShieldAttackTrigger");
+        await UniTask.Delay(300);
         while (animator.GetCurrentAnimatorStateInfo(0).IsName("ShieldAttack1"))
         {
-            omniShield.GetComponent<Rigidbody2D>().AddForce(upForce);
             await UniTask.Yield(PlayerLoopTiming.FixedUpdate);
+            Debug.Log("æ”»æ’ƒ1ä¸­");
+            if (omniShield.transform.position.y > 20)
+            {
+                shieldRb.velocity = Vector3.zero;
+                continue;
+            }
+            shieldRb.AddForce(upForce);            
         }
+        shieldRb.velocity = new Vector3(0, 0, 0);
         await UniTask.Delay(downTime);
-        omniShield.transform.position = new Vector3(omniShield.transform.position.x, playerPos.position.y, omniShield.transform.position.z);
+        shieldRb.position = new Vector3(playerPos.position.x, omniShield.transform.position.y, omniShield.transform.position.z);
         while(animator.GetCurrentAnimatorStateInfo(0).IsName("ShieldAttack2"))
         {
-            omniShield.GetComponent<Rigidbody2D>().AddForce(downForce);
-            await UniTask.Yield(PlayerLoopTiming.FixedUpdate);
+            if(isGrounded)
+            {
+                shieldRb.velocity = Vector3.zero;
+                await UniTask.Yield();
+                continue;
+            }
+            Debug.Log("æ”»æ’ƒï¼’ä¸­");
+            shieldRb.AddForce(downForce);
+            await UniTask.Yield(PlayerLoopTiming.FixedUpdate);            
         }
+
+        shieldRb.velocity = new Vector3(0, 0, 0);
+        while(transform.InverseTransformPoint(shieldRb.position).magnitude > 0.1f)
+        {
+            //Debug.Log("æ”»æ’ƒ3ä¸­");
+            Debug.Log(transform.InverseTransformPoint(shieldRb.position));
+            shieldRb.position = Vector3.Lerp(shieldRb.position, transform.position, returnLerpRate);
+            await UniTask.Yield();
+        }
+        isGrounded = false;
+        foreach (GameObject shield in originalShield)
+        {
+            shield.SetActive(true);
+        }
+        omniShield.SetActive(false);
+        animator.SetTrigger("IdleTrigger");
     }
 
 

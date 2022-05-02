@@ -44,6 +44,8 @@ namespace MainCamera
                 myTransform.position += new Vector3(0, Mathf.Lerp(myTransform.position.y, _playermove.MyTransform.position.y - distanceOffset.y, 0.0001f), 0) - myTransform.position;
             }            
         }
+
+        
     }
 
 }

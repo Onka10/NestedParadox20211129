@@ -9,14 +9,19 @@ namespace MainCamera
     public class TempCamera : MonoBehaviour
     {
         [SerializeField] private Vector3 distanceOffset = new Vector3();
+        [SerializeField] private Vector3 bossCameraPos;
         private TempCharacter tempCharacter;
         private Transform myTransform;
         private IReadOnlyReactiveProperty<int> characterDirection;
 
         private PlayerMove _playermove;
 
+        //ボスカメラのフラグ
+        private bool isBossStage;
+
         private void Start()
         {
+            isBossStage = true; ; //テスト
             _playermove = GameObject.FindGameObjectWithTag("MainCharacter").GetComponent<PlayerMove>();
             myTransform = transform;
             characterDirection = GameObject.FindGameObjectWithTag("MainCharacter").GetComponent<PlayerMove>().CurrentDirection;
@@ -36,6 +41,11 @@ namespace MainCamera
 
         private void FixedUpdate()
         {
+            if(isBossStage)
+            {
+                myTransform.position = bossCameraPos;
+                return;
+            }
             if(myTransform.position.x < 6.4f)
             {
                 myTransform.position = new Vector3(6.4f, 1.51f, -10);
@@ -58,6 +68,11 @@ namespace MainCamera
                                              Mathf.Lerp(myTransform.position.z, _playermove.MyTransform.position.z - distanceOffset.z, 0.05f)
                                              );
             }            
+        }
+
+        public void ChangeToBossCamera()
+        {
+
         }
     }
 
