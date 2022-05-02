@@ -1847,6 +1847,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 442452e6d5968944db11d893f9c70ff3, type: 3}
+--- !u!4 &691430489 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1125283057, guid: 442452e6d5968944db11d893f9c70ff3, type: 3}
+  m_PrefabInstance: {fileID: 691430488}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &722798766
 GameObject:
   m_ObjectHideFlags: 0
@@ -1857,6 +1862,7 @@ GameObject:
   m_Component:
   - component: {fileID: 722798768}
   - component: {fileID: 722798767}
+  - component: {fileID: 722798769}
   m_Layer: 0
   m_Name: FallColider
   m_TagString: Untagged
@@ -1904,6 +1910,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &722798769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 722798766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1674878d797fdc49bd2a798ff4f1cd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &881399075
 GameObject:
   m_ObjectHideFlags: 0
@@ -3609,6 +3627,71 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1001 &1973410054
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 691430489}
+    m_Modifications:
+    - target: {fileID: 7535093622925245508, guid: d03cf9339be08544abac28fa303ec797, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7535093622925245508, guid: d03cf9339be08544abac28fa303ec797, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7535093622925245508, guid: d03cf9339be08544abac28fa303ec797, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 7535093622925245508, guid: d03cf9339be08544abac28fa303ec797, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7535093622925245508, guid: d03cf9339be08544abac28fa303ec797, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7535093622925245508, guid: d03cf9339be08544abac28fa303ec797, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7535093622925245508, guid: d03cf9339be08544abac28fa303ec797, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7535093622925245508, guid: d03cf9339be08544abac28fa303ec797, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7535093622925245508, guid: d03cf9339be08544abac28fa303ec797, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 7535093622925245508, guid: d03cf9339be08544abac28fa303ec797, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7535093622925245508, guid: d03cf9339be08544abac28fa303ec797, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7535093622925245509, guid: d03cf9339be08544abac28fa303ec797, type: 3}
+      propertyPath: ShapeModule.m_Scale.x
+      value: 1.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 7535093622925245509, guid: d03cf9339be08544abac28fa303ec797, type: 3}
+      propertyPath: ShapeModule.m_Scale.z
+      value: 2.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 7535093622925245515, guid: d03cf9339be08544abac28fa303ec797, type: 3}
+      propertyPath: m_Name
+      value: Player_InvincibleTimeEffect00
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d03cf9339be08544abac28fa303ec797, type: 3}
 --- !u!43 &2073918422
 Mesh:
   m_ObjectHideFlags: 0
