@@ -573,7 +573,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dashSpeed: 5
-  _jumpSpeed: 3
+  _jumpSpeed: 15
   _characterHeightOffset: 1.5
   _groundMask:
     serializedVersion: 2

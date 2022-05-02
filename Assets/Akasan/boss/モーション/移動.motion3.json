@@ -1,0 +1,136 @@
+{
+	"Version": 3,
+	"Meta": {
+		"Duration": 2.67,
+		"Fps": 30.0,
+		"Loop": true,
+		"AreBeziersRestricted": true,
+		"CurveCount": 6,
+		"TotalSegmentCount": 12,
+		"TotalPointCount": 36,
+		"UserDataCount": 0,
+		"TotalUserDataSize": 0
+	},
+	"Curves": [
+		{
+			"Target": "Parameter",
+			"Id": "Artmesh6",
+			"Segments": [
+				0,
+				0,
+				1,
+				0.222,
+				0,
+				0.444,
+				1,
+				0.667,
+				1,
+				1,
+				1.111,
+				1,
+				1.556,
+				-1,
+				2,
+				-1,
+				1,
+				2.222,
+				-1,
+				2.444,
+				0,
+				2.667,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "Artmesh5",
+			"Segments": [
+				0,
+				0,
+				0,
+				2.667,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "Artmesh12",
+			"Segments": [
+				0,
+				0,
+				1,
+				0.222,
+				0,
+				0.444,
+				-6,
+				0.667,
+				-6,
+				1,
+				1.111,
+				-6,
+				1.556,
+				1,
+				2,
+				1,
+				1,
+				2.222,
+				1,
+				2.444,
+				0,
+				2.667,
+				0
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Id": "Artmesh3",
+			"Segments": [
+				0,
+				0,
+				1,
+				0.222,
+				0,
+				0.444,
+				-3,
+				0.667,
+				-3,
+				1,
+				1.111,
+				-3,
+				1.556,
+				3,
+				2,
+				3,
+				1,
+				2.222,
+				3,
+				2.444,
+				0,
+				2.667,
+				0
+			]
+		},
+		{
+			"Target": "PartOpacity",
+			"Id": "Part2",
+			"Segments": [
+				0,
+				0,
+				0,
+				2.67,
+				0
+			]
+		},
+		{
+			"Target": "PartOpacity",
+			"Id": "Part4",
+			"Segments": [
+				0,
+				0,
+				0,
+				2.67,
+				0
+			]
+		}
+	]
+}
