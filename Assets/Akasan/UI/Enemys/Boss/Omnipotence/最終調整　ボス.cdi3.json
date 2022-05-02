@@ -1,0 +1,83 @@
+{
+	"Version": 3,
+	"Parameters": [
+		{
+			"Id": "Artmesh6",
+			"GroupId": "",
+			"Name": "前盾１"
+		},
+		{
+			"Id": "Artmesh5",
+			"GroupId": "",
+			"Name": "前盾２"
+		},
+		{
+			"Id": "Artmesh12",
+			"GroupId": "",
+			"Name": "後ろ盾"
+		},
+		{
+			"Id": "Artmesh3",
+			"GroupId": "",
+			"Name": "胴体　下輪"
+		},
+		{
+			"Id": "Artmesh7",
+			"GroupId": "",
+			"Name": "体揺れ"
+		},
+		{
+			"Id": "Param5",
+			"GroupId": "",
+			"Name": "右輪"
+		},
+		{
+			"Id": "Artmesh2",
+			"GroupId": "",
+			"Name": "左輪"
+		},
+		{
+			"Id": "Artmesh10",
+			"GroupId": "",
+			"Name": "ミサイル右　回転"
+		},
+		{
+			"Id": "Artmesh8",
+			"GroupId": "",
+			"Name": "ミサイル左　回転"
+		},
+		{
+			"Id": "Artmesh9",
+			"GroupId": "",
+			"Name": "ミサイル右　縦移動"
+		},
+		{
+			"Id": "Artmesh11",
+			"GroupId": "",
+			"Name": "ミサイル左　縦移動"
+		}
+	],
+	"ParameterGroups": [],
+	"Parts": [
+		{
+			"Id": "Part2",
+			"Name": "目"
+		},
+		{
+			"Id": "Part",
+			"Name": "盾　不透明度"
+		},
+		{
+			"Id": "Part3",
+			"Name": "回転ミサイル"
+		},
+		{
+			"Id": "Part4",
+			"Name": "垂直ミサイル"
+		},
+		{
+			"Id": "Part5",
+			"Name": "後ろ盾　不透明度"
+		}
+	]
+}
