@@ -44,7 +44,7 @@ public class ShieldAttack : BossCommand
         {
             shield.SetActive(false);
         }
-        shield_back.transform.position = new Vector3(0, 0, 1);
+        shield_back.transform.localPosition = new Vector3(0, 0, 1);
         Rigidbody2D shieldRb = omniShield.GetComponent<Rigidbody2D>();
         animator.SetTrigger("ShieldAttackTrigger");
         await UniTask.Delay(300);
