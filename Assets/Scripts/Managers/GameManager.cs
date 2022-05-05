@@ -15,19 +15,17 @@ namespace NestedParadox.Managers
 
         void Start()
         {
-<<<<<<< HEAD
-            //stageManager.Construct();
-            /*stageEnd.OnTriggerEnter2DAsObservable().Where(other => other.CompareTag("MainCharacter"))
-=======
+
             //マネージャの初期化
             //UIの初期化
 
+            /*
             stageManager.Construct();
             stageEnd.OnTriggerEnter2DAsObservable().Where(other => other.CompareTag("MainCharacter"))
->>>>>>> 15e818ce3f80af0d3921cfdb2f5e92d64d73c80b
                     .Subscribe(_ => OnReachStageEnd())
                     .AddTo(this);
             */
+            
         }
 
         // Update is called once per frame

@@ -5,23 +5,23 @@ using Cysharp.Threading.Tasks;
 
 public class OmnipotenceAttack : MonoBehaviour
 {
-    //アタック中かどうか
+    //?A?^?b?N??????????
     private bool isAttacking;
     public bool IsAttacking => isAttacking;
 
-    //アタック可能かどうか
+    //?A?^?b?N???\????????
     private bool canAttack;
     public bool CanAttack => canAttack;
 
-    //現在のコマンド
+    //???????R?}???h
     private BossCommand currentCommand;
     public BossCommand CurrentCommand => currentCommand;
 
-    //アタッククールタイム
+    //?A?^?b?N?N?[???^?C??
     private float attackTimeCount;
     [SerializeField] float attackCoolTime;
 
-    //コマンド
+    //?R?}???h
     [SerializeField] private List<BossCommand> attackCommands;
 
     private void Update()
@@ -54,14 +54,14 @@ public class OmnipotenceAttack : MonoBehaviour
 
     public async void Attack()
     {
-        //技の選択
+        //?Z???I??        
         currentCommand = SelectCommand();
-        if(currentCommand == null)
+        if(currentCommand == null || isAttacking)
         {
             return;
         }
 
-        //ここから攻撃が始まる
+        //?????????U?????n????
         attackTimeCount = 0;
         canAttack = false;
         isAttacking = true;
