@@ -10,7 +10,7 @@ namespace NestedParadox.Managers
 {
     public class GameManager : MonoBehaviour
     {
-        [SerializeField] StageManager stageManager;
+        [SerializeField] StageManager stageManager;        
         [SerializeField] GameObject stageEnd;
         [SerializeField] PlayerCore playerCore;
 

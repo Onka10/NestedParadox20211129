@@ -12,6 +12,7 @@ namespace MainCamera
         [SerializeField] private Vector3 bossCameraPos;
         private TempCharacter tempCharacter;
         private Transform myTransform;
+        [SerializeField] private Camera camera;
         private IReadOnlyReactiveProperty<int> characterDirection;
 
         private PlayerMove _playermove;
@@ -21,9 +22,9 @@ namespace MainCamera
 
         private void Start()
         {
-            isBossStage = false;
+            ChangeToNormalCamera();
             _playermove = GameObject.FindGameObjectWithTag("MainCharacter").GetComponent<PlayerMove>();
-            myTransform = transform;
+            myTransform = transform;           
             characterDirection = GameObject.FindGameObjectWithTag("MainCharacter").GetComponent<PlayerMove>().CurrentDirection;
             Vector3 distanceOffset_temp = new Vector3(distanceOffset.x, distanceOffset.y, distanceOffset.z);
             characterDirection.Subscribe(x =>
@@ -39,15 +40,19 @@ namespace MainCamera
             });
         }
 
+        
         public void ChangeToBossCamera()
         {
             isBossStage = true;
+            camera.orthographicSize = 8.0f;
         }
 
         public void ChangeToNormalCamera()
         {
             isBossStage = false;
+            camera.orthographicSize = 6f;
         }
+        
 
         private void FixedUpdate()
         {
@@ -56,6 +61,7 @@ namespace MainCamera
                 myTransform.position = bossCameraPos;
                 return;
             }
+
             if(myTransform.position.x < 6.4f)
             {
                 myTransform.position = new Vector3(6.4f, 1.51f, -10);
