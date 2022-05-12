@@ -11,7 +11,6 @@ namespace NestedParadox.Managers
     public class GameManager : MonoBehaviour
     {
         [SerializeField] StageManager stageManager;
-        [SerializeField] TempCharacter player;
         [SerializeField] GameObject stageEnd;
         [SerializeField] PlayerCore playerCore;
 
@@ -40,7 +39,7 @@ namespace NestedParadox.Managers
         {
             stageManager.DeleteCurrentStage();
             stageManager.RandomGenerateStage();
-            player.transform.position = new Vector3(0, 0, 0);
+            playerCore.transform.position = Vector3.zero;
         }
 
         public void LoadToTitleScene()
