@@ -77,7 +77,13 @@ public class UI_footer : MonoBehaviour
         for(int z=0;z<_cardmaganeger.Hand.Count;z++){
             UI_hand[z].SetActive(true);
             SetCardIcon(z);
-            UI_hand[z].transform.GetChild(1).gameObject.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = cardicon;
+            var thiscardicon = UI_hand[z].transform.GetChild(1).gameObject.transform.GetChild(0).gameObject.GetComponent<Image>();
+
+            //アイコン変更
+            thiscardicon.sprite = cardicon;
+            //使えないカードを暗くする
+            Color falseColor = new Color(.2f,.2f,.2f,1f); 
+            if(!_cardmaganeger.CheckTrigger(z))   thiscardicon.color = falseColor;
         }
     }
 

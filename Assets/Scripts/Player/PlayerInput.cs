@@ -23,6 +23,7 @@ namespace NestedParadox.Players
         public IObservable<Unit> OnChangeHandR => _changehandRsubject;
         public IObservable<Unit> OnChangeHandL => _changehandLsubject;
         public IObservable<Unit> OnCardDelete => _delete;
+        public IObservable<Unit> OnPause => _pause;
         public IObservable<Unit> OnDebug => _debug;
 
 
@@ -35,8 +36,9 @@ namespace NestedParadox.Players
         private readonly Subject<Unit> _drawcardsubject = new Subject<Unit>();
         private readonly Subject<Unit> _changehandRsubject = new Subject<Unit>();
         private readonly Subject<Unit> _changehandLsubject = new Subject<Unit>();
-        private readonly Subject<Unit> _debug = new Subject<Unit>();          
-        private readonly Subject<Unit> _delete = new Subject<Unit>();     
+        private readonly Subject<Unit> _pause = new Subject<Unit>();          
+        private readonly Subject<Unit> _delete = new Subject<Unit>();
+        private readonly Subject<Unit> _debug = new Subject<Unit>();      
 
 
 
@@ -103,10 +105,17 @@ namespace NestedParadox.Players
             }
         }
 
+        public void Pause(InputAction.CallbackContext context){
+            if(context.phase == InputActionPhase.Started){
+                _pause.OnNext(Unit.Default);
+            }
+        }
+
         public void OnDebugAction(InputAction.CallbackContext context){
             if(context.phase == InputActionPhase.Started){
                 _debug.OnNext(Unit.Default);
             }
         }
+
     }
 }
