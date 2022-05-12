@@ -21,7 +21,7 @@ namespace MainCamera
 
         private void Start()
         {
-            isBossStage = true; ; //テスト
+            isBossStage = false;
             _playermove = GameObject.FindGameObjectWithTag("MainCharacter").GetComponent<PlayerMove>();
             myTransform = transform;
             characterDirection = GameObject.FindGameObjectWithTag("MainCharacter").GetComponent<PlayerMove>().CurrentDirection;
@@ -37,6 +37,16 @@ namespace MainCamera
                     distanceOffset = new Vector3(distanceOffset_temp.x * -1, distanceOffset_temp.y, distanceOffset_temp.z);
                 }
             });
+        }
+
+        public void ChangeToBossCamera()
+        {
+            isBossStage = true;
+        }
+
+        public void ChangeToNormalCamera()
+        {
+            isBossStage = false;
         }
 
         private void FixedUpdate()
@@ -68,12 +78,7 @@ namespace MainCamera
                                              Mathf.Lerp(myTransform.position.z, _playermove.MyTransform.position.z - distanceOffset.z, 0.05f)
                                              );
             }            
-        }
-
-        public void ChangeToBossCamera()
-        {
-
-        }
+        }       
     }
 
 }

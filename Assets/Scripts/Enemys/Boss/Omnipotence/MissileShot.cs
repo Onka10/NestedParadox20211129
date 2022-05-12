@@ -36,6 +36,7 @@ public class MissileShot : BossCommand
             GameObject missile_clone = Instantiate(missilePrefab);
             OmniMissile omniMissile = missile_clone.GetComponent<OmniMissile>();            
             missile_clone.transform.position = new Vector3(random, 20, 10+ 5*i);
+            missile_clone.transform.localScale = new Vector2(1.2f, 1.2f);
             omniMissile.Shot(destination, shotForce, false);            
         }
         await UniTask.WaitUntil(() => !animator.GetCurrentAnimatorStateInfo(0).IsName("MissileShot2"));

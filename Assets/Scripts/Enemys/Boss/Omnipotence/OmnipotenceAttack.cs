@@ -52,16 +52,32 @@ public class OmnipotenceAttack : MonoBehaviour
         return possibleCommands[random];
     }
 
-    public async void Attack()
+    public async void Execute(int commandID)
     {
-        //?Z???I??        
+        /*
+        //コマンドをランダムで選択
         currentCommand = SelectCommand();
         if(currentCommand == null || isAttacking)
         {
             return;
         }
-
-        //?????????U?????n????
+        */
+        switch(commandID)
+        {
+            case 0:
+                currentCommand = attackCommands[0];
+                break;
+            case 1:
+                currentCommand = attackCommands[1];
+                break;
+            case 2:
+                currentCommand = attackCommands[2];
+                break;
+            case 3:
+                currentCommand = attackCommands[3];
+                break;
+        }
+        //攻撃開始
         attackTimeCount = 0;
         canAttack = false;
         isAttacking = true;
