@@ -34,33 +34,7 @@ namespace NestedParadox.Monsters
             playerMove = PlayerMove.I;
             monsterList = new List<MonsterBase>();
             monsterList_temp = new List<MonsterBase>();
-            canSummon = true;
-            for(int i=0; i<button.Length; i++)
-            {
-                button[i].OnClickAsObservable()
-                    .Where(_ => canSummon)
-                    .Subscribe(_ =>
-                {
-                    switch(eventSystem.currentSelectedGameObject.name)
-                    {
-                        case "SummonButton(0)":
-                            Summon(CardID.DustDevil);
-                            break;
-                        case "SummonButton(1)":
-                            Summon(CardID.GuardKun);                            
-                            break;
-                        case "SummonButton(2)":
-                            Summon(CardID.SniperK);
-                            break;
-                        case "SummonButton(3)":
-                            Summon(CardID.CatWarrior);
-                            break;
-                        case "SummonButton(4)":
-                            QuintetSummon();
-                            break;
-                    }
-                });//テスト用
-            }            
+            canSummon = true;            
         }
 
         // Update is called once per frame
