@@ -12,6 +12,7 @@ public class MissileShot : BossCommand
     [SerializeField] float areaLimit_left;
     [SerializeField] float areaLimit_right;
     [SerializeField] float shotForce;
+
     public override async UniTask Execute()
     {
         await base.Execute();                                
@@ -33,9 +34,10 @@ public class MissileShot : BossCommand
             float random = Random.Range(areaLimit_left, areaLimit_right);
             Vector3 destination = new Vector3(Random.Range(areaLimit_left, areaLimit_right), 0, 0);
             GameObject missile_clone = Instantiate(missilePrefab);
-            OmniMissile omniMissile = missile_clone.GetComponent<OmniMissile>();
+            OmniMissile omniMissile = missile_clone.GetComponent<OmniMissile>();            
             missile_clone.transform.position = new Vector3(random, 20, 10+ 5*i);
-            omniMissile.Shot(destination, shotForce);            
+            missile_clone.transform.localScale = new Vector2(1.2f, 1.2f);
+            omniMissile.Shot(destination, shotForce, false);            
         }
         await UniTask.WaitUntil(() => !animator.GetCurrentAnimatorStateInfo(0).IsName("MissileShot2"));
 

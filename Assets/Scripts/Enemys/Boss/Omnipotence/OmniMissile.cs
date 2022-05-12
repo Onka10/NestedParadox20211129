@@ -26,16 +26,17 @@ public class OmniMissile : MonoBehaviour
             .Subscribe(_ =>
             {
                 isGrounded = true;
-            });
+            })
+            .AddTo(this);
         //attackColl.OnCollisionEnter2DAsObservable() ダメージ処理 後で実装
     }
 
-    public async void Shot(Vector3 destination, float shotForce)
+    public async void Shot(Vector3 destination, float shotForce, bool IsExplosionHorizontal)
     {
         Vector3 direction = (destination - transform.position).normalized;
         float rad = Mathf.Atan2(direction.y, direction.x);
         transform.rotation = Quaternion.Euler(0, 0, 90 + rad * 180/Mathf.PI);
-        while(!isGrounded)
+        while(!isGrounded && transform.position.x > 0)
         {
             rb.AddForce(direction * shotForce);
             await UniTask.Yield(PlayerLoopTiming.FixedUpdate);
@@ -45,9 +46,13 @@ public class OmniMissile : MonoBehaviour
         rb.velocity = Vector3.zero;
         bodyColl.enabled = true;
         animator.SetTrigger("MissileExplosionTrigger");
-        await UniTask.Delay(explosionDelayTime);
-        GameObject explosionEffect_clone = Instantiate(explosionEffect);
+        await UniTask.Delay(explosionDelayTime);        
+        GameObject explosionEffect_clone = Instantiate(explosionEffect);       
         explosionEffect_clone.transform.position = transform.position;
+        if(IsExplosionHorizontal)
+        {
+            explosionEffect_clone.transform.localScale = new Vector3(1, 1, 0.25f);
+        }
         attackColl.enabled = true;
         await UniTask.Delay(500);
         Destroy(this.gameObject);
