@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 using NestedParadox.Stages;
 using UniRx;
 using UniRx.Triggers;
+using NestedParadox.Players;
 
 namespace NestedParadox.Managers
 {
@@ -12,6 +13,7 @@ namespace NestedParadox.Managers
         [SerializeField] StageManager stageManager;
         [SerializeField] TempCharacter player;
         [SerializeField] GameObject stageEnd;
+        [SerializeField] PlayerCore playerCore;
 
         void Start()
         {
@@ -19,12 +21,12 @@ namespace NestedParadox.Managers
             //マネージャの初期化
             //UIの初期化
 
-            /*
+            playerCore.transform.position = Vector3.zero;
             stageManager.Construct();
             stageEnd.OnTriggerEnter2DAsObservable().Where(other => other.CompareTag("MainCharacter"))
                     .Subscribe(_ => OnReachStageEnd())
                     .AddTo(this);
-            */
+            
             
         }
 
