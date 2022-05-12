@@ -39,7 +39,7 @@ namespace NestedParadox.Managers
         {
             stageManager.DeleteCurrentStage();
             stageManager.RandomGenerateStage();
-            playerCore.transform.position = new Vector3(0, 0, 0);
+            playerCore.transform.position = Vector3.zero;
         }
 
         public void LoadToTitleScene()

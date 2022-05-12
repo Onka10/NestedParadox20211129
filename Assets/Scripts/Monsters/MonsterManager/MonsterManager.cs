@@ -35,6 +35,7 @@ namespace NestedParadox.Monsters
             monsterList = new List<MonsterBase>();
             monsterList_temp = new List<MonsterBase>();
             canSummon = true;            
+
         }
 
         // Update is called once per frame

@@ -139,6 +139,10 @@ namespace NestedParadox.Cards
             Trash();
         }
 
+        public bool CheckTrigger(int hand){
+            return _cardpresenter.Check(_hand[hand]);
+        }
+
 
     //     #if UNITY_EDITOR
     //     // デバッグ確認用
