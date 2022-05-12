@@ -13,7 +13,11 @@ public class UI_Pause : MonoBehaviour
     void Start()
     {
         _input.OnPause
-        .Subscribe(_ => _pauseUI.SetActive(true))
+        .Subscribe(_ => {
+            bool pauseon;
+            pauseon = _pauseUI.activeSelf == true ? false:true;
+            _pauseUI.SetActive(pauseon);
+        })
         .AddTo(this);
     }
 
