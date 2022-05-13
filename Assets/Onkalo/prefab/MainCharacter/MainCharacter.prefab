@@ -232,6 +232,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: bf474550-623f-43e0-ad42-bab7a1fbacc4
     m_ActionName: Player/CardDelete[/Keyboard/f,/DualShock4GamepadHID/dpad/down]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5695078908484181314}
+        m_TargetAssemblyTypeName: NestedParadox.Players.PlayerInput, Assembly-CSharp
+        m_MethodName: Pause
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 9da9d597-35b0-4a28-bd4c-2ea12d4ed6f2
+    m_ActionName: Player/Pause[/Keyboard/tab]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -572,7 +588,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dashSpeed: 5
-  _jumpSpeed: 3
+  _jumpSpeed: 15
   _characterHeightOffset: 1.5
   _groundMask:
     serializedVersion: 2

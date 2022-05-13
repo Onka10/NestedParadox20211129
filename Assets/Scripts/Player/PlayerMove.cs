@@ -26,7 +26,9 @@ namespace NestedParadox.Players
         private readonly RaycastHit2D[] _raycastHitResults = new RaycastHit2D[1];
         //地面の判定
         private readonly ReactiveProperty<bool> _isGrounded = new BoolReactiveProperty();
-        private bool _isJumpReserved;
+        //ジャンプのフラグ管理
+        private readonly ReactiveProperty<bool> _jumpFlag = new BoolReactiveProperty();
+
         //行動不能
         [SerializeField]private bool _isMoveBlock;
 
@@ -85,11 +87,17 @@ namespace NestedParadox.Players
                 else PlayerEffectManager.I.EffectStop(3);
             }
 
-            // ジャンプ
-            if (_playerinput.IsJump.Value && _isGrounded.Value && !_isMoveBlock)
-            {
-                vel += Vector3.up * _jumpSpeed;
-                _isJumpReserved = false;
+            //ジャンプのフラグ管理
+            var jumpButton = _playerinput.IsJumpButtonDown.Value;
+            var jumpflag = _jumpFlag.Value;
+
+            if (_isGrounded.Value && !_isMoveBlock){
+                if(jumpButton && !jumpflag){
+                    _jumpFlag.Value=true;
+                    vel += Vector3.up * _jumpSpeed;
+                }else if(!jumpButton && jumpflag){
+                    _jumpFlag.Value =false;
+                }
             }
 
             // 重力落下分を維持する
@@ -97,10 +105,6 @@ namespace NestedParadox.Players
 
             // 速度を更新
             _rigidbody2D.velocity = vel;
-
-            // if(_isGrounded.Value){
-            //     Debug.Log("地面");
-            // }
 
             myTransform = transform;
         }

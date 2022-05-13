@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using System;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UniRx;
@@ -16,11 +16,13 @@ namespace NestedParadox.Monsters
         [SerializeField] Button[] button; //テスト用
         [SerializeField] EventSystem eventSystem; //テスト用
         private PlayerMove playerMove;
+        [SerializeField] GuardKunManager guardKunManager;
         [SerializeField] List<GameObject> monsterPrefabList;
         [SerializeField] MonsterRow monsterRow;
         [SerializeField] GameObject[] monstersSprite;//召喚時に表示する偽sprite
                                                      
-        private List<MonsterBase> monsterList;         
+        public List<MonsterBase> monsterList;
+        public List<MonsterBase> monsterList_temp; //モンスターが破壊されてもnullのままにするリスト
         public int MonsterCount => monsterList.Count;
 
         private bool canSummon;
@@ -31,36 +33,16 @@ namespace NestedParadox.Monsters
         {
             playerMove = PlayerMove.I;
             monsterList = new List<MonsterBase>();
-            canSummon = true;
-            for(int i=0; i<button.Length; i++)
-            {
-                button[i].OnClickAsObservable()
-                    .Where(_ => canSummon)
-                    .Subscribe(_ =>
-                {
-                    switch(eventSystem.currentSelectedGameObject.name)
-                    {
-                        case "SummonButton(0)":
-                            Summon(CardID.DustDevil);
-                            break;
-                        case "SummonButton(1)":
-                            Summon(CardID.GuardKun);
-                            break;
-                        case "SummonButton(2)":
-                            Summon(CardID.SniperK);
-                            break;
-                        case "SummonButton(3)":
-                            Summon(CardID.CatWarrior);
-                            break;
-                    }
-                });//テスト用
-            }            
+            monsterList_temp = new List<MonsterBase>();
+            canSummon = true;            
+
         }
 
         // Update is called once per frame
         void Update()
         {
             monsterList.RemoveAll(a => a == null);
+
         }
 
         public async void Summon(CardID cardID)
@@ -76,9 +58,51 @@ namespace NestedParadox.Monsters
             {
                 monster.transform.position = currentSummonPosition;
                 monsterList.Add(monster);
-                monster.SetPositionAndInitialize(monsterRow.GetNextPosition());
+                if (monsterList_temp.Any(x => x == null))
+                {
+                    monsterList_temp.Insert(monsterList_temp.IndexOf(null), monster);
+                }
+                else
+                {
+                    monsterList_temp.Add(monster);
+                }
+                monster.SetPositionAndInitialize(monsterRow.GetNextPosition(monsterList_temp));
             }
             canSummon = true;
-        }       
+        }
+
+        //ガードクインテット
+        public async void QuintetSummon()
+        {
+            canSummon = false;
+            GuardKun guardKun = guardKunManager.SelectQuintetSummonGuardKun();
+            MonsterSprite monsterSprite_clone = Instantiate(monstersSprite[1]).GetComponent<MonsterSprite>();
+            Vector3 currentSummonPosition = monsterSprite_clone.SetSummonPosition(playerMove.transform.position, playerMove.CurrentDirection.Value); //召喚位置をset                    
+            await guardKun.MoveAndStop(currentSummonPosition);
+            Debug.Log("準備完了");
+            //モンスターの召喚アニメーションの表示            
+            await monsterSprite_clone.SummonAnimation();//召喚完了するまで待つ            
+            //　本体の召喚
+            for(int i=0; i<4; i++)
+            {
+                if (Instantiate(monsterPrefabList[1]).TryGetComponent<MonsterBase>(out MonsterBase monster))
+                {
+                    monster.transform.position = currentSummonPosition;
+                    monsterList.Add(monster);
+                    if(monsterList_temp.Any(x => x== null))
+                    {
+                        monsterList_temp.Insert(monsterList_temp.IndexOf(null), monster);
+                    }
+                    else
+                    {
+                        monsterList_temp.Add(monster);
+                    }                    
+                    monster.SetPositionAndInitialize(monsterRow.GetNextPosition(monsterList_temp));
+                    await UniTask.Delay(1000, cancellationToken: this.GetCancellationTokenOnDestroy());
+                }
+            }
+            guardKun.SetActive();
+            canSummon = true;
+        }
     }
 }

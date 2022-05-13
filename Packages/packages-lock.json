@@ -149,7 +149,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.ml-agents": {
-      "version": "2.3.0-exp.2",
+
       "depth": 0,
       "source": "registry",
       "dependencies": {

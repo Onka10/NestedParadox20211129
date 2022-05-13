@@ -16,6 +16,9 @@ namespace NestedParadox.Monsters
         [SerializeField] float movingSpeed;
         [SerializeField] Vector3 guardPosition;        
         [SerializeField] Collider2D guardColl;
+        [SerializeField] float speed_MoveAndStop;
+        private bool isActive; //ガードクインテット発動中
+        public bool IsActive => isActive;
         private PlayerMove playerMove;
         
 
@@ -26,6 +29,7 @@ namespace NestedParadox.Monsters
             //マネージャーに自身を追加
             guardKunManager.Add(this);
             state = MonsterState.Idle;
+            isActive = true;
             playerMove = PlayerMove.I;
             Vector3 localScale_temp = new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z);
             Vector3 distanceOffset_temp = new Vector3(distanceOffset.x, distanceOffset.y, distanceOffset.z);
@@ -47,6 +51,10 @@ namespace NestedParadox.Monsters
         // Update is called once per frame
         void FixedUpdate()
         {
+            if(!isActive)
+            {
+                return;
+            }
             if (state == MonsterState.Idle)//待機中
             {
                 transform.position = new Vector3(Mathf.Lerp(transform.position.x, playerMove.transform.position.x - distanceOffset.x, 0.1f),
@@ -60,7 +68,7 @@ namespace NestedParadox.Monsters
         }
 
         public async void Guard()
-        {
+        {            
             state = MonsterState.Guard;
             transform.position = playerMove.transform.position;
             hp_r.Value -= 1;            
@@ -73,6 +81,26 @@ namespace NestedParadox.Monsters
             }
             await UniTask.Delay(1000);
             state = MonsterState.Idle;            
+        }
+
+        public async UniTask MoveAndStop(Vector3 destination)
+        {
+            isActive = false;                 
+            Vector3 direction = destination - transform.position;            
+            while (direction.magnitude > 2.1f)
+            {
+                rb.velocity = direction * speed_MoveAndStop;
+                direction = destination - transform.position;
+                await UniTask.Yield(PlayerLoopTiming.FixedUpdate, cancellationToken: this.GetCancellationTokenOnDestroy());
+                Debug.Log(direction.magnitude);
+            }
+            rb.velocity = new Vector3(0, 0, 0);
+        }
+
+        public void SetActive()
+        {
+            isActive = true;
+            guardKunManager.Add(this);
         }
     }   
 }
