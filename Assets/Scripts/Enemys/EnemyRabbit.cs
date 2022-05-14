@@ -98,11 +98,12 @@ public class EnemyRabbit : EnemyBase, IApplyDamage
         }
     }
 
-    private async void Death()
+    public override async void Death()
     {
+        base.Death();
         animator.SetTrigger("DeathTrigger");
         await UniTask.Delay(1000, cancellationToken: this.GetCancellationTokenOnDestroy());
-        Instantiate(deathEffect, enemyMoving.transform.position, Quaternion.identity);
+        Instantiate(deathEffect, enemyMoving.transform.position, Quaternion.identity);        
         Destroy(this.gameObject);
     }
 }

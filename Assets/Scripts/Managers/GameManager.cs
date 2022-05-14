@@ -13,20 +13,19 @@ namespace NestedParadox.Managers
         [SerializeField] StageManager stageManager;        
         [SerializeField] GameObject stageEnd;
         [SerializeField] PlayerCore playerCore;
+        private int stageClearCount;
 
         void Start()
         {
 
             //マネージャの初期化
             //UIの初期化
-
+            stageClearCount = 0;
             playerCore.transform.position = Vector3.zero;
             stageManager.Construct();
             stageEnd.OnTriggerEnter2DAsObservable().Where(other => other.CompareTag("MainCharacter"))
                     .Subscribe(_ => OnReachStageEnd())
-                    .AddTo(this);
-            
-            
+                    .AddTo(this);                        
         }
 
         // Update is called once per frame
@@ -40,7 +39,14 @@ namespace NestedParadox.Managers
             stageManager.DeleteCurrentStage();
             stageManager.RandomGenerateStage();
             playerCore.transform.position = Vector3.zero;
+            stageClearCount++;
+            if(stageClearCount >= 4)
+            {
+
+            }
         }
+
+        
 
         public void LoadToTitleScene()
         {
