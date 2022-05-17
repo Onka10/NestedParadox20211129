@@ -12,7 +12,8 @@ namespace NestedParadox.Managers
     public class PhaseBase : MonoBehaviour
     {
         [SerializeField] protected TempCamera mainCamera;       
-        [SerializeField] protected PlayerCore player;        
+        [SerializeField] protected PlayerCore player;
+        [SerializeField] public PhaseBase next;
 
         public virtual async UniTask Execute()
         {

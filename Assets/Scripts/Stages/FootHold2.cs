@@ -42,10 +42,10 @@ namespace NestedParadox.Stages
             {
                 rb.velocity = new Vector3(0, -1*movingSpeed, 0);
                 Vector3 upPosition = transform.position;
-                await UniTask.WaitUntil(() => (-1*(transform.position.y - upPosition.y)) > movingDistance);
+                await UniTask.WaitUntil(() => (-1 * (transform.position.y - upPosition.y)) > movingDistance, cancellationToken: this.GetCancellationTokenOnDestroy()) ;
                 rb.velocity = new Vector3(0, movingSpeed, 0);
                 Vector3 downPosition = transform.position;
-                await UniTask.WaitUntil(() => (transform.position.y - downPosition.y) > movingDistance);
+                await UniTask.WaitUntil(() => (transform.position.y - downPosition.y) > movingDistance, cancellationToken: this.GetCancellationTokenOnDestroy());
             }
             
         }
