@@ -26,12 +26,11 @@ namespace NestedParadox.Managers
         public async override UniTask Execute()
         {            
             isReached = false;
-            mainCamera.ChangeToNormalCamera();
+            mainCamera.ChangeToNormalCamera();            
             //stageClearの回数が３回までは繰り返す
             stageClearCount = 0;
             while(stageClearCount < 4)
-            {
-                stageManager.DeleteCurrentStage();
+            {                
                 int[] stageIndexList = { 0, 1, 2, 3 };
                 stageManager.RandomGenerateStage(stageIndexList);
                 player.transform.position = Vector3.zero;
@@ -69,11 +68,9 @@ namespace NestedParadox.Managers
 
         private void OnReachStageEnd()
         {
-            isReached = true;
-            stageClearCount++;
             stageManager.DeleteCurrentStage();
-            int[] stageIndexList = { 0, 1, 2, 3 };
-            stageManager.RandomGenerateStage(stageIndexList);                               
+            isReached = true;
+            stageClearCount++;                                   
         }
 
 
