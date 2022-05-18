@@ -43,7 +43,7 @@ namespace NestedParadox.Players
         //外部参照
         private PlayerCore _playerCore;
         private Rigidbody2D _rigidbody2D;
-        private PlayerInput _playerinput;
+        private NestedParadox.Players.PlayerInput _playerinput;
 
         private bool jumong;
 
@@ -78,25 +78,29 @@ namespace NestedParadox.Players
             // 操作イベントから得られた移動量
             var moveVector = GetMoveVector();
 
-            // 移動操作を反映する
-            if (moveVector != Vector3.zero && !_isMoveBlock)
-            {
-                // Debug.Log("移動");
-                vel = moveVector * _dashSpeed;
-                if(IsGrounded.Value)    PlayerEffectManager.I.EffectPlay(3);
-                else PlayerEffectManager.I.EffectStop(3);
+            if(!_playerCore.PauseState.Value){
+                // 移動操作を反映する
+                if (moveVector != Vector3.zero && !_isMoveBlock)
+                {
+                    vel = moveVector * _dashSpeed;
+                    if(IsGrounded.Value)    PlayerEffectManager.I.EffectPlay(3);
+                    else PlayerEffectManager.I.EffectStop(3);
+                }
             }
+
 
             //ジャンプのフラグ管理
             var jumpButton = _playerinput.IsJumpButtonDown.Value;
             var jumpflag = _jumpFlag.Value;
 
-            if (_isGrounded.Value && !_isMoveBlock){
-                if(jumpButton && !jumpflag){
-                    _jumpFlag.Value=true;
-                    vel += Vector3.up * _jumpSpeed;
-                }else if(!jumpButton && jumpflag){
-                    _jumpFlag.Value =false;
+            if(!_playerCore.PauseState.Value){
+                if (_isGrounded.Value && !_isMoveBlock){
+                    if(jumpButton && !jumpflag){
+                        _jumpFlag.Value=true;
+                        vel += Vector3.up * _jumpSpeed;
+                    }else if(!jumpButton && jumpflag){
+                        _jumpFlag.Value =false;
+                    }
                 }
             }
 

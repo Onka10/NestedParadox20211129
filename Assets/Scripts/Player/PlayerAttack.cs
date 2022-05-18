@@ -52,8 +52,8 @@ namespace NestedParadox.Players
 
             // 弱攻撃イベント
             _playerinput.OnNormalAttack
-                // 接地中なら攻撃ができる
-                .Where(_ => _playerMove.IsGrounded.Value)
+                // 接地中なら攻撃ができる　ポーズ中でないならこうげき出来る
+                .Where(_ => _playerMove.IsGrounded.Value && _playercore.PauseState.Value == false)
                 .ThrottleFirst(TimeSpan.FromSeconds(.6))//連打防止。通常攻撃は.4秒
                 .Subscribe(_ => NAttack().Forget())
                 .AddTo(this);
@@ -61,7 +61,7 @@ namespace NestedParadox.Players
             // 強攻撃イベント
             _playerinput.OnChargeAttack
                 // 接地中なら攻撃ができる
-                .Where(_ => _playerMove.IsGrounded.Value)
+                .Where(_ => _playerMove.IsGrounded.Value && _playercore.PauseState.Value == false)
                 .ThrottleFirst(TimeSpan.FromSeconds(1))//連打防止。タメ攻撃はあ1秒
                 .Subscribe(_ => CAttack().Forget())
                 .AddTo(this);
@@ -78,7 +78,7 @@ namespace NestedParadox.Players
             //ステータスまわりを変更
             nockback = 1;
             _playercore.ChangeAttackPower(1);
-            _playercore.AddDrawEnergy(10);
+            _playercore.AddDrawEnergy(1);
             
             await UniTask.DelayFrame(1);
             await UniTask.WaitWhile(() => _playerAnimation.IsAttack.Value);
