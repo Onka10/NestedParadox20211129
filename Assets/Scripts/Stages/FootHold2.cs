@@ -34,10 +34,10 @@ namespace NestedParadox.Stages
 
         private async void MoveUpAndDown()
         {
-            await UniTask.Delay(startDelay);
+            await UniTask.Delay(startDelay, cancellationToken: this.GetCancellationTokenOnDestroy());
             rb.velocity = new Vector3(0, movingSpeed, 0);
             Vector3 firstPosition = transform.position;
-            await UniTask.WaitUntil(() => (transform.position.y - firstPosition.y) > movingDistance/2.0f);
+            await UniTask.WaitUntil(() => (transform.position.y - firstPosition.y) > movingDistance/2.0f, cancellationToken: this.GetCancellationTokenOnDestroy());
             while (true)
             {
                 rb.velocity = new Vector3(0, -1*movingSpeed, 0);
@@ -52,18 +52,18 @@ namespace NestedParadox.Stages
 
         private async void MoveLeftAndRight()
         {
-            await UniTask.Delay(startDelay);
+            await UniTask.Delay(startDelay, cancellationToken: this.GetCancellationTokenOnDestroy());
             rb.velocity = new Vector3(movingSpeed, 0, 0);
             Vector3 firstPosition = transform.position;
-            await UniTask.WaitUntil(() => (transform.position.x - firstPosition.x) > movingDistance / 2.0f);
+            await UniTask.WaitUntil(() => (transform.position.x - firstPosition.x) > movingDistance / 2.0f, cancellationToken: this.GetCancellationTokenOnDestroy());
             while (true)
             {
                 rb.velocity = new Vector3(-1* movingSpeed, 0, 0);
                 Vector3 upPosition = transform.position;
-                await UniTask.WaitUntil(() => (-1 * (transform.position.x - upPosition.x)) > movingDistance);
+                await UniTask.WaitUntil(() => (-1 * (transform.position.x - upPosition.x)) > movingDistance, cancellationToken: this.GetCancellationTokenOnDestroy());
                 rb.velocity = new Vector3(movingSpeed, 0, 0);
                 Vector3 downPosition = transform.position;
-                await UniTask.WaitUntil(() => (transform.position.x - downPosition.x) > movingDistance);
+                await UniTask.WaitUntil(() => (transform.position.x - downPosition.x) > movingDistance, cancellationToken: this.GetCancellationTokenOnDestroy());
             }
         }
     }
