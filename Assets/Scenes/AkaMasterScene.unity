@@ -1899,7 +1899,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4438150963474500081, guid: e36f9413fb5934c29b797645dda3e7da, type: 3}
   m_PrefabInstance: {fileID: 4438150962344181604}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1378549773}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 05731d04018224754ab094327d6e283b, type: 3}
@@ -2126,6 +2126,28 @@ Transform:
   m_Father: {fileID: 870027645}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1378549773 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4438150963474500073, guid: e36f9413fb5934c29b797645dda3e7da, type: 3}
+  m_PrefabInstance: {fileID: 4438150962344181604}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1378549782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1378549773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d18622ba14654e44b21f06b7957ac4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 0}
+  player: {fileID: 0}
+  next: {fileID: 0}
+  bossPrefab: {fileID: 0}
+  stageManager: {fileID: 0}
 --- !u!1001 &1431275414
 PrefabInstance:
   m_ObjectHideFlags: 0

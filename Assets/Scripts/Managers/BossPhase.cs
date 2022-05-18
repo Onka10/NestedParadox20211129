@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
 using NestedParadox.Stages;
+using UniRx;
 
 namespace NestedParadox.Managers
 {
@@ -19,7 +20,9 @@ namespace NestedParadox.Managers
             stageManager.DeleteCurrentStage();
             int[] stageIndexList = { 4 };
             stageManager.RandomGenerateStage(stageIndexList);
-            EnemyBase boss = Instantiate(bossPrefab).GetComponent<EnemyBase>();           
+            EnemyBase boss = Instantiate(bossPrefab).GetComponent<EnemyBase>();
+            boss.IsDeath.Subscribe(_ => bossIsDeath = true).AddTo(boss.gameObject);
+            await UniTask.WaitUntil(() => bossIsDeath, cancellationToken: this.GetCancellationTokenOnDestroy());
         }        
     }
 }
