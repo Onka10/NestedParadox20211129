@@ -16,7 +16,7 @@ namespace NestedParadox.Managers
         private bool isReached; //扉に到着した時のフラグ            
         [SerializeField] private GameObject[] enemyPrefabs;        
         [SerializeField] private int[] enemyInstanceCount;//各エネミーの出現させる数
-        [SerializeField] private GameObject stageEnd;
+        [SerializeField] private GameObject stageEndPrefab;
         [SerializeField] StageManager stageManager;
         [SerializeField] private float areaLimit_Left;
         [SerializeField] private float areaLimit_Right;
@@ -53,7 +53,7 @@ namespace NestedParadox.Managers
 
                 //敵が全滅するまで待つ
                 await UniTask.WaitUntil(() => currentEnemyCount <= 0, cancellationToken: this.GetCancellationTokenOnDestroy());
-                stageEnd.SetActive(true);
+                GameObject stageEnd = Instantiate(stageEndPrefab);
                 stageEnd.GetComponent<Collider2D>().OnTriggerEnter2DAsObservable()
                     .Subscribe(_ => OnReachStageEnd())
                     .AddTo(this);
@@ -61,6 +61,7 @@ namespace NestedParadox.Managers
                 await UniTask.WaitUntil(() => isReached);
                 isReached = false;
                 enemyList.Clear();
+                Destroy(stageEnd);
             }                
         }
 
@@ -70,8 +71,7 @@ namespace NestedParadox.Managers
             stageClearCount++;
             stageManager.DeleteCurrentStage();
             int[] stageIndexList = { 0, 1, 2, 3 };
-            stageManager.RandomGenerateStage(stageIndexList);                   
-            stageEnd.SetActive(false);
+            stageManager.RandomGenerateStage(stageIndexList);                               
         }
 
 
