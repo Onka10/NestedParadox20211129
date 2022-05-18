@@ -52,7 +52,15 @@ namespace NestedParadox.Managers
                 currentEnemyCount = enemyList.Count;
 
                 //敵が全滅するまで待つ
-                await UniTask.WaitUntil(() => currentEnemyCount <= 0, cancellationToken: this.GetCancellationTokenOnDestroy());
+                try
+                {
+                    await UniTask.WaitUntil(() => currentEnemyCount <= 0, cancellationToken: this.GetCancellationTokenOnDestroy());
+                }
+                catch(System.OperationCanceledException)
+                {
+                    throw;
+                }
+                
                 GameObject stageEnd = Instantiate(stageEndPrefab);
                 stageEnd.GetComponent<Collider2D>().OnTriggerEnter2DAsObservable()
                     .Where(other => other.gameObject.CompareTag("MainCharacter"))
