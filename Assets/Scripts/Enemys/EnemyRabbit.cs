@@ -19,16 +19,14 @@ public class EnemyRabbit : EnemyBase, IApplyDamage
     [SerializeField] Animator animator;
     [SerializeField] EnemyMoving enemyMoving;
     public bool IsAttacking => animator.GetCurrentAnimatorStateInfo(0).IsName("Attack");
-    public bool IsGetHitting => animator.GetCurrentAnimatorStateInfo(0).IsName("GetHit") || animator.GetCurrentAnimatorStateInfo(0).IsName("Death");
-    public int HP_debugg;
+    public bool IsGetHitting => animator.GetCurrentAnimatorStateInfo(0).IsName("GetHit") || animator.GetCurrentAnimatorStateInfo(0).IsName("Death");    
     //エフェクト軍
     [SerializeField] GameObject deathEffect;
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
-        hp = 10;
-        HP_debugg = hp;//テスト
+        base.Start();
         attackPower = 1;
         attackTime.Value = 0;
         state.Value = EnemyState.Idle;
@@ -38,7 +36,7 @@ public class EnemyRabbit : EnemyBase, IApplyDamage
                       .Where(collision => collision.gameObject.CompareTag("MainCharacter"))
                       .Subscribe(collision =>
                       {
-                        // collision.gameObject.GetComponent<PlayerCore>().Damaged(attackPower);
+                        collision.gameObject.GetComponent<PlayerCore>().Damaged(new DamageToPlayer(attackPower,0));
                       })
                       .AddTo(this);
         //攻撃のクールタイムが終わったら、CanAttackをtrueにする。
@@ -88,9 +86,8 @@ public class EnemyRabbit : EnemyBase, IApplyDamage
         {
             animator.SetTrigger("GetHitTrigger");
         }        
-        hp_r.Value -= damage.DamageValue;
-        HP_debugg = hp;//テスト
-        if (hp <= 0)
+        hp_r.Value -= damage.DamageValue;        
+        if (hp_r.Value <= 0)
         {
             await UniTask.WaitUntil(() => !animator.GetCurrentAnimatorStateInfo(0).IsName("GetHit"));
             Death();
@@ -98,11 +95,12 @@ public class EnemyRabbit : EnemyBase, IApplyDamage
         }
     }
 
-    private async void Death()
+    public override async void Death()
     {
+        base.Death();
         animator.SetTrigger("DeathTrigger");
         await UniTask.Delay(1000, cancellationToken: this.GetCancellationTokenOnDestroy());
-        Instantiate(deathEffect, enemyMoving.transform.position, Quaternion.identity);
+        Instantiate(deathEffect, enemyMoving.transform.position, Quaternion.identity);        
         Destroy(this.gameObject);
     }
 }

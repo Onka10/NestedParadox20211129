@@ -102,6 +102,7 @@ public class EnemyMoving : MonoBehaviour
         GameObject respawnEffect_clone = Instantiate(respawnEffect, transform.position, Quaternion.identity);
         respawnEffect_clone.transform.SetParent(transform);
         await UniTask.Delay(1000);
+
         GameObject[] baseFields = GameObject.FindGameObjectsWithTag("BaseField");
         float distance = 10000;
         Vector3 nearestPlace = new Vector3();
@@ -114,6 +115,7 @@ public class EnemyMoving : MonoBehaviour
                 nearestPlace = baseField.transform.position;
             }
         }
+
         Vector3 respawnPosition = new Vector3(nearestPlace.x, nearestPlace.y + 5, nearestPlace.z);        
         while((transform.position - respawnPosition).magnitude > 0.1f)
         {
@@ -121,7 +123,8 @@ public class EnemyMoving : MonoBehaviour
                                              Mathf.Lerp(transform.position.y, respawnPosition.y, 0.1f),
                                              Mathf.Lerp(transform.position.z, respawnPosition.z, 0.1f));
             await UniTask.Yield(PlayerLoopTiming.FixedUpdate);                                            
-        }        
+        }
+        
         isFalling = false;
         enemyUI.transform.localScale = new Vector3(1.5f, 1.5f, 1);
         rb.isKinematic = false;

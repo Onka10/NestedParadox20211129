@@ -12,9 +12,7 @@ using NestedParadox.Players;
 namespace NestedParadox.Monsters
 {
     public class MonsterManager : Singleton<MonsterManager>
-    {
-        [SerializeField] Button[] button; //テスト用
-        [SerializeField] EventSystem eventSystem; //テスト用
+    {       
         private PlayerMove playerMove;
         [SerializeField] GuardKunManager guardKunManager;
         [SerializeField] List<GameObject> monsterPrefabList;

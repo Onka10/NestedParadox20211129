@@ -9,24 +9,24 @@ using NestedParadox.Players;
 namespace NestedParadox.Managers
 {
     public class GameManager : MonoBehaviour
-    {
-        [SerializeField] StageManager stageManager;        
-        [SerializeField] GameObject stageEnd;
+    {                      
         [SerializeField] PlayerCore playerCore;
+        private PhaseBase phase;
+        
 
         void Start()
         {
+            phase = GetComponent<NormalPhase>();
+            PhaseExecute();
+        }
 
-            //マネージャの初期化
-            //UIの初期化
-
-            playerCore.transform.position = Vector3.zero;
-            stageManager.Construct();
-            stageEnd.OnTriggerEnter2DAsObservable().Where(other => other.CompareTag("MainCharacter"))
-                    .Subscribe(_ => OnReachStageEnd())
-                    .AddTo(this);
-            
-            
+        private async void PhaseExecute()
+        {
+            while(phase != null)
+            {
+                await phase.Execute();
+                phase = phase.next;
+            }            
         }
 
         // Update is called once per frame
@@ -35,12 +35,8 @@ namespace NestedParadox.Managers
 
         }
 
-        private void OnReachStageEnd()
-        {
-            stageManager.DeleteCurrentStage();
-            stageManager.RandomGenerateStage();
-            playerCore.transform.position = Vector3.zero;
-        }
+       
+        
 
         public void LoadToTitleScene()
         {
