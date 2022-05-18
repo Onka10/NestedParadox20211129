@@ -46,6 +46,7 @@ namespace MainCamera
         {
             isBossStage = true;
             camera.orthographicSize = 8.0f;
+            myTransform.position = bossCameraPos;
         }
 
         public void ChangeToNormalCamera()
@@ -58,8 +59,7 @@ namespace MainCamera
         private void FixedUpdate()
         {
             if(isBossStage)
-            {
-                myTransform.position = bossCameraPos;
+            {                
                 return;
             }
 

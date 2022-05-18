@@ -24,10 +24,11 @@ namespace NestedParadox.Managers
 
         //ノーマルフェイズ実行
         public async override UniTask Execute()
-        {
+        {            
             isReached = false;
             mainCamera.ChangeToNormalCamera();
             //stageClearの回数が３回までは繰り返す
+            stageClearCount = 0;
             while(stageClearCount < 4)
             {
                 stageManager.DeleteCurrentStage();
@@ -46,7 +47,7 @@ namespace NestedParadox.Managers
                         {
                             currentEnemyCount -= 1;
                         })
-                        .AddTo(enemy);
+                        .AddTo(enemy.gameObject);
                     }                    
                 }
                 currentEnemyCount = enemyList.Count;
@@ -55,8 +56,9 @@ namespace NestedParadox.Managers
                 await UniTask.WaitUntil(() => currentEnemyCount <= 0, cancellationToken: this.GetCancellationTokenOnDestroy());
                 GameObject stageEnd = Instantiate(stageEndPrefab);
                 stageEnd.GetComponent<Collider2D>().OnTriggerEnter2DAsObservable()
+                    .Where(other => other.gameObject.CompareTag("MainCharacter"))
                     .Subscribe(_ => OnReachStageEnd())
-                    .AddTo(this);
+                    .AddTo(stageEnd.gameObject);
                 //扉に到着するまで待つ
                 await UniTask.WaitUntil(() => isReached);
                 isReached = false;
