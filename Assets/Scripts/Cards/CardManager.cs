@@ -142,7 +142,8 @@ namespace NestedParadox.Cards
         }
 
         public bool CheckTrigger(int hand){
-            return _cardpresenter.Check(_hand[hand]);
+            // return _cardpresenter.Check(_hand[hand]);
+            return true;
         }
 
 
