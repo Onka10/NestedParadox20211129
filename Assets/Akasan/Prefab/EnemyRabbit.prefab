@@ -2868,7 +2868,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 2
-  attackPower: 1
+  attackPower: 10
   attackSpan: 4
   attackCollider: {fileID: 869240937329872898}
   bodyColl: {fileID: 0}
