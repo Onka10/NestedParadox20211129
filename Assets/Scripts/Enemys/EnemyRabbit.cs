@@ -19,7 +19,8 @@ public class EnemyRabbit : EnemyBase, IApplyDamage
     [SerializeField] Animator animator;
     [SerializeField] EnemyMoving enemyMoving;
     public bool IsAttacking => animator.GetCurrentAnimatorStateInfo(0).IsName("Attack");
-    public bool IsGetHitting => animator.GetCurrentAnimatorStateInfo(0).IsName("GetHit") || animator.GetCurrentAnimatorStateInfo(0).IsName("Death");    
+    public bool IsGetHitting => animator.GetCurrentAnimatorStateInfo(0).IsName("GetHit") || animator.GetCurrentAnimatorStateInfo(0).IsName("Death");
+    public bool IsDestroying => animator.GetCurrentAnimatorStateInfo(0).IsName("Death");
     //エフェクト軍
     [SerializeField] GameObject deathEffect;
 
@@ -97,6 +98,11 @@ public class EnemyRabbit : EnemyBase, IApplyDamage
 
     public override async void Death()
     {
+        if(IsDestroying)
+        {
+            return;
+        }
+
         base.Death();
         animator.SetTrigger("DeathTrigger");
         await UniTask.Delay(1000, cancellationToken: this.GetCancellationTokenOnDestroy());

@@ -1,18 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
+using NestedParadox.Stages;
 
-public class BossPhase : MonoBehaviour
+namespace NestedParadox.Managers
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public class BossPhase : PhaseBase
+{
+        [SerializeField] GameObject bossPrefab;
+        [SerializeField] StageManager stageManager;
+        private bool bossIsDeath;
+        public override async UniTask Execute()
+        {
+            bossIsDeath = false; //パラメータ初期化
+            //BOSSステージへの切り替え
+            mainCamera.ChangeToBossCamera();
+            stageManager.DeleteCurrentStage();
+            int[] stageIndexList = { 4 };
+            stageManager.RandomGenerateStage(stageIndexList);
+            EnemyBase boss = Instantiate(bossPrefab).GetComponent<EnemyBase>();           
+        }        
     }
 }
