@@ -1,6 +1,7 @@
 using UniRx;
 using UniRx.Triggers;
 using Cysharp.Threading.Tasks;
+using System.Threading;
 using UnityEngine;
 
 namespace NestedParadox.Players
@@ -12,54 +13,74 @@ namespace NestedParadox.Players
         public IReadOnlyReactiveProperty<bool> IsDead => _isDead;
         private readonly ReactiveProperty<bool> _isDead = new ReactiveProperty<bool>();
 
-        // 無敵状態
-        private bool _isInvincible;
+        //無敵
+        private readonly ReactiveProperty<bool> _isInvincible = new ReactiveProperty<bool>(false);
+
+        //行動不能
+        public IReadOnlyReactiveProperty<bool> UnMoveable => _unMoveable;
+        private readonly ReactiveProperty<bool> _unMoveable = new ReactiveProperty<bool>();
 
         //プレイヤーのHP
-        public IReadOnlyReactiveProperty<int> Hp => _playerhp;
-        private readonly ReactiveProperty<int> _playerhp = new ReactiveProperty<int>(2);
+        public IReadOnlyReactiveProperty<int> Hp => _playerHP;
+        private readonly ReactiveProperty<int> _playerHP = new ReactiveProperty<int>(100);
 
         //プレイヤーの攻撃力
         public IReadOnlyReactiveProperty<int> PlayerAttackPower => _playerATK;
-        [SerializeField] private readonly IntReactiveProperty _playerATK = new IntReactiveProperty(1);
+        [SerializeField] private readonly IntReactiveProperty _playerATK = new IntReactiveProperty(10);
 
 
         //ドローエナジー
         public IReadOnlyReactiveProperty<int> PlayerDrawEnergy => _playerdrawenergy;
-        private readonly ReactiveProperty<int> _playerdrawenergy = new ReactiveProperty<int>(0);
+        private readonly ReactiveProperty<int> _playerdrawenergy = new ReactiveProperty<int>(10);
+
+        //ポーズ状態
+        public IReadOnlyReactiveProperty<bool> PauseState => _pauseState;
+        private readonly ReactiveProperty<bool> _pauseState = new ReactiveProperty<bool>(false);
 
         //外部参照
         private PlayerBuff _playerbuff;
-        private PlayerAnimation _playeraniamtion;
+        private PlayerAnimation _playerAniamtion;
         [SerializeField] private CapsuleCollider2D _hitCollider;
+        [SerializeField] Rigidbody2D rb;
+        [SerializeField] GameObject _player;
+        
 
-        [SerializeField]private int MAXDraweEnergy=10;
+        [SerializeField]private int MAXDrawEnergy=10;
 
 
         void Start(){
             //キャッシュ
             _playerbuff = GetComponent<PlayerBuff>();
-            _playeraniamtion = GetComponent<PlayerAnimation>();
+            _playerAniamtion = GetComponent<PlayerAnimation>();
 
             //死んだら死ぬ変数をtrueに
-            _playerhp
+            _playerHP
             .Where(x => x < 0)
             .Subscribe(_ => _isDead.Value = true)
+            .AddTo(this);
+
+            //ポーズボタンを感知
+            NestedParadox.Players.PlayerInput _playerinput = GetComponent<PlayerInput>();
+            _playerinput.OnPause
+            .Subscribe(_ => {
+                _pauseState.Value = _pauseState.Value == true ? false:true;
+                _unMoveable.Value = UnMoveable.Value == true ? false:true;
+                _hitCollider.enabled = _hitCollider.enabled == true ? false:true;
+            })
             .AddTo(this);
         }
 
         public void Damaged(Damage _damage)
-        {
-            int dame;
-            dame = _playerbuff.Guard( _damage.DamageValue);
-            _playerhp.Value -=dame;
+        {            
+            var dame = _playerbuff.Guard( _damage.DamageValue);
+            _playerHP.Value -=dame;
 
-            _playeraniamtion.Damaged();
+            _playerAniamtion.Damaged();
             //しばらく無敵に
             Invincible(1000).Forget();
         }
 
-        public async UniTask Invincible(int delay){
+        private async UniTask Invincible(int delay){
             _hitCollider.enabled = false;
             await UniTask.Delay(delay);
             _hitCollider.enabled = true;
@@ -67,7 +88,7 @@ namespace NestedParadox.Players
 
         //毒や効果によるHP減少などの定数ダメージ
         public void DirectDamaged(int Damage){
-            _playerhp.Value -=Damage;
+            _playerHP.Value -=Damage;
         }
 
         public void ChangeAttackPower(int atk){
@@ -76,7 +97,7 @@ namespace NestedParadox.Players
 
         public void AddDrawEnergy(int d){
             // _playerdrawenergy.Value += d;
-            _playerdrawenergy.Value = Mathf.Clamp(_playerdrawenergy.Value += d, 0, MAXDraweEnergy);
+            _playerdrawenergy.Value = Mathf.Clamp(_playerdrawenergy.Value += d, 0, MAXDrawEnergy);
         }
 
         public void ResetDrawEnergy(){
@@ -84,28 +105,64 @@ namespace NestedParadox.Players
         }
 
         public void Respown(){
+            // Debug.Log("落ちた");
             //復活処理とダメージ処理を書く
-            Debug.Log("落下！");
+            //無敵
+
+            //エネミームービングにある
+            
+            //落下を止める
+            transform.position = new Vector3(transform.position.x, -2.9f, 0);
+            //物理演算を止める
+            rb.isKinematic = true;        
+            rb.velocity = Vector3.zero;
+
+            //操作・被ダメ不可
+            Invincible(1000).Forget();
+
+            //エフェクトを再生。今は無し
+            //nearrestPlaceに一番近いスポーン地点が入る
+            // GameObject respawnEffect_clone = Instantiate(respawnEffect, transform.position, Quaternion.identity);
+            // respawnEffect_clone.transform.SetParent(transform);
+            // await UniTask.Delay(1000);
+
+            //ベースフィールドを探す
+            GameObject[] baseFields = GameObject.FindGameObjectsWithTag("BaseField");
+            float distance = 10000;
+            Vector3 nearestPlace = new Vector3();
+            foreach(GameObject baseField in baseFields)
+            {
+                float distance_temp = (transform.position - baseField.transform.position).magnitude;
+                if(distance_temp < distance)
+                {
+                    distance = distance_temp;
+                    nearestPlace = baseField.transform.position;
+                }
+            }
+
+            //復活
+            Vector3 respawnPosition = new Vector3(nearestPlace.x, nearestPlace.y + 3, nearestPlace.z);        
+            transform.position = respawnPosition;
+
+
+            //移動用の処理を戻す
+            rb.isKinematic = false;
+
+            
+            _playerHP.Value -= 10;
+            Invincible(1000).Forget();
         }
 
-        // 無敵か
-    //     private bool _isInvincible;
+        //無敵状態を操作
+        public void SetInvincible(bool isInvincible)
+        {
+            _isInvincible.Value = isInvincible;
+        }
 
-    //     private void Start()
-    //     {
-    //         _isDead.AddTo(this);
-
-    //         // 敵に衝突した場合は死ぬ
-    //         this.OnCollisionEnter2DAsObservable()
-    //             .Where(_ => !_isInvincible)
-    //             .Where(x => x.gameObject.TryGetComponent<EnemyCore>(out _))
-    //             .Subscribe(onNext: _ => _isDead.Value = true);
-    //     }
-
-    //     public void SetInvincible(bool isInvincible)
-    //     {
-    //         _isInvincible = isInvincible;
-    //     }
-    // }
+        public void SetUnMoveable(bool b)
+        {
+            _unMoveable.Value = b;
+        }
+    
     }
 }

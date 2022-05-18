@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using NestedParadox.Monsters;
 
+
 public class CardPresenter : Singleton<CardPresenter>
 {
     public List<GameObject> CardList = new List<GameObject>();
@@ -20,7 +21,7 @@ public class CardPresenter : Singleton<CardPresenter>
         else    PlayerSummon(id);
     }
 
-    public void PlayerSummon(int id){
-        if(MonsterManager.I.CanSummon)  MonsterManager.I.Summon((CardID)Enum.ToObject(typeof(CardID), id));
+    private void PlayerSummon(int id){
+        MonsterManager.I.Summon((CardID)Enum.ToObject(typeof(CardID), id));
     }
 }

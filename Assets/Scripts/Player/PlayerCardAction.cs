@@ -19,11 +19,12 @@ namespace NestedParadox.Players
             _playercore = GetComponent<PlayerCore>();
 
             _playerinput.OnPlayCard
+            .Where(_ => !_playercore.PauseState.Value)
             .Subscribe(_=> _cardmanager.Play())
             .AddTo(this);
 
             _playerinput.OnDrawCard
-            .Where(_ => _playercore.PlayerDrawEnergy.Value ==10)//ドロエナジーの確認
+            .Where(_ => _playercore.PlayerDrawEnergy.Value ==10 && !_playercore.PauseState.Value)//ドロエナジーの確認
             .Subscribe(_=>{
                 _cardmanager.Draw();
                 _playercore.ResetDrawEnergy();
@@ -31,17 +32,17 @@ namespace NestedParadox.Players
             .AddTo(this);
 
             _playerinput.OnChangeHandR
-            .Where(_ => _cardmanager.Hand.Count != 0)//手札があるときのみ実行
+            .Where(_ => _cardmanager.Hand.Count != 0 && !_playercore.PauseState.Value)//手札があるときのみ実行
             .Subscribe(_=> _cardmanager.publicRotateHand(1))
             .AddTo(this);
 
             _playerinput.OnChangeHandL
-            .Where(_ => _cardmanager.Hand.Count != 0)//手札があるときのみ実行
+            .Where(_ => _cardmanager.Hand.Count != 0 && !_playercore.PauseState.Value)//手札があるときのみ実行
             .Subscribe(_=> _cardmanager.publicRotateHand(-1))
             .AddTo(this);
 
             _playerinput.OnCardDelete
-            .Where(_ => _cardmanager.Hand.Count == 3)//手札が満タンのときのみ実行可能
+            .Where(_ => _cardmanager.Hand.Count == 3 && !_playercore.PauseState.Value)//手札が満タンのときのみ実行可能
             .Subscribe(_=> _cardmanager.DeleteAllCard())
             .AddTo(this);
         }

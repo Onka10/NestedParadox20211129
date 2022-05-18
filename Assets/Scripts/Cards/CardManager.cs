@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
 using UnityEditor;
+using NestedParadox.Monsters;
 
 namespace NestedParadox.Cards
 {
@@ -80,6 +81,7 @@ namespace NestedParadox.Cards
                 //TO DO処理を試みる
                 if(_cardpresenter.Check(_hand[_nowhand.Value])){
                     //効果実行
+                    if(!MonsterManager.I.CanSummon)  return;//trueなら召喚出来る
                     _cardpresenter.Execute(_hand[_nowhand.Value]);
                     Trash();
                 }
