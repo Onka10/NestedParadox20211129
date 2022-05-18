@@ -2867,12 +2867,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9be8488442ec343b59554051b57c529e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hp: 2
+  attackPower: 1
   attackSpan: 4
   attackCollider: {fileID: 869240937329872898}
   bodyColl: {fileID: 0}
   animator: {fileID: 7577164688896838148}
   enemyMoving: {fileID: 869240937329872899}
-  HP_debugg: 0
   deathEffect: {fileID: 4592332115583697329, guid: a40b65f082ef5e34e9ee1442dd8d8be9, type: 3}
 --- !u!1 &869240937346704912
 GameObject:

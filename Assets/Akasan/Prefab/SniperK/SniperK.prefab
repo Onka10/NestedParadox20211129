@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 10
-  attackPower: 0
+  attackPower: 1
   isUniquePosition: 0
   summonWaitTime: 0
   animator: {fileID: 6908789350309662058}

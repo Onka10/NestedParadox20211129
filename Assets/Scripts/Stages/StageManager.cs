@@ -20,16 +20,12 @@ namespace NestedParadox.Stages
         void Update()
         {
 
-        }
+        }       
 
-        public void Construct()
+        public void RandomGenerateStage(int[] stageList)
         {
-            RandomGenerateStage();            
-        }
-
-        public void RandomGenerateStage()
-        {
-            int random = Random.Range(0, stage.Length);
+            int random = Random.Range(0, stageList.Length);
+            random = stageList[random];
             currentStage = Instantiate(stage[random]);
         }
 

@@ -1043,6 +1043,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   distanceOffset: {x: 1, y: -2.4, z: 10}
   bossCameraPos: {x: 19.9, y: 3, z: -10}
+  normalStageCameraSize: 10
   camera: {fileID: 486071567}
 --- !u!114 &486071572
 MonoBehaviour:
@@ -1433,7 +1434,7 @@ GameObject:
   - component: {fileID: 699790560}
   m_Layer: 0
   m_Name: Player
-  m_TagString: MainCharacter
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1975,13 +1976,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05731d04018224754ab094327d6e283b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  button:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  eventSystem: {fileID: 994084506}
   guardKunManager: {fileID: 1197586066}
   monsterPrefabList:
   - {fileID: 5068512105697022425, guid: 941c1e57682f84a498de64c971508fe7, type: 3}
@@ -2011,9 +2005,9 @@ MonoBehaviour:
   stage:
   - {fileID: 6736045037085163923, guid: 61a63397480c8423ea577a8ae5ed054e, type: 3}
   - {fileID: 612377202051538326, guid: 97f50035be02e43a88ed779e92260cc4, type: 3}
-  - {fileID: 2595529342530196933, guid: 17f9cab3a525545888fb274cb6643a7a, type: 3}
   - {fileID: 3983102105592226268, guid: 52e984c86c2954776b6d706525e6ecad, type: 3}
   - {fileID: 8407525970300061534, guid: 326ba0eb54ec6429298c4f136ef49f61, type: 3}
+  - {fileID: 2595529342530196933, guid: 17f9cab3a525545888fb274cb6643a7a, type: 3}
 --- !u!114 &1197586071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2031,7 +2025,7 @@ MonoBehaviour:
   next: {fileID: 1197586071}
   enemyPrefabs:
   - {fileID: 869240937329872901, guid: f09d5fa20848840d9a10f48c4c61ed63, type: 3}
-  enemyInstanceCount: 03000000
+  enemyInstanceCount: 02000000
   stageEnd: {fileID: 131163010}
   stageManager: {fileID: 1197586070}
   areaLimit_Left: -25

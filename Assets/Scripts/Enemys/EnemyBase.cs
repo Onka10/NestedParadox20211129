@@ -8,10 +8,10 @@ using System;
 
 public abstract class EnemyBase : MonoBehaviour
 {
-    protected int hp;
+    [SerializeField] protected int hp;
     protected ReactiveProperty<int> hp_r = new ReactiveProperty<int>();
     public IReadOnlyReactiveProperty<int> Hp => hp_r;
-    protected int attackPower;
+    [SerializeField] protected int attackPower;
     protected ReactiveProperty<EnemyState> state = new ReactiveProperty<EnemyState>();
     public IReadOnlyReactiveProperty<EnemyState> State => state;
     //死亡した時に発行するSubject
@@ -19,9 +19,9 @@ public abstract class EnemyBase : MonoBehaviour
     public IObservable<Unit> IsDeath => isDeath;
 
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
-        
+        hp_r.Value = hp;
     }
 
     // Update is called once per frame

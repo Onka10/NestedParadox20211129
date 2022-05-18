@@ -10,6 +10,7 @@ namespace MainCamera
     {
         [SerializeField] private Vector3 distanceOffset = new Vector3();
         [SerializeField] private Vector3 bossCameraPos;
+        [SerializeField] private float normalStageCameraSize;
         private TempCharacter tempCharacter;
         private Transform myTransform;
         [SerializeField] private Camera camera;
@@ -50,7 +51,7 @@ namespace MainCamera
         public void ChangeToNormalCamera()
         {
             isBossStage = false;
-            camera.orthographicSize = 6f;
+            camera.orthographicSize = normalStageCameraSize;
         }
         
 

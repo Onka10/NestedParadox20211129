@@ -31,7 +31,9 @@ namespace NestedParadox.Managers
             while(stageClearCount < 4)
             {
                 stageManager.DeleteCurrentStage();
-                stageManager.RandomGenerateStage();             
+                int[] stageIndexList = { 0, 1, 2, 3 };
+                stageManager.RandomGenerateStage(stageIndexList);
+                player.transform.position = Vector3.zero;
                 List<EnemyBase> enemyList = new List<EnemyBase>();
                 for(int i=0; i<enemyPrefabs.Length; i++)
                 {
@@ -67,8 +69,8 @@ namespace NestedParadox.Managers
             isReached = true;
             stageClearCount++;
             stageManager.DeleteCurrentStage();
-            stageManager.RandomGenerateStage();
-            player.transform.position = Vector3.zero;
+            int[] stageIndexList = { 0, 1, 2, 3 };
+            stageManager.RandomGenerateStage(stageIndexList);                   
             stageEnd.SetActive(false);
         }
 
