@@ -7,12 +7,9 @@ using UnityEngine;
 namespace NestedParadox.Players
 {
     // プレイヤーの本体を表すコンポーネント
+    //FIXME責任過多
     public sealed class PlayerCore : Singleton<PlayerCore>,IApplyDamage,IFallingIsRespown
     {
-        // // 死んでいるか
-        public IReadOnlyReactiveProperty<bool> IsDead => _isDead;
-        private readonly ReactiveProperty<bool> _isDead = new ReactiveProperty<bool>();
-
         //無敵
         private readonly ReactiveProperty<bool> _isInvincible = new ReactiveProperty<bool>(false);
 
@@ -22,7 +19,7 @@ namespace NestedParadox.Players
 
         //プレイヤーのHP
         public IReadOnlyReactiveProperty<int> Hp => _playerHP;
-        private readonly ReactiveProperty<int> _playerHP = new ReactiveProperty<int>(100);
+        private readonly ReactiveProperty<int> _playerHP = new ReactiveProperty<int>(2);
 
         //プレイヤーの攻撃力
         public IReadOnlyReactiveProperty<int> PlayerAttackPower => _playerATK;
@@ -53,10 +50,11 @@ namespace NestedParadox.Players
             _playerbuff = GetComponent<PlayerBuff>();
             _playerAniamtion = GetComponent<PlayerAnimation>();
 
-            //死んだら死ぬ変数をtrueに
+            //死んだらシーン移動
             _playerHP
-            .Where(x => x < 0)
-            .Subscribe(_ => _isDead.Value = true)
+            .Where(x => x < 1)
+            // .Subscribe(_ => Debug.Log("脂肪"))
+            .Subscribe(_ => SceneController.I.GameOver())
             .AddTo(this);
 
             //ポーズボタンを感知
@@ -74,6 +72,7 @@ namespace NestedParadox.Players
         {            
             var dame = _playerbuff.Guard( _damage.DamageValue);
             _playerHP.Value -=dame;
+            Debug.Log(_playerHP.Value);
 
             _playerAniamtion.Damaged();
             //しばらく無敵に
@@ -163,6 +162,11 @@ namespace NestedParadox.Players
         {
             _unMoveable.Value = b;
         }
-    
+
+        //ポーズ終了
+        public void EndPause()
+        {
+            _pauseState.Value =false;
+        }    
     }
 }
