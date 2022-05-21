@@ -5,23 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class TitleManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void ToCreditSecene(){
         SceneManager.LoadScene("CreditScene");
     }
 
-    public void ToSelectCardScene(){
-        SceneManager.LoadScene("SelectCardScene");
+    public void ToGameScene(){
+        SceneManager.LoadScene("OnkaloMasterScene");
     }
 }
