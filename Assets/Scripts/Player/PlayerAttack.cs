@@ -67,7 +67,6 @@ namespace NestedParadox.Players
                 .AddTo(this);
         }
 
-        //本来は攻撃が当たったときにドローエナジーを増やして欲しいけど、今はこれで我慢
         private async UniTask NAttack(){
             //アニメーションの再生
             _playerAnimation.NormalAttack();
@@ -78,7 +77,6 @@ namespace NestedParadox.Players
             //ステータスまわりを変更
             nockback = 1;
             _playercore.ChangeAttackPower(1);
-            _playercore.AddDrawEnergy(1);
             
             await UniTask.DelayFrame(1);
             await UniTask.WaitWhile(() => _playerAnimation.IsAttack.Value);
@@ -95,7 +93,7 @@ namespace NestedParadox.Players
             //ステータスまわりを変更
             nockback = 2;
             _playercore.ChangeAttackPower(2);
-            _playercore.AddDrawEnergy(2);
+
 
             await UniTask.DelayFrame(1);
             await UniTask.WaitWhile(() => _playerAnimation.IsAttack.Value);
@@ -131,9 +129,12 @@ namespace NestedParadox.Players
                     // 武器に当たった相手がダメージを与えられる相手であるか
                     if (!x.TryGetComponent<IApplyDamage>(out IApplyDamage attack)) return;
 
+                    //ドローエナジー付与
+                    _playercore.AddDrawEnergy(1);
+
                     //攻撃の実数値を入力
                     int AttackActualValue;
-                    AttackActualValue = PlayerCore.I.PlayerAttackPower.Value + PlayerBuff.I.EnhancedATK.Value;
+                    AttackActualValue = PlayerCore.I.PlayerAttackPower.Value + (10 * PlayerBuff.I.EnhancedATK.Value);
                     
                     attack.Damaged(new  DamageToEnemy(AttackActualValue, nockback));
 
@@ -146,9 +147,13 @@ namespace NestedParadox.Players
                     // 武器に当たった相手がダメージを与えられる相手であるか
                     if (!x.TryGetComponent<IApplyDamage>(out IApplyDamage attack)) return;
 
+                    //ドローエナジー付与
+                    _playercore.AddDrawEnergy(2);
+
                     //攻撃の実数値を入力
                     int AttackActualValue;
-                    AttackActualValue = PlayerCore.I.PlayerAttackPower.Value + PlayerBuff.I.EnhancedATK.Value;
+                    AttackActualValue = PlayerCore.I.PlayerAttackPower.Value + (10 * PlayerBuff.I.EnhancedATK.Value);
+                    AttackActualValue += 10;
                     
                     attack.Damaged(new  DamageToEnemy(AttackActualValue, nockback));
 
