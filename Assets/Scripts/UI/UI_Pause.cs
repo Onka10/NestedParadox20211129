@@ -28,16 +28,17 @@ public class UI_Pause : MonoBehaviour
 
     void Start()
     {
-        _input.OnPause
-        .Subscribe(_ => {
-            if(_pauseUI.activeSelf == false)  OpenPause();
-            else ClosePause();
+        _playerCore.PauseState
+        .Subscribe(p => {
+            if(p)  OpenPause();
+            else   ClosePause();
         })
         .AddTo(this);
 
         //UIの見た目
         _uiPos
         .Subscribe(p => {
+            // SoundManager.Instance.PlaySE(SESoundData.SE.Click_Choice);
             if(p == UIPosition.Up){
                 up.enabled = true;
                 down.enabled = false;
@@ -52,6 +53,7 @@ public class UI_Pause : MonoBehaviour
     private void ClosePause(){
         _pauseUI.SetActive(false);
         _playerCore.EndPause();
+        // SoundManager.Instance.PlaySE(SESoundData.SE.Click_Cancel);
     }
 
     private void OpenPause(){

@@ -19,6 +19,6 @@ public class UI_DrawEnergy : MonoBehaviour
     }
 
     private void UpdateDrawEnergyUI(int x){
-        DrawEnegrySlider.value = x;
+        DrawEnegrySlider.value = (float)x;
     }
 }

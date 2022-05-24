@@ -19,7 +19,7 @@ namespace NestedParadox.Players
 
         //プレイヤーのHP
         public IReadOnlyReactiveProperty<int> Hp => _playerHP;
-        private readonly ReactiveProperty<int> _playerHP = new ReactiveProperty<int>(2);
+        private readonly ReactiveProperty<int> _playerHP = new ReactiveProperty<int>(100);
 
         //プレイヤーの攻撃力
         public IReadOnlyReactiveProperty<int> PlayerAttackPower => _playerATK;
@@ -95,8 +95,8 @@ namespace NestedParadox.Players
         }
 
         public void AddDrawEnergy(int d){
-            // _playerdrawenergy.Value += d;
-            _playerdrawenergy.Value = Mathf.Clamp(_playerdrawenergy.Value += d, 0, MAXDrawEnergy);
+            _playerdrawenergy.Value += d;
+            _playerdrawenergy.Value = Mathf.Clamp(_playerdrawenergy.Value, 0, MAXDrawEnergy);
         }
 
         public void ResetDrawEnergy(){
@@ -167,6 +167,7 @@ namespace NestedParadox.Players
         public void EndPause()
         {
             _pauseState.Value =false;
+            Debug.Log(_pauseState.Value);
         }    
     }
 }
