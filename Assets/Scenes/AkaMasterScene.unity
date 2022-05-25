@@ -3371,7 +3371,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4438150963474500083, guid: e36f9413fb5934c29b797645dda3e7da, type: 3}
       propertyPath: enemyInstanceCount.Array.data[0]
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4438150963474500084, guid: e36f9413fb5934c29b797645dda3e7da, type: 3}
       propertyPath: CardList.Array.data[0]

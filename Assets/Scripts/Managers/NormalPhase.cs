@@ -29,7 +29,7 @@ namespace NestedParadox.Managers
             mainCamera.ChangeToNormalCamera();            
             //stageClearの回数が３回までは繰り返す
             stageClearCount = 0;
-            while(stageClearCount < 1)
+            while(stageClearCount < 4)
             {                
                 int[] stageIndexList = { 0, 1, 2, 3 };
                 stageManager.RandomGenerateStage(stageIndexList);

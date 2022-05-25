@@ -64,14 +64,10 @@ public class Omnipotence : EnemyBase
     {        
         damagedAnimCts.Cancel();
         animator.SetTrigger("KnockBackTrigger");
-        //?????????????
-        while(isKnockBacked)
-        {
-            rb.velocity = new Vector3(-1, 0, 0);
-            await UniTask.Delay(300, cancellationToken: this.GetCancellationTokenOnDestroy());
-            rb.velocity = new Vector3(1, 0, 0);
-            await UniTask.Delay(300, cancellationToken: this.GetCancellationTokenOnDestroy());
-        }        
+        getHitAnimator.SetBool("KnockBackBool", true);
+        await UniTask.Yield(cancellationToken: this.GetCancellationTokenOnDestroy());
+        await UniTask.WaitUntil(() => !isKnockBacked, cancellationToken: this.GetCancellationTokenOnDestroy());
+        getHitAnimator.SetBool("KnockBackBool", false);
     }
 
     public override void Attack()

@@ -27,8 +27,7 @@ public class EnemyRabbit : EnemyBase, IApplyDamage
     // Start is called before the first frame update
     protected override void Awake()
     {
-        base.Awake();
-        attackPower = 1;
+        base.Awake();        
         attackTime.Value = 0;
         state.Value = EnemyState.Idle;
         pyerMove = GameObject.FindGameObjectWithTag("MainCharacter").GetComponent<PlayerMove>();

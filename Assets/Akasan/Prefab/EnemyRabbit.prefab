@@ -2867,8 +2867,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9be8488442ec343b59554051b57c529e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 2
-  attackPower: 10
+  hp: 50
+  attackPower: 5
   attackSpan: 4
   attackCollider: {fileID: 869240937329872898}
   bodyColl: {fileID: 0}

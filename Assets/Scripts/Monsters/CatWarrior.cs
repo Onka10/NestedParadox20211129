@@ -117,14 +117,14 @@ namespace NestedParadox.Monsters
 
         private void ChangeAttackPower(int playerHp)
         {
-            attackPower = (101 - playerHp) / 10;
+            attackPower = (100 - playerHp);
             if (attackPower == 0)
             {
                 attackPower = 1;
             }
             Debug.Log($"猫戦士の攻撃力が{attackPower}になりました(hp={playerHp}");
             spriteRenderer.material.EnableKeyword("_EMISSION");
-            float intensity = Mathf.Pow(2, attackPower/2.0f);
+            float intensity = Mathf.Pow(2, attackPower/5f);
             spriteRenderer.material.SetColor("_Color", Color.red*intensity);
         }
     }    

@@ -138,7 +138,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 10
   attackPower: 1
-  knockBackValue: 1
+  knockBackValue: 5
   isUniquePosition: 0
   summonWaitTime: 0
   attackColl: {fileID: 880401946127736960}

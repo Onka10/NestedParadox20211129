@@ -80,7 +80,7 @@ namespace NestedParadox.Monsters
 
         public void SetAttackPower(int monsterCount)
         {
-            this.attackPower = monsterCount;
+            this.attackPower = monsterCount*10;
             Debug.Log($"攻撃力が{attackPower}になりました");
         }
 

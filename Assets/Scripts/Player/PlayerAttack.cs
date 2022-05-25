@@ -127,7 +127,7 @@ namespace NestedParadox.Players
                 .Subscribe(x =>
                 {
                     // 武器に当たった相手がダメージを与えられる相手であるか
-                    if (!x.TryGetComponent<IApplyDamage>(out IApplyDamage attack)) return;
+                    if (!x.TryGetComponent<EnemyBase>(out EnemyBase attack)) return;
 
                     //ドローエナジー付与
                     _playercore.AddDrawEnergy(1);
@@ -145,7 +145,7 @@ namespace NestedParadox.Players
                 .Subscribe(x =>
                 {
                     // 武器に当たった相手がダメージを与えられる相手であるか
-                    if (!x.TryGetComponent<IApplyDamage>(out IApplyDamage attack)) return;
+                    if (!x.TryGetComponent<EnemyBase>(out EnemyBase attack)) return;
 
                     //ドローエナジー付与
                     _playercore.AddDrawEnergy(2);
