@@ -7,12 +7,9 @@ using UnityEngine;
 namespace NestedParadox.Players
 {
     // プレイヤーの本体を表すコンポーネント
+    //FIXME責任過多
     public sealed class PlayerCore : Singleton<PlayerCore>,IApplyDamage,IFallingIsRespown
     {
-        // // 死んでいるか
-        public IReadOnlyReactiveProperty<bool> IsDead => _isDead;
-        private readonly ReactiveProperty<bool> _isDead = new ReactiveProperty<bool>();
-
         //無敵
         private readonly ReactiveProperty<bool> _isInvincible = new ReactiveProperty<bool>(false);
 
@@ -53,10 +50,11 @@ namespace NestedParadox.Players
             _playerbuff = GetComponent<PlayerBuff>();
             _playerAniamtion = GetComponent<PlayerAnimation>();
 
-            //死んだら死ぬ変数をtrueに
+            //死んだらシーン移動
             _playerHP
-            .Where(x => x < 0)
-            .Subscribe(_ => _isDead.Value = true)
+            .Where(x => x < 1)
+            // .Subscribe(_ => Debug.Log("脂肪"))
+            .Subscribe(_ => SceneController.I.GameOver())
             .AddTo(this);
 
             //ポーズボタンを感知
@@ -74,7 +72,8 @@ namespace NestedParadox.Players
         {            
             var dame = _playerbuff.Guard( _damage.DamageValue);
             _playerHP.Value -=dame;
-            Debug.Log("プレイヤーが攻撃を受けました");
+            Debug.Log(_playerHP.Value);
+
             _playerAniamtion.Damaged();
             //しばらく無敵に
             Invincible(1000).Forget();
@@ -96,8 +95,8 @@ namespace NestedParadox.Players
         }
 
         public void AddDrawEnergy(int d){
-            // _playerdrawenergy.Value += d;
-            _playerdrawenergy.Value = Mathf.Clamp(_playerdrawenergy.Value += d, 0, MAXDrawEnergy);
+            _playerdrawenergy.Value += d;
+            _playerdrawenergy.Value = Mathf.Clamp(_playerdrawenergy.Value, 0, MAXDrawEnergy);
         }
 
         public void ResetDrawEnergy(){
@@ -163,6 +162,12 @@ namespace NestedParadox.Players
         {
             _unMoveable.Value = b;
         }
-    
+
+        //ポーズ終了
+        public void EndPause()
+        {
+            _pauseState.Value =false;
+            Debug.Log(_pauseState.Value);
+        }    
     }
 }

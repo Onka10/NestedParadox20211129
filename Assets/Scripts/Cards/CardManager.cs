@@ -141,8 +141,9 @@ namespace NestedParadox.Cards
             Trash();
         }
 
-        public bool CheckTrigger(int hand){
-            return _cardpresenter.Check(_hand[hand]);
+        public bool CheckTrigger(int nowhand){
+            // return _cardpresenter.Check(_hand[nowhand]);
+            return true;
         }
 
 

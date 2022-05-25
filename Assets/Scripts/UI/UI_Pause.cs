@@ -10,6 +10,7 @@ using UnityEngine.SceneManagement;
 public class UI_Pause : MonoBehaviour
 {
     //急ぎなのでコード汚い
+    //ModelとViewが混在
     [SerializeField] NestedParadox.Players.PlayerInput _input;
     [SerializeField] GameObject _pauseUI;
     
@@ -27,12 +28,17 @@ public class UI_Pause : MonoBehaviour
 
     void Start()
     {
-        _input.OnPause
-        .Subscribe(_ => ClosePause())
+        _playerCore.PauseState
+        .Subscribe(p => {
+            if(p)  OpenPause();
+            else   ClosePause();
+        })
         .AddTo(this);
 
+        //UIの見た目
         _uiPos
         .Subscribe(p => {
+            // SoundManager.Instance.PlaySE(SESoundData.SE.Click_Choice);
             if(p == UIPosition.Up){
                 up.enabled = true;
                 down.enabled = false;
@@ -45,14 +51,13 @@ public class UI_Pause : MonoBehaviour
     }
 
     private void ClosePause(){
-        bool pauseon;
-        pauseon = _pauseUI.activeSelf == true ? false:true;
-        _pauseUI.SetActive(pauseon);
+        _pauseUI.SetActive(false);
+        _playerCore.EndPause();
+        // SoundManager.Instance.PlaySE(SESoundData.SE.Click_Cancel);
     }
 
-    private void PauseAction(){
-        if(_uiPos.Value == UIPosition.Up) ClosePause();
-        // else SceneManager.LoadScene("TitleScene");
+    private void OpenPause(){
+        _pauseUI.SetActive(true);
     }
 
     // Update is called once per frame
@@ -63,14 +68,18 @@ public class UI_Pause : MonoBehaviour
         
         var uKey = current.upArrowKey;
         var dKey = current.downArrowKey;
+        var enter = current.enterKey;
 
 
         if(_playerCore.PauseState.Value){
             if (uKey.wasPressedThisFrame || dKey.wasPressedThisFrame)
             {
                 _uiPos.Value = _uiPos.Value == UIPosition.Up ? UIPosition.Down:UIPosition.Up;
+            }else if(enter.wasPressedThisFrame)
+            {
+                if(_uiPos.Value == UIPosition.Up)  ClosePause();
+                else if(_uiPos.Value == UIPosition.Down)    SceneManager.LoadScene("TitleScene");
             }
-            
         }
 
     }

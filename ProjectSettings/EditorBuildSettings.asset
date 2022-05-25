@@ -8,23 +8,29 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/TitleScene.unity
     guid: 359b58d77f61c4145b37b20b04be8b3a
   - enabled: 0
     path: Assets/Scenes/CreditScene.unity
     guid: dd333a93bf276d044aa0cbc6f0b3a273
   - enabled: 0
-    path: Assets/Scenes/SelectCardScene.unity
-    guid: 4753b9c54a274410ca40d033bfcc1c3b
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 0
-    path: Assets/Scenes/SelectCharacterScene.unity
-    guid: bdf44db785c85264cb353c29d9566422
-  - enabled: 1
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
     path: Assets/Scenes/GameScene.unity
     guid: e668aee4b986342268658570cfcb1d3b
   - enabled: 0
     path: Assets/Scenes/Player_Test.unity
     guid: e512f63dd674edf48975044fca08301b
+  - enabled: 1
+    path: Assets/Scenes/OnkaloMasterScene.unity
+    guid: d0214178eee4e304abfef3e12083e40c
+  - enabled: 1
+    path: Assets/Scenes/ResultScene.unity
+    guid: 89050a95bcde4af4a81b16db9ff20fe6
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: dbededb281be22947a888bbdf97cf360, type: 2}

@@ -25,7 +25,7 @@ namespace NestedParadox.Managers
             while(phase != null)
             {
                 await phase.Execute();
-                //phase = phase.next;
+                phase = phase.next;
             }            
         }
 
