@@ -10,7 +10,8 @@ namespace NestedParadox.Monsters
     public abstract class MonsterBase : MonoBehaviour
     {
         [SerializeField] protected int hp;
-        [SerializeField] protected int attackPower;        
+        [SerializeField] protected int attackPower;
+        [SerializeField] protected int knockBackValue;
         [SerializeField] protected bool isUniquePosition;//プレイヤーの後ろについていかない場合はtrue
         [SerializeField] private float summonWaitTime; //召喚時の待機時間
         protected Vector3 distanceOffset;
@@ -20,7 +21,7 @@ namespace NestedParadox.Monsters
         public IReadOnlyReactiveProperty<int> Hp => hp_r;
         
         // Start is called before the first frame update
-        void Start()
+        void Awake()
         {
             hp_r.Value = hp;
         }

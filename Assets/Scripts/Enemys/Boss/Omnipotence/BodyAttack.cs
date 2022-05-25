@@ -4,6 +4,8 @@ using UnityEngine;
 using UniRx;
 using UniRx.Triggers;
 using Cysharp.Threading.Tasks;
+using NestedParadox.Players;
+using System.Threading;
 
 public class BodyAttack : BossCommand
 {
@@ -22,6 +24,12 @@ public class BodyAttack : BossCommand
     public override async UniTask Execute()
     {
         await base.Execute();
+        //アタック子ライダーの当たり判定を購読
+        attackColl.OnTriggerEnter2DAsObservable()
+            .Where(other => other.CompareTag("MainCharacter"))
+            .Subscribe(other => other.GetComponent<PlayerCore>().Damaged(new DamageToPlayer(attackPower, 0)))
+            .AddTo(this);
+
         animator.SetTrigger("BodyAttackTrigger");
 
         //後ろに下がって攻撃の準備

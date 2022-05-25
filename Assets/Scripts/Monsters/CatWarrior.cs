@@ -103,7 +103,7 @@ namespace NestedParadox.Monsters
             if (enemy != null)
             {                
                 Instantiate(attackEffect, enemy.transform.position, Quaternion.Euler(-50, -90, 90));
-                enemy.Damaged(new DamageToPlayer(attackPower, 0));
+                enemy.Damaged(new DamageToPlayer(attackPower, knockBackValue));
             }
             rb.velocity = (new Vector3(0, attackRecoilSpeed, 0));
             await UniTask.Delay(500, cancellationToken: this.GetCancellationTokenOnDestroy());

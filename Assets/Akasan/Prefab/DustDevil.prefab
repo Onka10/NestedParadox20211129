@@ -47,8 +47,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 20
-  attackValue: 1
+  attackPower: 1
+  knockBackValue: 1
   isUniquePosition: 1
+  summonWaitTime: 0
   animator: {fileID: 5068512105895456660}
   rb: {fileID: 5068512105697022426}
   sprite: {fileID: 5068512105895456661}
@@ -58,7 +60,6 @@ MonoBehaviour:
   moveEffect: {fileID: 4493688774277088152, guid: 0ec15b1a478b4f549b6823e3befa449f, type: 3}
   movingPower: 200
   attackStopDistance: 10
-  uniqueDistanceOffset: {x: 4.5, y: -2, z: 0}
 --- !u!50 &5068512105697022426
 Rigidbody2D:
   serializedVersion: 4

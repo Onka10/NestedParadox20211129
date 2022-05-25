@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
 using UniRx.Triggers;
+using NestedParadox.Players;
 
 public class ShieldAttack : BossCommand
 {
@@ -30,9 +31,13 @@ public class ShieldAttack : BossCommand
     {
         playerPos = GameObject.FindGameObjectWithTag("MainCharacter").transform;
         isGrounded = false;
-        shieldColl.OnTriggerEnter2DAsObservable().Subscribe(_ =>
+        shieldColl.OnTriggerEnter2DAsObservable().Subscribe(other =>
         {
             isGrounded = true;
+            if(other.TryGetComponent<PlayerCore>(out PlayerCore player))
+            {
+                player.Damaged(new DamageToPlayer(attackPower, 0));
+            }
         });        
     }
 
@@ -79,7 +84,6 @@ public class ShieldAttack : BossCommand
         while(transform.InverseTransformPoint(shieldRb.position).magnitude > 0.1f)
         {
             //Debug.Log("攻撃3中");
-            Debug.Log(transform.InverseTransformPoint(shieldRb.position));
             shieldRb.position = Vector3.Lerp(shieldRb.position, transform.position, returnLerpRate);
             await UniTask.Yield();
         }

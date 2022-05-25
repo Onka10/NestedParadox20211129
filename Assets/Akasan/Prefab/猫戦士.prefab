@@ -138,12 +138,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 10
   attackPower: 1
+  knockBackValue: 1
   isUniquePosition: 0
+  summonWaitTime: 0
   attackColl: {fileID: 880401946127736960}
   animator: {fileID: 0}
   attackSpan: 5
   rb: {fileID: 880401945095471002}
-  state: 0
   attackSpeed: -15
   attackRecoilSpeed: 1
   teleportationEffect: {fileID: 2494717272435998108, guid: d11fc06955600b2469519851962957fc, type: 3}

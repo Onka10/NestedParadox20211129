@@ -4,6 +4,7 @@ using UnityEngine;
 using UniRx;
 using UniRx.Triggers;
 using Cysharp.Threading.Tasks;
+using NestedParadox.Players;
 
 public class OmniMissile : MonoBehaviour
 {
@@ -14,18 +15,20 @@ public class OmniMissile : MonoBehaviour
     [SerializeField] Collider2D bodyColl;
 
     [SerializeField] int explosionDelayTime;
-
+    private int attackPower;
     [SerializeField] GameObject explosionEffect;
 
     private bool isGrounded;
     private void Start()
     {
         isGrounded = false;
+        attackPower = 0;
         coll.OnTriggerEnter2DAsObservable()
             .Where(other => other.gameObject.CompareTag("BaseField") || other.gameObject.CompareTag("MainCharacter"))
             .Subscribe(_ =>
             {
                 isGrounded = true;
+
             })
             .AddTo(this);
         //attackColl.OnCollisionEnter2DAsObservable() ダメージ処理 後で実装
@@ -49,18 +52,23 @@ public class OmniMissile : MonoBehaviour
         await UniTask.Delay(explosionDelayTime);        
         GameObject explosionEffect_clone = Instantiate(explosionEffect);       
         explosionEffect_clone.transform.position = transform.position;
-        if(IsExplosionHorizontal)
+        explosionEffect_clone.GetComponentInChildren<Collider2D>().OnTriggerEnter2DAsObservable()
+                .Where(other => other.CompareTag("MainCharacter"))
+                .Subscribe(other => other.GetComponent<PlayerCore>().Damaged(new DamageToPlayer(attackPower, 0)))
+                .AddTo(explosionEffect_clone.gameObject);
+        if (IsExplosionHorizontal)
         {
             explosionEffect_clone.transform.localScale = new Vector3(1, 1, 0.25f);
-        }
-        attackColl.enabled = true;
+            explosionEffect_clone.GetComponentInChildren<CapsuleCollider2D>().direction = CapsuleDirection2D.Horizontal;
+            explosionEffect_clone.GetComponentInChildren<CapsuleCollider2D>().size = new Vector2(7.8f, 9.4f);
+        }        
         await UniTask.Delay(500);
         Destroy(this.gameObject);
     }
     // Start is called before the first frame update    
     // Update is called once per frame
-    void Update()
+    public void SetAttackPower(int attackPower)
     {
-        
+        this.attackPower = attackPower;
     }
 }

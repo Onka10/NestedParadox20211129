@@ -15,6 +15,7 @@ TagManager:
   - AreaLimit
   - GameManager
   - DustDevilSprite
+  - OmniMissile
   layers:
   - Default
   - TransparentFX
@@ -24,8 +25,8 @@ TagManager:
   - UI
   - Ground
   - ground
-  - 
-  - 
+  - OmniMissile
+  - Enemy
   - 
   - 
   - 
