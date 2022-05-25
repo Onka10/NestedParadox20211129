@@ -6,7 +6,7 @@ using Cysharp.Threading.Tasks;
 public class BossCommand : MonoBehaviour
 {
     /*
-    //アタック中かどうか
+    //?A?^?b?N??????????
     private bool isAttacking;
     public bool IsAttacking => isAttacking;
     */
@@ -14,11 +14,13 @@ public class BossCommand : MonoBehaviour
     protected bool canAttack;
     public bool CanAttack => canAttack;
 
-    //攻撃パラメータ
+    //?U???p?????[?^
     [SerializeField] protected float attackCooltime;
     protected float attackTimeCount;
 
-    //攻撃に必要なコンポーネント群
+    [SerializeField] protected int attackPower;
+
+    //?U?????K?v???R???|?[?l???g?Q
     [SerializeField] protected Collider2D attackColl;
 
     private void Update()
@@ -33,7 +35,7 @@ public class BossCommand : MonoBehaviour
     public virtual async UniTask Execute()
     {
         await UniTask.Yield();
-        attackCooltime = 0;
+        attackTimeCount = 0;
         canAttack = false;
     }
 

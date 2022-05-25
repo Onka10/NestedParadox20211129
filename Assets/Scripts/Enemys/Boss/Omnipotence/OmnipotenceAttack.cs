@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
+using UniRx;
 
 public class OmnipotenceAttack : MonoBehaviour
 {
@@ -10,8 +11,8 @@ public class OmnipotenceAttack : MonoBehaviour
     public bool IsAttacking => isAttacking;
 
     //?A?^?b?N???\????????
-    private bool canAttack;
-    public bool CanAttack => canAttack;
+    private ReactiveProperty<bool> canAttack = new ReactiveProperty<bool>();
+    public IReadOnlyReactiveProperty<bool> CanAttack => canAttack;
 
     //???????R?}???h
     private BossCommand currentCommand;
@@ -24,16 +25,26 @@ public class OmnipotenceAttack : MonoBehaviour
     //?R?}???h
     [SerializeField] private List<BossCommand> attackCommands;
 
+    private void Start()
+    {
+        canAttack.Value = false;
+        isAttacking = false;
+    }
+
     private void Update()
     {
-        attackTimeCount = Time.deltaTime;
-        if(attackTimeCount > attackCoolTime)
+        currentCommand = RandomSelectCommand();
+        if(currentCommand != null && !isAttacking)
         {
-            canAttack = true;
+            canAttack.Value = true;
+        }
+        else
+        {
+            canAttack.Value = false;
         }
     }
 
-    private BossCommand SelectCommand()
+    private BossCommand RandomSelectCommand()
     {
         List<BossCommand> possibleCommands = new List<BossCommand>();
         foreach(BossCommand attackCommand in attackCommands)
@@ -52,16 +63,9 @@ public class OmnipotenceAttack : MonoBehaviour
         return possibleCommands[random];
     }
 
-    public async void Execute(int commandID)
-    {
-        /*
-        //コマンドをランダムで選択
-        currentCommand = SelectCommand();
-        if(currentCommand == null || isAttacking)
-        {
-            return;
-        }
-        */
+    public async void Execute()
+    {               
+        /* テスト用
         switch(commandID)
         {
             case 0:
@@ -77,12 +81,11 @@ public class OmnipotenceAttack : MonoBehaviour
                 currentCommand = attackCommands[3];
                 break;
         }
-        //攻撃開始
-        attackTimeCount = 0;
-        canAttack = false;
+        */
+
+        //攻撃開始               
         isAttacking = true;
         await currentCommand.Execute();
         isAttacking = false;
-
     }
 }

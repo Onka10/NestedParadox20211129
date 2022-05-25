@@ -96,13 +96,13 @@ namespace NestedParadox.Monsters
                             {                                                
                                 if (other.TryGetComponent<EnemyBase>(out EnemyBase enemy))
                                 {
-                                    enemy.Damaged(new DamageToPlayer(attackPower,0));
+                                    enemy.Damaged(new DamageToPlayer(attackPower,knockBackValue));
                                 }
                             })
                             .AddTo(explosion_clone);
-                        Destroy(bullet_clone);
+                        Destroy(bullet_clone.gameObject);
                     })
-                    .AddTo(bullet_clone);
+                    .AddTo(bullet_clone.gameObject);
             }            
         }
 

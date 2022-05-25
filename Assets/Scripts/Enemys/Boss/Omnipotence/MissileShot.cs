@@ -37,13 +37,14 @@ public class MissileShot : BossCommand
             OmniMissile omniMissile = missile_clone.GetComponent<OmniMissile>();            
             missile_clone.transform.position = new Vector3(random, 20, 10+ 5*i);
             missile_clone.transform.localScale = new Vector2(1.2f, 1.2f);
+            omniMissile.SetAttackPower(attackPower);
             omniMissile.Shot(destination, shotForce, false);            
         }
-        await UniTask.WaitUntil(() => !animator.GetCurrentAnimatorStateInfo(0).IsName("MissileShot2"));
+        await UniTask.WaitUntil(() => !animator.GetCurrentAnimatorStateInfo(0).IsName("MissileShot2"), cancellationToken: this.GetCancellationTokenOnDestroy());
 
         //攻撃後
         Debug.Log("攻撃後");
-        await UniTask.WaitUntil(() => !animator.GetCurrentAnimatorStateInfo(0).IsName("MissileShot3"));
+        await UniTask.WaitUntil(() => !animator.GetCurrentAnimatorStateInfo(0).IsName("MissileShot3"), cancellationToken: this.GetCancellationTokenOnDestroy());
         
     }
 }

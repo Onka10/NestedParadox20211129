@@ -75,16 +75,18 @@ public class MissileForward : BossCommand
 
         //ミサイル発射                
         Vector3 leftDestination = missile_clone_left_after.transform.position + new Vector3(-10, 0, 0);
+        missile_clone_left_after.SetAttackPower(attackPower);
         missile_clone_left_after.Shot(leftDestination, shotForce, true);
-        await UniTask.Delay(1000); //　左右のミサイルの発射タイミングをずらす
+        await UniTask.Delay(1000, cancellationToken: this.GetCancellationTokenOnDestroy()); //　左右のミサイルの発射タイミングをずらす
         Vector3 rightDestination = missile_clone_right_after.transform.position + new Vector3(-10, 0, 0);
+        missile_clone_right_after.SetAttackPower(attackPower);
         missile_clone_right_after.Shot(rightDestination, shotForce, true);
 
         //ミサイルを戻す。
         await UniTask.Delay(returnMissileDelayTime);
         animator.SetTrigger("ReturnMissileTrigger");
 
-        await UniTask.WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).IsName("MissileShot3"));
+        await UniTask.WaitUntil(() => !animator.GetCurrentAnimatorStateInfo(0).IsName("MissileShot3"));
         foreach (GameObject originalMissile in originalMissiles)
         {
             originalMissile.SetActive(true);

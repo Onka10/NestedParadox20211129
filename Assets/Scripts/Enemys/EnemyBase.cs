@@ -19,7 +19,7 @@ public abstract class EnemyBase : MonoBehaviour
     public IObservable<Unit> IsDeath => isDeath;
 
     // Start is called before the first frame update
-    protected virtual void Start()
+    protected virtual void Awake()
     {
         hp_r.Value = hp;
     }

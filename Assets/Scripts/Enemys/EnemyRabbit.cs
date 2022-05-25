@@ -25,9 +25,9 @@ public class EnemyRabbit : EnemyBase, IApplyDamage
     [SerializeField] GameObject deathEffect;
 
     // Start is called before the first frame update
-    protected override void Start()
+    protected override void Awake()
     {
-        base.Start();
+        base.Awake();
         attackPower = 1;
         attackTime.Value = 0;
         state.Value = EnemyState.Idle;

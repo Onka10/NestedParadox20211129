@@ -74,7 +74,7 @@ namespace NestedParadox.Players
         {            
             var dame = _playerbuff.Guard( _damage.DamageValue);
             _playerHP.Value -=dame;
-
+            Debug.Log("プレイヤーが攻撃を受けました");
             _playerAniamtion.Damaged();
             //しばらく無敵に
             Invincible(1000).Forget();
