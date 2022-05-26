@@ -101,7 +101,7 @@ namespace NestedParadox.Players
 
         public void Delete(InputAction.CallbackContext context){
             if(context.phase == InputActionPhase.Started){
-                // _delete.OnNext(Unit.Default);
+                _delete.OnNext(Unit.Default);
             }
         }
 

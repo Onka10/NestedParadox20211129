@@ -5,6 +5,10 @@ namespace NestedParadox.Cards{
     {
         public bool CheckTrigger(){
             return true;
-        } 
+        }
+
+        public string GetText(){
+            return "このモンスターの召喚数だけダメージを軽減する";
+        }
     }
 }

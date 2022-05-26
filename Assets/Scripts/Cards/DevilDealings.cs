@@ -11,6 +11,8 @@ namespace NestedParadox.Cards
         //定数ダメージ
         private int damageCost = 2;
 
+        private string text = "HPを2失ってドローエナジーを5得る";
+
         public bool CheckTrigger(){
             //HPがダメージより多いなら発動可能
             if(PlayerCore.I.Hp.Value > damageCost)    return true;
@@ -24,6 +26,11 @@ namespace NestedParadox.Cards
 
             //ドローエナジー付与
             PlayerCore.I.AddDrawEnergy(5);
+        }
+
+
+        public string GetText(){
+            return text;
         }
     }
 }

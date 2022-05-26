@@ -21,6 +21,10 @@ public class CardPresenter : Singleton<CardPresenter>
         else    PlayerSummon(id);
     }
 
+    public string GetText(int id){
+        return CardList[id].GetComponent<ICard>().GetText();
+    }
+
     private void PlayerSummon(int id){
         MonsterManager.I.Summon((CardID)Enum.ToObject(typeof(CardID), id));
     }
