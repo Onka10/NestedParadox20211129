@@ -1,5 +1,6 @@
 using UnityEngine;
 using UniRx;
+using Cysharp.Threading.Tasks;
 
 using NestedParadox.Monsters;
 
@@ -8,6 +9,9 @@ namespace NestedParadox.Players{
     {
         public IReadOnlyReactiveProperty<int> EnhancedATK => _enhancedATK;
         private readonly ReactiveProperty<int> _enhancedATK = new ReactiveProperty<int>();
+
+        void Start(){
+        }
 
         public int Guard(int damage){
             //今はガードくんのダメージ軽減だけ

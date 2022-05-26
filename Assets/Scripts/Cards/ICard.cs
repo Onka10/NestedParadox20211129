@@ -4,4 +4,6 @@ interface ICard
 
     //召喚前の条件確認
     bool CheckTrigger();
+
+    string GetText();
 }

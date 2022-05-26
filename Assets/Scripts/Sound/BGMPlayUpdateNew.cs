@@ -2,16 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BGMPlayUpdateNew : MonoBehaviour
+public class BGMPlayUpdateNew : Singleton<BGMPlayUpdateNew>
 {
     public AudioSource audioSource; 
     int timeSamples_Now = 0;    
-    public int LOOPSTART = 1886769;       //ループ開始箇所のサンプル数
-    public int LOOPLENGTH = 4009847;      //ループ区間に含まれるサンプル数
+    int LOOPSTART = 1886769;       //ループ開始箇所のサンプル数
+    int LOOPLENGTH = 4009847;      //ループ区間に含まれるサンプル数
 
     public void PlayStart()
     {
       audioSource.Play(0);
+      Debug.Log(audioSource.timeSamples);
     }
 
     void Update(){
@@ -20,7 +21,10 @@ public class BGMPlayUpdateNew : MonoBehaviour
         audioSource.timeSamples = 0;
       }
 
-      if( audioSource.timeSamples > LOOPSTART + LOOPLENGTH ){   //ループするタイミング判定
+    //   Debug.Log(audioSource.timeSamples);
+
+      if( audioSource.timeSamples > LOOPSTART + LOOPLENGTH ){   //
+        Debug.Log("判定");
         audioSource.timeSamples = LOOPSTART + ((audioSource.timeSamples - LOOPSTART - 1 ) % LOOPLENGTH );
       }
 
