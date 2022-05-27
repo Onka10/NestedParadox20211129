@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class TitleManager : MonoBehaviour
 {
     void Start(){
-        // SoundManager.Instance.PlayBGM(BGMSoundData.BGM.Title);
+        SoundManager.Instance.PlayBGM(BGMSoundData.BGM.Title);
     }
 
     // public void ToCreditSecene(){
