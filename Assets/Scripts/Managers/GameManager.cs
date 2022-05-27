@@ -22,6 +22,7 @@ namespace NestedParadox.Managers
             phase = GetComponent<NormalPhase>();
             PhaseExecute();
             OnkaloInit();
+            SoundManager.Instance.PlayBGM(BGMSoundData.BGM.Stage);
         }
 
         private void OnkaloInit(){
