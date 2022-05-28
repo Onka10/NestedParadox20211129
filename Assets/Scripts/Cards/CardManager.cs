@@ -6,11 +6,6 @@ using NestedParadox.Monsters;
 
 namespace NestedParadox.Cards
 {
-    //エディタ拡張
-    [CustomEditor (typeof(CardManager))]
-    //複数選択有効
-    [CanEditMultipleObjects]
-
     public class CardManager : Singleton<CardManager>
     {
         //購読される変数
@@ -149,79 +144,5 @@ namespace NestedParadox.Cards
         public string GetText(int nowhand){
             return _cardpresenter.GetText(_hand[nowhand]);
         }
-
-
-    //     #if UNITY_EDITOR
-    //     // デバッグ確認用
-    //     [CustomEditor(typeof(CardManager), true)]
-    //     public class CollectionPreview : Editor
-    //     {
-    //         int additem = 0;
-
-    //         public override void OnInspectorGUI()
-    //         {
-    //             // 親クラスを参照
-    //             CardManager _drc = (CardManager)target;
-    //             ReactiveCollection<int> _iCol = _drc._deck;
-
-    //             int _count = _iCol.Count;
-    //             if( _count == 0)
-    //             {
-    //                 EditorGUILayout.HelpBox("No exist items or No runtime.", MessageType.None);
-    //                 return;
-    //             }
-
-    //             //リストの表示
-    //             for( int i = 0; i < _count; i++)
-    //             {
-    //                 EditorGUILayout.BeginHorizontal();
-    //                 _iCol[i] = EditorGUILayout.IntField("Deck number" + i.ToString(), (_iCol[i]));
-    //                 if( GUILayout.Button("Delete"))
-    //                 {
-    //                     _iCol.RemoveAt(i);
-    //                     EditorGUILayout.EndHorizontal();
-    //                     return;
-    //                 }
-    //                 EditorGUILayout.EndHorizontal();
-    //             }
-
-    //             //ここから自作
-    //             // nowhandを表示
-    //             //private IntReactiveProperty _nowhand = new IntReactiveProperty(0); 原文
-    //             IntReactiveProperty nowhand = _drc._nowhand;
-    //             int n = nowhand.Value;
-
-    //             EditorGUILayout.BeginHorizontal();
-    //             EditorGUILayout.IntField("nowhand",n);
-    //             EditorGUILayout.EndHorizontal();
-
-
-    //             //Handの表示
-    //             // 親クラスを参照
-    //             ReactiveCollection<int> _ihand = _drc._hand;
-
-    //             int _handcount = _ihand.Count;
-    //             if( _handcount == 0)
-    //             {
-    //                 EditorGUILayout.HelpBox("No exist items or No runtime.", MessageType.None);
-    //                 return;
-    //             }
-    //             for( int i = 0; i < _handcount; i++)
-    //             {
-    //                 EditorGUILayout.BeginHorizontal();
-    //                 _ihand[i] = EditorGUILayout.IntField("Hand number" + i.ToString(), (_ihand[i]));
-    //                 if( GUILayout.Button("Delete"))
-    //                 {
-    //                     _ihand.RemoveAt(i);
-    //                     EditorGUILayout.EndHorizontal();
-    //                     return;
-    //                 }
-    //                 EditorGUILayout.EndHorizontal();
-    //             }
-    //         }
-
-    //     }
-    // #endif
-
     }
 }
