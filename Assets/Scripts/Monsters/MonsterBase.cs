@@ -14,23 +14,32 @@ namespace NestedParadox.Monsters
         [SerializeField] protected int knockBackValue;
         [SerializeField] protected bool isUniquePosition;//プレイヤーの後ろについていかない場合はtrue
         [SerializeField] private float summonWaitTime; //召喚時の待機時間
+        [SerializeField] protected GameObject deathEffect;
         public bool IsInActive;
         protected Vector3 distanceOffset;
         protected MonsterState state;
         public bool IsUniquePosition => isUniquePosition;
         protected ReactiveProperty<int> hp_r = new ReactiveProperty<int>();
         public IReadOnlyReactiveProperty<int> Hp => hp_r;
+        protected float lifeTime;
         
         // Start is called before the first frame update
         void Awake()
         {
             hp_r.Value = hp;
             IsInActive = false;
+            lifeTime = 0;
         }
 
-        void Update()
+        protected virtual void Update()
         {
-
+            lifeTime += Time.deltaTime;
+            if(lifeTime > 30)
+            {
+                GameObject deathEffect_clone = Instantiate(deathEffect);
+                deathEffect_clone.transform.position = transform.position;
+                Destroy(this.gameObject);
+            }
         }
 
         // Update is called once per frame

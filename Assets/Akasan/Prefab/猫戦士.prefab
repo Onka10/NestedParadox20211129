@@ -141,6 +141,8 @@ MonoBehaviour:
   knockBackValue: 5
   isUniquePosition: 0
   summonWaitTime: 0
+  deathEffect: {fileID: 4592332115583697329, guid: a40b65f082ef5e34e9ee1442dd8d8be9, type: 3}
+  IsInActive: 0
   attackColl: {fileID: 880401946127736960}
   animator: {fileID: 0}
   attackSpan: 5

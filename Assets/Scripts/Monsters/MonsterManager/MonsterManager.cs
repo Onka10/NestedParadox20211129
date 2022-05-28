@@ -51,8 +51,17 @@ namespace NestedParadox.Monsters
             }
         }
 
+        public void ActivateCurrentMonster()
+        {
+            foreach (MonsterBase monster in monsterList)
+            {
+                monster.IsInActive = false;
+            }
+        }
+
         public async void Summon(CardID cardID)
-        {            
+        {
+            SoundManager.Instance.PlaySE(SESoundData.SE.Summon);
             canSummon = false;
             //モンスターの召喚アニメーションの表示
             MonsterSprite monsterSprite_clone = Instantiate(monstersSprite[(int)cardID]).GetComponent<MonsterSprite>();
@@ -62,17 +71,18 @@ namespace NestedParadox.Monsters
             //　本体の召喚
             if (Instantiate(monsterPrefabList[(int)cardID]).TryGetComponent<MonsterBase>(out MonsterBase monster))
             {
-                monster.transform.position = currentSummonPosition;
+                monster.transform.position = currentSummonPosition;               
+                monster.SetPositionAndInitialize(monsterRow.GetNextPosition(monsterList_temp));
                 monsterList.Add(monster);
                 if (monsterList_temp.Any(x => x == null))
                 {
-                    monsterList_temp.Insert(monsterList_temp.IndexOf(null), monster);
+                    int index = monsterList_temp.FindIndex(x  => x == null);
+                    monsterList_temp.Insert(index, monster);
                 }
                 else
                 {
                     monsterList_temp.Add(monster);
                 }
-                monster.SetPositionAndInitialize(monsterRow.GetNextPosition(monsterList_temp));
             }
             canSummon = true;
         }
@@ -86,6 +96,7 @@ namespace NestedParadox.Monsters
             Vector3 currentSummonPosition = monsterSprite_clone.SetSummonPosition(playerMove.transform.position, playerMove.CurrentDirection.Value); //召喚位置をset                    
             await guardKun.MoveAndStop(currentSummonPosition);
             Debug.Log("準備完了");
+            SoundManager.Instance.PlaySE(SESoundData.SE.Summon);
             //モンスターの召喚アニメーションの表示            
             await monsterSprite_clone.SummonAnimation();//召喚完了するまで待つ            
             //　本体の召喚

@@ -1245,8 +1245,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 10
   attackPower: 0
+  knockBackValue: 0
   isUniquePosition: 0
   summonWaitTime: 0
+  deathEffect: {fileID: 4592332115583697329, guid: a40b65f082ef5e34e9ee1442dd8d8be9, type: 3}
+  IsInActive: 0
   guardEffect: {fileID: 1029517676193648697, guid: 147818ca52453174b86b37589e017f29, type: 3}
   rb: {fileID: 4955055384788906472}
   movingSpeed: 10

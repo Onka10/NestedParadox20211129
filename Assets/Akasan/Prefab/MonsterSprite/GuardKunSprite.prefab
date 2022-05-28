@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2215ac938c853437e9593388679a196b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  summonEffect: {fileID: 6737444343864024947, guid: 3706ae222cb496548b3dcc9dabf1bb3b, type: 3}
+  summonEffect: {fileID: 6865685810505421468, guid: 64f8a0618c926414097a43fb1b9e36d4, type: 3}
   summonRedEffect: {fileID: 585549164108272053, guid: d12c097b4bace451c843ad487bc9186b, type: 3}
   animator: {fileID: 2881271940313631353}
   summonEffectScale: {x: 0.3, y: 0.3, z: 0.3}

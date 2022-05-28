@@ -46,8 +46,9 @@ namespace NestedParadox.Monsters
         }
 
         // Update is called once per frame
-        void Update()
+        protected override void Update()
         {
+            base.Update();
             attackTime += Time.deltaTime;
             if(attackTime > attackSpan)
             {

@@ -5,6 +5,7 @@ using Cysharp.Threading.Tasks;
 using UniRx;
 using UniRx.Triggers;
 using NestedParadox.Stages;
+using NestedParadox.Monsters;
 using MainCamera;
 
 namespace NestedParadox.Managers
@@ -20,20 +21,25 @@ namespace NestedParadox.Managers
         [SerializeField] StageManager stageManager;
         [SerializeField] private float areaLimit_Left;
         [SerializeField] private float areaLimit_Right;
+        [SerializeField] private Animator fadeAnimator;
+        [SerializeField] private MonsterManager monsterManager;        
         
 
         //ノーマルフェイズ実行
         public async override UniTask Execute()
-        {            
+        {
+            SoundManager.Instance.PlayBGM(BGMSoundData.BGM.Stage);
             isReached = false;
             mainCamera.ChangeToNormalCamera();            
             //stageClearの回数が３回までは繰り返す
             stageClearCount = 0;
-            while(stageClearCount < 4)
+            while(stageClearCount < 3)
             {                
                 int[] stageIndexList = { 0, 1, 2, 3 };
                 stageManager.RandomGenerateStage(stageIndexList);
-                player.transform.position = Vector3.zero;
+                player.transform.position = Vector3.zero;                
+                await UniTask.WaitUntil(() => !fadeAnimator.GetCurrentAnimatorStateInfo(0).IsName("FadeIn"), cancellationToken: this.GetCancellationTokenOnDestroy());
+                monsterManager.ActivateCurrentMonster();
                 List<EnemyBase> enemyList = new List<EnemyBase>();
                 for(int i=0; i<enemyPrefabs.Length; i++)
                 {
@@ -68,6 +74,13 @@ namespace NestedParadox.Managers
                     .AddTo(stageEnd.gameObject);
                 //扉に到着するまで待つ
                 await UniTask.WaitUntil(() => isReached);
+                stageClearCount++;
+                //フェードアウト中はモンスターの動き停止
+                monsterManager.InActivateCurrentMonster();
+                fadeAnimator.SetTrigger("FadeOutTrigger");
+                fadeAnimator.SetTrigger("FadeInTrigger");
+                await UniTask.WaitUntil(() => !fadeAnimator.GetCurrentAnimatorStateInfo(0).IsName("FadeOut"), cancellationToken: this.GetCancellationTokenOnDestroy());                
+                stageManager.DeleteCurrentStage();                
                 isReached = false;
                 enemyList.Clear();
                 Destroy(stageEnd);
@@ -75,10 +88,8 @@ namespace NestedParadox.Managers
         }
 
         private void OnReachStageEnd()
-        {
-            stageManager.DeleteCurrentStage();
-            isReached = true;
-            stageClearCount++;                                   
+        {            
+            isReached = true;                                             
         }
 
 

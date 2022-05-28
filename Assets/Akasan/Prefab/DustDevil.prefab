@@ -51,6 +51,8 @@ MonoBehaviour:
   knockBackValue: 1
   isUniquePosition: 1
   summonWaitTime: 0
+  deathEffect: {fileID: 4592332115583697329, guid: a40b65f082ef5e34e9ee1442dd8d8be9, type: 3}
+  IsInActive: 0
   animator: {fileID: 5068512105895456660}
   rb: {fileID: 5068512105697022426}
   sprite: {fileID: 5068512105895456661}

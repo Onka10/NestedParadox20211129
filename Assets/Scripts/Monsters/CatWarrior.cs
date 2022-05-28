@@ -56,8 +56,9 @@ namespace NestedParadox.Monsters
         }
 
         // Update is called once per frame
-        void Update()
+        protected override void Update()
         {
+            base.Update();
             attackTime += Time.deltaTime;
             if (attackTime > attackSpan && GameObject.FindGameObjectWithTag("Enemy") != null)
             {
@@ -128,7 +129,6 @@ namespace NestedParadox.Monsters
             {
                 attackPower = 1;
             }
-            Debug.Log($"猫戦士の攻撃力が{attackPower}になりました(hp={playerHp}");
             spriteRenderer.material.EnableKeyword("_EMISSION");
             float intensity = Mathf.Pow(2, attackPower/5f);
             spriteRenderer.material.SetColor("_Color", Color.red*intensity);

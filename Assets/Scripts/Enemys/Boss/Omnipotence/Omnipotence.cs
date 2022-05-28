@@ -41,7 +41,6 @@ public class Omnipotence : EnemyBase
             Death();
             return;
         }
-        Debug.Log($"????:{damage.DamageValue}\n????:{damage.KnockBackValue}\n???????????\nHP:{hp_r.Value},????{currentKnockBackValue}");
         if(currentKnockBackValue <= 0 && !attack.IsAttacking)
         {
             currentKnockBackValue = knockBackDurableValue;
@@ -79,16 +78,17 @@ public class Omnipotence : EnemyBase
 
     public async override void Death()
     {
+        await UniTask.Yield(cancellationToken: this.GetCancellationTokenOnDestroy());
+        isDeath.OnNext(Unit.Default);
         //アタックのキャンセル
         attackCts.Cancel();
         attackCts = new CancellationTokenSource();
         //ノックバックと被弾のキャンセル;
         damagedAnimCts.Cancel();
-        getHitAnimator.SetBool("KnockBackTrigger", false);
-
-        animator.SetTrigger("DeathTrigger");
-        await UniTask.WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).IsName("Death"), cancellationToken: this.GetCancellationTokenOnDestroy());
-        isDeath.OnNext(Unit.Default);
+        //getHitAnimator.SetBool("KnockBackTrigger", false);
+        //コライダーをはずす
+        GetComponent<Collider2D>().enabled = false;
+        animator.SetTrigger("DeathTrigger");        
     }
 
 

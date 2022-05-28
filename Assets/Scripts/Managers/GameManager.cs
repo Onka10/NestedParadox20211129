@@ -14,12 +14,13 @@ namespace NestedParadox.Managers
         [SerializeField] PlayerCore playerCore;
         [SerializeField] NestedParadox.Cards.CardManager _onkaloCardManager;
         [SerializeField] NestedParadox.UI.UIManager _onkaloUIManager;
+        [SerializeReference] SceneController sceneController;
         private PhaseBase phase;
         
 
         void Start()
         {
-            phase = GetComponent<BossPhase>();
+            phase = GetComponent<NormalPhase>();
             PhaseExecute();
             OnkaloInit();
             SoundManager.Instance.PlayBGM(BGMSoundData.BGM.Stage);
@@ -37,7 +38,8 @@ namespace NestedParadox.Managers
             {
                 await phase.Execute();
                 phase = phase.next;
-            }            
+            }
+            sceneController.Clear();
         }
 
         // Update is called once per frame
@@ -60,6 +62,10 @@ namespace NestedParadox.Managers
         public void LoadToSelectCardScene()
         {
             SceneManager.LoadScene("SelectCardScene");
+        }
+        public void LoadToResultScene()
+        {
+            SceneManager.LoadScene("ResultScene");
         }
     }
 }

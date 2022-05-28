@@ -53,8 +53,9 @@ namespace NestedParadox.Monsters
             });
         }
 
-        void Update()
-        {            
+        protected override void Update()
+        {
+            base.Update();
             attackTime += Time.deltaTime;                      
             if(attackTime > attackSpan && canAttack)
             {

@@ -16,7 +16,7 @@ namespace NestedParadox.Monsters
         [SerializeField] float movingSpeed;
         [SerializeField] Vector3 guardPosition;        
         [SerializeField] Collider2D guardColl;
-        [SerializeField] float speed_MoveAndStop;
+        [SerializeField] float speed_MoveAndStop;        
         private bool isActive; //ガードクインテット発動中
         public bool IsActive => isActive;
         private PlayerMove playerMove;
@@ -48,6 +48,10 @@ namespace NestedParadox.Monsters
             });
         }
 
+        protected override void Update()
+        {
+            base.Update();
+        }
         // Update is called once per frame
         void FixedUpdate()
         {
@@ -68,7 +72,8 @@ namespace NestedParadox.Monsters
         }
 
         public async void Guard()
-        {            
+        {
+            SoundManager.Instance.PlaySE(SESoundData.SE.GuardKun);
             state = MonsterState.Guard;
             transform.position = playerMove.transform.position;
             hp_r.Value -= 1;            
