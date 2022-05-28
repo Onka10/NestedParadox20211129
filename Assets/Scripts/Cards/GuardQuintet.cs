@@ -17,6 +17,10 @@ namespace NestedParadox.Cards
             Debug.Log("ガードクインテット！！！");
         }
 
+        public string GetText(){
+            return "フィールドのガードくんを5体に増やす";
+        }
+
 
     }
 }

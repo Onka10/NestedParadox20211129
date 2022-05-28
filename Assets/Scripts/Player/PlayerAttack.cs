@@ -134,7 +134,7 @@ namespace NestedParadox.Players
 
                     //攻撃の実数値を入力
                     int AttackActualValue;
-                    AttackActualValue = PlayerCore.I.PlayerAttackPower.Value + (10 * PlayerBuff.I.EnhancedATK.Value);
+                    AttackActualValue = PlayerCore.I.PlayerAttackPower.Value + (1 * PlayerBuff.I.EnhancedATK.Value);
                     
                     attack.Damaged(new  DamageToEnemy(AttackActualValue, nockback));
 
@@ -152,7 +152,7 @@ namespace NestedParadox.Players
 
                     //攻撃の実数値を入力
                     int AttackActualValue;
-                    AttackActualValue = PlayerCore.I.PlayerAttackPower.Value + (10 * PlayerBuff.I.EnhancedATK.Value);
+                    AttackActualValue = PlayerCore.I.PlayerAttackPower.Value + (1 * PlayerBuff.I.EnhancedATK.Value);
                     AttackActualValue += 10;
                     
                     attack.Damaged(new  DamageToEnemy(AttackActualValue, nockback));

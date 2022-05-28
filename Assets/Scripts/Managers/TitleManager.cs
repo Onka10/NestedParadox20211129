@@ -9,12 +9,12 @@ public class TitleManager : MonoBehaviour
         SoundManager.Instance.PlayBGM(BGMSoundData.BGM.Title);
     }
 
-    public void ToCreditSecene(){
-        SceneManager.LoadScene("CreditScene");
-    }
+    // public void ToCreditSecene(){
+    //     SceneManager.LoadScene("CreditScene");
+    // }
 
     public void ToGameScene(){
-        SceneManager.LoadScene("OnkaloMasterScene");
+        SceneManager.LoadScene("MasterScene");
         SoundManager.Instance.PlaySE(SESoundData.SE.Click_Decide);
         SoundManager.Instance.StopBGM();
     }

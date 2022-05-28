@@ -37,6 +37,9 @@ public class SoundManager : MonoBehaviour
         bgmAudioSource.clip = data.audioClip;
         bgmAudioSource.volume = data.volume * bgmMasterVolume * masterVolume;
         bgmAudioSource.Play();
+        
+        if(bgm==BGMSoundData.BGM.Title) bgmAudioSource.loop = false;
+        else bgmAudioSource.loop = true;
     }
 
     /*

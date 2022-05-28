@@ -9,25 +9,28 @@ namespace NestedParadox.Cards
     public class DevilDealings : MonoBehaviour,ICard,IMagic
     {//悪魔の取引
         //定数ダメージ
-        private int damagecost = 20;
+        private int damageCost = 2;
+
+        private string text = "HPを2失ってドローエナジーを5得る";
 
         public bool CheckTrigger(){
             //HPがダメージより多いなら発動可能
-            if(PlayerCore.I.Hp.Value > damagecost){
-                return true;
-            }else{
-                return false;
-            }
+            if(PlayerCore.I.Hp.Value > damageCost)    return true;
+            else    return false;
+            
         }
 
         public void Execution(){
             //HPを減らす
-            PlayerCore.I.DirectDamaged(damagecost);
+            PlayerCore.I.DirectDamaged(damageCost);
 
-            //ダストデビルを召喚。ダストデビルのカードidは0
-            MonsterManager.I.Summon(0);
+            //ドローエナジー付与
+            PlayerCore.I.AddDrawEnergy(5);
+        }
 
-            Debug.Log("悪魔の取引！！！");
+
+        public string GetText(){
+            return text;
         }
     }
 }

@@ -29,7 +29,7 @@ namespace NestedParadox.Cards
 
         CardPresenter _cardpresenter;
 
-        void Start(){
+        public void InitCard(){
             //キャッシュ
             _cardpresenter = CardPresenter.I;
 
@@ -61,7 +61,7 @@ namespace NestedParadox.Cards
         public void Draw(){
             if(_hand.Count !=3)//手札が満タンではない時に可能
             {
-                Debug.Log("ドロー");
+                // Debug.Log("ドロー");
                 //ドロー出来るかの確認
                 if(_deck.Count==0)  DeckReload();
 
@@ -142,8 +142,12 @@ namespace NestedParadox.Cards
         }
 
         public bool CheckTrigger(int nowhand){
-            // return _cardpresenter.Check(_hand[nowhand]);
-            return true;
+            return _cardpresenter.Check(_hand[nowhand]);
+            // return true;
+        }
+
+        public string GetText(int nowhand){
+            return _cardpresenter.GetText(_hand[nowhand]);
         }
 
 

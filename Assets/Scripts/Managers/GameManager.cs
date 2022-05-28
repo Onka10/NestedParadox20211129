@@ -5,12 +5,15 @@ using NestedParadox.Stages;
 using UniRx;
 using UniRx.Triggers;
 using NestedParadox.Players;
+using Cysharp.Threading.Tasks;
 
 namespace NestedParadox.Managers
 {
     public class GameManager : MonoBehaviour
     {                      
         [SerializeField] PlayerCore playerCore;
+        [SerializeField] NestedParadox.Cards.CardManager _onkaloCardManager;
+        [SerializeField] NestedParadox.UI.UIManager _onkaloUIManager;
         private PhaseBase phase;
         
 
@@ -18,6 +21,14 @@ namespace NestedParadox.Managers
         {
             phase = GetComponent<BossPhase>();
             PhaseExecute();
+            OnkaloInit();
+            SoundManager.Instance.PlayBGM(BGMSoundData.BGM.Stage);
+        }
+
+        private void OnkaloInit(){
+            _onkaloCardManager.InitCard();
+            _onkaloUIManager.InitUI();
+
         }
 
         private async void PhaseExecute()

@@ -16,6 +16,8 @@ public class UI_footer : MonoBehaviour
     public List<GameObject> UI_handselect = new List<GameObject>(3);
     public List<GameObject> UI_hand = new List<GameObject>(3);
 
+    public Text[] cardtext = new Text[3];
+
     public Sprite[] CardsIconImages = new Sprite[7]; 
     Sprite cardicon;
 
@@ -84,7 +86,18 @@ public class UI_footer : MonoBehaviour
             //使えないカードを暗くする
             Color falseColor = new Color(.2f,.2f,.2f,1f); 
             if(!_cardmaganeger.CheckTrigger(z))   thiscardicon.color = falseColor;
+
+            //カード効果を書き換え
+            var cardtextstring = _cardmaganeger.GetText(z);
+            cardtext[z].text = cardtextstring;
+
+            StartCoroutine("doubleUpData");
         }
+    }
+
+    IEnumerator doubleUpdata(){
+        yield return new WaitForSeconds(5);
+        UpdateHand();
     }
 
     private void SetCardIcon(int num){

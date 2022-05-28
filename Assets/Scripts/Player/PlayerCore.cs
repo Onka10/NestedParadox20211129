@@ -72,7 +72,7 @@ namespace NestedParadox.Players
         {            
             var dame = _playerbuff.Guard( _damage.DamageValue);
             _playerHP.Value -=dame;
-            Debug.Log(_playerHP.Value);
+            // Debug.Log(_playerHP.Value);
 
             _playerAniamtion.Damaged();
             //しばらく無敵に

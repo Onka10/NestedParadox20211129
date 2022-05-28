@@ -10,7 +10,7 @@ namespace NestedParadox.UI{
         [SerializeField] UI_footer  _footer;
         [SerializeField] UI_PlayerHP _hp;
         // Start is called before the first frame update
-        void Start()
+        public void InitUI()
         {
             _draw.Init();
             _footer.Init();
