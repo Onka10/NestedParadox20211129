@@ -14,6 +14,7 @@ namespace NestedParadox.Monsters
         [SerializeField] protected int knockBackValue;
         [SerializeField] protected bool isUniquePosition;//プレイヤーの後ろについていかない場合はtrue
         [SerializeField] private float summonWaitTime; //召喚時の待機時間
+        public bool IsInActive;
         protected Vector3 distanceOffset;
         protected MonsterState state;
         public bool IsUniquePosition => isUniquePosition;
@@ -24,6 +25,7 @@ namespace NestedParadox.Monsters
         void Awake()
         {
             hp_r.Value = hp;
+            IsInActive = false;
         }
 
         void Update()

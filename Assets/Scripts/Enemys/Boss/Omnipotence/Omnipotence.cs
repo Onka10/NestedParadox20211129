@@ -15,6 +15,7 @@ public class Omnipotence : EnemyBase
     [SerializeField] private OmnipotenceAttack attack;    
     private bool isKnockBacked => animator.GetCurrentAnimatorStateInfo(0).IsName("KnockBack");
     private CancellationTokenSource damagedAnimCts;//?????????????????????
+    private CancellationTokenSource attackCts; //アタックのキャンセレーショントークン
     [SerializeField] int knockBackDurableValue; //?????????
     private int currentKnockBackValue; //??????????
 
@@ -22,7 +23,8 @@ public class Omnipotence : EnemyBase
     {
         base.Awake();
         currentKnockBackValue = knockBackDurableValue;
-        damagedAnimCts = new CancellationTokenSource();        
+        damagedAnimCts = new CancellationTokenSource();
+        attackCts = new CancellationTokenSource();
         attack.CanAttack
             .Where(x => !isKnockBacked && x)
             .Subscribe(_ => Attack())
@@ -34,6 +36,11 @@ public class Omnipotence : EnemyBase
         await UniTask.Yield();
         hp_r.Value -= damage.DamageValue;
         currentKnockBackValue -= damage.KnockBackValue;
+        if(hp_r.Value <= 0)
+        {
+            Death();
+            return;
+        }
         Debug.Log($"????:{damage.DamageValue}\n????:{damage.KnockBackValue}\n???????????\nHP:{hp_r.Value},????{currentKnockBackValue}");
         if(currentKnockBackValue <= 0 && !attack.IsAttacking)
         {
@@ -70,9 +77,24 @@ public class Omnipotence : EnemyBase
         getHitAnimator.SetBool("KnockBackBool", false);
     }
 
+    public async override void Death()
+    {
+        //アタックのキャンセル
+        attackCts.Cancel();
+        attackCts = new CancellationTokenSource();
+        //ノックバックと被弾のキャンセル;
+        damagedAnimCts.Cancel();
+        getHitAnimator.SetBool("KnockBackTrigger", false);
+
+        animator.SetTrigger("DeathTrigger");
+        await UniTask.WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).IsName("Death"), cancellationToken: this.GetCancellationTokenOnDestroy());
+        isDeath.OnNext(Unit.Default);
+    }
+
+
     public override void Attack()
     {
         Debug.Log("???????");
-        attack.Execute();
+        attack.Execute(attackCts.Token);
     }
 }

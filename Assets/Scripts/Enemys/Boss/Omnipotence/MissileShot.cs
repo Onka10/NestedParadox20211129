@@ -4,6 +4,7 @@ using UnityEngine;
 using UniRx;
 using UniRx.Triggers;
 using Cysharp.Threading.Tasks;
+using System.Threading;
 
 public class MissileShot : BossCommand
 {
@@ -13,15 +14,15 @@ public class MissileShot : BossCommand
     [SerializeField] float areaLimit_right;
     [SerializeField] float shotForce;
 
-    public override async UniTask Execute()
+    public override async UniTask Execute(CancellationToken token)
     {
-        await base.Execute();                                
+        await base.Execute(token);                                
         animator.SetTrigger("MissileShotTrigger");
         await UniTask.Delay(300);
         //攻撃前
         while (animator.GetCurrentAnimatorStateInfo(0).IsName("MissileShot1"))
         {
-            await UniTask.Yield(PlayerLoopTiming.FixedUpdate);
+            await UniTask.Yield(PlayerLoopTiming.FixedUpdate, token);
             Debug.Log("攻撃前");           
         }
 
@@ -40,11 +41,11 @@ public class MissileShot : BossCommand
             omniMissile.SetAttackPower(attackPower);
             omniMissile.Shot(destination, shotForce, false);            
         }
-        await UniTask.WaitUntil(() => !animator.GetCurrentAnimatorStateInfo(0).IsName("MissileShot2"), cancellationToken: this.GetCancellationTokenOnDestroy());
+        await UniTask.WaitUntil(() => !animator.GetCurrentAnimatorStateInfo(0).IsName("MissileShot2"), cancellationToken: token);
 
         //攻撃後
         Debug.Log("攻撃後");
-        await UniTask.WaitUntil(() => !animator.GetCurrentAnimatorStateInfo(0).IsName("MissileShot3"), cancellationToken: this.GetCancellationTokenOnDestroy());
+        await UniTask.WaitUntil(() => !animator.GetCurrentAnimatorStateInfo(0).IsName("MissileShot3"), cancellationToken: token);
         
     }
 }

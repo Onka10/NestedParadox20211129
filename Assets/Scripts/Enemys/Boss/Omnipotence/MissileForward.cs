@@ -4,6 +4,7 @@ using UnityEngine;
 using UniRx;
 using UniRx.Triggers;
 using Cysharp.Threading.Tasks;
+using System.Threading;
 
 public class MissileForward : BossCommand
 {
@@ -30,11 +31,11 @@ public class MissileForward : BossCommand
     [SerializeField] int returnMissileDelayTime;
     [SerializeField] int setMissileDelayTime;
 
-    public override async UniTask Execute()
+    public override async UniTask Execute(CancellationToken token)
     {
-        await base.Execute();
+        await base.Execute(token);
         animator.SetTrigger("MissileForwardTrigger");
-        await UniTask.Delay(setMissileDelayTime);
+        await UniTask.Delay(setMissileDelayTime,cancellationToken: token);
 
         //左右のミサイルを生成してセット
         OmniMissile missile_clone_right = Instantiate(missileAnimPrefab).GetComponent<OmniMissile>();
@@ -45,19 +46,19 @@ public class MissileForward : BossCommand
         missile_clone_left.transform.SetParent(transform);
         missile_clone_left.transform.localPosition = missileLeftPosition;
         missile_clone_left.transform.rotation = Quaternion.Euler(missileLeftRotation);
-        await UniTask.Delay(500);
+        await UniTask.Delay(500, cancellationToken: token);
         //元のミサイルを一時的に削除
         foreach (GameObject originalMissile in originalMissiles)
         {
             originalMissile.SetActive(false);
         }
         
-        await UniTask.Delay(200);
+        await UniTask.Delay(200, cancellationToken: token);
 
         //左右ミサイルのセットアニメーション
         missile_clone_right.GetComponent<Animator>().SetTrigger("SetMissileRightTrigger");        
         missile_clone_left.GetComponent<Animator>().SetTrigger("SetMissileLeftTrigger");
-        await UniTask.Delay(setMissileAnimTime);        
+        await UniTask.Delay(setMissileAnimTime, cancellationToken: token);        
 
         //もう一度ミサイルの生成
         OmniMissile missile_clone_right_after = Instantiate(missilePrefab).GetComponent<OmniMissile>();
@@ -68,7 +69,7 @@ public class MissileForward : BossCommand
         missile_clone_left_after.transform.SetParent(transform);
         missile_clone_left_after.transform.localPosition = missileLeftPosition_after;
         missile_clone_left_after.transform.rotation = Quaternion.Euler(missileLeftRotation_after);
-        await UniTask.Delay(500);
+        await UniTask.Delay(500, cancellationToken: token);
         //アニメミサイルを破壊
         Destroy(missile_clone_right.gameObject);
         Destroy(missile_clone_left.gameObject);
@@ -77,16 +78,16 @@ public class MissileForward : BossCommand
         Vector3 leftDestination = missile_clone_left_after.transform.position + new Vector3(-10, 0, 0);
         missile_clone_left_after.SetAttackPower(attackPower);
         missile_clone_left_after.Shot(leftDestination, shotForce, true);
-        await UniTask.Delay(1000, cancellationToken: this.GetCancellationTokenOnDestroy()); //　左右のミサイルの発射タイミングをずらす
+        await UniTask.Delay(1000, cancellationToken: token); //　左右のミサイルの発射タイミングをずらす
         Vector3 rightDestination = missile_clone_right_after.transform.position + new Vector3(-10, 0, 0);
         missile_clone_right_after.SetAttackPower(attackPower);
         missile_clone_right_after.Shot(rightDestination, shotForce, true);
 
         //ミサイルを戻す。
-        await UniTask.Delay(returnMissileDelayTime);
+        await UniTask.Delay(returnMissileDelayTime, cancellationToken: token) ;
         animator.SetTrigger("ReturnMissileTrigger");
 
-        await UniTask.WaitUntil(() => !animator.GetCurrentAnimatorStateInfo(0).IsName("MissileShot3"));
+        await UniTask.WaitUntil(() => !animator.GetCurrentAnimatorStateInfo(0).IsName("MissileShot3"), cancellationToken: token);
         foreach (GameObject originalMissile in originalMissiles)
         {
             originalMissile.SetActive(true);

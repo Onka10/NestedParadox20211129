@@ -16,7 +16,7 @@ namespace NestedParadox.Managers
 
         void Start()
         {
-            phase = GetComponent<NormalPhase>();
+            phase = GetComponent<BossPhase>();
             PhaseExecute();
         }
 

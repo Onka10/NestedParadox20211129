@@ -5,6 +5,7 @@ using UnityEngine;
 using UniRx;
 using UniRx.Triggers;
 using NestedParadox.Players;
+using System.Threading;
 
 public class ShieldAttack : BossCommand
 {
@@ -41,9 +42,9 @@ public class ShieldAttack : BossCommand
         });        
     }
 
-    public override async UniTask Execute()
+    public override async UniTask Execute(CancellationToken token)
     {
-        await base.Execute();
+        await base.Execute(token);
         omniShield.SetActive(true);
         foreach (GameObject shield in originalShield)
         {
@@ -52,10 +53,10 @@ public class ShieldAttack : BossCommand
         shield_back.transform.localPosition = new Vector3(0, 0, 1);
         Rigidbody2D shieldRb = omniShield.GetComponent<Rigidbody2D>();
         animator.SetTrigger("ShieldAttackTrigger");
-        await UniTask.Delay(300);
+        await UniTask.Delay(300, cancellationToken: token);
         while (animator.GetCurrentAnimatorStateInfo(0).IsName("ShieldAttack1"))
         {
-            await UniTask.Yield(PlayerLoopTiming.FixedUpdate);
+            await UniTask.Yield(PlayerLoopTiming.FixedUpdate, cancellationToken: token);
             Debug.Log("攻撃1中");
             if (omniShield.transform.position.y > 20)
             {
@@ -65,19 +66,19 @@ public class ShieldAttack : BossCommand
             shieldRb.AddForce(upForce);            
         }
         shieldRb.velocity = new Vector3(0, 0, 0);
-        await UniTask.Delay(downTime);
+        await UniTask.Delay(downTime, cancellationToken: token);
         shieldRb.position = new Vector3(playerPos.position.x, omniShield.transform.position.y, omniShield.transform.position.z);
         while(animator.GetCurrentAnimatorStateInfo(0).IsName("ShieldAttack2"))
         {
             if(isGrounded)
             {
                 shieldRb.velocity = Vector3.zero;
-                await UniTask.Yield();
+                await UniTask.Yield(cancellationToken: token);
                 continue;
             }
             Debug.Log("攻撃２中");
             shieldRb.AddForce(downForce);
-            await UniTask.Yield(PlayerLoopTiming.FixedUpdate);            
+            await UniTask.Yield(PlayerLoopTiming.FixedUpdate, cancellationToken: token);            
         }
 
         shieldRb.velocity = new Vector3(0, 0, 0);
@@ -85,7 +86,7 @@ public class ShieldAttack : BossCommand
         {
             //Debug.Log("攻撃3中");
             shieldRb.position = Vector3.Lerp(shieldRb.position, transform.position, returnLerpRate);
-            await UniTask.Yield();
+            await UniTask.Yield(cancellationToken: token);
         }
         isGrounded = false;
         foreach (GameObject shield in originalShield)

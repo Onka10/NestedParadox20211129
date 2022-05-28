@@ -43,6 +43,14 @@ namespace NestedParadox.Monsters
 
         }
 
+        public void InActivateCurrentMonster()
+        {
+            foreach(MonsterBase monster in monsterList)
+            {
+                monster.IsInActive = true;
+            }
+        }
+
         public async void Summon(CardID cardID)
         {            
             canSummon = false;

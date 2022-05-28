@@ -108,6 +108,11 @@ namespace NestedParadox.Monsters
 
         private async void Attack()
         {
+            if (IsInActive)
+            {
+                return;
+            }
+
             state = MonsterState.Attack;
             attackTime = 0;
             animator.SetTrigger("AttackTrigger");

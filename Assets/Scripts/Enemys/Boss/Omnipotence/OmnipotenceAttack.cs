@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
 using UniRx;
+using System.Threading;
 
 public class OmnipotenceAttack : MonoBehaviour
 {
@@ -63,7 +64,7 @@ public class OmnipotenceAttack : MonoBehaviour
         return possibleCommands[random];
     }
 
-    public async void Execute()
+    public async void Execute(CancellationToken token)
     {               
         /* テスト用
         switch(commandID)
@@ -85,7 +86,7 @@ public class OmnipotenceAttack : MonoBehaviour
 
         //攻撃開始               
         isAttacking = true;
-        await currentCommand.Execute();
+        await currentCommand.Execute(token);
         isAttacking = false;
     }
 }

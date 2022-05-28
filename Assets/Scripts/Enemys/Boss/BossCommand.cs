@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
+using System.Threading;
 
 public class BossCommand : MonoBehaviour
 {
@@ -32,7 +33,7 @@ public class BossCommand : MonoBehaviour
         }
     }
 
-    public virtual async UniTask Execute()
+    public virtual async UniTask Execute(CancellationToken token)
     {
         await UniTask.Yield();
         attackTimeCount = 0;

@@ -27,6 +27,7 @@ namespace NestedParadox.Managers
             await UniTask.Yield(cancellationToken: this.GetCancellationTokenOnDestroy());//bossのStart関数待ち
             ui_bossHp.Activate(boss);
             await UniTask.WaitUntil(() => bossIsDeath, cancellationToken: this.GetCancellationTokenOnDestroy());
+            Debug.Log("ボスを倒しました");
         }        
     }
 }

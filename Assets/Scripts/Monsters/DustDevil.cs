@@ -80,13 +80,18 @@ namespace NestedParadox.Monsters
 
         public void SetAttackPower(int monsterCount)
         {
-            this.attackPower = monsterCount*10;
+            this.attackPower = monsterCount * 5;
             Debug.Log($"攻撃力が{attackPower}になりました");
         }
 
         //ランダムに敵を見つけて連続攻撃
         private async void Attack()
         {
+            if (IsInActive)
+            {
+                return;
+            }
+
             Debug.Log("Attack開始");
             state = MonsterState.Attack;
             attackColl.enabled = true;

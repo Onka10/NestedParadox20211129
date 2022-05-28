@@ -82,6 +82,12 @@ namespace NestedParadox.Monsters
 
         public async void Attack()
         {
+            //非アクティブの時は早期リターン
+            if(IsInActive)
+            {
+                return;
+            }
+
             GameObject[] targetEnemys = GameObject.FindGameObjectsWithTag("Enemy");
             int random = Random.Range(0, targetEnemys.Length);
             Vector3 targetPosition = new Vector3(targetEnemys[random].transform.position.x, 3.5f, 0);
