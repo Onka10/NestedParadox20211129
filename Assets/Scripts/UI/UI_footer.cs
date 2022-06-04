@@ -90,14 +90,7 @@ public class UI_footer : MonoBehaviour
             //カード効果を書き換え
             var cardtextstring = _cardmaganeger.GetText(z);
             cardtext[z].text = cardtextstring;
-
-            StartCoroutine("doubleUpData");
         }
-    }
-
-    IEnumerator doubleUpdata(){
-        yield return new WaitForSeconds(5);
-        UpdateHand();
     }
 
     private void SetCardIcon(int num){
