@@ -11,8 +11,7 @@ namespace MainCamera
         [SerializeField] private Vector3 distanceOffset = new Vector3();
         [SerializeField] private Vector3 bossCameraPos;
         [SerializeField] private float normalStageCameraSize;
-        private TempCharacter tempCharacter;
-        private Transform myTransform;
+        private TempCharacter tempCharacter;        
         [SerializeField] private Camera camera;
         private IReadOnlyReactiveProperty<int> characterDirection;
 
@@ -24,8 +23,7 @@ namespace MainCamera
         private void Start()
         {
             ChangeToNormalCamera();
-            _playermove = GameObject.FindGameObjectWithTag("MainCharacter").GetComponent<PlayerMove>();
-            myTransform = transform;           
+            _playermove = GameObject.FindGameObjectWithTag("MainCharacter").GetComponent<PlayerMove>();                     
             characterDirection = GameObject.FindGameObjectWithTag("MainCharacter").GetComponent<PlayerMove>().CurrentDirection;
             Vector3 distanceOffset_temp = new Vector3(distanceOffset.x, distanceOffset.y, distanceOffset.z);
             characterDirection.Subscribe(x =>
@@ -46,7 +44,7 @@ namespace MainCamera
         {
             isBossStage = true;
             camera.orthographicSize = 8.0f;
-            transform.position = bossCameraPos;
+            base.transform.position = bossCameraPos;
         }
 
         public void ChangeToNormalCamera()
@@ -63,26 +61,26 @@ namespace MainCamera
                 return;
             }
 
-            if(myTransform.position.x < 6.4f)
+            if(transform.position.x < 6.4f)
             {
-                myTransform.position = new Vector3(6.4f, 1.51f, -10);
+                transform.position = new Vector3(6.4f, 1.51f, -10);
             }
-            else if(myTransform.position.x > 32)
+            else if(transform.position.x > 32)
             {
-                myTransform.position = new Vector3(32, 1.51f, -10);
+                transform.position = new Vector3(32, 1.51f, -10);
             }
-            else if(myTransform.position.x == 6.4f || myTransform.position.x == 32)
+            else if(transform.position.x == 6.4f || transform.position.x == 32)
             {
-                myTransform.position = new Vector3(Mathf.Lerp(myTransform.position.x, _playermove.MyTransform.position.x - distanceOffset.x, 0.0001f),
+                transform.position = new Vector3(Mathf.Lerp(transform.position.x, _playermove.MyTransform.position.x - distanceOffset.x, 0.0001f),
                                              1.51f,
-                                             Mathf.Lerp(myTransform.position.z, _playermove.MyTransform.position.z - distanceOffset.z, 0.05f)
+                                             Mathf.Lerp(transform.position.z, _playermove.MyTransform.position.z - distanceOffset.z, 0.05f)
                                              );
             }
             else
             {
-                myTransform.position = new Vector3(Mathf.Lerp(myTransform.position.x, _playermove.MyTransform.position.x - distanceOffset.x, 0.05f),
+                transform.position = new Vector3(Mathf.Lerp(transform.position.x, _playermove.MyTransform.position.x - distanceOffset.x, 0.05f),
                                              1.51f,
-                                             Mathf.Lerp(myTransform.position.z, _playermove.MyTransform.position.z - distanceOffset.z, 0.05f)
+                                             Mathf.Lerp(transform.position.z, _playermove.MyTransform.position.z - distanceOffset.z, 0.05f)
                                              );
             }            
         }       
