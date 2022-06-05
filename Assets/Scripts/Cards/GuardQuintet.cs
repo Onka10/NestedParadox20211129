@@ -9,8 +9,7 @@ namespace NestedParadox.Cards
     {//ガードクインテット
     [SerializeField] MonsterManager _monstermanager;
         public bool CheckTrigger(){
-            if(GuardKunManager.I.Count > 0) return true;
-            else return false;
+            return true;
         }
 
         public void Execution(){
