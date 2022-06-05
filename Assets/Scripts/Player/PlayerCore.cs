@@ -167,7 +167,7 @@ namespace NestedParadox.Players
         public void EndPause()
         {
             _pauseState.Value =false;
-            // Debug.Log(_pauseState.Value);
+            Debug.Log(_pauseState.Value);
         }    
     }
 }

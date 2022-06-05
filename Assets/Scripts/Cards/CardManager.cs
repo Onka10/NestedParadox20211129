@@ -137,9 +137,8 @@ namespace NestedParadox.Cards
         }
 
         public bool CheckTrigger(int nowhand){
-            //召喚可能な時に更新されないから今は消す
-            // return _cardpresenter.Check(_hand[nowhand]);
-            return true;
+            return _cardpresenter.Check(_hand[nowhand]);
+            // return true;
         }
 
         public string GetText(int nowhand){
