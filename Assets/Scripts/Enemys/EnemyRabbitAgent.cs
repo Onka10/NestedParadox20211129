@@ -21,6 +21,7 @@ public class EnemyRabbitAgent : Agent
     // Start is called before the first frame update
     public override void Initialize()
     {
+        
         mainChara = GameObject.FindGameObjectWithTag("MainCharacter").GetComponent<PlayerMove>();
         /*
         mainChara.transform.position = new Vector3(UnityEngine.Random.Range(-10, 30), UnityEngine.Random.Range(-1, 4), 0);
@@ -30,18 +31,22 @@ public class EnemyRabbitAgent : Agent
 
     public override void OnEpisodeBegin()
     {
+        
+        mainChara = GameObject.FindGameObjectWithTag("MainCharacter").GetComponent<PlayerMove>();
         //enemyMoving.transform.position = new Vector3(UnityEngine.Random.Range(-10, 30), UnityEngine.Random.Range(-1, 4), 0);
     }
 
 
     public override void CollectObservations(VectorSensor sensor)
     {
+        
         sensor.AddObservation(enemyMoving.IsGrounded);
     }
 
 
     public override void OnActionReceived(ActionBuffers actions)
-    {
+    {       
+        mainChara = PlayerMove.I;
         /*
         maxStepTimeCount += Time.deltaTime;
         if (maxStepTimeCount > 60)
@@ -51,10 +56,12 @@ public class EnemyRabbitAgent : Agent
             mainChara.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
         }
         */
-
+        enemyMoving = transform.GetComponentInParent<EnemyMoving>();        
         float distanceToTarget = (enemyMoving.transform.position - mainChara.transform.position).magnitude;
         if (distanceToTarget < 2 && enemyMoving.CanMove && enemyRabbit.CanAttack && !enemyRabbit.IsAttacking && !enemyRabbit.IsGetHitting)
         {
+            Debug.Log("アタック条件を満たしました");
+            enemyRabbit = transform.GetComponentInParent<EnemyRabbit>();
             enemyRabbit.Attack();
             return;
         }

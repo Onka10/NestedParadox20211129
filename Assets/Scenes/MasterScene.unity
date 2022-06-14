@@ -1041,6 +1041,7 @@ MonoBehaviour:
   bossCameraPos: {x: 19.9, y: 3, z: -10}
   normalStageCameraSize: 7.5
   camera: {fileID: 486071567}
+  _playermove: {fileID: 864851603}
 --- !u!114 &486071572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1589,6 +1590,17 @@ Transform:
   m_Father: {fileID: 632889637}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &864851603 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5373399189990405106, guid: 127e9b5e4c024f04e91e51f7a2b27a0b, type: 3}
+  m_PrefabInstance: {fileID: 1714661400}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8a13e74bc9da974ab4453a91a5da967, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &870027644
 GameObject:
   m_ObjectHideFlags: 0
@@ -1677,18 +1689,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoundManager
       objectReference: {fileID: 0}
-    - target: {fileID: 1527534880424100662, guid: 221c9528a197a4bc7b0d2e8301b39644, type: 3}
-      propertyPath: bgmSoundDatas.Array.data[0].audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: ffb9e5f06641f4e95a134d43d00f4aa5, type: 3}
-    - target: {fileID: 1527534880424100662, guid: 221c9528a197a4bc7b0d2e8301b39644, type: 3}
-      propertyPath: bgmSoundDatas.Array.data[1].audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 8b149051467a044c6be3a6e595b1105b, type: 3}
-    - target: {fileID: 1527534880424100662, guid: 221c9528a197a4bc7b0d2e8301b39644, type: 3}
-      propertyPath: bgmSoundDatas.Array.data[2].audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 6620f9ba8adb84441b42b68afb6f2fa3, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 221c9528a197a4bc7b0d2e8301b39644, type: 3}
 --- !u!114 &950540247 stripped
@@ -3505,6 +3505,10 @@ PrefabInstance:
       propertyPath: monsterManager
       value: 
       objectReference: {fileID: 1197586069}
+    - target: {fileID: 4438150963474500083, guid: e36f9413fb5934c29b797645dda3e7da, type: 3}
+      propertyPath: areaLimit_Right
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 4438150963474500083, guid: e36f9413fb5934c29b797645dda3e7da, type: 3}
       propertyPath: enemyInstanceCount.Array.data[0]
       value: 3

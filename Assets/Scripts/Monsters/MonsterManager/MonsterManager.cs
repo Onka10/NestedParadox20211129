@@ -108,7 +108,8 @@ namespace NestedParadox.Monsters
                     monsterList.Add(monster);
                     if(monsterList_temp.Any(x => x== null))
                     {
-                        monsterList_temp.Insert(monsterList_temp.IndexOf(null), monster);
+                        int index = monsterList_temp.FindIndex(x => x == null);
+                        monsterList_temp.Insert(index, monster);
                     }
                     else
                     {

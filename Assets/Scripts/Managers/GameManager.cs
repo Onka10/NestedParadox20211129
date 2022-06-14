@@ -34,6 +34,7 @@ namespace NestedParadox.Managers
 
         private async void PhaseExecute()
         {
+            await UniTask.Delay(1000, cancellationToken: this.GetCancellationTokenOnDestroy()); //各オブジェクトの初期化待ち
             while(phase != null)
             {
                 await phase.Execute();

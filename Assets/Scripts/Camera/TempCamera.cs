@@ -15,16 +15,15 @@ namespace MainCamera
         [SerializeField] private Camera camera;
         private IReadOnlyReactiveProperty<int> characterDirection;
 
-        private PlayerMove _playermove;
+        [SerializeField] private PlayerMove _playermove;
 
         //ボスカメラのフラグ
         private bool isBossStage;
 
         private void Start()
         {
-            ChangeToNormalCamera();
-            _playermove = GameObject.FindGameObjectWithTag("MainCharacter").GetComponent<PlayerMove>();                     
-            characterDirection = GameObject.FindGameObjectWithTag("MainCharacter").GetComponent<PlayerMove>().CurrentDirection;
+            ChangeToNormalCamera();            
+            characterDirection = _playermove.CurrentDirection;
             Vector3 distanceOffset_temp = new Vector3(distanceOffset.x, distanceOffset.y, distanceOffset.z);
             characterDirection.Subscribe(x =>
             {
@@ -71,16 +70,16 @@ namespace MainCamera
             }
             else if(transform.position.x == 6.4f || transform.position.x == 32)
             {
-                transform.position = new Vector3(Mathf.Lerp(transform.position.x, _playermove.MyTransform.position.x - distanceOffset.x, 0.0001f),
+                transform.position = new Vector3(Mathf.Lerp(transform.position.x, _playermove.transform.position.x - distanceOffset.x, 0.0001f),
                                              1.51f,
-                                             Mathf.Lerp(transform.position.z, _playermove.MyTransform.position.z - distanceOffset.z, 0.05f)
+                                             Mathf.Lerp(transform.position.z, _playermove.transform.position.z - distanceOffset.z, 0.05f)
                                              );
             }
             else
             {
-                transform.position = new Vector3(Mathf.Lerp(transform.position.x, _playermove.MyTransform.position.x - distanceOffset.x, 0.05f),
+                transform.position = new Vector3(Mathf.Lerp(transform.position.x, _playermove.transform.position.x - distanceOffset.x, 0.05f),
                                              1.51f,
-                                             Mathf.Lerp(transform.position.z, _playermove.MyTransform.position.z - distanceOffset.z, 0.05f)
+                                             Mathf.Lerp(transform.position.z, _playermove.transform.position.z - distanceOffset.z, 0.05f)
                                              );
             }            
         }       

@@ -27,16 +27,23 @@ public class EnemyRabbit : EnemyBase, IApplyDamage
     // Start is called before the first frame update
     protected override void Awake()
     {
-        base.Awake();        
+        base.Awake();                
+    }
+
+    void Start()
+    {
         attackTime.Value = 0;
         state.Value = EnemyState.Idle;
-        pyerMove = GameObject.FindGameObjectWithTag("MainCharacter").GetComponent<PlayerMove>();
+        pyerMove = PlayerMove.I;
         //攻撃用のコライダーに衝突した時、プレイヤーにダメージを与える。
         attackCollider.OnTriggerEnter2DAsObservable()
                       .Where(collision => collision.gameObject.CompareTag("MainCharacter"))
                       .Subscribe(collision =>
                       {
-                        collision.gameObject.GetComponent<PlayerCore>().Damaged(new DamageToPlayer(attackPower,0));
+                          if(collision.TryGetComponent<PlayerCore>(out PlayerCore playerCore))
+                          {
+                              playerCore.Damaged(new DamageToPlayer(attackPower, 0));
+                          }                          
                       })
                       .AddTo(this);
         //攻撃のクールタイムが終わったら、CanAttackをtrueにする。
@@ -74,7 +81,7 @@ public class EnemyRabbit : EnemyBase, IApplyDamage
             return;
         }
         attackCollider.enabled = true;
-        await UniTask.Delay(100);
+        await UniTask.Delay(200);
         attackCollider.enabled = false;
         await UniTask.WaitUntil(() => !animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"), cancellationToken: this.GetCancellationTokenOnDestroy());       
         state.Value = EnemyState.Idle;

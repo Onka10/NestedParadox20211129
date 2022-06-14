@@ -49,13 +49,13 @@ MonoBehaviour:
   seAudioSource: {fileID: 1527534880424100660}
   bgmSoundDatas:
   - bgm: 0
-    audioClip: {fileID: 8300000, guid: a31aac8108fb5a84d9b2a89913a5be6d, type: 3}
+    audioClip: {fileID: 8300000, guid: 5aef3e388801846ddb6f52c55393b3f3, type: 3}
     volume: 0.9
   - bgm: 1
-    audioClip: {fileID: 8300000, guid: ea96f78933ea84646b9670f6b6b242e6, type: 3}
+    audioClip: {fileID: 8300000, guid: 683c24380b97f42f9b791d255782c0ad, type: 3}
     volume: 0.9
   - bgm: 2
-    audioClip: {fileID: 8300000, guid: 8bb896e0bc4c1074fa61b7bc6d1b1962, type: 3}
+    audioClip: {fileID: 8300000, guid: 50364e1600f4d40d6a60e25112c52d9d, type: 3}
     volume: 0.9
   seSoundDatas:
   - se: 0

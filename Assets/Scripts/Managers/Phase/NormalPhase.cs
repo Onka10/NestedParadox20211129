@@ -27,8 +27,7 @@ namespace NestedParadox.Managers
 
         //ノーマルフェイズ実行
         public async override UniTask Execute()
-        {
-            SoundManager.Instance.PlayBGM(BGMSoundData.BGM.Stage);
+        {            
             isReached = false;
             mainCamera.ChangeToNormalCamera();            
             //stageClearの回数が３回までは繰り返す
