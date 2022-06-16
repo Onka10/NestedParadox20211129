@@ -36,7 +36,7 @@ namespace NestedParadox.Monsters
             else if(monsters.Any(x => x==null))
             {
                 Debug.Log("モンスター列に空きがあります");
-                int nullIndex = monsters.IndexOf(null);
+                int nullIndex = monsters.FindIndex(x => x == null);
                 return firstPosition + new Vector3(positionInterval, 0, 0) * nullIndex;
             }
             lastPosition += new Vector3(positionInterval, 0, 0);

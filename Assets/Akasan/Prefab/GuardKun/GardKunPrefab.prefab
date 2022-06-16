@@ -1243,7 +1243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb4382bb11ab34271a8b986f928ef99c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 10
+  hp: 3
   attackPower: 0
   knockBackValue: 0
   isUniquePosition: 0

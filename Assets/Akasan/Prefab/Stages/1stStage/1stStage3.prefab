@@ -1805,7 +1805,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movingSpeed: 5
-  movingDistance: 10
+  movingDistance: 1
   leftAndRight: 1
   rb: {fileID: 3769022805779932285}
 --- !u!1 &6785614089166778440
@@ -2362,7 +2362,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movingSpeed: 5
-  movingDistance: 10
+  movingDistance: 1
   leftAndRight: 1
   rb: {fileID: 3852296496523637187}
 --- !u!1 &8721997810639671772

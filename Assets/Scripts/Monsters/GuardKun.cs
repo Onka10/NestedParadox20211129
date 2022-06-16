@@ -50,7 +50,13 @@ namespace NestedParadox.Monsters
 
         protected override void Update()
         {
-            base.Update();
+            lifeTime += Time.deltaTime;
+            if (lifeTime > 30)
+            {
+                GameObject deathEffect_clone = Instantiate(deathEffect);
+                deathEffect_clone.transform.position = transform.position;
+                Destroy(this.gameObject);
+            }
         }
         // Update is called once per frame
         void FixedUpdate()
@@ -84,7 +90,12 @@ namespace NestedParadox.Monsters
                                                                    guardEffect_clone.transform.localScale.y,
                                                                    guardEffect_clone.transform.localScale.z);
             }
-            await UniTask.Delay(1000);
+            if(hp_r.Value <= 0)
+            {
+                GameObject deathEffect_clone = Instantiate(deathEffect);
+                deathEffect_clone.transform.position = transform.position;
+                Destroy(this.gameObject);
+            }
             state = MonsterState.Idle;            
         }
 

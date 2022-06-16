@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2898452510846080404}
   m_Layer: 8
   m_Name: bodyColl
-  m_TagString: Untagged
+  m_TagString: OmniMissile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -62,7 +62,7 @@ GameObject:
   - component: {fileID: -600021860977580909}
   m_Layer: 8
   m_Name: OmniMissile
-  m_TagString: Untagged
+  m_TagString: OmniMissile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -171,7 +171,7 @@ GameObject:
   - component: {fileID: 529454820913030450}
   m_Layer: 8
   m_Name: attackColl
-  m_TagString: Untagged
+  m_TagString: OmniMissile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -236,6 +236,10 @@ PrefabInstance:
     - target: {fileID: 835177533462436555, guid: 8fa15fb0324d04997b036439dc19f0ea, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 835177533462436555, guid: 8fa15fb0324d04997b036439dc19f0ea, type: 3}
+      propertyPath: m_TagString
+      value: OmniMissile
       objectReference: {fileID: 0}
     - target: {fileID: 1079546324697257645, guid: 8fa15fb0324d04997b036439dc19f0ea, type: 3}
       propertyPath: m_Layer

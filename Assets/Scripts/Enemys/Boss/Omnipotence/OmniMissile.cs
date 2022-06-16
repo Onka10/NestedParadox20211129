@@ -54,7 +54,13 @@ public class OmniMissile : MonoBehaviour
         explosionEffect_clone.transform.position = transform.position;
         explosionEffect_clone.GetComponentInChildren<Collider2D>().OnTriggerEnter2DAsObservable()
                 .Where(other => other.CompareTag("MainCharacter"))
-                .Subscribe(other => other.GetComponent<PlayerCore>().Damaged(new DamageToPlayer(attackPower, 0)))
+                .Subscribe(other =>
+                {
+                    if (other.TryGetComponent<PlayerCore>(out PlayerCore playerCore))
+                    {
+                        playerCore.Damaged(new DamageToPlayer(attackPower, 0));
+                    }
+                })
                 .AddTo(explosionEffect_clone.gameObject);
         if (IsExplosionHorizontal)
         {

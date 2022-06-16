@@ -27,8 +27,15 @@ public class BodyAttack : BossCommand
         //アタック子ライダーの当たり判定を購読
         attackColl.OnTriggerEnter2DAsObservable()
             .Where(other => other.CompareTag("MainCharacter"))
-            .Subscribe(other => other.GetComponent<PlayerCore>().Damaged(new DamageToPlayer(attackPower, 0)))
+            .Subscribe(other =>
+            {
+                if (other.TryGetComponent<PlayerCore>(out PlayerCore playerCore))
+                {
+                    playerCore.Damaged(new DamageToPlayer(attackPower, 0));
+                }
+            })
             .AddTo(this);
+            
 
         animator.SetTrigger("BodyAttackTrigger");
 
