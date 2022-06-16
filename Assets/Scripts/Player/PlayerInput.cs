@@ -106,9 +106,9 @@ namespace NestedParadox.Players
         }
 
         public void Pause(InputAction.CallbackContext context){
-            if(context.phase == InputActionPhase.Started){
-                _pause.OnNext(Unit.Default);
-            }
+            // if(context.phase == InputActionPhase.Started){
+            //     _pause.OnNext(Unit.Default);
+            // }
         }
 
         public void OnDebugAction(InputAction.CallbackContext context){
