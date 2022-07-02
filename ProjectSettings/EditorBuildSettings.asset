@@ -15,25 +15,16 @@ EditorBuildSettings:
     path: Assets/Scenes/CreditScene.unity
     guid: dd333a93bf276d044aa0cbc6f0b3a273
   - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: Assets/Scenes/GameScene.unity
-    guid: e668aee4b986342268658570cfcb1d3b
-  - enabled: 0
     path: Assets/Scenes/Player_Test.unity
     guid: e512f63dd674edf48975044fca08301b
-  - enabled: 0
-    path: Assets/Scenes/OnkaloMasterScene.unity
-    guid: d0214178eee4e304abfef3e12083e40c
   - enabled: 1
     path: Assets/Scenes/ResultScene.unity
     guid: 89050a95bcde4af4a81b16db9ff20fe6
   - enabled: 1
     path: Assets/Scenes/MasterScene.unity
     guid: 17be61b3b5c48474b8202d35176bfa1e
+  - enabled: 1
+    path: Assets/Scenes/CardSelect.unity
+    guid: 61ad883e9bc4f4141919fb3ea45d79da
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: dbededb281be22947a888bbdf97cf360, type: 2}
