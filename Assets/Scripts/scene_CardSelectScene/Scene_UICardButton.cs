@@ -6,33 +6,35 @@ using UnityEngine.UI;
 public class Scene_UICardButton : MonoBehaviour
 {
 
+    public enum UI_Card_Rarelity { Normal=10, Rare = 50 }
+
     public int ID;
-    public bool onDeck = false;
+
+    public UI_Card_Rarelity rarelity;
+    public Button ui_button;
+    public Text ui_description;
 
     Scene_CardSelect scs;
+
+    private void Start()
+    {
+        Refresh();
+    }
+
+    void Refresh()
+    {
+        ui_description.text = "ID : " + ID;
+    }
 
     public void OnButtonDown()
     {
         if (scs == null) scs = FindObjectOfType<Scene_CardSelect>();
 
-        if (onDeck)
+        if (scs.AddToDeck(this))
         {
-            scs.cardCount--;
-            transform.SetParent(scs.parent_cards);
-            onDeck = false;
+            // success to adding deck.
+            ui_button.interactable = false;
         }
-        else
-        {
-
-            if (scs.cardCount < 10)
-            {
-                scs.cardCount++;
-                transform.SetParent(scs.parent_deck);
-                onDeck = true;
-            }
-        }
-
-        scs.Refresh();
 
     }
 }
