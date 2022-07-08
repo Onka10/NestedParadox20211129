@@ -17,16 +17,13 @@ public class Scene_UIDeckButton : MonoBehaviour
     public void OnButtonDown_ReturnToCards()
     {
         if (scs == null) scs = FindObjectOfType<Scene_CardSelect>();
-
         if (targetCard == null) return;
 
 
         scs.RemoveFromDeck(targetCard.ID);
 
-
         targetCard.ui_button.interactable = true;
         btn.interactable = false;
-
         // image.sprite = null;
         desc.text = "Empty";
 
